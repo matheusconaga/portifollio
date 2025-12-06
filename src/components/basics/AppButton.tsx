@@ -5,26 +5,26 @@ import type { ReactNode } from "react";
 type Variant = "primary" | "secondary";
 
 type AppButtonProps = {
-    text: string;
-    func: () => void;
-    icon?: ReactNode;
-    variant?: Variant;
-    disabled?: boolean;
+  text: string;
+  func: () => void;
+  icon?: ReactNode;
+  variant?: Variant;
+  disabled?: boolean;
 };
 
 export default function AppButton({
-    text,
-    func,
-    icon,
-    variant = "primary",
-    disabled = false,
+  text,
+  func,
+  icon,
+  variant = "primary",
+  disabled = false,
 }: AppButtonProps) {
-    return (
-        <Botao onClick={func} $variant={variant} disabled={disabled}>
-            {icon && icon}
-            <span>{text}</span>
-        </Botao>
-    );
+  return (
+    <Botao onClick={func} $variant={variant} disabled={disabled}>
+      {icon && icon}
+      <span>{text}</span>
+    </Botao>
+  );
 }
 
 const Botao = styled.button<{ $variant: Variant }>`
@@ -39,11 +39,18 @@ const Botao = styled.button<{ $variant: Variant }>`
   justify-content: center;
   gap: 8px;
   white-space: nowrap;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  }
 
   /* ---------------------- PRIMARY ---------------------- */
   ${({ $variant }) =>
-        $variant === "primary" &&
-        `
+    $variant === "primary" &&
+    `
       background-color: ${COLORS.primary};
       color: ${COLORS.dark};
       border: none;
@@ -56,8 +63,8 @@ const Botao = styled.button<{ $variant: Variant }>`
 
   /* ---------------------- SECONDARY ---------------------- */
   ${({ $variant }) =>
-        $variant === "secondary" &&
-        `
+    $variant === "secondary" &&
+    `
       background-color: ${COLORS.dark};
       border: 2px solid ${COLORS.primary};
       color: ${COLORS.primary};
