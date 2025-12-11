@@ -12,7 +12,7 @@ export default function CardTec({ titulo, imagem }: Prop) {
         <StyleContainer>
 
             <Imagem src={imagem} />
-            <Titulo title={titulo} fontSize="1.15em"/>
+            <Titulo title={titulo} fontSize="1.15em" fontWeight="600"/>
 
         </StyleContainer>
 

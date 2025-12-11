@@ -5,6 +5,8 @@ import NavBar from './components/layout/NavBar';
 import Home from './screens/Home';
 import Sobre from './screens/Sobre';
 import Tecnologias from './screens/Tecnologias';
+import Servicos from './screens/Servicos';
+import Projetos from './screens/Projetos';
 
 export default function App() {
 
@@ -16,6 +18,8 @@ export default function App() {
         <Home />
         <Sobre />
         <Tecnologias/>
+        <Projetos/>
+        <Servicos/>
       </MainContent>
 
       <Footer />

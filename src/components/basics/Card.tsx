@@ -20,6 +20,7 @@ const Container = styled.div<{ width?: string; height?: string }>`
 display: flex;
 flex-direction: column;
 align-items: center;
+justify-content: center;
 gap: 12px;
     background-color: ${COLORS.marine_blue};
     width: ${({ width }) => width || "30%"};

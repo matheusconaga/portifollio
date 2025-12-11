@@ -73,7 +73,6 @@ export default function Tecnologias() {
 }
 
 const Content = styled.div`
-
     display: flex;
     flex-direction: column;
     gap: 2.5em;
