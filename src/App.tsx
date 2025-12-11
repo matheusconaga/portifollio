@@ -3,6 +3,8 @@ import { COLORS } from './constants/colors';
 import Footer from './components/layout/Footer';
 import NavBar from './components/layout/NavBar';
 import Home from './screens/Home';
+import Sobre from './screens/Sobre';
+import Tecnologias from './screens/Tecnologias';
 
 export default function App() {
 
@@ -12,6 +14,8 @@ export default function App() {
       <GlobalStyle />
       <MainContent>
         <Home />
+        <Sobre />
+        <Tecnologias/>
       </MainContent>
 
       <Footer />
@@ -49,8 +53,9 @@ const GlobalStyle = createGlobalStyle`
 const MainContent = styled.main`
 display: flex;
 width: 80%;
+max-width: 1200px;
   margin: 0 auto;
 flex-direction: column;
   padding-top: 10em;
-  gap: 1em;
+  gap: 6em;
 `;

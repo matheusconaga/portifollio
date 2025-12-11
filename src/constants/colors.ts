@@ -1,9 +1,11 @@
 export const COLORS = {
 
     primary: "#37CBFB",
+    light_shadow: "#37cafbb4",
     secondary: "#10A0CF",
     dark_blue: "#0A0426",
-    marine_blue: "#0b096f8f",
+    marine_blue: "#0B042B",
+    hover_marine_blue: "#05034b8f",
     
     
     light: "#EBFAFF",

@@ -11,7 +11,7 @@ type Props = {
 export default function Titulo({
     title,
     color = "white",
-    fontSize = "1.6em",
+    fontSize = "1.4em",
     fontWeight = "bold",
     textAlign = "left"
 }: Props) {

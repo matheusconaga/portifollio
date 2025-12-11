@@ -52,6 +52,7 @@ const Circle = styled.button`
 
   &:hover {
     transform: translateY(-5px);
+    filter: brightness(0.7);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
   }
 `;

@@ -28,7 +28,7 @@ export default function AppButton({
 }
 
 const Botao = styled.button<{ $variant: Variant }>`
-  padding: 12px 20px;
+  padding: 8px 20px;
   border-radius: 10px;
   font-size: 16px;
   font-weight: bold;
@@ -47,7 +47,6 @@ const Botao = styled.button<{ $variant: Variant }>`
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
   }
 
-  /* ---------------------- PRIMARY ---------------------- */
   ${({ $variant }) =>
     $variant === "primary" &&
     `
@@ -61,7 +60,6 @@ const Botao = styled.button<{ $variant: Variant }>`
       }
   `}
 
-  /* ---------------------- SECONDARY ---------------------- */
   ${({ $variant }) =>
     $variant === "secondary" &&
     `

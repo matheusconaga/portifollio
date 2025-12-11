@@ -48,7 +48,6 @@ export default function Home() {
 
 const Conteudo = styled.div`
     margin: 0 auto;
-    max-width: 1200px;
     padding: 2em 1em;
 `;
 
@@ -68,7 +67,7 @@ const MouseDiv = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 6em;
+    margin-top: 8em;
 `;
 
 const MouseIcon = styled(Mouse)`
@@ -128,7 +127,7 @@ const Logo = styled.img`
 `;
 
 const Foto = styled.img`
-  width: 35em;
+  width: 32em;
   transition: all 0.3s ease;
 
   @media (max-width: 900px) {
