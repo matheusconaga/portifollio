@@ -14,5 +14,5 @@ const TextStyle = styled.p<{ $align: string }>`
     font-size: 16px;
     text-align: ${({ $align }) => $align};
     font-family: 'Poppins', sans-serif;
-    font-weight: 600;
+    font-weight: 500;
 `;

@@ -6,26 +6,28 @@ type Prop = {
     children: ReactNode;
     width?: string;
     height?: string;
+    align?: string;
+    gap?: string;
 };
 
-export default function Card({ children, width, height }: Prop) {
+export default function Card({ children, width, height, align = "center", gap = "12px" }: Prop) {
     return (
-        <Container width={width} height={height}>
+        <Container width={width} height={height} align={align} gap={gap}>
             {children}
         </Container>
     );
 }
 
-const Container = styled.div<{ width?: string; height?: string }>`
+const Container = styled.div<{ width?: string; height?: string; align?: string; gap?: string }>`
 display: flex;
 flex-direction: column;
-align-items: center;
-justify-content: center;
-gap: 12px;
+align-items: ${({ align }) => align};
+justify-content: ${({ align }) => align};
+gap:  ${({ gap }) => gap};
     background-color: ${COLORS.marine_blue};
     width: ${({ width }) => width || "30%"};
     height: ${({ height }) => height || "auto"};
-    padding: 24px;
+    padding: 12px 24px;
     border-radius: 10px;
     border: solid 4px ${COLORS.primary};
     box-shadow: 8px 8px 4px ${COLORS.light_shadow};

@@ -7,6 +7,7 @@ export const COLORS = {
     dark_blue: "#0A0426",
     marine_blue: "#0B042B",
     hover_marine_blue: "#05034b8f",
+    gray: "#A6A6A6",
     
     
     light: "#EBFAFF",
