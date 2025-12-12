@@ -7,6 +7,7 @@ import Sobre from './screens/Sobre';
 import Tecnologias from './screens/Tecnologias';
 import Servicos from './screens/Servicos';
 import Projetos from './screens/Projetos';
+import Contato from './screens/Contato';
 
 export default function App() {
 
@@ -17,9 +18,10 @@ export default function App() {
       <MainContent>
         <Home />
         <Sobre />
-        <Tecnologias/>
-        <Projetos/>
-        <Servicos/>
+        <Tecnologias />
+        <Projetos />
+        <Servicos />
+        <Contato />
       </MainContent>
 
       <Footer />
@@ -61,5 +63,5 @@ max-width: 1200px;
   margin: 0 auto;
 flex-direction: column;
   padding-top: 10em;
-  gap: 6em;
+  gap: 10em;
 `;

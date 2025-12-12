@@ -19,15 +19,15 @@ export default function Sobre() {
                 <Infos>
                     <IconTitle>
                         <LaptopMinimal size={30} color="white" />
-                        <Titulo title="Desenvolvimento de Website" fontSize="18px" />
+                        <Titulo title="Desenvolvimento de Website" fontSize="18px" fontWeight="600" />
                     </IconTitle>
                     <IconTitle>
                         <Smartphone size={30} color="white" />
-                        <Titulo title="Desenvolvimento de Aplicativos móveis" fontSize="18px" />
+                        <Titulo title="Desenvolvimento de Aplicativos móveis" fontSize="18px" fontWeight="600" />
                     </IconTitle>
                     <IconTitle>
                         <Palette size={30} color="white" />
-                        <Titulo title="Design de Sistemas" fontSize="18px" />
+                        <Titulo title="Design de Sistemas" fontSize="18px" fontWeight="600" />
                     </IconTitle>
                 </Infos>
 
