@@ -145,6 +145,8 @@ display: flex;
 flex-direction: row;
 gap: 1em;
 padding-bottom: 1em;
+flex-wrap: wrap;
+justify-content: center;
 margin: 0 auto;
 
 `

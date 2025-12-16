@@ -164,8 +164,6 @@ export default function Curriculo() {
                 </Timeline>
             </AnimatedTimeline>
 
-
-
         </Content>
 
     )
@@ -188,6 +186,8 @@ const TitleSec = styled.div`
 
 const CardWrapper = styled.div<{ side: "left" | "right" }>`
   width: 45%;
+  padding-left: 1em;
+  padding-right: 1em;
   display: flex;
 
   ${({ side }) =>
@@ -211,6 +211,8 @@ display: flex;
 flex-direction: row;
 gap: 1em;
 padding-bottom: 1em;
+flex-wrap: wrap;
+justify-content: center;
 margin: 0 auto;
 `;
 
@@ -253,7 +255,7 @@ const TimelineItem = styled.div<{ side: "left" | "right" }>`
             ? `justify-content: flex-end;`
             : `justify-content: flex-start;`}
 
-  @media (max-width: 900px) {
+  @media (max-width: 1000px) {
     justify-content: flex-start;
   }
 `;
@@ -263,7 +265,6 @@ const TimelineItem = styled.div<{ side: "left" | "right" }>`
 const TimelineDot = styled.div`
   position: absolute;
   left: 50%;
-  top: 24px; 
   transform: translateX(-50%);
   width: 14px;
   height: 14px;
@@ -284,6 +285,7 @@ const TimelineDot = styled.div`
 
 const AnimatedTimeline = styled.div`
     animation: fadeSlide 1.3s ease;
+    
 
     @keyframes fadeSlide {
         from {

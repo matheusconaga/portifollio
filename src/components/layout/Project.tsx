@@ -95,10 +95,10 @@ export default function Project({
                 )}
                 {tecnologia && (
                     <CardTec
+                        variant="badge"
                         imagem={tecnologia.imagem}
                         titulo={tecnologia.titulo}
                         position="absolute"
-                        width=""
                         bgColor={COLORS.tecImage_bg}
                         fontSize="1em"
                         textColor={COLORS.marine_blue}

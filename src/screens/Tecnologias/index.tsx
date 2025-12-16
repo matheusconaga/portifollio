@@ -61,9 +61,9 @@ export default function Tecnologias() {
                 <Titulo title="Outros Conhecimentos" textAlign="center" color={COLORS.primary} fontSize="1.3em" />
 
                 <CardsBottom>
-                    <CardTec titulo="Figma" imagem={tecs.figma} />
-                    <CardTec titulo="Git" imagem={tecs.git} />
-                    <CardTec titulo="Diagramação" imagem={tecs.diagrama} />
+                    <CardTec titulo="Figma" imagem={tecs.figma} width="100%" />
+                    <CardTec titulo="Git" imagem={tecs.git} width="100%" />
+                    <CardTec titulo="Diagramação" imagem={tecs.diagrama} width="100%" />
                 </CardsBottom>
             </InfoBottom>
 
@@ -87,17 +87,41 @@ const TitleSec = styled.div`
 `
 
 const Cards = styled.div`
-    display: flex;
-    flex-direction: row;
-    gap: 2em;
-justify-content: center;
-`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 2em;
+
+  flex-wrap: nowrap;
+
+  @media (max-width: 1000px) {
+    flex-wrap: wrap;
+    gap: 1.5em;
+  }
+
+  @media (max-width: 600px) {
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2em;
+  }
+`;
+
+
 
 const CardsBottom = styled.div`
 display: flex;
 flex-direction: row;
+justify-content: center;
 gap: 2em;
-`
+
+  @media (max-width: 600px) {
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2em;
+  }
+`;
 
 const InfoBottom = styled.div`
 

@@ -16,36 +16,38 @@ export default function Sobre() {
             </TitleSec>
 
             <Wrapper>
-                <Infos>
-                    <IconTitle>
-                        <LaptopMinimal size={30} color="white" />
-                        <Titulo title="Desenvolvimento de Website" fontSize="18px" fontWeight="600" />
-                    </IconTitle>
-                    <IconTitle>
-                        <Smartphone size={30} color="white" />
-                        <Titulo title="Desenvolvimento de Aplicativos móveis" fontSize="18px" fontWeight="600" />
-                    </IconTitle>
-                    <IconTitle>
-                        <Palette size={30} color="white" />
-                        <Titulo title="Design de Sistemas" fontSize="18px" fontWeight="600" />
-                    </IconTitle>
-                </Infos>
+                <InfoContainer>
+                    <Infos>
+                        <IconTitle>
+                            <LaptopMinimal size={30} color="white" />
+                            <Titulo title="Desenvolvimento de Website" fontSize="18px" fontWeight="600" />
+                        </IconTitle>
+                        <IconTitle>
+                            <Smartphone size={30} color="white" />
+                            <Titulo title="Desenvolvimento de Aplicativos móveis" fontSize="18px" fontWeight="600" />
+                        </IconTitle>
+                        <IconTitle>
+                            <Palette size={30} color="white" />
+                            <Titulo title="Design de Sistemas" fontSize="18px" fontWeight="600" />
+                        </IconTitle>
+                    </Infos>
+                </InfoContainer>
 
                 <InfoCards>
-                    <Card width="600px" height="210px">
+                    <Card>
                         <Text text="Sou desenvolvedor frontend web e mobile, com foco na criação de interfaces modernas, performáticas e orientadas à experiência do usuário. Possuo experiência em Clean Architecture, APIs RESTful, Firebase, Git e metodologias ágeis. Atuei em projetos de finanças e jogos educacionais, desenvolvendo componentes reutilizáveis que otimizaram significativamente o processo de entrega." />
                     </Card>
 
                     <CardsInfo>
-                        <Card width="130px" height="130px">
+                        <Card variant="micro">
                             <Titulo title="2 +" color={COLORS.primary} fontWeight="bolder" />
                             <Text align="left" text="Anos de Experiência" />
                         </Card>
-                        <Card width="130px" height="130px">
+                        <Card variant="micro">
                             <Titulo title="5 +" color={COLORS.primary} />
                             <Text align="left" text="Clientes Satisfeitos" />
                         </Card>
-                        <Card width="130px" height="130px">
+                        <Card variant="micro">
                             <Titulo title="40%" color={COLORS.primary} />
                             <Text align="left" text="Mais Eficiência" />
                         </Card>
@@ -58,6 +60,13 @@ export default function Sobre() {
     )
 
 }
+
+const InfoContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+
+`;
 
 const Content = styled.div`
 
@@ -74,40 +83,81 @@ const TitleSec = styled.div`
     gap: 1em;
 `
 const CardsInfo = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  justify-content: center;
 
-    display: flex;
-    flex-direction: row;
-    gap: 16px;
-    justify-content: center;
-`
+  @media (max-width: 480px) {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+`;
+
 
 const Infos = styled.div`
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 2em;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  padding-left: 2.2em;
+
+  &:before {
+    content: "";
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    width: 3px;
+    height: 100%;
+    background: ${COLORS.primary};
+    border-radius: 10px;
+  }
+
+  @media (max-width: 1000px) {
     padding-left: 2.2em;
+    &:before {
+      left: 15px;
+      transform: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    gap: 1.5em;
 
     &:before {
-        content: "";
-        position: absolute;
-        left: 15px;
-        top: 10px;
-        width: 3px;
-        height: 50%;
-        background: ${COLORS.primary};
-        border-radius: 10px;
+      left: 15px;
+      height: 100%;
     }
+  }
+`;
 
-    @media (max-width: 900px) {
-        align-items: center;
-        padding-left: 0;
 
-        &:before {
-            left: 50%;
-            transform: translateX(-50%);
-        }
+const IconTitle = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+
+  &:before {
+    content: "";
+    position: absolute;
+    left: -25px;
+    width: 12px;
+    height: 12px;
+    background: ${COLORS.primary};
+    border-radius: 50%;
+  }
+
+  @media (max-width: 480px) {
+    gap: 10px;
+
+    &:before {
+      left: -25px;
+      transform: none;
     }
+  }
 `;
 
 const InfoCards = styled.div`
@@ -116,32 +166,6 @@ display: flex;
     gap: 1.4em;
 
 `
-
-const IconTitle = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 12px;
-    position: relative;
-
-    &:before {
-        content: "";
-        position: absolute;
-        left: -25px;
-        width: 12px;
-        height: 12px;
-        background: ${COLORS.primary};
-        border-radius: 50%;
-    }
-
-    @media (max-width: 900px) {
-        &:before {
-            left: 50%;
-            transform: translateX(-50%);
-        }
-    }
-`;
-
 
 const Wrapper = styled.div`
     display: flex;

@@ -33,5 +33,14 @@ const CircleContainer = styled.div`
   background-color: ${COLORS.tecImage_bg};
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+   @media (max-width: 768px) {
+    width: 40px;
+    height: 40px;
+  }
+
+  @media (max-width: 480px) {
+    width: 40;
+    height: 40px;
+  }
 
 `;

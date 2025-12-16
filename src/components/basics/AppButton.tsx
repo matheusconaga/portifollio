@@ -119,8 +119,8 @@ const Botao = styled.button<{ $variant: Variant }>`
   }
 
   @media (max-width: 480px) {
-  font-size: 11px;
-  padding: 8px 10px;
+  font-size: 12px;
+  padding: 8px 25px;
   gap: 6px;
 
   max-width: 100%;

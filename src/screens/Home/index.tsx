@@ -1,11 +1,13 @@
 import styled from "styled-components"
 import logo_matheus from "../../assets/logo_matheus.webp";
-import eu from "../../assets/eu.webp";
+import euDesktop from "../../assets/eu.webp";
+import euMobile from "../../assets/eu_mobile.png";
 import Titulo from "../../components/basics/Titulo";
 import { COLORS } from "../../constants/colors";
 import AppButton from "../../components/basics/AppButton";
 import { ArrowRight, Download, Mouse } from "lucide-react"
 import cvPdf from "../../assets/curriculo/CV_Matheus_Lula.pdf";
+import Text from "../../components/basics/Text";
 ;
 
 export default function Home() {
@@ -35,13 +37,10 @@ export default function Home() {
                         </TextoContainer>
                     </ConteudoLogo>
 
-                    <Titulo
-                        title="Transformo ideias em aplicações modernas que combinam usabilidade, desempenho e experiências marcantes."
-                        fontWeight="normal"
-                        textAlign="center"
-                        fontSize="1.2em"
+                    <Text
+                        text="Transformo ideias em aplicações modernas que combinam usabilidade, desempenho e experiências marcantes."
+                        align="left"
                     />
-
                     <Buttons>
                         <AppButton func={() => scrollTo("projetos")} text="Ver Projetos" icon={<ArrowRight size={30} />} />
                         <AppButton func={handleDownloadCV} text="Download CV" icon={<Download size={30} />} variant="secondary" />
@@ -49,7 +48,11 @@ export default function Home() {
                 </LeftItem>
 
                 <RightItem>
-                    <Foto src={eu} alt="Logo Matheus" />
+                    <Picture>
+                        <source srcSet={euMobile} media="(max-width: 899px)" />
+                        <source srcSet={euDesktop} media="(min-width: 900px)" />
+                        <Foto src={euDesktop} alt="Foto Matheus Lula" />
+                    </Picture>
                 </RightItem>
             </Itens>
 
@@ -62,28 +65,49 @@ export default function Home() {
 
 
 const Conteudo = styled.div`
-    margin: 0 auto;
-    padding: 1em 1em;
+  margin: 0 auto;
+  padding: 1em;
+
+  @media (max-width: 480px) {
+    padding: 1.5em 1em 2em;
+  }
 `;
+
+const Picture = styled.picture`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+`;
+
 
 const Itens = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 
-    @media (max-width: 900px) {
-        flex-direction: column;
-        gap: 2em;
-    }
+  @media (max-width: 1000px) {
+    flex-direction: column;
+    gap: 2.5em;
+  }
+
+  @media (max-width: 480px) {
+    gap: 2em;
+  }
 `;
+
 
 const MouseDiv = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 8em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 8em;
+
+  @media (max-width: 480px) {
+    display: none;
+  }
 `;
+
 
 const MouseIcon = styled(Mouse)`
     color: ${COLORS.primary};
@@ -97,19 +121,22 @@ const MouseIcon = styled(Mouse)`
 `;
 
 const Buttons = styled.div`
-    display: flex;
-    flex-direction: row;
-    gap: 1em;
-    margin-top: 1em;
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+  margin-top: 1em;
 
-    @media (max-width: 600px) {
-        flex-direction: column;
-        width: 100%;
-        button {
-            width: 100%;
-        }
+  @media (max-width: 600px) {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.8em;
+
+    button {
+      width: 100%;
     }
+  }
 `;
+
 
 const ConteudoLogo = styled.div`
     display: flex;
@@ -124,47 +151,60 @@ const ConteudoLogo = styled.div`
 `;
 
 const TextoContainer = styled.div`
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+
+  @media (max-width: 480px) {
+    gap: 0.4em;
+  }
 `;
+
 
 const Logo = styled.img`
   width: 140px;
   transition: all 0.3s ease;
 
-  @media (max-width: 900px) {
-    width: 140px;
-  }
-
   @media (max-width: 480px) {
-    width: 110px;
+    width: 100px;
   }
 `;
 
+
 const Foto = styled.img`
-  width: 36em;
+  width: 34em;
+  max-width: 520px;
   padding-right: 2.5em;
   transition: all 0.3s ease;
 
   @media (max-width: 900px) {
-    width: 22em;
+    max-width: 320px;
+    padding-right: 0;
   }
 
   @media (max-width: 480px) {
-    width: 15em;
+    max-width: 180px;
   }
 `;
 
-const LeftItem = styled.div`
-    display: flex;
-    width: 60%;
-    flex-direction: column;
-    align-items: center;
 
-    @media (max-width: 900px) {
-        width: 100%;
-    }
+
+const LeftItem = styled.div`
+  display: flex;
+  width: 60%;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+
+  @media (max-width: 900px) {
+    width: 100%;
+  }
+
+  @media (max-width: 480px) {
+    gap: 1em;
+  }
 `;
+
 
 const RightItem = styled.div`
     width: 40%;

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { COLORS } from "../../constants/colors";
 import type { ReactNode } from "react";
 
-type CardVariant = "default" | "compact" | "mini";
+type CardVariant = "default" | "compact" | "mini" | "micro";
 
 type Prop = {
   children: ReactNode;
@@ -53,7 +53,7 @@ const Container = styled.div<{
   width?: string;
   height?: string;
   align?: string;
-  variant?: "default" | "compact" | "mini";
+  variant?: "default" | "compact" | "mini" | "micro";
   $hasHover?: boolean;
 }>`
   box-sizing: border-box;
@@ -74,6 +74,12 @@ const Container = styled.div<{
           height: 180px;
           padding: 12px;
         `;
+      case "micro":
+        return `
+          width: 130px;
+          height: 130px;
+          padding: 12px;
+        `;
       case "compact":
         return `
           width: 370px;
@@ -89,7 +95,38 @@ const Container = styled.div<{
     }
   }}
 
-  padding: 12px 24px;
+  @media (max-width: 800px) {
+  ${({ variant }) => {
+    switch (variant) {
+      case "compact":
+        return `
+          width: 100%;
+          min-height: auto;
+          padding: 12px;
+        `;
+      case "micro":
+        return `
+           width: 100%;
+          height: auto;
+          padding: 16px;
+        `;
+      default:
+        return `
+          width: 100%;
+          max-width: 100%;
+          padding: 12px 16px;
+        `;
+    }
+  }}
+}
+
+@media (max-width: 480px) {
+  width: 100%;
+  max-width: 100%;
+  min-width: unset;
+  margin: 0 auto;
+}
+
 
   border-radius: 10px;
   border: 4px solid ${COLORS.primary};
