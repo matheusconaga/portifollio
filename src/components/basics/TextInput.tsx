@@ -1,25 +1,46 @@
+import type { ChangeEvent } from "react";
 import styled from "styled-components";
 import { COLORS } from "../../constants/colors";
 import Titulo from "./Titulo";
 
-type Prop = {
+type TextInputProps = {
     title: string;
+    value?: string;
+    onChange?: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
     multiline?: boolean;
+    placeholder?: string;
 };
 
-export default function TextInput({ title, multiline = false }: Prop) {
+
+export default function TextInput({
+    title,
+    value,
+    onChange,
+    multiline = false,
+    placeholder = "Digite aqui...",
+}: TextInputProps) {
     return (
         <InputContainer>
             <Titulo title={title} fontWeight="600" fontSize="1em" />
 
             {multiline ? (
-                <TextArea placeholder="Digite aqui..." />
+                <TextArea
+                    value={value}
+                    onChange={onChange}
+                    placeholder={placeholder}
+                />
             ) : (
-                <Input type="text" placeholder="Digite aqui..." />
+                <Input
+                    type="text"
+                    value={value}
+                    onChange={onChange}
+                    placeholder={placeholder}
+                />
             )}
         </InputContainer>
     );
 }
+
 
 const InputContainer = styled.div`
     width: 100%;

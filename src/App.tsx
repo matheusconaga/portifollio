@@ -17,14 +17,36 @@ export default function App() {
       <NavBar />
       <GlobalStyle />
       <MainContent>
-        <Home />
-        <Sobre />
-        <Tecnologias />
-        <Projetos />
-        <Servicos />
-        <Curriculo />
-        <Contato />
+        
+        <section id="home">
+          <Home />
+        </section>
+
+        <section id="sobre">
+          <Sobre />
+        </section>
+
+        <section id="tecnologias">
+          <Tecnologias />
+        </section>
+
+        <section id="projetos">
+          <Projetos />
+        </section>
+
+        <section id="servicos">
+          <Servicos />
+        </section>
+
+        <section id="curriculo">
+          <Curriculo />
+        </section>
+
+        <section id="contato">
+          <Contato />
+        </section>
       </MainContent>
+
 
       <Footer />
 
@@ -47,9 +69,8 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
-  html, body, #root {
-    width: 100%;
-    height: 100%;
+  html {
+    scroll-behavior: smooth;
   }
 
   body {
@@ -58,6 +79,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
+
 const MainContent = styled.main`
 display: flex;
 width: 80%;
@@ -65,5 +87,8 @@ max-width: 1200px;
   margin: 0 auto;
 flex-direction: column;
   padding-top: 10em;
-  gap: 10em;
+  gap: 8em;
+  section {
+  scroll-margin-top: 120px;
+}
 `;

@@ -55,9 +55,30 @@ const Circle = styled.button`
     filter: brightness(0.7);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
   }
+
+  @media (max-width: 768px) {
+    width: 50px;
+    height: 50px;
+  }
+
+  @media (max-width: 480px) {
+    width: 44px;
+    height: 44px;
+  }
 `;
+
 
 const Imagem = styled.img`
   width: 30px;
   height: 30px;
+
+  @media (max-width: 768px) {
+    width: 24px;
+    height: 24px;
+  }
+
+  @media (max-width: 480px) {
+    width: 20px;
+    height: 20px;
+  }
 `;

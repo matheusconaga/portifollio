@@ -4,9 +4,24 @@ import eu from "../../assets/eu.webp";
 import Titulo from "../../components/basics/Titulo";
 import { COLORS } from "../../constants/colors";
 import AppButton from "../../components/basics/AppButton";
-import { ArrowRight, Download, Mouse } from "lucide-react";
+import { ArrowRight, Download, Mouse } from "lucide-react"
+import cvPdf from "../../assets/curriculo/CV_Matheus_Lula.pdf";
+;
 
 export default function Home() {
+
+    const handleDownloadCV = () => {
+        window.open(cvPdf, "_blank");
+    };
+
+    const scrollTo = (id: string) => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+
+
     return (
         <Conteudo>
             <Itens>
@@ -28,8 +43,8 @@ export default function Home() {
                     />
 
                     <Buttons>
-                        <AppButton func={() => { }} text="Ver Projetos" icon={<ArrowRight size={30} />} />
-                        <AppButton func={() => { }} text="Download CV" icon={<Download size={30} />} variant="secondary" />
+                        <AppButton func={() => scrollTo("projetos")} text="Ver Projetos" icon={<ArrowRight size={30} />} />
+                        <AppButton func={handleDownloadCV} text="Download CV" icon={<Download size={30} />} variant="secondary" />
                     </Buttons>
                 </LeftItem>
 
@@ -39,7 +54,7 @@ export default function Home() {
             </Itens>
 
             <MouseDiv>
-                <MouseIcon size={30}/>
+                <MouseIcon size={30} />
             </MouseDiv>
         </Conteudo>
     )
@@ -48,7 +63,7 @@ export default function Home() {
 
 const Conteudo = styled.div`
     margin: 0 auto;
-    padding: 2em 1em;
+    padding: 1em 1em;
 `;
 
 const Itens = styled.div`
@@ -127,7 +142,8 @@ const Logo = styled.img`
 `;
 
 const Foto = styled.img`
-  width: 32em;
+  width: 36em;
+  padding-right: 2.5em;
   transition: all 0.3s ease;
 
   @media (max-width: 900px) {
