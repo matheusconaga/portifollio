@@ -120,8 +120,7 @@ Gostaria de fazer um orçamento para o desenvolvimento de um sistema.`;
                 {servicosItems.map((item) => (
                     <Card
                         key={item.key}
-                        width="180px"
-                        height="180px"
+                        variant="mini"
                         hoverContent={
                             <>
                                 <Titulo

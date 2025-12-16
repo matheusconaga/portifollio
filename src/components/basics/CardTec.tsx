@@ -17,10 +17,8 @@ export default function CardTec({ titulo, imagem, position = "static", bgColor =
 
     return (
         <StyleContainer $position={position} bgColor={bgColor} width={width} height={height}>
-
             <Imagem src={imagem} bgColor={bgColor}/>
             <Titulo title={titulo} fontSize={fontSize} fontWeight="600" color={textColor} />
-
         </StyleContainer>
 
 

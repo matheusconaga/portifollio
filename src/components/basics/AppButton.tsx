@@ -119,17 +119,24 @@ const Botao = styled.button<{ $variant: Variant }>`
   }
 
   @media (max-width: 480px) {
-    font-size: 11px;
-    padding: 6px 8px;
-    gap: 4px;
+  font-size: 11px;
+  padding: 8px 10px;
+  gap: 6px;
 
-    svg {
-      width: 15px;
-      height: 15px;
-    }
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
 
-    span {
-      display: none;
-    }
+  span {
+    display: inline;
+    line-height: 1.2;
   }
+
+  svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+}
+
 `;

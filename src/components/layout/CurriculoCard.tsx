@@ -24,7 +24,7 @@ export default function CurriculoCard({
     transparent = false,
 }: CurriculoCardProps) {
     return (
-        <Card width="45%" align="normal" gap="4px">
+        <Card variant="default" align="normal" gap="4px">
             {periodo && (
                 <Titulo
                     title={periodo}

@@ -86,7 +86,7 @@ export default function Project({
 
 
     return (
-        <StyledCard>
+        <StyledCard variant="compact">
             <ContainerImagem>
                 {status && (
                     <StatusTag color={STATUS_CONFIG[status].color} borderColor={STATUS_CONFIG[status].borderColor}>
@@ -128,7 +128,6 @@ export default function Project({
 }
 
 const StyledCard = styled(Card)`
-  width: 320px;
   min-height: 430px;
 
   display: flex;

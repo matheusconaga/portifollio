@@ -155,8 +155,11 @@ export default function Curriculo() {
                             side={index % 2 === 0 ? "right" : "left"}
                         >
                             <TimelineDot />
-                            <CurriculoCard {...item} />
+                            <CardWrapper side={index % 2 === 0 ? "right" : "left"}>
+                                <CurriculoCard {...item} />
+                            </CardWrapper>
                         </TimelineItem>
+
                     ))}
                 </Timeline>
             </AnimatedTimeline>
@@ -182,6 +185,26 @@ const TitleSec = styled.div`
     align-items: center;
     gap: 1em;
 `;
+
+const CardWrapper = styled.div<{ side: "left" | "right" }>`
+  width: 45%;
+  display: flex;
+
+  ${({ side }) =>
+        side === "left"
+            ? `
+        justify-content: flex-end;
+      `
+            : `
+        justify-content: flex-start;
+      `}
+
+  @media (max-width: 900px) {
+    width: 100%;
+    margin-left: 32px;
+  }
+`;
+
 
 const TopButtons = styled.div`
 display: flex;
@@ -220,34 +243,44 @@ const Timeline = styled.div`
 `;
 
 const TimelineItem = styled.div<{ side: "left" | "right" }>`
-    position: relative;
-    display: flex;
-    justify-content: ${({ side }) =>
-        side === "left" ? "flex-end" : "flex-start"};
-    width: 100%;
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-height: 14px;
 
-    @media (max-width: 900px) {
-        justify-content: flex-start;
-        padding-left: 40px;
-    }
+  ${({ side }) =>
+        side === "left"
+            ? `justify-content: flex-end;`
+            : `justify-content: flex-start;`}
+
+  @media (max-width: 900px) {
+    justify-content: flex-start;
+  }
 `;
+
 
 
 const TimelineDot = styled.div`
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 14px;
-    height: 14px;
-    background: ${COLORS.primary};
-    border-radius: 50%;
-    z-index: 2;
+  position: absolute;
+  left: 50%;
+  top: 24px; 
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  min-width: 14px;
+  min-height: 14px;
+  max-width: 14px;
+  max-height: 14px;
+  background: ${COLORS.primary};
+  border-radius: 50%;
+  z-index: 3;
 
-    @media (max-width: 900px) {
-        left: 20px;
-        transform: none;
-    }
+  @media (max-width: 900px) {
+    left: 15px;
+    transform: none;
+  }
 `;
+
 
 const AnimatedTimeline = styled.div`
     animation: fadeSlide 1.3s ease;

@@ -66,7 +66,7 @@ export default function Contato() {
             <Wrapper>
 
                 <Card width="100%">
-                    
+
                     <Titulo title="Entre em Contato" fontSize="1.3em" fontWeight="700" />
 
                     <Form>
@@ -276,20 +276,15 @@ const IconTitle = styled.div`
 
 const Wrapper = styled.div`
   display: flex;
-  flex-direction: row;
   justify-content: center;
   gap: 6em;
   margin-top: 2em;
+  flex-wrap: wrap;
 
   @media (max-width: 900px) {
     flex-direction: column;
     align-items: center;
     gap: 3em;
-    text-align: center;
-  }
-
-  @media (max-width: 480px) {
-    gap: 2em;
   }
 `;
 

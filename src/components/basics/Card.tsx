@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { COLORS } from "../../constants/colors";
 import type { ReactNode } from "react";
 
+type CardVariant = "default" | "compact" | "mini";
+
 type Prop = {
   children: ReactNode;
   hoverContent?: ReactNode;
@@ -9,7 +11,11 @@ type Prop = {
   height?: string;
   align?: string;
   gap?: string;
+  variant?: CardVariant;
+
 };
+
+
 
 export default function Card({
   children,
@@ -18,14 +24,17 @@ export default function Card({
   height,
   align,
   gap = "12px",
+  variant = "default",
 }: Prop) {
   return (
     <Container
       width={width}
       height={height}
       align={align}
+      variant={variant}
       $hasHover={!!hoverContent}
     >
+
       <Content className="card-content" gap={gap} align={align}>
         {children}
       </Content>
@@ -44,6 +53,7 @@ const Container = styled.div<{
   width?: string;
   height?: string;
   align?: string;
+  variant?: "default" | "compact" | "mini";
   $hasHover?: boolean;
 }>`
   box-sizing: border-box;
@@ -55,10 +65,30 @@ const Container = styled.div<{
   justify-content: center;
 
   background-color: ${COLORS.marine_blue};
-  width: ${({ width }) => width || "100%"};
-max-width: 600px;
-min-width: 280px;
-  height: ${({ height }) => height || "auto"};
+
+   ${({ variant }) => {
+    switch (variant) {
+      case "mini":
+        return `
+          width: 180px;
+          height: 180px;
+          padding: 12px;
+        `;
+      case "compact":
+        return `
+          width: 370px;
+          min-height: 400px;
+          padding: 12px 20px;
+        `;
+      default:
+        return `
+          width: 100%;
+          max-width: 600px;
+          padding: 12px 24px;
+        `;
+    }
+  }}
+
   padding: 12px 24px;
 
   border-radius: 10px;
@@ -84,17 +114,13 @@ min-width: 280px;
     }
   `}
 
-  @media (max-width: 768px) {
-  width: ${({ width }) => width || "95%"};
-  padding: 16px;
-}
-
-@media (max-width: 480px) {
-  padding: 14px;
-  border-width: 3px;
-}
-
+  @media (max-width: 480px) {
+    width: 100%;
+    min-width: unset;
+    max-width: 100%;
+  }
 `;
+
 
 const Content = styled.div<{ gap?: string; align?: string; }>`
   display: flex;

@@ -72,7 +72,7 @@ export default function Projetos() {
                 design: () =>
                     window.open(
                         "https://www.figma.com/design/ILhKSxBq3lX3EiuhvaXbiA/Untitled"
-                    )
+                    ),
             }
         }
     ];
