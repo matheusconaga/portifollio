@@ -83,7 +83,6 @@ const Picture = styled.picture`
 const Itens = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
 
   @media (max-width: 1000px) {
@@ -178,7 +177,7 @@ const Foto = styled.img`
   transition: all 0.3s ease;
 
   @media (max-width: 900px) {
-    max-width: 320px;
+    max-width: 280px;
     padding-right: 0;
   }
 

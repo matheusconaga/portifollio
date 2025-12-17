@@ -42,7 +42,7 @@ export default function CurriculoCard({
                         {titulo && (
                             <Titulo
                                 title={titulo}
-                                fontSize="1.1em"
+                                fontSize="1em"
                             />
                         )}
 
@@ -66,7 +66,7 @@ export default function CurriculoCard({
                 )}
             </Infos>
 
-            <Text text={text} />
+            <Text text={text} align="left"/>
         </Card>
     );
 }

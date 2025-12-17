@@ -4,6 +4,7 @@ import { HandCoins, MoveRight } from "lucide-react"
 import { COLORS } from "../../constants/colors"
 import Card from "../../components/basics/Card"
 import AppButton from "../../components/basics/AppButton"
+import Text from "../../components/basics/Text"
 
 const images = import.meta.glob("../../assets/serv/*.{png,jpg,jpeg,svg}", {
     eager: true
@@ -113,6 +114,15 @@ Gostaria de fazer um orçamento para o desenvolvimento de um sistema.`;
             <TitleSec>
                 <MoveRight size={30} color={COLORS.primary} />
                 <Titulo title="Serviços" color={COLORS.primary} />
+
+                <DesktopText>
+                    <Text text="(Passe o mouse em cima para mais detalhes)" align="left" />
+                </DesktopText>
+
+                <TabletText>
+                    <Text text="(Pressione e segure o card para mais detalhes)" align="left" />
+                </TabletText>
+
             </TitleSec>
 
 
@@ -162,12 +172,30 @@ const Content = styled.div`
     flex-direction: column;
     gap: 2em;
 
-`
+`;
+
+const DesktopText = styled.div`
+  display: block;
+
+  @media (max-width: 899px) {
+    display: none;
+  }
+`;
+
+const TabletText = styled.div`
+  display: none;
+
+  @media (max-width: 899px) {
+    display: block;
+  }
+`;
+
 
 const TitleSec = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
+    flex-wrap: wrap;
     gap: 1em;
 `
 

@@ -62,7 +62,7 @@ const Container = styled.div<{
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  
 
   background-color: ${COLORS.marine_blue};
 
@@ -73,18 +73,21 @@ const Container = styled.div<{
           width: 180px;
           height: 180px;
           padding: 12px;
+          justify-content: center;
         `;
       case "micro":
         return `
           width: 130px;
           height: 130px;
           padding: 12px;
+          justify-content: center;
+
         `;
       case "compact":
         return `
           width: 370px;
           min-height: 400px;
-          padding: 12px 20px;
+          padding: 20px 16px;
         `;
       default:
         return `

@@ -129,7 +129,7 @@ export default function Project({
 
 const StyledCard = styled(Card)`
   min-height: 430px;
-
+    
   display: flex;
   flex-direction: column;
 `;
