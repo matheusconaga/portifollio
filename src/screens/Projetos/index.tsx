@@ -48,10 +48,6 @@ export default function Projetos() {
                 titulo: "React"
             },
             links: {
-                design: () =>
-                    window.open(
-                        "https://www.figma.com/design/3j7VbSO7OSgmPZ6bTeYoh4/CineClub"
-                    ),
                 repo: () => window.open("https://github.com/matheusconaga/cine_club")
             }
         },
@@ -69,10 +65,6 @@ export default function Projetos() {
             links: {
                 repo: () =>
                     window.open("https://github.com/matheusconaga/delta_commerce"),
-                design: () =>
-                    window.open(
-                        "https://www.figma.com/design/ILhKSxBq3lX3EiuhvaXbiA/Untitled"
-                    ),
             }
         }
     ];
