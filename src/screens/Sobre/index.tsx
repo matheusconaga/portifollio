@@ -35,7 +35,7 @@ export default function Sobre() {
 
                 <InfoCards>
                     <Card>
-                        <Text text="Sou desenvolvedor frontend web e mobile, com foco na criação de interfaces modernas, performáticas e orientadas à experiência do usuário. Possuo experiência em Clean Architecture, APIs RESTful, Firebase, Git e metodologias ágeis. Atuei em projetos de finanças e jogos educacionais, desenvolvendo componentes reutilizáveis que otimizaram significativamente o processo de entrega." />
+                        <Text text="Sou desenvolvedor frontend web e mobile, com foco na criação de interfaces modernas, performáticas e orientadas à experiência do usuário. Possuo experiência em Clean Architecture, APIs RESTful, Firebase, Git e metodologias ágeis. Atuei em projetos de finanças e jogos educacionais, desenvolvendo componentes reutilizáveis que otimizaram significativamente o processo de entrega." align="left"/>
                     </Card>
 
                     <CardsInfo>
