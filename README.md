@@ -48,7 +48,7 @@ O projeto foi desenvolvido utilizando tecnologias modernas do ecossistema fronte
 
 O projeto está disponível online e pode ser acessado através do link abaixo:
 
-🚀 **Acesse o portfólio:** *(adicione aqui o link do deploy – Vercel, Netlify, etc.)*
+🚀 **Acesse o portfólio:** [Link Portifólio](https://portifollio.onrender.com/)
 
 O deploy foi realizado em ambiente de produção, garantindo boa performance e fácil acesso.
 
