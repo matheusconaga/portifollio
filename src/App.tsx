@@ -46,8 +46,6 @@ export default function App() {
           <Contato />
         </section>
       </MainContent>
-
-
       <Footer />
 
     </AppContainer>
