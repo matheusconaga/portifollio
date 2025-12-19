@@ -5,9 +5,24 @@ import { COLORS } from "../../constants/colors"
 import Titulo from "../../components/basics/Titulo"
 import AppButton from "../../components/basics/AppButton"
 import Project from "../../components/layout/Project"
-import cell from "../../assets/cell.png";
 import flutter from "../../assets/tecs/flutter_blue.png";
 import react from "../../assets/tecs/react_blue.png";
+
+const images = import.meta.glob("../../assets/projects/*.{png,jpg,jpeg,svg}", {
+    eager: true
+});
+
+type ImageModule = {
+    default: string;
+};
+
+const projects: Record<string, string> = {};
+
+Object.entries(images).forEach(([path, mod]) => {
+    const module = mod as ImageModule;
+    const name = path.split("/").pop()!.replace(/\.(png|jpg|jpeg|svg)$/, "");
+    projects[name] = module.default;
+});
 
 type FiltroProjeto = "todos" | "mobile" | "web";
 
@@ -18,11 +33,11 @@ export default function Projetos() {
     const projetos = [
         {
             tipo: "web" as const,
-            imagem: cell,
+            imagem: projects.gestao,
             status: "concluido" as const,
             titulo: "Sistema de Gerenciamento de Patrimônio",
             descricao:
-                "Sistema web realizado em React para gerenciamento de patrimônio de uma empresa.",
+                "Sistema web de gerenciamento de patrimônio de uma empresa, disponível uma versão de demonstração.",
             tecnologia: {
                 imagem: react,
                 titulo: "React"
@@ -38,7 +53,7 @@ export default function Projetos() {
         },
         {
             tipo: "web" as const,
-            imagem: cell,
+            imagem: projects.cine,
             status: "desenvolvimento" as const,
             titulo: "CineClub",
             descricao:
@@ -53,7 +68,7 @@ export default function Projetos() {
         },
         {
             tipo: "mobile" as const,
-            imagem: cell,
+            imagem: projects.deltacommerce,
             status: "refatorando" as const,
             titulo: "Delta Commerce",
             descricao:
