@@ -110,21 +110,21 @@ export default function Contato() {
             <IconTitle>
               <Circle icon={<Mail size={20} color="white" />} />
               <TextCollumn>
-                <Titulo title="E-mail" fontSize="14px" />
+                <Titulo title="E-mail" fontSize="18px"/>
                 <Titulo title="matheusphillip170@gmail.com" fontSize="14px" fontWeight="500" />
               </TextCollumn>
             </IconTitle>
             <IconTitle>
               <Circle icon={<Smartphone size={20} color="white" />} />
               <TextCollumn>
-                <Titulo title="Telefone" fontSize="14px" />
+                <Titulo title="Telefone" fontSize="18px" />
                 <Titulo title="+55 (86) 98145-1876" fontSize="14px" fontWeight="500" />
               </TextCollumn>
             </IconTitle>
             <IconTitle>
               <Circle icon={<MapPin size={20} color="white" />} />
               <TextCollumn>
-                <Titulo title="Localização" fontSize="14px" />
+                <Titulo title="Localização" fontSize="18px" />
                 <Titulo title="Parnaíba-PI" fontSize="14px" fontWeight="500" />
               </TextCollumn>
             </IconTitle>
@@ -185,9 +185,9 @@ const Inputs = styled.div`
 
   @media (max-width: 480px) {
     flex-direction: column;
+      gap: 4px;
   }
 `;
-
 
 const TextCollumn = styled.div`
   display: flex;
@@ -292,13 +292,9 @@ const Wrapper = styled.div`
   }
 `;
 
-
-
 const Form = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 1em;
-    margin-top: 1em;
-`;
+ `;
 

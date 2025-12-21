@@ -81,7 +81,8 @@ const TitleSec = styled.div`
     flex-direction: row;
     align-items: center;
     gap: 1em;
-`
+`;
+
 const CardsInfo = styled.div`
   display: flex;
   flex-direction: row;
@@ -172,7 +173,7 @@ const Wrapper = styled.div`
     flex-direction: row;
     justify-content: space-between;
     gap: 3em;
-    margin-top: 2em;
+    margin-top: 1em;
 
     @media (max-width: 900px) {
         flex-direction: column;

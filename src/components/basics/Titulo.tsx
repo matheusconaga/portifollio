@@ -39,4 +39,8 @@ const TituloEstilizado = styled.h1<{
     font-weight: ${(props) => props.fontWeight};
     font-family: "Poppins", sans-serif;
     text-align: ${(props) => props.textAlign};
+
+     @media (max-width: 480px) {
+    font-size: calc(${(props) => props.fontSize} * 0.85);
+  }
 `;

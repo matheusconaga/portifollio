@@ -228,7 +228,6 @@ display: flex;
 flex-direction: column;
 gap: 1em;
 margin: 0 auto;
-padding-top: 2em;
 
  animation: bounce 3s infinite ease-in-out;
 

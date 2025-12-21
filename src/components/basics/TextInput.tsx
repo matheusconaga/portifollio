@@ -47,7 +47,12 @@ const InputContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 6px;
-    padding: 0.5em 0;
+    padding-bottom: 1em;
+
+     @media (max-width: 900px) {
+        flex-direction: column;
+        padding-bottom: 12px;
+    }
 `;
 
 const InputBase = `
@@ -69,6 +74,10 @@ const InputBase = `
 
     &::placeholder {
         color: rgba(255, 255, 255, 0.5);
+    }
+
+     @media (max-width: 900px) {
+       font-size: 14px;
     }
 `;
 

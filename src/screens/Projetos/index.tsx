@@ -93,7 +93,6 @@ export default function Projetos() {
     return (
 
         <Content>
-
             <TitleSec>
                 <MoveRight size={30} color={COLORS.primary} />
                 <Titulo title="Projetos" color={COLORS.primary} />
@@ -150,6 +149,7 @@ const TopButtons = styled.div`
 
 display: flex;
 flex-direction: row;
+padding-top: 1em;
 gap: 1em;
 padding-bottom: 1em;
 flex-wrap: wrap;

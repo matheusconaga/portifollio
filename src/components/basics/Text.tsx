@@ -11,8 +11,9 @@ export default function Text({ text, align = "justify" }: Prop) {
 
 const TextStyle = styled.p<{ $align: string }>`
     color: white;
-    font-size: 16px;
+    font-size: clamp(14px, 2.5vw, 16px);
     text-align: ${({ $align }) => $align};
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
+   
 `;

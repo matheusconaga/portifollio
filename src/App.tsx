@@ -17,7 +17,7 @@ export default function App() {
       <NavBar />
       <GlobalStyle />
       <MainContent>
-        
+
         <section id="home">
           <Home />
         </section>
@@ -89,4 +89,10 @@ flex-direction: column;
   section {
   scroll-margin-top: 120px;
 }
+
+@media (max-width: 900px) {
+  padding-top: 6em;
+  gap: 4em;
+        
+    }
 `;
