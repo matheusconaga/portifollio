@@ -19,7 +19,7 @@ export default function Footer() {
         <LogoTitle>Matheus Lula</LogoTitle>
       </LogoContainer>
       <Direitos>
-        Copyright © 2025 Matheus Lula. Todos os direitos reservados.
+        Copyright © 2026 Matheus Lula. Todos os direitos reservados.
       </Direitos>
     </Background>
   );

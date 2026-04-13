@@ -44,26 +44,9 @@ export default function Projetos() {
             },
             links: {
                 deploy: () =>
-                    window.open("https://gestao-patrimonial-pr3s.onrender.com/"),
-                design: () =>
-                    window.open(
-                        "https://www.figma.com/design/qIqaB3RyFacn88lzAwvlDd/Gest%C3%A3o-de-Patrimonio"
-                    )
-            }
-        },
-        {
-            tipo: "web" as const,
-            imagem: projects.cine,
-            status: "desenvolvimento" as const,
-            titulo: "CineClub",
-            descricao:
-                "Sistema para visualizar filmes e séries, com funcionalidades de avaliação e lista de favoritos.",
-            tecnologia: {
-                imagem: react,
-                titulo: "React"
-            },
-            links: {
-                repo: () => window.open("https://github.com/matheusconaga/cine_club")
+                    window.open("https://projeto-patrimoniario.onrender.com/"),
+                repo: () =>
+                    window.open("https://github.com/matheusconaga/projeto_patrimoniario"),  
             }
         },
         {
