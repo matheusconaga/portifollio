@@ -35,7 +35,7 @@ export default function Projetos() {
             tipo: "web" as const,
             imagem: projects.gestao,
             status: "concluido" as const,
-            titulo: "Sistema de Gerenciamento de Patrimônio",
+            titulo: "Patrimoniário",
             descricao:
                 "Sistema web de gerenciamento de patrimônio de uma empresa, disponível uma versão de demonstração.",
             tecnologia: {
