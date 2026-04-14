@@ -33,7 +33,7 @@ export default function Home() {
                         <TextoContainer>
                             <Titulo title="Olá, eu sou o" />
                             <Titulo title="Matheus Lula" color={COLORS.primary} fontSize="2.3em" />
-                            <Titulo title="Desenvolvedor Frontend Web & Mobile" />
+                            <Titulo title="Desenvolvedor FullStack Web & Mobile" />
                         </TextoContainer>
                     </ConteudoLogo>
 

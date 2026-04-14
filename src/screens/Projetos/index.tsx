@@ -51,18 +51,18 @@ export default function Projetos() {
         },
         {
             tipo: "mobile" as const,
-            imagem: projects.deltacommerce,
-            status: "refatorando" as const,
-            titulo: "Delta Commerce",
+            imagem: projects.println,
+            status: "desenvolvimento" as const,
+            titulo: "PrintLn",
             descricao:
-                "Sistema de e-commerce em Flutter para postagem e compra de produtos via WhatsApp.",
+                "Sistema de Rede Social simples com foco em experiência de uso, integração com serviços em nuvem e gerenciamento reativo de estado.",
             tecnologia: {
                 imagem: flutter,
                 titulo: "Flutter"
             },
             links: {
                 repo: () =>
-                    window.open("https://github.com/matheusconaga/delta_commerce"),
+                    window.open("https://github.com/matheusconaga/projeto-println"),
             }
         }
     ];
