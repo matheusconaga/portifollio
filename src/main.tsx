@@ -1,9 +1,13 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import App from './App.tsx'
+import Homepage from './pages/home'
+import { MainLayout } from './app/layout/MainLayout'
+import "./app/styles/global.css"
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+    <MainLayout>
+      <Homepage />
+    </MainLayout>
   </StrictMode>,
 )

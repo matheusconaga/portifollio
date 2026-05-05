@@ -1,33 +1,26 @@
 import styled from "styled-components";
-import { COLORS } from "../../constants/colors";
-import type { ReactNode } from "react";
 
-type Variant = "primary" | "secondary";
 
-type AppButtonProps = {
-  text: string;
-  func: () => void;
-  icon?: ReactNode;
-  variant?: Variant;
-  disabled?: boolean;
-};
+export default function Navbar() {
 
-export default function AppButton({
-  text,
-  func,
-  icon,
-  variant = "primary",
-  disabled = false,
-}: AppButtonProps) {
   return (
-    <Botao onClick={func} $variant={variant} disabled={disabled}>
-      {icon && icon}
-      <span>{text}</span>
-    </Botao>
-  );
+    <nav className="flex flex-row items-center">
+      <div className="flex flex-row items-center gap-8 mr-6">
+        <MenuItem onClick={() => scrollTo()}>Início</MenuItem>
+        <MenuItem onClick={() => scrollTo()}>Projetos</MenuItem>
+        <MenuItem onClick={() => scrollTo()}>Tecnologias</MenuItem>
+        <MenuItem onClick={() => scrollTo()}>Currículo</MenuItem>
+      </div>
+      <div>
+        <Botao onClick={() => scrollTo()}>Contato</Botao>
+
+      </div>
+    </nav>
+  )
+
 }
 
-const Botao = styled.button<{ $variant: Variant }>`
+const Botao = styled.button`
   padding: 8px 20px;
   border-radius: 10px;
   font-size: 16px;
@@ -47,32 +40,6 @@ const Botao = styled.button<{ $variant: Variant }>`
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
   }
 
-  ${({ $variant }) =>
-    $variant === "primary" &&
-    `
-      background-color: ${COLORS.primary};
-      color: ${COLORS.dark};
-      border: none;
-
-      svg {
-        color: ${COLORS.dark};
-        stroke: ${COLORS.dark};
-      }
-  `}
-
-  ${({ $variant }) =>
-    $variant === "secondary" &&
-    `
-      background-color: ${COLORS.dark};
-      border: 2px solid ${COLORS.primary};
-      color: ${COLORS.primary};
-
-      svg {
-        color: ${COLORS.primary};
-        stroke: ${COLORS.primary};
-      }
-  `}
-
   &:hover:enabled {
     filter: brightness(0.85);
   }
@@ -82,8 +49,6 @@ const Botao = styled.button<{ $variant: Variant }>`
   }
 
   &:disabled {
-    background-color: ${COLORS.light};
-    color: ${COLORS.dark};
     cursor: auto;
     opacity: 0.8;
   }
@@ -139,4 +104,25 @@ const Botao = styled.button<{ $variant: Variant }>`
   }
 }
 
+`;
+
+const MenuItem = styled.span`
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+  position: relative;
+
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    transition: width 0.3s ease;
+  }
+
+  &:hover:after {
+    width: 100%;
+  }
 `;

@@ -1,0 +1,45 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "@fontsource-variable/geist";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  /* cores base do projeto */
+  --color-background: #080322;
+  --color-foreground: #F0F0F0;
+
+  --color-primary: #77D2FA;
+  --color-primary-foreground: #080322;
+
+  --color-accent: #37CBFB;
+  --color-accent-foreground: #080322;
+
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-ring: #37CBFB;
+
+  /* glass effects */
+  --color-glass-blue: rgba(30, 165, 209, 0.2);
+  --color-glass-dark: rgba(11, 9, 111, 0.2);
+  --color-glass-light: rgba(217, 217, 217, 0.1);
+
+
+  /* radius global */
+  --radius: 0.75rem;
+}
+
+/* 🧱 BASE GLOBAL */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html,
+  body {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+}
