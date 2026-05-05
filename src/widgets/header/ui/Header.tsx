@@ -9,7 +9,7 @@ export function Header() {
       <div
         className="
           group
-          flex items-center justify-between gap-4
+          flex items-center justify-between 
 
           w-[700px] hover:w-[1000px]
           px-6 py-3 hover:px-8 hover:py-4
