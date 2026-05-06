@@ -2,9 +2,13 @@ import logo from "@/assets/logo_matheus.webp"
 import { Badge } from "@/shared/ui/badge"
 import react_logo from "@/assets/tecs/react.png"
 import flutter_logo from "@/assets/tecs/flutter.png"
+import eu from "@/assets/euxl.png"
 import fastapi_logo from "@/assets/tecs/fastapi.svg"
 import { Button } from "@/shared/ui/button"
-import { Download, MoveRight } from "lucide-react"
+import { Download, MoveRight, CodeXml } from "lucide-react"
+import { Card } from "@/shared/ui/Card/card"
+import { CardImage } from "@/shared/ui/Card/card-image"
+
 
 export default function Hero() {
   return (
@@ -23,9 +27,9 @@ export default function Hero() {
         <div className="flex items-center w-100 gap-2 cursor-pointer">
           <img src={logo} className="w-50" />
           <div className=" flex flex-col gap-2 p-4 rounded-lg">
-            <span className="font-bold text-white text-3xl ">olá, eu sou o</span>
+            <span className="font-semibold text-white text-3xl ">olá, eu sou o</span>
             <span className="font-bold text-primary text-6xl ">Matheus Lula</span>
-            <span className="font-bold text-white text-3xl w-130">Fullstack developer Web & Mobile</span>
+            <span className="font-semibold text-white text-3xl w-130">Fullstack developer Web & Mobile</span>
             <div className="flex items-center gap-2">
               <Badge variant="tag" imageSrc={react_logo}>React</Badge>
               <Badge variant="tag" imageSrc={flutter_logo}>Flutter</Badge>
@@ -39,16 +43,46 @@ export default function Hero() {
         <span className="text-gray text-xl ">APIs e IA. Crio produtos rápidos, escaláveis e com foco</span>
         <span className="text-gray text-xl ">em experiência do usuário.</span>
         <div className="flex flex-row gap-4 mt-4">
-          <Button variant="primary-xl" rightIcon= {<MoveRight size={25}/>}>Ver Projetos</Button>
-          <Button variant="outline-xl" rightIcon= {<Download size={25}/>}>Currículo</Button>
+          <Button variant="primary-xl" rightIcon={<MoveRight size={25} />}>Ver Projetos</Button>
+          <Button variant="outline-xl" rightIcon={<Download size={25} />}>Currículo</Button>
         </div>
 
       </div>
 
       <div>
 
-        <div className="flex items-center gap-2 cursor-pointer bg-gray">
-          <img src={logo} className="w-100" />
+        <div className="relative w-90 h-90">
+
+          <Card className="w-full h-full rounded-lg overflow-hidden">
+            <CardImage
+              src={eu}
+              alt="Foto minha"
+              fit="contain"
+              position="bottom-right"
+            />
+          </Card>
+
+          {/* 👇 Badge flutuando */}
+          <div className="absolute top-80 right-2 hover:scale-[1.01] hover:border-white/20">
+            <Badge variant="glass" className="flex items-center gap-2 px-3 py-2 shadow-lg shadow-black/20">
+
+              <Badge variant="glass" className="p-2">
+                <CodeXml size={16} />
+              </Badge>
+
+              <span className="flex flex-col leading-tight">
+                <span className="text-white text-sm">
+                  Soluções Fullstack
+                </span>
+                <span className="text-white/60 text-xs">
+                  Web & Mobile & IA
+                </span>
+              </span>
+
+            </Badge>
+          </div>
+
+
         </div>
 
       </div>
