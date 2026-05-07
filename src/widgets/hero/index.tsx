@@ -19,7 +19,7 @@ export default function Hero() {
 
 
   return (
-    <div className="flex flex-col items-center justify-center w-full max-w-[1200px] mx-auto">
+    <div className="flex flex-col items-center justify-center w-full max-w-[1200px] mx-auto ">
 
       <div className="flex justify-center items-center gap-20">
 

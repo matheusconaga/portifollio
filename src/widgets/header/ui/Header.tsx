@@ -11,7 +11,7 @@ export function Header() {
           group
           flex items-center justify-between 
 
-          w-[700px] hover:w-[1000px]
+          w-[850px] hover:w-[1000px]
           px-6 py-3 hover:px-8 hover:py-4
           
           rounded-full
@@ -24,20 +24,38 @@ export function Header() {
         "
       >
         {/* Logo */}
-        <div className="flex items-center gap-2 cursor-pointer">
-          <img src={logo} className="w-15" />
-          <span className="font-bold text-white text-2xl">Matheus Lula</span>
-        </div>
+        <a href="#home">
+          <div className="flex items-center gap-2 cursor-pointer">
+            <img src={logo} className="w-15" />
+            <span className="font-bold text-white text-2xl">Matheus Lula</span>
+          </div>
+        </a>
 
         {/* Menu */}
-        <nav className="flex items-center gap-6 text-white group">
-          <MenuItem>Início</MenuItem>
-          <MenuItem>Projetos</MenuItem>
-          <MenuItem>Tecnologias</MenuItem>
-          <MenuItem>Currículo</MenuItem>
-          <Button variant="primary">
-            Contato
-          </Button>
+        <nav className="flex items-center gap-6 text-white">
+          <MenuItem href="#home">
+            Início
+          </MenuItem>
+          <MenuItem href="#about">
+            Sobre
+          </MenuItem>
+          <MenuItem href="#projects">
+            Projetos
+          </MenuItem>
+
+          <MenuItem href="#tech">
+            Tecnologias
+          </MenuItem>
+
+          <MenuItem href="#resume">
+            Currículo
+          </MenuItem>
+
+          <a href="#contact">
+            <Button variant="primary">
+              Contato
+            </Button>
+          </a>
         </nav>
 
       </div>

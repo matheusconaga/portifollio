@@ -1,8 +1,35 @@
-export function MenuItem({ children }: { children: React.ReactNode }) {
+import type { ReactNode } from "react"
+
+interface MenuItemProps {
+  children: ReactNode
+  href: string
+}
+
+export function MenuItem({
+  children,
+  href,
+}: MenuItemProps) {
   return (
-    <span className="relative cursor-pointer font-semibold">
+    <a
+      href={href}
+      className="
+    group
+    relative
+    inline-flex
+
+    cursor-pointer
+
+    font-semibold
+    text-white/80
+
+    transition-all duration-300
+
+    hover:text-primary
+    hover:-translate-y-1
+  "
+    >
       {children}
-      <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-primary transition-all group-hover:w-full" />
-    </span>
+
+    </a>
   )
 }

@@ -18,7 +18,7 @@ export function Section({
       id={id}
       className={cn(
         `
-          py-24
+          py-10
           scroll-mt-32
         `,
         className

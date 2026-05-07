@@ -5,6 +5,7 @@ import Projects from "@/widgets/projects"
 
 import { Container } from "@/shared/ui/container"
 import { Section } from "@/shared/ui/section"
+import TechStacks from "@/widgets/tech-stacks"
 
 export default function Homepage() {
   return (
@@ -27,6 +28,12 @@ export default function Homepage() {
       <Section id="projects">
         <Container>
           <Projects />
+        </Container>
+      </Section>
+
+      <Section id="tech">
+        <Container>
+          <TechStacks />
         </Container>
       </Section>
     </>
