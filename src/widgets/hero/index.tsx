@@ -1,19 +1,25 @@
 import logo from "@/assets/logo_matheus.webp"
 import { Badge } from "@/shared/ui/badge"
-import react_logo from "@/assets/tecs/react.png"
-import flutter_logo from "@/assets/tecs/flutter.png"
 import eu from "@/assets/euxl.png"
-import fastapi_logo from "@/assets/tecs/fastapi.svg"
 import { Button } from "@/shared/ui/button"
 import { Download, MoveRight, CodeXml, Mouse } from "lucide-react"
 import { Card } from "@/shared/ui/Card/card"
 import { CardImage } from "@/shared/ui/Card/card-image"
 import styled from "styled-components"
+import { SiFastapi, SiFlutter } from "react-icons/si"
+import { FaReact } from "react-icons/fa"
 
+const techs = [
+  { name: "React", icon: FaReact },
+  { name: "Flutter", icon: SiFlutter },
+  { name: "FastAPI", icon: SiFastapi },
+]
 
 export default function Hero() {
+
+
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center w-full max-w-[1200px] mx-auto">
 
       <div className="flex justify-center items-center gap-20">
 
@@ -34,9 +40,48 @@ export default function Hero() {
               <span className="font-bold text-primary text-6xl ">Matheus Lula</span>
               <span className="font-semibold text-white text-3xl w-130">Fullstack developer Web & Mobile</span>
               <div className="flex items-center gap-2">
-                <Badge variant="tag" imageSrc={react_logo}>React</Badge>
-                <Badge variant="tag" imageSrc={flutter_logo}>Flutter</Badge>
-                <Badge variant="tag" imageSrc={fastapi_logo}>FastAPI</Badge>
+                {techs.map((tech, index) => {
+                  const Icon = tech.icon
+
+                  return (
+                    <Card
+                      key={index}
+                      variant="glass-blue"
+                      className="
+                  group
+                  flex items-center gap-3
+                  px-5 py-3
+                  rounded-full
+                  hover:border-primary/30
+                  hover:shadow-lg hover:shadow-primary/10
+                  hover:-translate-y-1
+  
+                  duration-300
+                "
+                    >
+                      <Icon
+                        className="
+                    text-primary
+                    text-2xl
+                    transition-all duration-300
+                    group-hover:rotate-6
+                    group-hover:scale-110
+                  "
+                      />
+
+                      <span
+                        className="
+                    text-white/90
+                    text-lg
+                    font-semibold
+                    tracking-wide
+                  "
+                      >
+                        {tech.name}
+                      </span>
+                    </Card>
+                  )
+                })}
               </div>
             </div>
 

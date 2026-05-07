@@ -9,7 +9,7 @@ export default function About() {
 
     return (
 
-        <div className="flex justify-center items-center h-screen">
+        <div className="flex justify-center items-center h-screen w-full max-w-[1200px] mx-auto px-4  gap-20">
 
             <div className="flex flex-col w-210 align-start gap-8">
                 <div className=" flex flex-col rounded-lg text-white font-bold text-5xl gap-4">
@@ -26,19 +26,34 @@ export default function About() {
                         experiência com web, mobile, APIs e automação com IA.</span>
                 </div>
                 <div className="relative w-140 h-60 grid grid-cols-2 gap-4 ">
-                    <Card className="flex flex-col w-full h-full gap-2 items-center justify-center hover:bg-glass-dark">
+                    <Card className="flex flex-col w-full h-full gap-2 items-center justify-center hover:border-primary/30
+                  hover:shadow-xl hover:shadow-primary/10
+                
+                  duration-300">
                         <CardTitle className="text-primary text-3xl font-bold text-center">+2 anos</CardTitle>
                         <CardDescription className="text-white text-xl text-center">Criando soluções digitais</CardDescription>
                     </Card>
-                    <Card className="flex flex-col w-full h-full gap-2 items-center justify-center hover:bg-glass-dark">
+                    <Card className="flex flex-col w-full h-full gap-2 items-center justify-center hover:border-primary/30
+                  hover:shadow-xl hover:shadow-primary/10
+                  
+                  duration-300">
                         <CardTitle className="text-primary text-3xl font-bold text-center">+30%</CardTitle>
                         <CardDescription className="text-white text-xl text-center">Engajamento de usuários</CardDescription>
                     </Card>
-                    <Card className="flex flex-col w-full h-full gap-2 items-center justify-center hover:bg-glass-dark">
+                    <Card className="flex flex-col w-full h-full gap-2 items-center justify-center hover:border-primary/30
+                  hover:shadow-xl hover:shadow-primary/10
+                  
+  
+                  duration-300">
                         <CardTitle className="text-primary text-3xl font-bold text-center">-30%</CardTitle>
                         <CardDescription className="text-white text-xl text-center">Redução de tarefas manuais</CardDescription>
                     </Card>
-                    <Card className="flex flex-col w-full h-full gap-2 items-center justify-center hover:bg-glass-dark">
+                    <Card className="flex flex-col w-full h-full gap-2 items-center justify-center hover:border-primary/30
+                  hover:shadow-xl
+                  hover:shadow-primary/10
+                  
+  
+                  duration-300">
                         <CardTitle className="text-primary text-3xl font-bold text-center">+20-30%</CardTitle>
                         <CardDescription className="text-white text-xl text-center">Engajamento de usuários</CardDescription>
                     </Card>

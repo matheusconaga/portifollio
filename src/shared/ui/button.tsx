@@ -32,16 +32,16 @@ export function Button({
         "hover:-translate-y-1",
 
         variant === "primary" &&
-        "bg-primary text-primary-foreground hover:bg-accent cursor-pointer",
+        "bg-primary text-primary-foreground hover:bg-accent cursor-pointer font-semibold",
 
         variant === "primary-xl" &&
-        "bg-primary text-primary-foreground hover:bg-accent cursor-pointer font-bold text-1.5xl px-12",
+        "bg-primary text-primary-foreground hover:bg-accent cursor-pointer font-bold text-1.5xl px-12 ",
 
         variant === "outline" &&
-        "border border-border text-foreground hover:bg-muted",
+        "border border-border text-foreground hover:bg-muted hover:bg-glass-dark cursor-pointer font-semibold text-primary",
 
         variant === "outline-xl" &&
-        "border border-border text-foreground hover:bg-glass-dark text-1.5xl font-bold px-12 py-3 cursor-pointer text-primary",
+        "border border-border text-foreground hover:bg-glass-dark text-1.5xl font-bold px-12 cursor-pointer text-primary",
 
         variant === "ghost" &&
         "text-foreground hover:bg-muted",
