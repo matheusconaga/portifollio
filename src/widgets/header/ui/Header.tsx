@@ -49,7 +49,7 @@ export function Header() {
           </MenuItem>
 
           <MenuItem href="#resume">
-            Currículo
+            Experiências
           </MenuItem>
 
           <a href="#contact">

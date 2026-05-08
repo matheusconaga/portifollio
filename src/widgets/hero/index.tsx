@@ -19,7 +19,7 @@ const techs = [
 export default function Hero() {
 
   return (
-    <div className="flex flex-col items-center justify-center w-full max-w-[1200px] mx-auto ">
+    <div className="flex flex-col justify-center items-center w-full max-w-[1200px] ">
 
       <div className="flex justify-center items-center gap-20">
 
@@ -116,10 +116,6 @@ const MouseDiv = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 8em;
-
-  @media (max-width: 480px) {
-    display: none;
-  }
 `;
 
 
