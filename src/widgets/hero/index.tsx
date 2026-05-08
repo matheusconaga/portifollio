@@ -8,6 +8,7 @@ import { CardImage } from "@/shared/ui/Card/card-image"
 import styled from "styled-components"
 import { SiFastapi, SiFlutter } from "react-icons/si"
 import { FaReact } from "react-icons/fa"
+import { StackCard } from "@/shared/ui/stack-card"
 
 const techs = [
   { name: "React", icon: FaReact },
@@ -16,7 +17,6 @@ const techs = [
 ]
 
 export default function Hero() {
-
 
   return (
     <div className="flex flex-col items-center justify-center w-full max-w-[1200px] mx-auto ">
@@ -33,55 +33,21 @@ export default function Hero() {
           </Badge>
 
           {/* LOGO + APRESENTACAO + CARD_STACKS */}
-          <div className="flex items-center w-100 gap-2 cursor-pointer">
+          <div className="flex items-center w-100 gap-2 ">
             <img src={logo} className="w-50" />
             <div className=" flex flex-col gap-2 p-4 rounded-lg">
               <span className="font-semibold text-white text-3xl ">olá, eu sou o</span>
               <span className="font-bold text-primary text-6xl ">Matheus Lula</span>
               <span className="font-semibold text-white text-3xl w-130">Fullstack developer Web & Mobile</span>
               <div className="flex items-center gap-2">
-                {techs.map((tech, index) => {
-                  const Icon = tech.icon
-
-                  return (
-                    <Card
-                      key={index}
-                      variant="glass-blue"
-                      className="
-                  group
-                  flex items-center gap-3
-                  px-5 py-3
-                  rounded-full
-                  hover:border-primary/30
-                  hover:shadow-lg hover:shadow-primary/10
-                  hover:-translate-y-1
-  
-                  duration-300
-                "
-                    >
-                      <Icon
-                        className="
-                    text-primary
-                    text-2xl
-                    transition-all duration-300
-                    group-hover:rotate-6
-                    group-hover:scale-110
-                  "
-                      />
-
-                      <span
-                        className="
-                    text-white/90
-                    text-lg
-                    font-semibold
-                    tracking-wide
-                  "
-                      >
-                        {tech.name}
-                      </span>
-                    </Card>
-                  )
-                })}
+                {techs.map((tech, index) => (
+                  <StackCard
+                  variant="md"
+                    key={index}
+                    icon={tech.icon}
+                    name={tech.name}
+                  />
+                ))}
               </div>
             </div>
 

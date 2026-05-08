@@ -22,6 +22,7 @@
   /* glass effects */
   --color-glass-blue: rgba(30, 165, 209, 0.2);
   --color-glass-dark: rgba(90, 92, 209, 0.2);
+  --color-glass-dark-on: rgba(38, 46, 100, 0.8);
   --color-glass-light: rgba(217, 217, 217, 0.1);
 
 
@@ -35,7 +36,10 @@
     @apply border-border outline-ring/50;
   }
 
-  html,
+  html{
+    scroll-behavior: smooth;
+  }
+
   body {
     height: 100%;
   }

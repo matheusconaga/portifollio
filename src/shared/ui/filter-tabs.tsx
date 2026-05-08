@@ -72,14 +72,19 @@ export function FilterTabs({
 
             className="
               relative
-              px-5 py-2.5
+              px-6 py-2.5
               rounded-full
               text-sm
               font-semibold
               cursor-pointer
               overflow-hidden
-              transition-colors duration-300
-              select-none
+              hover:text-primary
+              hover:-translate-y-1
+              transition-all duration-300
+             
+              after:bg-primary
+              after:duration-300
+              
             "
           >
 
@@ -142,10 +147,9 @@ export function FilterTabs({
 
                 transition-all duration-300
 
-                ${
-                  isActive
-                    ? "text-white"
-                    : "text-white/70"
+                ${isActive
+                  ? "text-white"
+                  : "text-gray"
                 }
               `}
             >

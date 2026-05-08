@@ -4,6 +4,7 @@ import { Card } from "./Card/card"
 import { CardContent } from "./Card/card-content"
 import { CardTitle } from "./Card/card-title"
 import { CardDescription } from "./Card/card-description"
+import { Badge } from "./badge"
 
 interface EmptyProjectCardProps {
   category: string
@@ -24,7 +25,7 @@ export function EmptyProjectCard({
 
         min-h-[420px]
 
-        border-dashed
+        
         border-white/10
 
         transition-all duration-500
@@ -74,25 +75,11 @@ export function EmptyProjectCard({
           Em construção
         </CardTitle>
 
-        {/* Categoria */}
-        <span
-          className="
-            px-4 py-1
+<Badge variant="glass">
+  {category}
+</Badge>
 
-            rounded-full
-
-            text-sm
-            font-semibold
-
-            bg-glass-blue
-            text-primary
-
-            border border-white/10
-          "
-        >
-          {category}
-        </span>
-
+        
         {/* Descrição */}
         <CardDescription
           className="

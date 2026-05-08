@@ -26,6 +26,17 @@ export function MenuItem({
 
     hover:text-primary
     hover:-translate-y-1
+    transition: width 0.3s ease;
+    hover:after:w-full
+    after:absolute
+    after:-bottom-1
+
+    after:left-0
+    after:w-0
+    after:h-0.5
+    after:bg-primary
+    after:duration-300
+
   "
     >
       {children}

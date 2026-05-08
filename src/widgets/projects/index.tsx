@@ -47,8 +47,7 @@ export default function Projects() {
             title: "Projeto de Gestão",
 
             description: `
-      Plataforma completa de gerenciamento empresarial
-      com dashboard analítico e autenticação segura.
+      Sistema web de gestão patrimonial com dashboards em tempo real, controle de ativos, QR Code, importação via Excel, relatórios em PDF e foco em performance, escalabilidade e usabilidade.
     `,
 
             techs: [
@@ -69,8 +68,7 @@ export default function Projects() {
             image: println,
             title: "PrintLn",
             description: `
-      Rede social moderna focada em experiência mobile
-      e integração com serviços em nuvem.
+      Rede social mobile fullstack com feed dinâmico, autenticação segura, posts com imagens, comentários, geolocalização e foco em performance, UX e arquitetura escalável.
     `,
 
             techs: [

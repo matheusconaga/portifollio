@@ -17,6 +17,7 @@ import {
 
 import { useEffect, useRef, useState } from "react"
 import { Card } from "@/shared/ui/Card/card"
+import { StackCard } from "@/shared/ui/stack-card"
 
 
 const techs = [
@@ -118,48 +119,14 @@ export function TechBanner() {
           whitespace-nowrap
         "
       >
-        {[...techs, ...techs, ...techs].map((tech, index) => {
-          const Icon = tech.icon
-
-          return (
-            <Card
-              key={index}
-              variant="glass-blue"
-              className="
-                group
-                flex items-center gap-3
-                px-6 py-3
-                rounded-full
-                hover:border-primary/30
-                hover:shadow-lg hover:shadow-primary/10
-                hover:-translate-y-1
-
-                duration-300
-              "
-            >
-              <Icon
-                className="
-                  text-primary
-                  text-2xl
-                  transition-all duration-300
-                  group-hover:rotate-6
-                  group-hover:scale-110
-                "
-              />
-
-              <span
-                className="
-                  text-white/90
-                  text-lg
-                  font-semibold
-                  tracking-wide
-                "
-              >
-                {tech.name}
-              </span>
-            </Card>
-          )
-        })}
+        {[...techs, ...techs, ...techs].map((tech, index) => (
+          <StackCard
+          variant="lg"
+            key={index}
+            icon={tech.icon}
+            name={tech.name}
+          />
+        ))}
       </motion.div>
     </section>
   )
