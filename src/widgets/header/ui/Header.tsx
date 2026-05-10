@@ -14,7 +14,7 @@ export function Header() {
           w-[850px] hover:w-[1000px]
           px-6 py-3 hover:px-8 hover:py-4
           hover:bg-glass-dark-on
-          
+
           rounded-full
 
           bg-glass-dark
@@ -48,7 +48,7 @@ export function Header() {
             Tecnologias
           </MenuItem>
 
-          <MenuItem href="#resume">
+          <MenuItem href="#experience">
             Experiências
           </MenuItem>
 

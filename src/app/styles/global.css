@@ -22,6 +22,7 @@
   /* glass effects */
   --color-glass-blue: rgba(30, 165, 209, 0.2);
   --color-glass-dark: rgba(90, 92, 209, 0.2);
+  --color-glass-input: rgba(8, 3, 34, 0.4);
   --color-glass-dark-on: rgba(21, 19, 81, 0.8);
   --color-glass-light: rgba(217, 217, 217, 0.1);
 
