@@ -16,13 +16,15 @@ export function Container({
       className={cn(
         `
           w-full
-          max-w-[1200px]
+
+          max-w-[1600px]
 
           mx-auto
 
           px-4
-          md:px-6
-          lg:px-8
+          sm:px-6
+          lg:px-10
+          xl:px-16
         `,
         className
       )}

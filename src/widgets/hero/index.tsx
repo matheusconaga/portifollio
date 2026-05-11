@@ -19,7 +19,7 @@ const techs = [
 export default function Hero() {
 
   return (
-    <div className="flex flex-col justify-center items-center w-full max-w-[1200px] ">
+    <div className="flex flex-col justify-center items-center w-full h-full gap-20">
 
       <div className="flex justify-center items-center gap-20">
 

@@ -129,7 +129,7 @@ export default function Footer() {
             </Badge>
 
             {/* BRAND */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <img
                 src={logo}
                 className="
@@ -373,20 +373,20 @@ export default function Footer() {
             <div className="flex items-center gap-4">
               <a href="https://github.com/matheusconaga" target="_blank">
                 <CircleBadge clickable size="lg">
-                  <FaGithub size={22} className="text-white" />
+                  <FaGithub size={22} className="text-primary" />
                 </CircleBadge>
               </a>
 
               <a href="https://linkedin.com/in/matheusconaga" target="_blank">
                 <CircleBadge clickable size="lg">
-                  <FaLinkedin size={22} className="text-white" />
+                  <FaLinkedin size={22} className="text-primary" />
                 </CircleBadge>
               </a>
 
 
               <a href="https://wa.me/5586981451876" target="_blank">
                 <CircleBadge clickable size="lg">
-                  <FaWhatsapp size={22} className="text-white" />
+                  <FaWhatsapp size={22} className="text-primary" />
                 </CircleBadge>
               </a>
             </div>
@@ -427,7 +427,7 @@ export default function Footer() {
           >
             Desenvolvido com
             <Heart size={14} className="text-primary fill-primary" />
-            usando React, TypeScript e muito café.
+            usando React, TypeScript, Tailwind e muito café.
           </div>
         </Card>
       </div>
