@@ -35,7 +35,7 @@ export default function Footer() {
         mt-32
         overflow-hidden
         border-t border-white/10
-        bg-glass-dark
+        bg-glass-dark-on
         
       "
     >

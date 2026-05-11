@@ -22,6 +22,7 @@ export default function Hero() {
     <div className="flex flex-col justify-center items-center w-full h-full gap-20">
 
       <div className="flex justify-center items-center gap-20">
+        
 
         <div className="flex flex-col items-start gap-2 fd w-180">
           <Badge variant="glass" className="text-primary">
@@ -107,6 +108,7 @@ export default function Hero() {
       <MouseDiv>
         <MouseIcon size={30} />
       </MouseDiv>
+     
 
     </div>
 
@@ -117,7 +119,7 @@ const MouseDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 8em;
+  margin-top: 4em;
 `;
 
 

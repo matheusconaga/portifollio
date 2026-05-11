@@ -1,30 +1,34 @@
-import type { ReactNode } from "react"
+import type { ReactNode } from "react";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 interface SectionProps {
-  children: ReactNode
-  className?: string
-  id?: string
+  children: ReactNode;
+  className?: string;
+  id?: string;
 }
 
-export function Section({
-  children,
-  className,
-  id,
-}: SectionProps) {
+export function Section({ children, className, id }: SectionProps) {
   return (
     <section
       id={id}
       className={cn(
         `
-          py-10
-          scroll-mt-32
+          relative
+
+          py-12
+          md:py-16
+          xl:py-20
+
+          scroll-mt-24
+          md:scroll-mt-28
+
+          overflow-hidden
         `,
-        className
+        className,
       )}
     >
       {children}
     </section>
-  )
+  );
 }

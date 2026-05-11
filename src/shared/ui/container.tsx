@@ -1,5 +1,4 @@
 import type { ReactNode } from "react"
-
 import { cn } from "@/lib/utils"
 
 interface ContainerProps {
@@ -15,16 +14,16 @@ export function Container({
     <div
       className={cn(
         `
-          w-full
+          w-[90%]
 
-          max-w-[1600px]
+          max-w-[1400px]
 
           mx-auto
 
-          px-4
-          sm:px-6
-          lg:px-10
-          xl:px-16
+          px-2
+          sm:px-4
+          md:px-6
+          lg:px-8
         `,
         className
       )}

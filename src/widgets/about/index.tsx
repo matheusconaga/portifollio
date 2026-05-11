@@ -1,5 +1,4 @@
 import { Button } from "@/shared/ui/button";
-import println from "@/assets/projects/println.png";
 import chat_image from "@/assets/chat-dev.png";
 import eu_persona from "@/assets/eu_persona.png";
 import { Badge } from "@/shared/ui/badge";
@@ -7,8 +6,8 @@ import { Badge } from "@/shared/ui/badge";
 import { Card } from "@/shared/ui/Card/card";
 import { CardDescription } from "@/shared/ui/Card/card-description";
 import { CardTitle } from "@/shared/ui/Card/card-title";
-
 import { CircleBadge } from "@/shared/ui/circle-badge";
+import { projects } from "@/data/projects";
 
 import {
   ArrowRight,
@@ -22,6 +21,8 @@ import {
 } from "lucide-react";
 
 export default function About() {
+  const latestProject = projects[0];
+
   return (
     <section
       className="
@@ -29,21 +30,14 @@ export default function About() {
 
         w-full
         min-h-screen
+        items-center
+        justify-center
+        py-20
 
         overflow-hidden
       "
     >
-      {/* BACKGROUND */}
-      <div
-        className="
-          absolute
-          inset-0
-
-          bg-[radial-gradient(circle_at_top,#12204a_0%,#080322_45%)]
-
-          -z-10
-        "
-      />
+     
 
       <div
         className="
@@ -421,52 +415,62 @@ export default function About() {
           {/* STACK CARD */}
           <Card
             className="
-      flex flex-col
-      p-6
-      bg-glass-light
-      border border-white/10
-      rounded-[28px]
-      hover:border-primary/30
-      transition-all duration-300
-    "
+    flex flex-col
+    p-6
+    bg-glass-light
+    border border-white/10
+    rounded-[28px]
+  "
           >
             <div className="flex items-center gap-3 mb-4">
               <CircleBadge size="sm">
                 <Laptop size={18} className="text-primary" />
               </CircleBadge>
+
               <span className="text-white text-lg font-semibold">
                 Último projeto
               </span>
             </div>
 
-            {/* Placeholder da Imagem - Ocupa o espaço disponível */}
-            <div className="relative aspect-video rounded-xl overflow-hidden bg-zinc-900 mb-4 border border-white/5">
+            <div
+              className="
+      relative
+      aspect-video
+      rounded-xl
+      overflow-hidden
+      bg-zinc-900
+      mb-4
+      border border-white/5
+    "
+            >
               <img
-                src={println}
-                alt="Projeto"
+                src={latestProject.image}
+                alt={latestProject.title}
                 className="object-cover w-full h-full"
               />
             </div>
 
             <div className="flex flex-col flex-1 justify-between gap-4">
               <div>
-                <CardTitle className="text-xl text-white">PrintLn</CardTitle>
+                <CardTitle className="text-xl text-white">
+                  {latestProject.title}
+                </CardTitle>
+
                 <div className="flex gap-2 mt-3 flex-wrap">
-                  <Badge variant="glass" className="text-[10px]">
-                    React
-                  </Badge>
-                  <Badge variant="glass" className="text-[10px]">
-                    Typescript
-                  </Badge>
-                  <Badge variant="glass" className="text-[10px]">
-                    Firebase
-                  </Badge>
+                  {latestProject.techs.map((tech) => (
+                    <Badge key={tech} variant="glass" className="text-[10px]">
+                      {tech}
+                    </Badge>
+                  ))}
                 </div>
               </div>
 
-              <Button>
-                Ver projeto <ArrowRight size={18} className="ml-2" />
-              </Button>
+              <a href="#projects" className="w-full">
+                <Button variant="primary" className="w-full">
+                  Ver projeto
+                  <ArrowRight size={18} className="ml-2" />
+                </Button>
+              </a>
             </div>
           </Card>
 
@@ -523,9 +527,11 @@ export default function About() {
               <img src={chat_image} className="w-40" />
             </div>
 
-            <Button variant="primary">
-              Entrar em contato <ArrowRight size={18} className="ml-2" />
-            </Button>
+            <a href="#contact" className="w-full ">
+              <Button variant="primary" className="w-full">
+                Entrar em contato <ArrowRight size={18} className="ml-2" />
+              </Button>
+            </a>
           </Card>
         </div>
       </div>

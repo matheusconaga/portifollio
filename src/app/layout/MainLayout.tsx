@@ -5,7 +5,11 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <Header />
-      <main className="pt-32">{children}</main>
+      
+      <main className="pt-24 md:pt-28 overflow-hidden">
+        {children}
+      </main>
+
       <Footer />
     </>
   );

@@ -5,76 +5,74 @@ import println from "@/assets/projects/println.png"
 import port from "@/assets/projects/cine.png"
 
 export const projects = [
-  {
-    image: port,
+        {
+            image: port,
+            title: "Portifólio Profissional",
 
-    title: "Portifólio Profissional",
-
-    description: `
+            description: `
       Portfólio moderno e responsivo para destacar
       projetos e habilidades profissionais.
     `,
 
-    techs: [
-      "React",
-      "Tailwind",
-      "Styled-Components",
-    ],
+            techs: [
+                "React",
+                "Tailwind",
+                "Styled-Components",
+            ],
 
-    category: "Frontend",
+            category: "Frontend",
 
-    deployUrl:
-      "https://portifoliomatheuslula.onrender.com/",
+            deployUrl:
+                "https://portifoliomatheuslula.onrender.com/",
 
-    repoUrl:
-      "https://github.com/matheusconaga/portifollio",
-  },
+            repoUrl:
+                "https://github.com/matheusconaga/portifollio",
+        },
 
-  {
-    image: gestao,
+        {
+            image: gestao,
 
-    title: "Projeto de Gestão",
+            title: "Patrimoniário",
 
-    description: `
-      Sistema web de gestão patrimonial.
+            description: `
+      Sistema web de gestão patrimonial com dashboards em tempo real, controle de ativos, QR Code, importação via Excel, relatórios em PDF e foco em performance, escalabilidade e usabilidade.
+
     `,
 
-    techs: [
-      "React",
-      "FastAPI",
-      "PostgreSQL",
-    ],
+            techs: [
+                "React",
+                "FastAPI",
+                "PostgreSQL",
+            ],
 
-    category: "Frontend",
+            category: "Frontend",
+            deployUrl:
+                "https://projeto-patrimoniario.onrender.com/",
 
-    deployUrl:
-      "https://projeto-patrimoniario.onrender.com/",
+            repoUrl:
+                "https://github.com/matheusconaga/projeto_patrimoniario",
+        },
 
-    repoUrl:
-      "https://github.com/matheusconaga/projeto_patrimoniario",
-  },
+        {
+            image: println,
+            title: "PrintLn",
+            description: `
+      Rede social mobile fullstack com feed dinâmico, autenticação segura, posts com imagens, comentários, geolocalização e foco em performance, UX e arquitetura escalável.
 
-  {
-    image: println,
-
-    title: "PrintLn",
-
-    description: `
-      Rede social mobile fullstack.
     `,
 
-    techs: [
-      "Flutter",
-      "Firebase",
-      "FastAPI",
-    ],
+            techs: [
+                "Flutter",
+                "Firebase",
+                "FastAPI",
+            ],
 
-    category: "Mobile",
+            category: "Mobile",
 
-    deployUrl:
-      "https://println-social.vercel.app/",
+            deployUrl:
+                "https://println-social.vercel.app/",
 
-    repoUrl:
-      "https://github.com/matheusconaga/projeto-println",
-  },
-]
+            repoUrl:
+                "https://github.com/matheusconaga/projeto-println",
+        },
+    ]
