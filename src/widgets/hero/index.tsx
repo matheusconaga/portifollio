@@ -57,7 +57,9 @@ export default function Hero() {
           <span className="text-gray text-xl ">APIs e IA. Crio produtos rápidos, escaláveis e com foco</span>
           <span className="text-gray text-xl ">em experiência do usuário.</span>
           <div className="flex flex-row gap-4 mt-4">
+            <a href="#projects">
             <Button variant="primary-xl" rightIcon={<MoveRight size={25} />}>Ver Projetos</Button>
+            </a>
             <Button variant="outline-xl" rightIcon={<Download size={25} />}>Currículo</Button>
           </div>
 

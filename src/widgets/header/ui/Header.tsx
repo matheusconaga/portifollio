@@ -4,7 +4,7 @@ import logo from "@/assets/logo_matheus.webp"
 
 export function Header() {
   return (
-    <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50">
+    <header className="fixed top-4 left-1/2 -translate-x-1/2 z-[9999]">
 
       <div
         className="

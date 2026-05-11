@@ -44,7 +44,7 @@ export function StackCard({
         `,
 
         variant === "sm" &&
-          "px-3 py-1.5",
+          "px-4 py-2",
 
         variant === "md" &&
           "px-6 py-2",
@@ -68,7 +68,7 @@ export function StackCard({
           `,
 
           variant === "sm" &&
-            "size-4",
+            "size-5",
 
           variant === "md" &&
             "size-6",
@@ -86,7 +86,7 @@ export function StackCard({
           `,
 
           variant === "sm" &&
-            "text-xs",
+            "text-sm",
 
           variant === "md" &&
             "text-base",
