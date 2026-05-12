@@ -22,6 +22,9 @@ export function Section({ children, className, id }: SectionProps) {
 
           scroll-mt-24
           md:scroll-mt-28
+         
+ 
+
 
           overflow-hidden
         `,

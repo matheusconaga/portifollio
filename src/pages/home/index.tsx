@@ -18,7 +18,17 @@ import { Loading } from "@/shared/ui/loading";
 export default function Homepage() {
   return (
     <>
-      <Section id="home">
+      <Section
+        id="home"
+        className="
+    pt-4
+    md:pt-4
+    xl:pt-16
+
+    pb-12
+    md:pb-16
+  "
+      >
         <Container>
           <AnimatedSection>
             <Hero />

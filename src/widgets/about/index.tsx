@@ -47,18 +47,17 @@ export default function About() {
     items-center
     justify-between
 
-    gap-16
+    
 
     w-full
   "
       >
         {/* LEFT SIDE */}
-        <div className="flex flex-col w-[640px] items-start gap-8">
+        <div className="flex flex-col w-[700px] items-start gap-8">
           {/* TITLE */}
           <div
             className="
       flex flex-col
-      rounded-lg
 
       text-white
       font-bold
@@ -66,16 +65,12 @@ export default function About() {
 
       leading-[1.1]
 
-      gap-4
+      
     "
           >
-            <span>Transformando ideias</span>
-
-            <span className="flex gap-2 flex-wrap">
-              <span>em</span>
+            <span>Transformando ideias em</span>
 
               <span className="text-primary">código de alto impacto</span>
-            </span>
           </div>
 
           {/* DESCRIPTION */}
@@ -159,11 +154,11 @@ export default function About() {
     relative
 
     grid
-    grid-cols-[0.91fr_1.2fr]
-    grid-rows-[350px_400px]
+    grid-cols-[0.95fr_1.2fr]
+    grid-rows-[350px_370px]
 
-    gap-5
-
+    gap-4
+    p-8
     w-full
     max-w-[760px]
   "

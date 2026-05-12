@@ -32,11 +32,12 @@ export default function Footer() {
       className="
         relative
         w-full
-        mt-32
+        mt-24 md:mt-32
         overflow-hidden
+
         border-t border-white/10
+
         bg-glass-dark-on
-        
       "
     >
       {/* BG EFFECT */}
@@ -56,25 +57,25 @@ export default function Footer() {
           relative
 
           max-w-[1400px]
-
           mx-auto
 
-          px-6
-          py-12
-        
+          px-4 sm:px-6 lg:px-8
+          py-10 md:py-12
+
           flex flex-col
-          gap-16
+          gap-12 md:gap-16
         "
       >
         {/* TOP */}
         <div
           className="
             grid
+
             grid-cols-1
-            md:grid-cols-2
-            xl:grid-cols-[1.6fr_1fr_1fr_1fr]
-            gap-16
-         
+            lg:grid-cols-2
+            xl:grid-cols-[1.5fr_1fr_1fr_1fr]
+
+            gap-10 md:gap-14 xl:gap-16
           "
         >
           {/* LEFT */}
@@ -129,18 +130,27 @@ export default function Footer() {
             </Badge>
 
             {/* BRAND */}
-            <div className="flex items-center gap-2">
+            <div
+              className="
+                flex
+                items-center
+
+                gap-3
+
+                flex-wrap
+              "
+            >
               <img
                 src={logo}
                 className="
-                  w-20
+                  w-16 md:w-20
                 "
               />
 
               <div className="flex flex-col">
                 <span
                   className="
-                    text-3xl
+                    text-2xl md:text-3xl
                     font-bold
                     text-primary
                   "
@@ -151,7 +161,9 @@ export default function Footer() {
                 <span
                   className="
                     text-white/70
-                    text-lg
+
+                    text-sm md:text-lg
+
                     font-medium
                   "
                 >
@@ -165,6 +177,8 @@ export default function Footer() {
               className="
                 text-white/60
                 leading-relaxed
+
+                text-sm md:text-base
               "
             >
               Desenvolvendo experiências digitais modernas, performáticas e
@@ -194,15 +208,15 @@ export default function Footer() {
 
                   rounded-full
                   bg-primary
-
-           
                 "
               />
 
               <span
                 className="
                   text-primary
-                  text-2xl
+
+                  text-xl md:text-2xl
+
                   font-bold
                 "
               >
@@ -210,7 +224,7 @@ export default function Footer() {
               </span>
             </div>
 
-            <div className="flex flex-col gap-4 text-lg items-left">
+            <div className="flex flex-col gap-4">
               {[
                 "home",
                 "about",
@@ -301,7 +315,9 @@ export default function Footer() {
                 </CircleBadge>
                 <div className="flex flex-col">
                   <span className="text-white">E-mail</span>
-                  <span className="text-gray text-sm">matheusphillip170@gmail.com</span>
+                  <span className="text-gray text-sm">
+                    matheusphillip170@gmail.com
+                  </span>
                 </div>
               </Card>
 
@@ -333,19 +349,23 @@ export default function Footer() {
                 </CircleBadge>
                 <div className="flex flex-col">
                   <span className="text-white">Disponibilidade</span>
-                  <span className="text-gray text-sm">Seg - Sex: 9h às 18h</span>
+                  <span className="text-gray text-sm">
+                    Seg - Sex: 9h às 18h
+                  </span>
                 </div>
               </Card>
             </div>
           </div>
 
           {/* CTA + SOCIAL */}
-          <div className="flex flex-col gap-8 ">
+          <div className="flex flex-col gap-8">
             <div className="flex flex-col gap-4">
               <span
                 className="
                   text-primary
-                  text-2xl
+
+                  text-2xl md:text-3xl
+
                   font-bold
                 "
               >
@@ -356,6 +376,8 @@ export default function Footer() {
                 className="
                   text-white/60
                   leading-relaxed
+
+                  text-sm md:text-base
                 "
               >
                 Disponível para freelas, oportunidades remotas e projetos
@@ -363,29 +385,44 @@ export default function Footer() {
               </p>
 
               <a href="#contact">
-                <Button variant="primary-xl" className="w-fit">
-                Entrar em contato
-              </Button>
+                <Button
+                  variant="primary-xl"
+                  className="
+                    w-full
+                    sm:w-fit
+                  "
+                >
+                  Entrar em contato
+                </Button>
               </a>
             </div>
 
             {/* SOCIALS */}
-            <div className="flex items-center gap-4">
+            <div
+              className="
+                flex
+                items-center
+
+                justify-center
+                sm:justify-start
+
+                gap-4
+              "
+            >
               <a href="https://github.com/matheusconaga" target="_blank">
-                <CircleBadge clickable size="lg">
+                <CircleBadge clickable size="md">
                   <FaGithub size={22} className="text-primary" />
                 </CircleBadge>
               </a>
 
               <a href="https://linkedin.com/in/matheusconaga" target="_blank">
-                <CircleBadge clickable size="lg">
+                <CircleBadge clickable size="md">
                   <FaLinkedin size={22} className="text-primary" />
                 </CircleBadge>
               </a>
 
-
               <a href="https://wa.me/5586981451876" target="_blank">
-                <CircleBadge clickable size="lg">
+                <CircleBadge clickable size="md">
                   <FaWhatsapp size={22} className="text-primary" />
                 </CircleBadge>
               </a>
@@ -396,7 +433,7 @@ export default function Footer() {
         {/* BOTTOM */}
         <Card
           className="
-            px-6
+            px-4 md:px-6
             py-5
 
             flex
@@ -405,6 +442,8 @@ export default function Footer() {
 
             items-center
             justify-between
+
+            text-center md:text-left
 
             gap-4
 
@@ -423,6 +462,9 @@ export default function Footer() {
 
               text-white/50
               text-sm
+
+              flex-wrap
+              justify-center
             "
           >
             Desenvolvido com

@@ -14,9 +14,9 @@ export function Container({
     <div
       className={cn(
         `
-          w-[90%]
+          w-[80%]
 
-          max-w-[1400px]
+          max-w-[1280px]
 
           mx-auto
 

@@ -35,13 +35,13 @@ export function Button({
         "bg-primary text-primary-foreground hover:bg-accent cursor-pointer font-semibold hover:shadow-lg hover:shadow-primary/10",
 
         variant === "primary-xl" &&
-        "bg-primary text-primary-foreground hover:bg-accent cursor-pointer font-bold text-1.5xl px-12 hover:shadow-lg hover:shadow-primary/10",
+        "bg-primary text-primary-foreground hover:bg-accent cursor-pointer font-bold px-12 hover:shadow-lg hover:shadow-primary/10",
 
         variant === "outline" &&
         "border border-border text-foreground hover:bg-muted hover:bg-glass-dark cursor-pointer font-semibold text-primary hover:shadow-lg hover:shadow-primary/10",
 
         variant === "outline-xl" &&
-        "border border-border text-foreground hover:bg-glass-dark text-1.5xl font-bold px-12 cursor-pointer text-primary hover:shadow-lg hover:shadow-primary/10",
+        "border border-border text-foreground hover:bg-glass-dark font-bold px-12 cursor-pointer text-primary hover:shadow-lg hover:shadow-primary/10",
 
         variant === "ghost" &&
         "text-foreground hover:bg-muted",

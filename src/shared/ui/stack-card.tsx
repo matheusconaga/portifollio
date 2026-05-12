@@ -1,18 +1,18 @@
-import * as React from "react"
+import * as React from "react";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
-import { Badge } from "@/shared/ui/badge"
+import { Badge } from "@/shared/ui/badge";
 
-type Variant = "sm" | "md" | "lg"
+type Variant = "sm" | "md" | "lg";
 
 interface StackCardProps
   extends React.HTMLAttributes<HTMLDivElement> {
-  icon: React.ElementType
+  icon: React.ElementType;
 
-  name: string
+  name: string;
 
-  variant?: Variant
+  variant?: Variant;
 }
 
 export function StackCard({
@@ -31,7 +31,7 @@ export function StackCard({
         `
           group
 
-          flex items-center gap-3
+          flex items-center gap-2 md:gap-3
 
           rounded-full
 
@@ -40,17 +40,30 @@ export function StackCard({
           hover:shadow-primary/10
           hover:-translate-y-1
 
-          duration-300
+          transition-all duration-300
         `,
 
+        /* SM */
         variant === "sm" &&
-          "px-4 py-2",
+          `
+            px-3 py-1.5
+            md:px-4 md:py-2
+          `,
 
+        /* MD */
         variant === "md" &&
-          "px-6 py-2",
+          `
+            px-3 py-1.5
+            md:px-5 md:py-2
+            lg:px-6
+          `,
 
+        /* LG */
         variant === "lg" &&
-          "px-6 py-3",
+          `
+            px-4 py-2
+            md:px-6 md:py-3
+          `,
 
         className
       )}
@@ -68,13 +81,23 @@ export function StackCard({
           `,
 
           variant === "sm" &&
-            "size-5",
+            `
+              size-4
+              md:size-5
+            `,
 
           variant === "md" &&
-            "size-6",
+            `
+              size-4
+              md:size-5
+              lg:size-6
+            `,
 
           variant === "lg" &&
-            "size-7"
+            `
+              size-5
+              md:size-7
+            `
         )}
       />
 
@@ -83,20 +106,31 @@ export function StackCard({
           `
             text-white
             font-medium
+            whitespace-nowrap
           `,
 
           variant === "sm" &&
-            "text-sm",
+            `
+              text-xs
+              md:text-sm
+            `,
 
           variant === "md" &&
-            "text-base",
+            `
+              text-xs
+              md:text-sm
+              lg:text-base
+            `,
 
           variant === "lg" &&
-            "text-base"
+            `
+              text-sm
+              md:text-base
+            `
         )}
       >
         {name}
       </span>
     </Badge>
-  )
+  );
 }
