@@ -1,24 +1,24 @@
-import { Badge } from "@/shared/ui/badge"
-import { Button } from "@/shared/ui/button"
+import { Badge } from "@/shared/ui/badge";
+import { Button } from "@/shared/ui/button";
 
-import { Card } from "./Card/card"
-import { CardImage } from "./Card/card-image"
-import { CardContent } from "./Card/card-content"
-import { CardDescription } from "./Card/card-description"
-import { CardTitle } from "./Card/card-title"
-import { CardFooter } from "./Card/card-footer"
-import { CardBadges } from "./Card/card-badges"
+import { Card } from "./Card/card";
+import { CardImage } from "./Card/card-image";
+import { CardContent } from "./Card/card-content";
+import { CardDescription } from "./Card/card-description";
+import { CardTitle } from "./Card/card-title";
+import { CardFooter } from "./Card/card-footer";
+import { CardBadges } from "./Card/card-badges";
 
-import { CodeXml, Rocket } from "lucide-react"
+import { CodeXml, Rocket } from "lucide-react";
 
 interface ProjectCardProps {
-  image: string
-  title: string
-  description: string
-  techs: string[]
+  image: string;
+  title: string;
+  description: string;
+  techs: string[];
 
-  deployUrl?: string
-  repoUrl?: string
+  deployUrl?: string;
+  repoUrl?: string;
 }
 
 export default function ProjectCard({
@@ -53,7 +53,7 @@ export default function ProjectCard({
           src={image}
           alt={title}
           className="
-            h-[240px]
+            h-[190px] sm:h-[220px] lg:h-[240px]
             w-full
 
             object-cover
@@ -71,13 +71,20 @@ export default function ProjectCard({
           flex flex-col
           items-center
           gap-4
-          p-4
+          p-4 sm:p-5
           text-justify
           flex-1
         "
       >
         {/* TITLE */}
-        <CardTitle className="text-2xl">
+        <CardTitle
+          className="
+    text-xl
+    sm:text-2xl
+    text-center
+    leading-tight
+  "
+        >
           {title}
         </CardTitle>
 
@@ -93,7 +100,7 @@ export default function ProjectCard({
         {/* DESCRIPTION */}
         <CardDescription
           className="
-            text-base
+            text-sm sm:text-base
             leading-relaxed
             text-gray
           "
@@ -111,20 +118,43 @@ export default function ProjectCard({
           pt-0
         "
       >
-        <div className="flex flex-row gap-4 mt-4">
+        <div
+          className="
+    flex
+    flex-col
+    sm:flex-row
+
+    w-full
+
+    gap-3
+    mt-4
+  "
+        >
           {deployUrl && (
             <a href={deployUrl}>
-              <Button variant="primary" leftIcon={<Rocket size={25} />}>Deploy</Button>
+              <Button
+                variant="primary"
+                leftIcon={<Rocket size={18} />}
+                className="w-full"
+              >
+                Deploy
+              </Button>
             </a>
           )}
 
           {repoUrl && (
             <a href={repoUrl}>
-              <Button variant="outline" leftIcon={<CodeXml size={25} />}>Repositório</Button>
+              <Button
+                variant="outline"
+                leftIcon={<CodeXml size={18} />}
+                className="w-full"
+              >
+                Repositório
+              </Button>
             </a>
           )}
         </div>
       </CardFooter>
     </Card>
-  )
+  );
 }

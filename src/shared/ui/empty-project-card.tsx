@@ -1,18 +1,16 @@
-import { Construction } from "lucide-react"
+import { Construction } from "lucide-react";
 
-import { Card } from "./Card/card"
-import { CardContent } from "./Card/card-content"
-import { CardTitle } from "./Card/card-title"
-import { CardDescription } from "./Card/card-description"
-import { Badge } from "./badge"
+import { Card } from "./Card/card";
+import { CardContent } from "./Card/card-content";
+import { CardTitle } from "./Card/card-title";
+import { CardDescription } from "./Card/card-description";
+import { Badge } from "./badge";
 
 interface EmptyProjectCardProps {
-  category: string
+  category: string;
 }
 
-export function EmptyProjectCard({
-  category,
-}: EmptyProjectCardProps) {
+export function EmptyProjectCard({ category }: EmptyProjectCardProps) {
   return (
     <Card
       variant="glass-light"
@@ -23,7 +21,7 @@ export function EmptyProjectCard({
         items-center
         justify-center
 
-        min-h-[420px]
+        min-h-[320px] sm:min-h-[420px]
 
         
         border-white/10
@@ -49,7 +47,7 @@ export function EmptyProjectCard({
           className="
             flex items-center justify-center
 
-            w-20 h-20
+            w-16 h-16 sm:w-20 sm:h-20
 
             rounded-full
 
@@ -61,7 +59,7 @@ export function EmptyProjectCard({
           "
         >
           <Construction
-            size={38}
+            size={30}
             className="
               text-primary
               group-hover:rotate-6
@@ -71,15 +69,10 @@ export function EmptyProjectCard({
         </div>
 
         {/* Título */}
-        <CardTitle className="text-2xl">
-          Em construção
-        </CardTitle>
+        <CardTitle className="text-2xl">Em construção</CardTitle>
 
-<Badge variant="glass">
-  {category}
-</Badge>
+        <Badge variant="glass">{category}</Badge>
 
-        
         {/* Descrição */}
         <CardDescription
           className="
@@ -91,10 +84,9 @@ export function EmptyProjectCard({
             text-center
           "
         >
-          Ainda não existem projetos cadastrados
-          nesta categoria.
+          Ainda não existem projetos cadastrados nesta categoria.
         </CardDescription>
       </CardContent>
     </Card>
-  )
+  );
 }

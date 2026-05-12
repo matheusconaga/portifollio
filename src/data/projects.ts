@@ -15,7 +15,7 @@ export const projects = [
             techs: [
                 "React",
                 "Tailwind",
-                "Styled-Components",
+                "StyledCo",
             ],
 
             category: "Frontend",

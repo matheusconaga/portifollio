@@ -27,14 +27,18 @@ export default function Hero() {
   return (
     <div
       className="
-        flex flex-col
-        justify-center
-        items-center
+    flex flex-col
+    justify-center
+    items-center
 
-        w-full
+    w-full
 
-        gap-16 md:gap-20
-      "
+    pt-18
+    sm:pt-28
+    md:pt-0
+
+    gap-16 md:gap-20
+  "
     >
       <div
         className="
