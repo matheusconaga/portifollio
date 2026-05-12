@@ -15,7 +15,7 @@ export function Header() {
     <header
       className="
         fixed
-        top-4
+        top-2
         left-1/2
         -translate-x-1/2
 
@@ -40,8 +40,9 @@ export function Header() {
 
             w-full
 
-            px-5 py-3
-            md:px-6 md:py-3
+            px-5 py-2
+            md:px-6 md:py-2
+            hover:py-4
 
             rounded-full
 

@@ -38,6 +38,46 @@ export default function Hero() {
     >
       <div
         className="
+      absolute
+
+      top-[-120px]
+      left-[-120px]
+
+      w-[320px]
+      h-[320px]
+
+      rounded-full
+
+      bg-primary/20
+
+      blur-[120px]
+
+      pointer-events-none
+      z-0
+    "
+      />
+      <div
+        className="
+      absolute
+
+      bottom-[-140px]
+      right-[-120px]
+
+      w-[360px]
+      h-[360px]
+
+      rounded-full
+
+      bg-cyan-400/10
+
+      blur-[140px]
+
+      pointer-events-none
+      z-0
+    "
+      />
+      <div
+        className="
           flex
 
           flex-col

@@ -72,7 +72,7 @@ export function CircleBadge({
             bg-transparent
           `,
 
-        size === "sm" && "w-10 h-10",
+        size === "sm" && "w-6 h-6",
         size === "md" && "w-14 h-14",
         size === "lg" && "w-16 h-16",
         size === "xl" && "w-20 h-20",

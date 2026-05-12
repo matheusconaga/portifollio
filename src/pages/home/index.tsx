@@ -19,22 +19,20 @@ export default function Homepage() {
   return (
     <>
       <Section
-        id="home"
-        className="
-    pt-4
-    md:pt-4
-    xl:pt-16
-
-    pb-12
-    md:pb-16
+  id="home"
+  className="
+    relative
+    min-h-screen
   "
-      >
-        <Container>
-          <AnimatedSection>
-            <Hero />
-          </AnimatedSection>
-        </Container>
-      </Section>
+>
+  <Container>
+    <div className="flex items-center justify-center  min-h-screen">
+      <AnimatedSection>
+        <Hero />
+      </AnimatedSection>
+    </div>
+  </Container>
+</Section>
 
       <Section id="about">
         <Container>

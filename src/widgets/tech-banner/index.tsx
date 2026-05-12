@@ -16,7 +16,6 @@ import {
 } from "react-icons/si"
 
 import { useEffect, useRef, useState } from "react"
-import { Card } from "@/shared/ui/Card/card"
 import { StackCard } from "@/shared/ui/stack-card"
 
 

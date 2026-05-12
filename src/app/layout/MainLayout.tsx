@@ -8,7 +8,7 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
       <Header />
       <FloatingContacts/>
       
-      <main className="pt-24 md:pt-28 overflow-hidden">
+      <main >
         {children}
       </main>
 

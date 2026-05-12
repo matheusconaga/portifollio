@@ -1,5 +1,3 @@
-// src/data/projects.ts
-
 import gestao from "@/assets/projects/gestao.png"
 import println from "@/assets/projects/println.png"
 import port from "@/assets/projects/cine.png"
