@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 
 import { Badge } from "@/shared/ui/badge";
 
-type Variant = "sm" | "md" | "lg";
+type Variant = "sm" | "md" | "lg" | "hero";
 
 interface StackCardProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -65,6 +65,12 @@ export function StackCard({
             md:px-6 md:py-3
           `,
 
+          variant === "hero" &&
+          `
+            px-3 py-2
+            md:px-6 md:py-2
+          `,
+
         className
       )}
       {...props}
@@ -96,7 +102,12 @@ export function StackCard({
             `
               size-5
               md:size-7
+            `,
+             variant === "hero" &&
             `
+              size-4
+              md:size-6
+            `,
         )}
       />
 

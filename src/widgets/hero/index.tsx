@@ -233,7 +233,7 @@ export default function Hero() {
   "
               >
                 {techs.map((tech, index) => (
-                  <StackCard key={index} icon={tech.icon} name={tech.name} />
+                  <StackCard variant="hero" key={index} icon={tech.icon} name={tech.name} />
                 ))}
               </div>
             </div>
