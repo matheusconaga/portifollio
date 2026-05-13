@@ -128,7 +128,7 @@ export default function About() {
         </div>
 
         {/* STATS CARDS */}
-        <div className="relative w-full lg:w-[480px] lg:h-55 h-auto grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="relative w-full lg:w-[480px] lg:h-55 h-55 grid grid-cols-2 gap-2 sm:gap-4">
           <Card
             className="flex flex-col p-6 items-center justify-center hover:border-primary/30
                   hover:shadow-xl hover:shadow-primary/10
@@ -137,7 +137,7 @@ export default function About() {
             <CardTitle className="text-primary text-2xl font-bold text-center">
               +2 anos
             </CardTitle>
-            <CardDescription className="text-white text-md text-center">
+            <CardDescription className="text-white text-sm md:text-base text-center">
               Criando soluções digitais
             </CardDescription>
           </Card>
@@ -149,7 +149,7 @@ export default function About() {
             <CardTitle className="text-primary text-2xl font-bold text-center">
               +30%
             </CardTitle>
-            <CardDescription className="text-white text-md text-center">
+            <CardDescription className="text-white text-sm md:text-base text-center">
               Engajamento de usuários
             </CardDescription>
           </Card>
@@ -161,7 +161,7 @@ export default function About() {
             <CardTitle className="text-primary text-2xl font-bold text-center">
               -30%
             </CardTitle>
-            <CardDescription className="text-white text-md text-center">
+            <CardDescription className="text-white text-sm md:text-base text-center">
               Redução de tarefas manuais
             </CardDescription>
           </Card>
@@ -174,7 +174,7 @@ export default function About() {
             <CardTitle className="text-primary text-2xl font-bold text-center">
               +20-30%
             </CardTitle>
-            <CardDescription className="text-white text-md text-center">
+            <CardDescription className="text-white text-sm md:text-base text-center">
               Engajamento de usuários
             </CardDescription>
           </Card>
