@@ -1,72 +1,171 @@
+import { useState } from "react";
+import emailjs from "@emailjs/browser";
 import { Button } from "@/shared/ui/button";
-
 import { Card } from "@/shared/ui/Card/card";
-
 import { CircleBadge } from "@/shared/ui/circle-badge";
 
 import { Input } from "@/shared/ui/input";
 import { Textarea } from "@/shared/ui/text-area";
-
 import { Mail, MapPin, Smartphone, Send } from "lucide-react";
-
 import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 
+
 export default function Contact() {
+  const [loading, setLoading] = useState(false);
+
+  const [form, setForm] = useState({
+    nome: "",
+    email: "",
+    assunto: "",
+    mensagem: "",
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const resetForm = () => {
+    setForm({
+      nome: "",
+      email: "",
+      assunto: "",
+      mensagem: "",
+    });
+  };
+
+  /* =========================
+      EMAIL
+  ========================== */
+
+  const handleSendEmail = async () => {
+    if (!form.nome || !form.email || !form.mensagem) {
+      alert("Preencha os campos obrigatórios.");
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
+
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          from_name: form.nome,
+          from_email: form.email,
+          subject: form.assunto || "Novo contato pelo portfólio",
+          message: `
+Nome: ${form.nome}
+Email: ${form.email}
+Assunto: ${form.assunto}
+
+Mensagem:
+${form.mensagem}
+    `,
+        },
+      );
+
+      alert("Mensagem enviada com sucesso!");
+
+      resetForm();
+    } catch (error) {
+      console.error(error);
+
+      alert("Erro ao enviar e-mail.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  /* =========================
+      WHATSAPP
+  ========================== */
+
+  const handleSendWhatsapp = () => {
+    if (!form.nome || !form.mensagem) {
+      alert("Preencha nome e mensagem.");
+      return;
+    }
+
+    const text = `
+🚀 *Novo contato pelo portfólio*
+
+👤 *Nome:* ${form.nome}
+
+📧 *Email:* ${form.email || "Não informado"}
+
+📝 *Assunto:* ${form.assunto || "Não informado"}
+
+💬 *Mensagem:*
+${form.mensagem}
+`;
+
+    const encoded = encodeURIComponent(text);
+
+    window.open(`https://wa.me/5586981451876?text=${encoded}`, "_blank");
+  };
+
   return (
     <div
       className="
-    relative
-
-    w-full
-    mx-auto
-rounded-2xl
-    overflow-hidden
-  "
+        relative
+        w-full
+        mx-auto
+        rounded-2xl
+        overflow-hidden
+      "
     >
+      {/* GLOWS */}
       <div
         className="
-      absolute
-      
+          absolute
+          top-[-120px]
+          left-[-120px]
 
-      top-[-120px]
-      left-[-120px]
+          w-[400px]
+          h-[400px]
 
-      w-[400px]
-      h-[400px]
+          rounded-full
 
-      rounded-full
+          bg-primary/20
 
-      bg-primary/20
+          blur-[120px]
 
-      blur-[120px]
-
-      pointer-events-none
-      z-0
-    "
+          pointer-events-none
+          z-0
+        "
       />
+
       <div
         className="
-      absolute
+          absolute
 
-      bottom-[-80px]
-right-[-80px]
+          bottom-[-80px]
+          right-[-80px]
 
-w-[260px]
-h-[260px]
+          w-[260px]
+          h-[260px]
 
-sm:w-[420px]
-sm:h-[420px]
+          sm:w-[420px]
+          sm:h-[420px]
 
-blur-[100px]
+          rounded-full
 
-      rounded-full
+          bg-cyan-400/10
 
-      bg-cyan-400/10
+          blur-[100px]
 
-      pointer-events-none
-      z-0
-    "
+          pointer-events-none
+          z-0
+        "
       />
+
       {/* MAIN CARD */}
       <Card
         className="
@@ -91,11 +190,11 @@ blur-[100px]
 
             p-2
             py-6
-            sm:py-2
-sm:p-4
+
+            sm:p-4
           "
         >
-          {/* LEFT CONTENT */}
+          {/* LEFT */}
           <div
             className="
               flex flex-col
@@ -111,7 +210,6 @@ sm:p-4
               xl:p-6
             "
           >
-            {/* TEXT */}
             <div className="flex flex-col gap-6 sm:gap-8">
               <div>
                 <h1
@@ -156,19 +254,10 @@ sm:p-4
                   size="sm"
                   className="bg-glass-blue shrink-0"
                 >
-                  <Mail size={16} className="text-primary" />
+                  <Mail size={12} className="text-primary" />
                 </CircleBadge>
 
-                <span
-                  className="
-                    text-gray
-
-                    text-sm
-                    sm:text-base
-
-                    break-all
-                  "
-                >
+                <span className="text-gray text-sm sm:text-base">
                   matheusphillip170@gmail.com
                 </span>
               </div>
@@ -179,17 +268,10 @@ sm:p-4
                   size="sm"
                   className="bg-glass-blue shrink-0"
                 >
-                  <Smartphone size={16} className="text-primary" />
+                  <Smartphone size={12} className="text-primary" />
                 </CircleBadge>
 
-                <span
-                  className="
-                    text-gray
-
-                    text-sm
-                    sm:text-base
-                  "
-                >
+                <span className="text-gray text-sm sm:text-base">
                   +55 (86) 98145-1876
                 </span>
               </div>
@@ -200,16 +282,10 @@ sm:p-4
                   size="sm"
                   className="bg-glass-blue shrink-0"
                 >
-                  <MapPin size={16} className="text-primary" />
+                  <MapPin size={12} className="text-primary" />
                 </CircleBadge>
 
-                <span
-                  className="
-                    text-gray
-                    text-sm
-                    sm:text-base
-                  "
-                >
+                <span className="text-gray text-sm sm:text-base">
                   Parnaíba • PI
                 </span>
               </div>
@@ -237,87 +313,92 @@ sm:p-4
             </div>
           </div>
 
-          {/* FORM CARD */}
+          {/* FORM */}
           <div
             className="
-    w-full
-    xl:w-[40%]
+              w-full
+              xl:w-[40%]
 
-    flex
-    items-center
-    justify-center
-  "
+              flex
+              items-center
+              justify-center
+            "
           >
             <Card
               className="
-    w-full
-    xl:max-w-[620px]
+                w-full
+                xl:max-w-[620px]
 
-    bg-glass-light
+                bg-glass-light
 
-    border border-white/10
+                border border-white/10
 
-    backdrop-blur-2xl
+                backdrop-blur-2xl
 
-    p-4
-    sm:p-6
+                p-4
+                sm:p-6
 
-    flex flex-col
-    gap-4
-
-    hover:border-primary/20
-    hover:shadow-xl
-    hover:shadow-primary/10
-
-    duration-300
-  "
+                flex flex-col
+                gap-4
+              "
             >
               <div
                 className="
                   grid
-
                   grid-cols-1
                   md:grid-cols-2
-
                   gap-4
                 "
               >
-                <Input label="Nome" placeholder="Insira seu nome" />
+                <Input
+                  label="Nome"
+                  name="nome"
+                  value={form.nome}
+                  onChange={handleChange}
+                  placeholder="Insira seu nome"
+                />
 
-                <Input label="Email" placeholder="Insira seu email" />
+                <Input
+                  label="Email"
+                  name="email"
+                  value={form.email}
+                  onChange={handleChange}
+                  placeholder="Insira seu email"
+                />
               </div>
 
               <Input
                 label="Assunto"
+                name="assunto"
+                value={form.assunto}
+                onChange={handleChange}
                 placeholder="Insira o assunto da mensagem (ex: Projeto, Parceria, etc...)"
               />
 
               <Textarea
                 label="Mensagem"
+                name="mensagem"
+                value={form.mensagem}
+                onChange={handleChange}
                 placeholder="Escreva sua mensagem..."
               />
 
-              <div
-                className="
-                  flex flex-col
-
-                  gap-4
-
-                  mt-2
-                "
-              >
+              <div className="flex flex-col gap-4 mt-2">
                 <Button
                   variant="primary-xl"
                   leftIcon={<Send size={20} />}
                   className="w-full"
+                  onClick={handleSendEmail}
+                  disabled={loading}
                 >
-                  Enviar Email
+                  {loading ? "Enviando..." : "Enviar Email"}
                 </Button>
 
                 <Button
                   variant="outline-xl"
                   leftIcon={<FaWhatsapp size={20} />}
                   className="w-full"
+                  onClick={handleSendWhatsapp}
                 >
                   Enviar WhatsApp
                 </Button>

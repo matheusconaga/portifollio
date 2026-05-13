@@ -1,17 +1,15 @@
-import gestao from "@/assets/projects/gestao.png"
+import patrimoniario from "@/assets/projects/patrimoniario.png"
 import println from "@/assets/projects/println.png"
-import port from "@/assets/projects/cine.png"
+import portfolio from "@/assets/projects/portfolio.png"
 
 export const projects = [
         {
-            image: port,
+            image: portfolio,
             title: "Portifólio Profissional",
 
             description: `
-      Portfólio moderno e responsivo para destacar
-      projetos e habilidades profissionais.
-    `,
-
+  Portfólio moderno e responsivo desenvolvido com React, TypeScript e TailwindCSS, utilizando Framer Motion para animações fluidas, arquitetura componentizada e foco em performance, UI/UX e experiência visual moderna.
+`,
             techs: [
                 "React",
                 "Tailwind",
@@ -28,7 +26,7 @@ export const projects = [
         },
 
         {
-            image: gestao,
+            image: patrimoniario,
 
             title: "Patrimoniário",
 
