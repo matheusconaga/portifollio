@@ -3,6 +3,7 @@ import { CardDescription } from "@/shared/ui/Card/card-description";
 import { CardTitle } from "@/shared/ui/Card/card-title";
 import { Badge } from "@/shared/ui/badge";
 import { cn } from "@/lib/utils";
+
 import { SiFreelancer } from "react-icons/si";
 
 interface ExperienceCardProps {
@@ -27,21 +28,48 @@ export function ExperienceCard({
   const isLeft = side === "left";
 
   return (
-    <div className="relative grid grid-cols-[1fr_80px_1fr] items-center w-full">
+    <div
+      className="
+        relative
+
+        grid
+
+        grid-cols-1
+        md:grid-cols-[1fr_80px_1fr]
+
+        gap-6
+        md:gap-0
+
+        w-full
+      "
+    >
+
+      {/* CARD */}
       <div
         className={cn(
-          "relative w-full",
-          isLeft ? "col-start-1 order-1" : "col-start-3 order-3",
+          `
+            relative
+
+            w-full
+
+            pl-6
+            md:pl-0
+          `,
+          isLeft ? "md:col-start-1 md:order-1" : "md:col-start-3 md:order-3",
         )}
       >
-        {/* FLOATING BADGE - Ajustado para não quebrar o alinhamento vertical */}
+        {/* BADGE */}
         {freelancer && (
           <div
             className="
               absolute
-              -bottom-8
-              -right-4
+
+              -bottom-9
+              right-0
+              md:-right-4
+
               z-50
+
               transition-all duration-300
               hover:scale-105
             "
@@ -58,27 +86,23 @@ export function ExperienceCard({
                 backdrop-blur-xl
               "
             >
-              {/* MINI ICON */}
               <Badge
                 variant="glass"
                 className="
                   p-2
 
                   bg-glass-light
-
-                  
                 "
               >
-                <SiFreelancer size={20} className="text-primary" />
+                <SiFreelancer size={18} className="text-primary" />
               </Badge>
 
-              {/* TEXT */}
               <span className="flex flex-col leading-tight">
-                <span className="text-white text-sm font-semibold">
+                <span className="text-white text-xs sm:text-sm font-semibold">
                   Freelancer
                 </span>
 
-                <span className="text-white/60 text-xs">
+                <span className="text-white/60 text-[10px] sm:text-xs">
                   Projeto Independente
                 </span>
               </span>
@@ -93,7 +117,9 @@ export function ExperienceCard({
 
             overflow-visible
 
-            p-8
+            p-5
+            sm:p-6
+            lg:p-8
 
             flex flex-col
             gap-3
@@ -111,11 +137,14 @@ export function ExperienceCard({
           <div className="flex flex-col gap-2">
             <CardTitle
               className="
-      text-xl
-      font-bold
-      text-primary
-      leading-none
-    "
+                text-lg
+                sm:text-xl
+
+                font-bold
+                text-primary
+
+                leading-tight
+              "
             >
               {title}
             </CardTitle>
@@ -123,10 +152,13 @@ export function ExperienceCard({
             {subtitle && (
               <span
                 className="
-        text-xl
-        font-semibold
-        leading-none
-      "
+                  text-base
+                  sm:text-lg
+
+                  font-semibold
+
+                  leading-tight
+                "
               >
                 {subtitle}
               </span>
@@ -136,8 +168,11 @@ export function ExperienceCard({
           <CardDescription
             className="
               text-gray-300
+
               leading-relaxed
-              text-base
+
+              text-sm
+              sm:text-base
             "
           >
             {description}
@@ -145,27 +180,108 @@ export function ExperienceCard({
         </Card>
       </div>
 
-      <div className="col-start-2 order-2 flex h-full items-center justify-center relative">
-        <div className="absolute w-[2px] h-[calc(100%+6rem)] bg-gradient-to-b from-white/5 via-white/10 to-white/5" />
+      {/* TIMELINE CENTER */}
+      <div
+        className="
+          absolute
+
+          left-0
+          top-6
+
+          flex items-center justify-center
+
+          w-6
+
+          md:relative
+          md:top-0
+          md:left-0
+
+          md:col-start-2
+          md:order-2
+
+          md:w-auto
+          md:h-full
+        "
+      >
+        {/* DESKTOP LINE */}
+        <div
+          className="
+            hidden md:block
+
+            absolute
+
+            w-[2px]
+            h-[calc(100%+6rem)]
+
+            bg-gradient-to-b
+            from-white/5
+            via-white/10
+            to-white/5
+          "
+        />
 
         <div className="relative flex items-center justify-center">
-          <div className="absolute w-6 h-6 rounded-full bg-primary/30 blur-md animate-pulse" />
-          <div className="z-10 w-4 h-4 rounded-full bg-primary border-4 border-[#0a0a0a]" />
+          <div
+            className="
+              absolute
+
+              w-6 h-6
+
+              rounded-full
+
+              bg-primary/30
+
+              blur-md
+
+              animate-pulse
+            "
+          />
+
+          <div
+            className="
+              z-10
+
+              w-4 h-4
+
+              rounded-full
+
+              bg-primary
+
+              border-4 border-[#0a0a0a]
+            "
+          />
         </div>
       </div>
 
+      {/* INFO */}
       <div
         className={cn(
-          "flex flex-col gap-1",
+          `
+      flex flex-col gap-1
+
+      sm:mt-4
+      md:mt-0
+
+      pl-10
+      md:pl-0
+
+      text-left
+
+      md:self-center
+    `,
+          freelancer ? "mt-5" : "mt-0",
           isLeft
-            ? "col-start-3 order-3 text-left pl-8"
-            : "col-start-1 order-1 text-right pr-8",
+            ? "md:col-start-3 md:order-3 md:pl-8"
+            : "md:col-start-1 md:order-1 md:text-right md:pr-8",
         )}
       >
         <span
           className="
             text-primary
-            text-xl
+
+            text-lg
+            sm:text-xl
+
             font-bold
           "
         >
@@ -175,7 +291,10 @@ export function ExperienceCard({
         <span
           className="
             text-gray
-            text-lg
+
+            text-sm
+            sm:text-lg
+
             font-semibold
           "
         >

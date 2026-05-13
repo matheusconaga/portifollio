@@ -15,61 +15,116 @@ export default function Contact() {
   return (
     <div
       className="
-      w-full
-      max-w-[1200px]
-      mx-auto
-      
-      
-    "
+    relative
+
+    w-full
+    mx-auto
+rounded-2xl
+    overflow-hidden
+  "
     >
+      <div
+        className="
+      absolute
+      
+
+      top-[-120px]
+      left-[-120px]
+
+      w-[400px]
+      h-[400px]
+
+      rounded-full
+
+      bg-primary/20
+
+      blur-[120px]
+
+      pointer-events-none
+      z-0
+    "
+      />
+      <div
+        className="
+      absolute
+
+      bottom-[-80px]
+right-[-80px]
+
+w-[260px]
+h-[260px]
+
+sm:w-[420px]
+sm:h-[420px]
+
+blur-[100px]
+
+      rounded-full
+
+      bg-cyan-400/10
+
+      pointer-events-none
+      z-0
+    "
+      />
       {/* MAIN CARD */}
       <Card
         className="
-        relative
+          relative
 
-        overflow-hidden
+          overflow-hidden
 
-        bg-glass-light
+          bg-glass-light
 
-        border border-white/10
-
-        p-4
-       
-      "
+          border border-white/10
+        "
       >
         <div
           className="
-         flex flex-row items-center p-2
-        "
+            flex flex-col
+            xl:flex-row
+
+            items-stretch
+
+            gap-8
+            xl:gap-10
+
+            p-2
+            py-6
+            sm:py-2
+sm:p-4
+          "
         >
           {/* LEFT CONTENT */}
           <div
             className="
-            flex flex-col
-            justify-between
+              flex flex-col
+              justify-between
 
-         
-            w-[50%]
-            gap-8
+              w-full
+              xl:w-[50%]
 
-            p-4
-            xl:p-8
-          "
+              gap-8
+
+              p-2
+              sm:p-4
+              xl:p-6
+            "
           >
             {/* TEXT */}
-            <div className="flex flex-col gap-8">
-              <div className="">
+            <div className="flex flex-col gap-6 sm:gap-8">
+              <div>
                 <h1
                   className="
-                  text-5xl
-                  xl:text-6xl
+                    font-bold
 
-                  font-bold
+                    leading-tight
 
-                  text-white
-
-                  leading-tight
-                "
+                    text-3xl
+                    sm:text-5xl
+                    lg:text-6xl
+                    xl:text-6xl
+                  "
                 >
                   Vamos construir algo{" "}
                   <span className="text-primary">incrível?</span>
@@ -78,15 +133,14 @@ export default function Contact() {
 
               <p
                 className="
-                text-gray
+                  text-gray
 
-                text-lg
-                xl:text-xl
+                  text-sm
+                  sm:text-base
+                  md:text-xl
 
-                leading-relaxed
-
-                max-w-[600px]
-              "
+                  leading-relaxed
+                "
               >
                 Disponível para oportunidades remotas e projetos freelancer.
                 Entre em contato para discutirmos como posso ajudar sua ideia a
@@ -97,77 +151,137 @@ export default function Contact() {
             {/* CONTACT INFO */}
             <div className="flex flex-col gap-4">
               <div className="flex items-center gap-2">
-                <CircleBadge variant="glass" size="md" className="bg-glass-blue">
-                  <Mail size={22} className="text-primary" />
+                <CircleBadge
+                  variant="glass"
+                  size="sm"
+                  className="bg-glass-blue shrink-0"
+                >
+                  <Mail size={16} className="text-primary" />
                 </CircleBadge>
 
-                <span className="text-gray text-lg">
+                <span
+                  className="
+                    text-gray
+
+                    text-sm
+                    sm:text-base
+
+                    break-all
+                  "
+                >
                   matheusphillip170@gmail.com
                 </span>
               </div>
 
               <div className="flex items-center gap-2">
-                <CircleBadge variant="glass" size="md" className="bg-glass-blue">
-                  <Smartphone size={22} className="text-primary" />
+                <CircleBadge
+                  variant="glass"
+                  size="sm"
+                  className="bg-glass-blue shrink-0"
+                >
+                  <Smartphone size={16} className="text-primary" />
                 </CircleBadge>
 
-                <span className="text-gray text-lg">+55 (86) 98145-1876</span>
+                <span
+                  className="
+                    text-gray
+
+                    text-sm
+                    sm:text-base
+                  "
+                >
+                  +55 (86) 98145-1876
+                </span>
               </div>
 
               <div className="flex items-center gap-2">
-                <CircleBadge variant="glass" size="md" className="bg-glass-blue">
-                  <MapPin size={22} className="text-primary" />
+                <CircleBadge
+                  variant="glass"
+                  size="sm"
+                  className="bg-glass-blue shrink-0"
+                >
+                  <MapPin size={16} className="text-primary" />
                 </CircleBadge>
 
-                <span className="text-gray text-lg">Parnaíba • PI</span>
+                <span
+                  className="
+                    text-gray
+                    text-sm
+                    sm:text-base
+                  "
+                >
+                  Parnaíba • PI
+                </span>
               </div>
             </div>
 
             {/* SOCIALS */}
-            <div className="flex gap-4">
+            <div className="flex flex-wrap gap-4">
               <CircleBadge variant="outline" clickable size="lg">
                 <a href="https://github.com/matheusconaga" target="_blank">
-                  <FaGithub size={24} className="text-primary" />
+                  <FaGithub size={20} className="text-primary" />
                 </a>
               </CircleBadge>
 
               <CircleBadge variant="outline" clickable size="lg">
                 <a href="https://linkedin.com/in/matheusconaga" target="_blank">
-                  <FaLinkedin size={24} className="text-primary" />
+                  <FaLinkedin size={20} className="text-primary" />
                 </a>
               </CircleBadge>
 
               <CircleBadge variant="outline" clickable size="lg">
                 <a href="https://wa.me/5586981451876" target="_blank">
-                  <FaWhatsapp size={24} className="text-primary" />
+                  <FaWhatsapp size={20} className="text-primary" />
                 </a>
               </CircleBadge>
             </div>
           </div>
 
           {/* FORM CARD */}
-          <div className="">
+          <div
+            className="
+    w-full
+    xl:w-[40%]
+
+    flex
+    items-center
+    justify-center
+  "
+          >
             <Card
               className="
-            bg-glass-light
+    w-full
+    xl:max-w-[620px]
 
-            border border-white/10
+    bg-glass-light
 
-            backdrop-blur-2xl
-            
-            p-8
+    border border-white/10
 
-            flex flex-col
-            gap-6
+    backdrop-blur-2xl
 
-            hover:border-primary/20
-            hover:shadow-xl
-            hover:shadow-primary/10
+    p-4
+    sm:p-6
 
-            duration-300
-          "
+    flex flex-col
+    gap-4
+
+    hover:border-primary/20
+    hover:shadow-xl
+    hover:shadow-primary/10
+
+    duration-300
+  "
             >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div
+                className="
+                  grid
+
+                  grid-cols-1
+                  md:grid-cols-2
+
+                  gap-4
+                "
+              >
                 <Input label="Nome" placeholder="Insira seu nome" />
 
                 <Input label="Email" placeholder="Insira seu email" />
@@ -183,7 +297,15 @@ export default function Contact() {
                 placeholder="Escreva sua mensagem..."
               />
 
-              <div className="flex flex-col gap-4 mt-2">
+              <div
+                className="
+                  flex flex-col
+
+                  gap-4
+
+                  mt-2
+                "
+              >
                 <Button
                   variant="primary-xl"
                   leftIcon={<Send size={20} />}

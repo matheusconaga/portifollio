@@ -17,7 +17,7 @@ export function Input({
       {label && (
         <label
           className="
-            text-lg
+            text-base
             font-semibold
             text-gray
           "
@@ -40,7 +40,7 @@ export function Input({
             px-5 py-2
 
             text-white
-
+            text-sm
             outline-none
 
             backdrop-blur-xl

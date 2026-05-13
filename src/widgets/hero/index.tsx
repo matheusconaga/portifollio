@@ -27,15 +27,23 @@ export default function Hero() {
   return (
     <div
       className="
+    relative
+
     flex flex-col
     justify-center
     items-center
 
     w-full
 
-    pt-18
-    sm:pt-28
-    md:pt-0
+    min-h-screen
+
+    pt-16
+    sm:pt-32
+    md:pt-24
+    xl:pt-36
+
+    pb-28
+    md:pb-55
 
     gap-16 md:gap-20
   "
@@ -65,16 +73,16 @@ export default function Hero() {
       absolute
 
       bottom-[-140px]
-      right-[-120px]
 
-      w-[360px]
-      h-[360px]
+      w-[300px]
+      h-[300px]
+      sm:w-[100%]
+      sm:h-[200px]
 
-      rounded-full
 
-      bg-cyan-400/10
+      bg-glass-blue
 
-      blur-[140px]
+      blur-[120px]
 
       pointer-events-none
       z-0
@@ -100,9 +108,11 @@ export default function Hero() {
           className="
     flex flex-col
 
-    items-start
+    items-center
+    xl:items-start
 
-    text-left
+    text-center
+    xl:text-left
 
     gap-4
 
@@ -115,10 +125,12 @@ export default function Hero() {
           <Badge
             variant="glass"
             className="
-              text-primary
+    self-start
 
-              text-xs md:text-sm
-            "
+    text-primary
+
+    text-xs md:text-sm
+  "
           >
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 animate-ping" />
@@ -131,15 +143,18 @@ export default function Hero() {
           {/* BRAND */}
           <div
             className="
-              flex
+    flex
 
-              flex-col
-              sm:flex-row
+    flex-col
+    sm:flex-row
 
-              items-center
+    items-center
 
-              gap-4
-            "
+    text-center
+    sm:text-left
+
+    gap-4
+  "
           >
             <img
               src={logo}
@@ -152,10 +167,13 @@ export default function Hero() {
 
             <div
               className="
-                flex flex-col
-text-left
-                gap-2
-              "
+    flex flex-col
+
+    items-center
+    sm:items-start
+
+    gap-2
+  "
             >
               <span
                 className="
@@ -205,14 +223,14 @@ text-left
               {/* STACKS */}
               <div
                 className="
-                  flex
-                  flex-wrap
+    flex
+    flex-wrap
 
-                 
-                  justify-start
+    justify-center
+    sm:justify-start
 
-                  gap-2
-                "
+    gap-2
+  "
               >
                 {techs.map((tech, index) => (
                   <StackCard key={index} icon={tech.icon} name={tech.name} />
@@ -224,12 +242,14 @@ text-left
           {/* DESCRIPTION */}
           <div
             className="
-              flex flex-col
+    flex flex-col
 
-              gap-1
-text-left
-              max-w-[700px]
-            "
+    text-left
+
+    gap-1
+
+    max-w-[700px]
+  "
           >
             <span
               className="
@@ -392,9 +412,23 @@ text-left
       </div>
 
       {/* MOUSE */}
-      <div className="hidden md:flex">
+      <div
+        className="
+    hidden md:flex
+
+    absolute
+
+    bottom-5
+    xl:bottom-25
+
+    left-1/2
+    -translate-x-1/2
+
+    z-20
+  "
+      >
         <MouseDiv>
-          <MouseIcon size={28} />
+          <MouseIcon size={30} />
         </MouseDiv>
       </div>
     </div>

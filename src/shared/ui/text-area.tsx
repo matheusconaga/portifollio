@@ -17,9 +17,9 @@ export function Textarea({
       {label && (
         <label
           className="
-            text-sm
+            text-base
             font-semibold
-            text-white
+            text-gray
           "
         >
           {label}
@@ -29,7 +29,7 @@ export function Textarea({
       <textarea
         className={cn(
           `
-            min-h-[180px]
+            min-h-[120px]
             w-full
 
             resize-none
@@ -42,7 +42,8 @@ export function Textarea({
 
             px-5 py-4
 
-            text-white
+            text-gray
+            text-sm
 
             outline-none
 

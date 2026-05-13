@@ -14,7 +14,7 @@ export function Container({
     <div
       className={cn(
         `
-          w-[80%]
+          w-[90%]
 
           max-w-[1280px]
 

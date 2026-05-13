@@ -4,7 +4,7 @@ import { CardTitle } from "@/shared/ui/Card/card-title";
 
 import { projects } from "@/data/projects";
 
-import { WorkCard } from "@/shared/ui/About-Cards/work-Card";
+import { WorkCard } from "@/shared/ui/About-Cards/work-card";
 import { CodeCard } from "@/shared/ui/About-Cards/code-card";
 import { CtaCard } from "@/shared/ui/About-Cards/cta-card";
 import { LatestProjectCard } from "@/shared/ui/About-Cards/latest-project-card";
@@ -62,6 +62,7 @@ export default function About() {
     lg:flex-row
     items-center
     justify-between
+    min-h-screen
     w-full
     gap-12
     lg:gap-8
@@ -69,6 +70,26 @@ export default function About() {
     lg:py-0
   "
     >
+      <div
+        className="
+      absolute
+
+      top-[-120px]
+
+      w-[300px]
+      h-[300px]
+      sm:w-[100%]
+      sm:h-[150px]
+
+
+      bg-glass-dark/50
+
+      blur-[120px]
+
+      pointer-events-none
+      z-0
+    "
+      />
       {/* LEFT SIDE */}
       <div className="flex flex-col w-full lg:w-[700px] items-start gap-8">
         {/* TITLE */}
@@ -182,24 +203,35 @@ export default function About() {
       pb-2
     "
         >
-          <motion.div whileTap={{ scale: 0.98 }} className="min-w-[88%] h-[350px] snap-center flex">
+          <motion.div
+            whileTap={{ scale: 0.98 }}
+            className="min-w-[88%] h-[350px] snap-center flex"
+          >
             <WorkCard />
           </motion.div>
 
-          <motion.div whileTap={{ scale: 0.98 }} className="min-w-[88%] h-[350px] snap-center">
+          <motion.div
+            whileTap={{ scale: 0.98 }}
+            className="min-w-[88%] h-[350px] snap-center"
+          >
             <CodeCard />
           </motion.div>
 
-          <motion.div whileTap={{ scale: 0.98 }} className="min-w-[88%] h-[350px] snap-center">
+          <motion.div
+            whileTap={{ scale: 0.98 }}
+            className="min-w-[88%] h-[350px] snap-center"
+          >
             {latestProject && (
               <LatestProjectCard latestProject={latestProject} />
             )}
           </motion.div>
 
-          <motion.div whileTap={{ scale: 0.98 }} className="min-w-[88%] h-[350px] snap-center">
+          <motion.div
+            whileTap={{ scale: 0.98 }}
+            className="min-w-[88%] h-[350px] snap-center"
+          >
             <CtaCard />
           </motion.div>
-
         </motion.div>
 
         {/* DESKTOP GRID */}

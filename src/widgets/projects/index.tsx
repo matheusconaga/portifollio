@@ -16,7 +16,27 @@ export default function Projects() {
 
   return (
     <div className="flex justify-center items-center w-full max-w-[1200px] align-start gap-8 mx-auto py-10">
-      <div className="flex flex-col gap-8 w-full">
+      <div className="flex flex-col gap-8 w-full ">
+        <div
+          className="
+      absolute
+
+      top-[-120px]
+
+      w-[300px]
+      h-[300px]
+      sm:w-[100%]
+      sm:h-[200px]
+
+
+      bg-glass-blue
+
+      blur-[120px]
+
+      pointer-events-none
+      z-0
+    "
+        />
         <div
           className="
     flex
@@ -30,11 +50,11 @@ export default function Projects() {
   "
         >
           <div className=" flex flex-col text-white gap-2">
-            <span className="text-lg sm:text-xl text-gray">Projetos</span>
+            <span className="text-lg sm:text-2xl text-gray">Projetos</span>
             <span
               className="
     text-primary
-    text-3xl
+    text-4xl
     sm:text-4xl
     lg:text-5xl
     font-bold

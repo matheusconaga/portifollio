@@ -16,9 +16,9 @@ export function Section({ children, className, id }: SectionProps) {
         `
           relative
 
-          py-12
-          md:py-16
-          xl:py-20
+         py-8
+md:py-12
+xl:py-4
 
           scroll-mt-24
           md:scroll-mt-28

@@ -8,7 +8,7 @@ export function FloatingContacts() {
       className="
         fixed
         bottom-6
-        right-6
+        right-3
         z-[9999]
 
         flex flex-col
@@ -17,6 +17,7 @@ export function FloatingContacts() {
     >
       <a href="mailto:matheusphillip170@gmail.com" className="group relative">
         <CircleBadge
+        size="lg"
           variant="glass"
           clickable
         >
@@ -65,6 +66,7 @@ export function FloatingContacts() {
         className="group relative"
       >
         <CircleBadge
+        size="lg"
           variant="glass"
           clickable
         >

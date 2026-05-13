@@ -48,12 +48,9 @@ export function CtaCard() {
         <div className="flex gap-2">
           {[BriefcaseBusiness, Laptop, Code2, Rocket].map(
             (Icon, i) => (
-              <div
-                key={i}
-                className="p-2 rounded-lg bg-white/5 border border-white/10 text-white/70"
-              >
-                <Icon size={16} />
-              </div>
+              <CircleBadge key={i} size="sm" variant="glass" className="bg-glass-blue">
+                 <Icon size={16} className="text-primary"/>
+              </CircleBadge>
             )
           )}
         </div>

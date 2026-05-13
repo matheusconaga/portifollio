@@ -30,15 +30,18 @@ export default function Footer() {
   return (
     <footer
       className="
-        relative
-        w-full
-        mt-24 md:mt-32
-        overflow-hidden
+    relative
+    w-full
 
-        border-t border-white/10
+    mt-8 md:mt-20
+    
 
-        bg-glass-dark-on
-      "
+    overflow-hidden
+
+    border-t border-white/10
+
+    bg-glass-dark-on
+  "
     >
       {/* BG EFFECT */}
       <div
@@ -458,7 +461,9 @@ export default function Footer() {
 
           <div
             className="
-              flex items-center gap-2
+              flex items-center 
+              sm:gap-2
+              gap-1
 
               text-white/50
               text-sm

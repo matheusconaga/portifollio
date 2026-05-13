@@ -61,8 +61,7 @@ export default function Experience() {
     ========================== */
 
     {
-      title:
-        "Curso Superior em Tecnologia (CST)",
+      title: "Curso Superior em Tecnologia (CST)",
 
       subtitle: "Análise e Desenvolvimento de Sistemas",
 
@@ -199,11 +198,30 @@ export default function Experience() {
     <div className="w-full max-w-[1200px] mx-auto py-20">
       <div className="flex flex-col gap-20">
         {/* HEADER */}
-        <div className="flex items-end justify-between">
-          <div className="flex flex-col gap-2">
-            <span className="text-2xl text-gray">Jornada</span>
+        <div
+          className="
+    flex
+    flex-col
+    lg:flex-row
 
-            <span className="text-primary text-5xl font-bold">
+    lg:items-end
+    justify-between
+
+    gap-6
+  "
+        >
+          <div className=" flex flex-col text-white gap-2">
+            <span className="text-lg sm:text-2xl text-gray">Jornada</span>
+            <span
+              className="
+    text-primary
+    text-4xl
+    sm:text-4xl
+    lg:text-5xl
+    font-bold
+    leading-tight
+  "
+            >
               Trajetória Profissional
             </span>
           </div>
@@ -215,29 +233,47 @@ export default function Experience() {
           />
         </div>
 
-        {/* TIMELINE */}
-        <div className="relative flex flex-col gap-24">
-          {/* LINHA CENTRAL */}
+        <div className="relative flex flex-col gap-16 md:gap-30">
+          {/* MOBILE LINE */}
           <div
             className="
-              absolute
-              left-1/2
-              top-0
-              -translate-x-1/2
+      absolute
 
-              w-[2px]
-              h-full
+      left-[11px]
+      top-0
 
-              bg-white/10
-            "
+      h-full
+      w-[2px]
+
+      bg-white/10
+
+      md:hidden
+    "
+          />
+
+          {/* DESKTOP LINE */}
+          <div
+            className="
+      hidden md:block
+
+      absolute
+      left-1/2
+      top-0
+      -translate-x-1/2
+
+      w-[2px]
+      h-full
+
+      bg-white/10
+    "
           >
             <div
               className="
-                absolute
-                inset-0
+        absolute
+        inset-0
 
-                blur-sm
-              "
+        blur-sm
+      "
             />
           </div>
 
