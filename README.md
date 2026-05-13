@@ -61,11 +61,11 @@ O sistema utiliza animações fluidas, arquitetura componentizada e efeitos visu
 
 | Home | Projetos |
 |------|-----------|
-| <p align="center"><img src="https://github.com/matheusconaga/portifollio/blob/main/assets/home.png?raw=true" width="430"></p> | <p align="center"><img src="https://github.com/matheusconaga/portifollio/blob/main/assets/projects.png?raw=true" width="430"></p> |
+| <p align="center"><img src="https://github.com/matheusconaga/portifollio/blob/main/assets/home.png?raw=true" width="430"></p> | <p align="center"><img src="https://github.com/matheusconaga/portifollio/blob/main/assets/projetos.png?raw=true" width="430"></p> |
 
 | Tecnologias | Contato |
 |-------------|----------|
-| <p align="center"><img src="https://github.com/matheusconaga/portifollio/blob/main/assets/tech.png?raw=true" width="430"></p> | <p align="center"><img src="https://github.com/matheusconaga/portifollio/blob/main/assets/contact.png?raw=true" width="430"></p> |
+| <p align="center"><img src="https://github.com/matheusconaga/portifollio/blob/main/assets/tecnologias.png?raw=true" width="430"></p> | <p align="center"><img src="https://github.com/matheusconaga/portifollio/blob/main/assets/contato.png?raw=true" width="430"></p> |
 
 | Mobile |
 |---------|
