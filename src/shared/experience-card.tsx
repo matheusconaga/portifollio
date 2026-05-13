@@ -43,18 +43,17 @@ export function ExperienceCard({
         w-full
       "
     >
-
       {/* CARD */}
       <div
         className={cn(
           `
-            relative
+    relative
+    w-full
+    pl-6
+    md:pl-0
 
-            w-full
-
-            pl-6
-            md:pl-0
-          `,
+    order-2
+  `,
           isLeft ? "md:col-start-1 md:order-1" : "md:col-start-3 md:order-3",
         )}
       >
@@ -183,25 +182,22 @@ export function ExperienceCard({
       {/* TIMELINE CENTER */}
       <div
         className="
-          absolute
+  absolute
+  left-0
+  top-6
+  flex items-center justify-center
+  w-6
 
-          left-0
-          top-6
+  order-3
 
-          flex items-center justify-center
-
-          w-6
-
-          md:relative
-          md:top-0
-          md:left-0
-
-          md:col-start-2
-          md:order-2
-
-          md:w-auto
-          md:h-full
-        "
+  md:relative
+  md:top-0
+  md:left-0
+  md:col-start-2
+  md:order-2
+  md:w-auto
+  md:h-full
+"
       >
         {/* DESKTOP LINE */}
         <div
@@ -257,18 +253,19 @@ export function ExperienceCard({
       <div
         className={cn(
           `
-      flex flex-col gap-1
+    flex flex-col gap-1
 
-      sm:mt-4
-      md:mt-0
+    sm:mt-4
+    md:mt-0
 
-      pl-10
-      md:pl-0
+    pl-10
+    md:pl-0
 
-      text-left
+    text-left
+    md:self-center
 
-      md:self-center
-    `,
+    order-1
+  `,
           freelancer ? "mt-5" : "mt-0",
           isLeft
             ? "md:col-start-3 md:order-3 md:pl-8"

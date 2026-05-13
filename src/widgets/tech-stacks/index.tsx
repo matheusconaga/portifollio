@@ -128,7 +128,7 @@ export default function TechStacks() {
             <Badge
               variant="glass"
               className="
-                p-3 sm:p-4
+                p-4 sm:p-5
 
                 bg-glass-light
                 border-none
@@ -187,7 +187,7 @@ export default function TechStacks() {
             <Badge
               variant="glass"
               className="
-                p-3 sm:p-4
+                p-4 sm:p-5
 
                 bg-glass-light
                 border-none
@@ -246,7 +246,7 @@ export default function TechStacks() {
             <Badge
               variant="glass"
               className="
-                p-3 sm:p-4
+                p-4 sm:p-5
 
                 bg-glass-light
                 border-none

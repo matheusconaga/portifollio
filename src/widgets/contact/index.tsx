@@ -9,7 +9,6 @@ import { Textarea } from "@/shared/ui/text-area";
 import { Mail, MapPin, Smartphone, Send } from "lucide-react";
 import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 
-
 export default function Contact() {
   const [loading, setLoading] = useState(false);
 
@@ -122,48 +121,64 @@ ${form.mensagem}
       "
     >
       {/* GLOWS */}
+
       <div
         className="
-          absolute
-          top-[-120px]
-          left-[-120px]
+    absolute
+    top-[-80px]
+    left-[-80px]
 
-          w-[400px]
-          h-[400px]
+    w-[220px]
+    h-[220px]
 
-          rounded-full
+    sm:top-[-120px]
+    sm:left-[-120px]
 
-          bg-primary/20
+    sm:w-[400px]
+    sm:h-[400px]
 
-          blur-[120px]
+    rounded-full
 
-          pointer-events-none
-          z-0
-        "
+    bg-primary/20
+
+    blur-[100px]
+    sm:blur-[120px]
+
+    opacity-70
+
+    pointer-events-none
+    z-0
+  "
       />
 
       <div
         className="
-          absolute
+    absolute
 
-          bottom-[-80px]
-          right-[-80px]
+    bottom-[-60px]
+    right-[-60px]
 
-          w-[260px]
-          h-[260px]
+    w-[180px]
+    h-[180px]
 
-          sm:w-[420px]
-          sm:h-[420px]
+    sm:bottom-[-80px]
+    sm:right-[-80px]
 
-          rounded-full
+    sm:w-[420px]
+    sm:h-[420px]
 
-          bg-cyan-400/10
+    rounded-full
 
-          blur-[100px]
+    bg-cyan-400/10
 
-          pointer-events-none
-          z-0
-        "
+    blur-[80px]
+    sm:blur-[100px]
+
+    opacity-70
+
+    pointer-events-none
+    z-0
+  "
       />
 
       {/* MAIN CARD */}

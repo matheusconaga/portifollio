@@ -80,7 +80,7 @@ export default function Projects() {
     sm:grid-cols-2
     xl:grid-cols-3
 
-    gap-5
+    gap-12
     lg:gap-6
   "
         >

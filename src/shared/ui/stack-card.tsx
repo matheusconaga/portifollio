@@ -31,7 +31,7 @@ export function StackCard({
         `
           group
 
-          flex items-center gap-2 md:gap-3
+          flex items-center gap-4 md:gap-3
 
           rounded-full
 
@@ -53,7 +53,7 @@ export function StackCard({
         /* MD */
         variant === "md" &&
           `
-            px-3 py-1.5
+            px-4 py-3
             md:px-5 md:py-2
             lg:px-6
           `,
@@ -88,9 +88,8 @@ export function StackCard({
 
           variant === "md" &&
             `
-              size-4
-              md:size-5
-              lg:size-6
+              size-5
+              md:size-6
             `,
 
           variant === "lg" &&
@@ -117,7 +116,7 @@ export function StackCard({
 
           variant === "md" &&
             `
-              text-xs
+              text-sm
               md:text-sm
               lg:text-base
             `,
