@@ -308,13 +308,20 @@ export default function Hero() {
               </Button>
             </a>
 
-            <Button
-              variant="outline-xl"
-              rightIcon={<Download size={22} />}
+            <a
+              href="/Matheus_Lula_Fullstack_Developer.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-full sm:w-auto"
             >
-              Currículo
-            </Button>
+              <Button
+                variant="outline-xl"
+                rightIcon={<Download size={22} />}
+                className="w-full sm:w-auto"
+              >
+                Currículo
+              </Button>
+            </a>
           </div>
         </div>
 
