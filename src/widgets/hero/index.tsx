@@ -13,9 +13,10 @@ import styled from "styled-components";
 
 import { SiFastapi, SiFlutter } from "react-icons/si";
 
-import { FaReact } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaReact } from "react-icons/fa";
 
 import { StackCard } from "@/shared/ui/stack-card";
+import { CircleBadge } from "@/shared/ui/circle-badge";
 
 const techs = [
   { name: "React", icon: FaReact },
@@ -157,7 +158,7 @@ export default function Hero() {
   "
           >
             <img
-            fetchPriority="high"
+              fetchPriority="high"
               src={logo}
               className="
                 w-28
@@ -234,7 +235,12 @@ export default function Hero() {
   "
               >
                 {techs.map((tech, index) => (
-                  <StackCard variant="hero" key={index} icon={tech.icon} name={tech.name} />
+                  <StackCard
+                    variant="hero"
+                    key={index}
+                    icon={tech.icon}
+                    name={tech.name}
+                  />
                 ))}
               </div>
             </div>
@@ -322,6 +328,40 @@ export default function Hero() {
               >
                 Currículo
               </Button>
+            </a>
+          </div>
+          <div
+            className=" flex
+
+              flex-row
+              justify-center
+              w-full
+              sm:w-auto
+
+              gap-4
+
+              mt-4
+              "
+          >
+            <a
+              href="https://www.linkedin.com/in/matheusconaga"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative"
+            >
+              <CircleBadge size="lg" variant="glass" clickable>
+                <FaLinkedin size={22} className="text-primary" />
+              </CircleBadge>
+            </a>
+            <a
+              href="https://github.com/matheusconaga"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative"
+            >
+              <CircleBadge size="lg" variant="glass" clickable>
+                <FaGithub size={22} className="text-primary" />
+              </CircleBadge>
             </a>
           </div>
         </div>
@@ -428,7 +468,7 @@ export default function Hero() {
     absolute
 
     bottom-5
-    xl:bottom-25
+    xl:bottom-40
 
     left-1/2
     -translate-x-1/2
