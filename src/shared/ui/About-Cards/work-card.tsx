@@ -1,4 +1,4 @@
-import eu_persona from "@/assets/eu_persona.png";
+import eu_persona from "@/assets/eu_persona.webp";
 
 import { Card } from "@/shared/ui/Card/card";
 import { CircleBadge } from "@/shared/ui/circle-badge";

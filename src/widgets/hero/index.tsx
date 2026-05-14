@@ -1,5 +1,5 @@
 import logo from "@/assets/logo_matheus.webp";
-import eu from "@/assets/euxl.png";
+import eu from "@/assets/euxl.webp";
 
 import { Badge } from "@/shared/ui/badge";
 import { Button } from "@/shared/ui/button";
@@ -157,6 +157,7 @@ export default function Hero() {
   "
           >
             <img
+            fetchPriority="high"
               src={logo}
               className="
                 w-28
@@ -367,6 +368,7 @@ export default function Hero() {
             >
               <CardImage
                 src={eu}
+                fetchPriority="high"
                 alt="Foto minha"
                 fit="contain"
                 position="bottom-right"

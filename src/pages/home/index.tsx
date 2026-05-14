@@ -1,5 +1,4 @@
 import { lazy, Suspense } from "react";
-
 import Hero from "@/widgets/hero";
 import About from "@/widgets/about";
 import { TechBanner } from "@/widgets/tech-banner";
@@ -11,21 +10,14 @@ const Contact = lazy(() => import("@/widgets/contact"));
 
 import { Container } from "@/shared/ui/container";
 import { Section } from "@/shared/ui/section";
-
 import { AnimatedSection } from "@/shared/ui/animated-section";
 import { Loading } from "@/shared/ui/loading";
+import { LazySection } from "@/shared/ui/lazy-section";
 
 export default function Homepage() {
   return (
     <>
-      <Section
-        id="home"
-        className="
-    relative
-    flex
-    items-center
-  "
-      >
+      <Section id="home" className="relative flex items-center">
         <Container>
           <AnimatedSection>
             <Hero />
@@ -45,44 +37,52 @@ export default function Homepage() {
         <TechBanner />
       </AnimatedSection>
 
-      {/* Lazy Loaded */}
+
       <Section id="projects">
         <Container>
-          <Suspense fallback={<Loading />}>
-            <AnimatedSection>
-              <Projects />
-            </AnimatedSection>
-          </Suspense>
+          <LazySection>
+            <Suspense fallback={<Loading />}>
+              <AnimatedSection>
+                <Projects />
+              </AnimatedSection>
+            </Suspense>
+          </LazySection>
         </Container>
       </Section>
 
       <Section id="tech">
         <Container>
-          <Suspense fallback={<Loading />}>
-            <AnimatedSection>
-              <TechStacks />
-            </AnimatedSection>
-          </Suspense>
+          <LazySection>
+            <Suspense fallback={<Loading />}>
+              <AnimatedSection>
+                <TechStacks />
+              </AnimatedSection>
+            </Suspense>
+          </LazySection>
         </Container>
       </Section>
 
       <Section id="experience">
         <Container>
-          <Suspense fallback={<Loading />}>
-            <AnimatedSection>
-              <Experience />
-            </AnimatedSection>
-          </Suspense>
+          <LazySection>
+            <Suspense fallback={<Loading />}>
+              <AnimatedSection>
+                <Experience />
+              </AnimatedSection>
+            </Suspense>
+          </LazySection>
         </Container>
       </Section>
 
       <Section id="contact">
         <Container>
-          <Suspense fallback={<Loading />}>
-            <AnimatedSection>
-              <Contact />
-            </AnimatedSection>
-          </Suspense>
+          <LazySection>
+            <Suspense fallback={<Loading />}>
+              <AnimatedSection>
+                <Contact />
+              </AnimatedSection>
+            </Suspense>
+          </LazySection>
         </Container>
       </Section>
     </>

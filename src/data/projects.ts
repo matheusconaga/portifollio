@@ -1,6 +1,6 @@
-import patrimoniario from "@/assets/projects/patrimoniario.png"
-import println from "@/assets/projects/println.png"
-import portfolio from "@/assets/projects/portfolio.png"
+import patrimoniario from "@/assets/projects/patrimoniario.webp"
+import println from "@/assets/projects/println.webp"
+import portfolio from "@/assets/projects/portfolio.webp"
 
 export const projects = [
         {

@@ -28,7 +28,7 @@ export function Header() {
         justify-center
       "
     >
-      <div className="relative w-[850px] hover:w-[1000px] transition-all duration-900 ">
+      <div className="relative w-[850px] hover:w-[1000px] transition-all duration-700 ">
         {/* NAVBAR */}
         <div
           className="
@@ -60,6 +60,7 @@ export function Header() {
             <div className="flex items-center gap-2 cursor-pointer">
               <img
                 src={logo}
+                fetchPriority="high"
                 className="
                   w-11
                   md:w-14

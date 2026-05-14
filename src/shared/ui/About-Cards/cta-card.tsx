@@ -1,4 +1,4 @@
-import chat_image from "@/assets/chat-dev.png";
+import chat_image from "@/assets/chat-dev.webp";
 
 import { Button } from "@/shared/ui/button";
 

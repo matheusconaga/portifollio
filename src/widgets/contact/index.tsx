@@ -75,7 +75,6 @@ ${form.mensagem}
       resetForm();
     } catch (error) {
       console.error(error);
-
       alert("Erro ao enviar e-mail.");
     } finally {
       setLoading(false);
@@ -106,7 +105,6 @@ ${form.mensagem}
 `;
 
     const encoded = encodeURIComponent(text);
-
     window.open(`https://wa.me/5586981451876?text=${encoded}`, "_blank");
   };
 
@@ -118,108 +116,84 @@ ${form.mensagem}
         mx-auto
         rounded-2xl
         overflow-hidden
+        bg-glass-light
+        xl:bg-transparent
       "
     >
       {/* GLOWS */}
-
       <div
         className="
-    absolute
-    top-[-80px]
-    left-[-80px]
-
-    w-[220px]
-    h-[220px]
-
-    sm:top-[-120px]
-    sm:left-[-120px]
-
-    sm:w-[400px]
-    sm:h-[400px]
-
-    rounded-full
-
-    bg-primary/20
-
-    blur-[100px]
-    sm:blur-[120px]
-
-    opacity-70
-
-    pointer-events-none
-    z-0
-  "
+          absolute
+          top-[-80px]
+          left-[-80px]
+          w-[220px]
+          h-[220px]
+          sm:top-[-120px]
+          sm:left-[-120px]
+          sm:w-[400px]
+          sm:h-[400px]
+          rounded-full
+          bg-primary/20
+          blur-[100px]
+          sm:blur-[120px]
+          opacity-70
+          pointer-events-none
+          z-0
+        "
       />
 
       <div
         className="
-    absolute
-
-    bottom-[-60px]
-    right-[-60px]
-
-    w-[180px]
-    h-[180px]
-
-    sm:bottom-[-80px]
-    sm:right-[-80px]
-
-    sm:w-[420px]
-    sm:h-[420px]
-
-    rounded-full
-
-    bg-cyan-400/10
-
-    blur-[80px]
-    sm:blur-[100px]
-
-    opacity-70
-
-    pointer-events-none
-    z-0
-  "
+          absolute
+          bottom-[-60px]
+          right-[-60px]
+          w-[180px]
+          h-[180px]
+          sm:bottom-[-80px]
+          sm:right-[-80px]
+          sm:w-[420px]
+          sm:h-[420px]
+          rounded-full
+          bg-cyan-400/10
+          blur-[80px]
+          sm:blur-[100px]
+          opacity-70
+          pointer-events-none
+          z-0
+        "
       />
 
-      {/* MAIN CARD */}
+      {/* MAIN CARD - Estilo removido no mobile, mantido no desktop */}
       <Card
         className="
           relative
-
           overflow-hidden
-
-          bg-glass-light
-
-          border border-white/10
+          bg-transparent
+          border-none
+          xl:bg-glass-light
+          xl:border xl:border-white/10
         "
       >
         <div
           className="
             flex flex-col
             xl:flex-row
-
             items-stretch
-
             gap-8
             xl:gap-10
-
             p-2
             py-6
-
             sm:p-4
           "
         >
-          {/* LEFT */}
+          {/* LEFT CONTENT */}
           <div
             className="
               flex flex-col
               justify-between
-
               w-full
               xl:w-[50%]
-
               gap-8
-
               p-2
               sm:p-4
               xl:p-6
@@ -230,9 +204,7 @@ ${form.mensagem}
                 <h1
                   className="
                     font-bold
-
                     leading-tight
-
                     text-3xl
                     sm:text-5xl
                     lg:text-6xl
@@ -247,11 +219,9 @@ ${form.mensagem}
               <p
                 className="
                   text-gray
-
                   text-sm
                   sm:text-base
                   md:text-xl
-
                   leading-relaxed
                 "
               >
@@ -271,7 +241,6 @@ ${form.mensagem}
                 >
                   <Mail size={12} className="text-primary" />
                 </CircleBadge>
-
                 <span className="text-gray text-sm sm:text-base">
                   matheusphillip170@gmail.com
                 </span>
@@ -285,7 +254,6 @@ ${form.mensagem}
                 >
                   <Smartphone size={12} className="text-primary" />
                 </CircleBadge>
-
                 <span className="text-gray text-sm sm:text-base">
                   +55 (86) 98145-1876
                 </span>
@@ -299,7 +267,6 @@ ${form.mensagem}
                 >
                   <MapPin size={12} className="text-primary" />
                 </CircleBadge>
-
                 <span className="text-gray text-sm sm:text-base">
                   Parnaíba • PI
                 </span>
@@ -328,12 +295,11 @@ ${form.mensagem}
             </div>
           </div>
 
-          {/* FORM */}
+          {/* FORM CARD - Mantido como card para destaque profissional */}
           <div
             className="
               w-full
               xl:w-[40%]
-
               flex
               items-center
               justify-center
@@ -343,16 +309,11 @@ ${form.mensagem}
               className="
                 w-full
                 xl:max-w-[620px]
-
                 bg-glass-light
-
                 border border-white/10
-
                 backdrop-blur-2xl
-
                 p-4
                 sm:p-6
-
                 flex flex-col
                 gap-4
               "
@@ -387,7 +348,7 @@ ${form.mensagem}
                 name="assunto"
                 value={form.assunto}
                 onChange={handleChange}
-                placeholder="Insira o assunto da mensagem (ex: Projeto, Parceria, etc...)"
+                placeholder="Insira o assunto da mensagem"
               />
 
               <Textarea
