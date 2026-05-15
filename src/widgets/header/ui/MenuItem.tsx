@@ -1,46 +1,47 @@
-import type { ReactNode } from "react"
+import type { ReactNode, ButtonHTMLAttributes } from "react";
 
-interface MenuItemProps {
-  children: ReactNode
-  href: string
+interface MenuItemProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  children: ReactNode;
 }
 
-export function MenuItem({
-  children,
-  href,
-}: MenuItemProps) {
+export function MenuItem({ children, className, ...props }: MenuItemProps) {
   return (
-    <a
-      href={href}
-      className="
-    group
-    relative
-    inline-flex
+    <button
+      className={`
+        group
+        relative
+        inline-flex
 
-    cursor-pointer
+        cursor-pointer
 
-    font-semibold
-    text-white/80
+        font-semibold
+        text-white/80
 
-    transition-all duration-300
+        transition-all duration-300
 
-    hover:text-primary
-    hover:-translate-y-1
-    transition: width 0.3s ease;
-    hover:after:w-full
-    after:absolute
-    after:-bottom-1
+        hover:text-primary
+        hover:-translate-y-1
 
-    after:left-0
-    after:w-0
-    after:h-0.5
-    after:bg-primary
-    after:duration-300
+        active:scale-[0.98]
+        active:text-primary
 
-  "
+        hover:after:w-full
+
+        after:absolute
+        after:-bottom-1
+        after:left-0
+
+        after:w-0
+        after:h-0.5
+
+        after:bg-primary
+        after:duration-300
+
+        ${className || ""}
+      `}
+      {...props}
     >
       {children}
-
-    </a>
-  )
+    </button>
+  );
 }

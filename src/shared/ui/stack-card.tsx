@@ -6,8 +6,7 @@ import { Badge } from "@/shared/ui/badge";
 
 type Variant = "sm" | "md" | "lg" | "hero";
 
-interface StackCardProps
-  extends React.HTMLAttributes<HTMLDivElement> {
+interface StackCardProps extends React.HTMLAttributes<HTMLDivElement> {
   icon: React.ElementType;
 
   name: string;
@@ -33,12 +32,19 @@ export function StackCard({
 
           flex items-center gap-4 md:gap-3
 
+          justify-center
           rounded-full
 
           hover:border-primary/30
           hover:shadow-lg
           hover:shadow-primary/10
           hover:-translate-y-1
+
+          active:border-primary/30
+          active:shadow-lg
+          active:shadow-primary/10
+          active:-translate-y-1
+
 
           transition-all duration-300
         `,
@@ -65,13 +71,14 @@ export function StackCard({
             md:px-6 md:py-3
           `,
 
-          variant === "hero" &&
+        variant === "hero" &&
           `
             px-3 py-2
             md:px-6 md:py-2
+            gap-2 md:gap-4
           `,
 
-        className
+        className,
       )}
       {...props}
     >
@@ -103,7 +110,7 @@ export function StackCard({
               size-5
               md:size-7
             `,
-             variant === "hero" &&
+          variant === "hero" &&
             `
               size-4
               md:size-6
@@ -136,7 +143,7 @@ export function StackCard({
             `
               text-sm
               md:text-base
-            `
+            `,
         )}
       >
         {name}

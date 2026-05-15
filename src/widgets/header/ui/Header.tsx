@@ -6,7 +6,18 @@ import { MenuItem } from "./MenuItem";
 import logo from "@/assets/logo_matheus.webp";
 
 import { ArrowUpRight, Menu, X } from "lucide-react";
-import MobileItem from "./MobileMenu";
+
+import MobileItem from "./MobileItem";
+
+import {
+  importContact,
+  importExperience,
+  importProjects,
+  importTechStacks,
+} from "@/shared/ui/Lazy-Loading/lazy-imports";
+
+import { scrollToSection } from "@/shared/utils/scroll-to-section";
+import { preloadAndScroll } from "@/shared/utils/preload-and-scroll";
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -28,7 +39,7 @@ export function Header() {
         justify-center
       "
     >
-      <div className="relative w-[850px] hover:w-[1000px] transition-all duration-700 ">
+      <div className="relative w-[850px] hover:w-[1000px] transition-all duration-700">
         {/* NAVBAR */}
         <div
           className="
@@ -56,7 +67,7 @@ export function Header() {
           "
         >
           {/* LOGO */}
-          <a href="#home">
+          <button onClick={() => scrollToSection("home")}>
             <div className="flex items-center gap-2 cursor-pointer">
               <img
                 src={logo}
@@ -81,7 +92,7 @@ export function Header() {
                 Matheus Lula
               </span>
             </div>
-          </a>
+          </button>
 
           {/* DESKTOP MENU */}
           <nav
@@ -95,19 +106,50 @@ export function Header() {
               text-white
             "
           >
-            <MenuItem href="#home">Início</MenuItem>
+            <MenuItem onClick={() => scrollToSection("home")}>Início</MenuItem>
 
-            <MenuItem href="#about">Sobre</MenuItem>
+            <MenuItem onClick={() => scrollToSection("about")}>Sobre</MenuItem>
 
-            <MenuItem href="#projects">Projetos</MenuItem>
+            <MenuItem
+              onClick={async () => {
+                await preloadAndScroll(importProjects, "projects");
+              }}
+              onMouseEnter={importProjects}
+              onTouchStart={importProjects}
+            >
+              Projetos
+            </MenuItem>
 
-            <MenuItem href="#tech">Tecnologias</MenuItem>
+            <MenuItem
+              onClick={async () => {
+                await preloadAndScroll(importTechStacks, "tech");
+              }}
+              onMouseEnter={importTechStacks}
+              onTouchStart={importTechStacks}
+            >
+              Tecnologias
+            </MenuItem>
 
-            <MenuItem href="#experience">Experiências</MenuItem>
+            <MenuItem
+              onClick={async () => {
+                await preloadAndScroll(importExperience, "experience");
+              }}
+              onMouseEnter={importExperience}
+              onTouchStart={importExperience}
+            >
+              Experiências
+            </MenuItem>
 
-            <a href="#contact">
-              <Button variant="primary">Contato</Button>
-            </a>
+            <div onMouseEnter={importContact} onTouchStart={importContact}>
+              <Button
+                variant="primary"
+                onClick={async () => {
+                  await preloadAndScroll(importContact, "contact");
+                }}
+              >
+                Contato
+              </Button>
+            </div>
           </nav>
 
           {/* MOBILE BUTTON */}
@@ -131,6 +173,9 @@ export function Header() {
 
               hover:border-primary/40
               hover:text-primary
+
+              active:scale-95
+              active:border-primary/40
 
               transition-all duration-300
             "
@@ -178,80 +223,77 @@ export function Header() {
               text-white
             "
           >
-            <MobileItem href="#home" onClick={() => setMenuOpen(false)}>
+            <MobileItem
+              onClick={ () => {
+                scrollToSection("home");
+                setMenuOpen(false);
+              }}
+            >
               <div className="flex flex-row gap-2 items-center">
-                <ArrowUpRight
-                  className="
-                      size-4
-
-                     
-                    "
-                />
+                <ArrowUpRight className="size-4" />
                 Início
               </div>
             </MobileItem>
 
-            <MobileItem href="#about" onClick={() => setMenuOpen(false)}>
+            <MobileItem
+              onClick={() => {
+                scrollToSection("about");
+                setMenuOpen(false);
+              }}
+            >
               <div className="flex flex-row gap-2 items-center">
-                <ArrowUpRight
-                  className="
-                      size-4
-
-                     
-                    "
-                />
+                <ArrowUpRight className="size-4" />
                 Sobre
               </div>
             </MobileItem>
 
-            <MobileItem href="#projects" onClick={() => setMenuOpen(false)}>
+            <MobileItem
+              onClick={async () => {
+                await preloadAndScroll(importProjects, "projects");
+                setMenuOpen(false);
+              }}
+            >
               <div className="flex flex-row gap-2 items-center">
-                <ArrowUpRight
-                  className="
-                      size-4
-
-                     
-                    "
-                />
+                <ArrowUpRight className="size-4" />
                 Projetos
               </div>
             </MobileItem>
 
-            <MobileItem href="#tech" onClick={() => setMenuOpen(false)}>
+            <MobileItem
+              onClick={async () => {
+               await preloadAndScroll(importTechStacks, "tech");
+                setMenuOpen(false);
+              }}
+            >
               <div className="flex flex-row gap-2 items-center">
-                <ArrowUpRight
-                  className="
-                      size-4
-
-                     
-                    "
-                />
+                <ArrowUpRight className="size-4" />
                 Tecnologias
               </div>
             </MobileItem>
 
-            <MobileItem href="#experience" onClick={() => setMenuOpen(false)}>
+            <MobileItem
+              onClick={async() => {
+                await preloadAndScroll(importExperience, "experience");
+                setMenuOpen(false);
+              }}
+            >
               <div className="flex flex-row gap-2 items-center">
-                <ArrowUpRight
-                  className="
-                      size-4
-
-                     
-                    "
-                />
+                <ArrowUpRight className="size-4" />
                 Experiências
               </div>
             </MobileItem>
 
-            <a
-              href="#contact"
-              onClick={() => setMenuOpen(false)}
+            <div
               className="mt-3"
+              onClick={async () => {
+                await preloadAndScroll(importContact, "contact");
+                setMenuOpen(false);
+              }}
             >
               <Button variant="primary" className="w-full">
                 Contato
               </Button>
-            </a>
+            </div>
           </nav>
         </div>
       </div>

@@ -3,20 +3,29 @@ import Hero from "@/widgets/hero";
 import About from "@/widgets/about";
 import { TechBanner } from "@/widgets/tech-banner";
 
-const Projects = lazy(() => import("@/widgets/projects"));
-const TechStacks = lazy(() => import("@/widgets/tech-stacks"));
-const Experience = lazy(() => import("@/widgets/experience"));
-const Contact = lazy(() => import("@/widgets/contact"));
-
 import { Container } from "@/shared/ui/container";
 import { Section } from "@/shared/ui/section";
 import { AnimatedSection } from "@/shared/ui/animated-section";
-import { Loading } from "@/shared/ui/loading";
-import { LazySection } from "@/shared/ui/lazy-section";
+import { LazySection } from "@/shared/ui/Lazy-Loading/lazy-section";
+import {
+  importContact,
+  importExperience,
+  importProjects,
+  importTechStacks,
+} from "@/shared/ui/Lazy-Loading/lazy-imports";
+import { ProjectsSkeleton } from "@/shared/ui/Lazy-Loading/project-skeleton";
+import { ContactSkeleton } from "@/shared/ui/Lazy-Loading/contact-skeleton";
+import { ExperienceSkeleton } from "@/shared/ui/Lazy-Loading/experience-skeleton";
+import { TechSkeleton } from "@/shared/ui/Lazy-Loading/tech-skeleton";
+
+const Projects = lazy(importProjects);
+const TechStacks = lazy(importTechStacks);
+const Experience = lazy(importExperience);
+const Contact = lazy(importContact);
 
 export default function Homepage() {
   return (
-    <>
+     <>
       <Section id="home" className="relative flex items-center">
         <Container>
           <AnimatedSection>
@@ -37,11 +46,11 @@ export default function Homepage() {
         <TechBanner />
       </AnimatedSection>
 
-
+      {/* PROJECTS */}
       <Section id="projects">
         <Container>
-          <LazySection>
-            <Suspense fallback={<Loading />}>
+          <LazySection fallback={<ProjectsSkeleton />}>
+            <Suspense fallback={<ProjectsSkeleton />}>
               <AnimatedSection>
                 <Projects />
               </AnimatedSection>
@@ -50,10 +59,11 @@ export default function Homepage() {
         </Container>
       </Section>
 
+      {/* TECH */}
       <Section id="tech">
         <Container>
-          <LazySection>
-            <Suspense fallback={<Loading />}>
+          <LazySection fallback={<TechSkeleton />}>
+            <Suspense fallback={<TechSkeleton />}>
               <AnimatedSection>
                 <TechStacks />
               </AnimatedSection>
@@ -62,10 +72,11 @@ export default function Homepage() {
         </Container>
       </Section>
 
+      {/* EXPERIENCE */}
       <Section id="experience">
         <Container>
-          <LazySection>
-            <Suspense fallback={<Loading />}>
+          <LazySection fallback={<ExperienceSkeleton />}>
+            <Suspense fallback={<ExperienceSkeleton />}>
               <AnimatedSection>
                 <Experience />
               </AnimatedSection>
@@ -74,10 +85,11 @@ export default function Homepage() {
         </Container>
       </Section>
 
+      {/* CONTACT */}
       <Section id="contact">
         <Container>
-          <LazySection>
-            <Suspense fallback={<Loading />}>
+          <LazySection fallback={<ContactSkeleton />}>
+            <Suspense fallback={<ContactSkeleton />}>
               <AnimatedSection>
                 <Contact />
               </AnimatedSection>

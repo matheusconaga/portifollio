@@ -23,7 +23,7 @@ export function CardImage({
         fit === "contain" && "object-contain",
 
         position === "bottom-right" &&
-         "absolute top-auto right-0 bottom-[-10%] left-auto ",
+         "object-bottom",
 
         className
       )}

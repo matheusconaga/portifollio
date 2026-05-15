@@ -1,5 +1,5 @@
-import * as React from "react"
-import { cn } from "@/lib/utils"
+import * as React from "react";
+import { cn } from "@/lib/utils";
 
 type Variant =
   | "primary"
@@ -7,13 +7,12 @@ type Variant =
   | "outline"
   | "outline-xl"
   | "ghost"
-  | "glass"
+  | "glass";
 
-interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: Variant
-  leftIcon?: React.ReactNode
-  rightIcon?: React.ReactNode
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: Variant;
+  leftIcon?: React.ReactNode;
+  rightIcon?: React.ReactNode;
 }
 
 export function Button({
@@ -29,29 +28,26 @@ export function Button({
       className={cn(
         "inline-flex items-center justify-center gap-2 rounded-full text-sm font-medium transition-all duration-200 px-8 py-2 transform",
 
-        "hover:-translate-y-1",
+        "hover:-translate-y-1 active:-translate-y-1",
 
         variant === "primary" &&
-        "bg-primary text-primary-foreground hover:bg-accent cursor-pointer font-semibold hover:shadow-lg hover:shadow-primary/10",
+          "bg-primary text-primary-foreground hover:bg-accent active:bg-accent cursor-pointer font-semibold hover:shadow-lg active:shadow-lg hover:shadow-primary/10 active:shadow-primary/10",
 
         variant === "primary-xl" &&
-        "bg-primary text-primary-foreground hover:bg-accent cursor-pointer font-bold px-12 hover:shadow-lg hover:shadow-primary/10",
+          "bg-primary text-primary-foreground hover:bg-accent active:bg-accent cursor-pointer font-bold px-12 hover:shadow-lg active:shadow-lg hover:shadow-primary/10 active:shadow-primary/10",
 
         variant === "outline" &&
-        "border border-border text-foreground hover:bg-muted hover:bg-glass-dark cursor-pointer font-semibold text-primary hover:shadow-lg hover:shadow-primary/10",
+          "border border-border text-foreground hover:bg-muted active:bg-muted hover:bg-glass-dark active:bg-glass-dark cursor-pointer font-semibold text-primary hover:shadow-lg active:shadow-lg hover:shadow-primary/10 active:shadow-primary/10",
 
         variant === "outline-xl" &&
-        "border border-border text-foreground hover:bg-glass-dark font-bold px-12 cursor-pointer text-primary hover:shadow-lg hover:shadow-primary/10",
+          "border border-border text-foreground hover:bg-glass-dark active:bg-glass-dark font-bold px-12 cursor-pointer text-primary hover:shadow-lg active:shadow-lg hover:shadow-primary/10 active:shadow-primary/10",
 
-        variant === "ghost" &&
-        "text-foreground hover:bg-muted",
+        variant === "ghost" && "text-foreground hover:bg-muted active:bg-muted",
 
         variant === "glass" &&
-        "bg-glass-blue backdrop-blur-md border border-white/10 text-white hover:bg-white/10",
+          "bg-glass-blue backdrop-blur-md border border-white/10 text-white hover:bg-white/10 active:bg-white/10",
 
-
-
-        className
+        className,
       )}
       {...props}
     >
@@ -61,5 +57,5 @@ export function Button({
 
       {rightIcon && <span className="flex items-center">{rightIcon}</span>}
     </button>
-  )
+  );
 }

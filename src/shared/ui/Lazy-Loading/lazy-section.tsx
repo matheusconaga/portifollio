@@ -1,14 +1,19 @@
-// @/shared/ui/lazy-section.tsx
 import { useState, useEffect, useRef } from "react";
 import type { ReactNode } from "react";
 
 interface LazySectionProps {
   children: ReactNode;
-  offset?: string; 
+  fallback: ReactNode;
+  offset?: string;
 }
 
-export function LazySection({ children, offset = "300px" }: LazySectionProps) {
+export function LazySection({
+  children,
+  fallback,
+  offset = "200px",
+}: LazySectionProps) {
   const [isVisible, setIsVisible] = useState(false);
+
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -19,7 +24,9 @@ export function LazySection({ children, offset = "300px" }: LazySectionProps) {
           observer.disconnect();
         }
       },
-      { rootMargin: offset } 
+      {
+        rootMargin: offset,
+      },
     );
 
     if (containerRef.current) {
@@ -31,7 +38,7 @@ export function LazySection({ children, offset = "300px" }: LazySectionProps) {
 
   return (
     <div ref={containerRef} className="w-full">
-      {isVisible ? children : <div className="h-[200px]" />} 
+      {isVisible ? children : fallback}
     </div>
   );
 }

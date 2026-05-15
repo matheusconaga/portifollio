@@ -50,6 +50,14 @@ export function CircleBadge({
             hover:border-primary/30
             hover:shadow-lg
             hover:shadow-primary/10
+
+
+            active:-translate-y-1
+            active:scale-105
+
+            active:border-primary/30
+            active:shadow-lg
+            active:shadow-primary/10
           `,
 
         variant === "glass" &&

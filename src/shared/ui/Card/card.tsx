@@ -27,6 +27,9 @@ export function Card({
           "bg-glass-dark border-white/10 text-white",
 
         "hover:scale-[1.01] hover:border-white/20",
+        "hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 duration-300",
+        "active:scale-[1.01] active:border-white/20",
+        "active:border-primary/30 active:shadow-lg active:shadow-primary/10",
 
         className
       )}

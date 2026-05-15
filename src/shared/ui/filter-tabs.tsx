@@ -195,7 +195,7 @@ export function FilterTabs({
 
                 border border-white/10
 
-                bg-glass-dark-on
+                bg-glass-dark
 
                 backdrop-blur-2xl
 
@@ -224,7 +224,7 @@ export function FilterTabs({
 
                       ${
                         isActive
-                          ? "bg-glass-blue text-primary"
+                          ? "bg-primary text-primary-foreground font-semibold"
                           : "text-white  hover:text-white"
                       }
                     `}

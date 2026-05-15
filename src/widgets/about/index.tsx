@@ -130,9 +130,7 @@ export default function About() {
         {/* STATS CARDS */}
         <div className="relative w-full lg:w-[480px] lg:h-55 h-55 grid grid-cols-2 gap-2 sm:gap-4">
           <Card
-            className="flex flex-col p-6 items-center justify-center hover:border-primary/30
-                  hover:shadow-xl hover:shadow-primary/10
-                  duration-300"
+            className="flex flex-col p-6 items-center justify-center"
           >
             <CardTitle className="text-primary text-2xl font-bold text-center">
               +2 anos

@@ -207,7 +207,8 @@ export function ExperienceCard({
             absolute
 
             w-[2px]
-            h-[calc(100%+6rem)]
+             top-0
+             bottom-0
 
             bg-gradient-to-b
             from-white/5

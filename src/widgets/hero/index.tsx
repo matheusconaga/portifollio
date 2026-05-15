@@ -158,13 +158,13 @@ export default function Hero() {
   "
           >
             <img
-              fetchPriority="high"
               src={logo}
-              className="
-                w-28
-                sm:w-32
-                lg:w-40
-              "
+              fetchPriority="high"
+              loading="eager"
+              decoding="async"
+              width={160}
+              height={160}
+              alt="Logo Matheus Lula"
             />
 
             <div
@@ -408,8 +408,12 @@ export default function Hero() {
             >
               <CardImage
                 src={eu}
-                fetchPriority="high"
                 alt="Foto minha"
+                fetchPriority="high"
+                loading="eager"
+                decoding="async"
+                width={380}
+                height={380}
                 fit="contain"
                 position="bottom-right"
               />
