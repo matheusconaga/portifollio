@@ -162,9 +162,12 @@ export default function Hero() {
               fetchPriority="high"
               loading="eager"
               decoding="async"
-              width={160}
-              height={160}
               alt="Logo Matheus Lula"
+              className="
+             w-28
+                sm:w-32
+                lg:w-40
+                "
             />
 
             <div
@@ -398,13 +401,15 @@ export default function Hero() {
             {/* IMAGE CARD */}
             <Card
               className="
-                w-full
-                h-full
+    w-full
+    h-full
 
-                rounded-[28px]
+    rounded-[28px]
+    overflow-hidden
 
-                overflow-hidden
-              "
+    contain-layout
+    contain-paint
+  "
             >
               <CardImage
                 src={eu}
@@ -412,8 +417,6 @@ export default function Hero() {
                 fetchPriority="high"
                 loading="eager"
                 decoding="async"
-                width={380}
-                height={380}
                 fit="contain"
                 position="bottom-right"
               />
