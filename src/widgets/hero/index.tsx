@@ -31,20 +31,20 @@ export default function Hero() {
     relative
 
     flex flex-col
-    justify-center
+    justify-between
     items-center
 
     w-full
 
     min-h-screen
 
-    pt-16
+    pt-15
     sm:pt-32
     md:pt-24
-    xl:pt-36
+    xl:pt-30
 
-    pb-28
-    md:pb-55
+    pb-20
+    md:pb-12
 
     gap-16 md:gap-20
   "
@@ -471,14 +471,14 @@ export default function Hero() {
       <div
         className="
     hidden md:flex
-
     absolute
-
-    bottom-5
-    xl:bottom-40
-
     left-1/2
     -translate-x-1/2
+
+    bottom-10
+    md:bottom-12
+    lg:bottom-14
+    xl:bottom-14
 
     z-20
   "
