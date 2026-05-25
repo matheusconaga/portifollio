@@ -94,6 +94,7 @@ export default function Projects() {
                 techs={project.techs}
                 deployUrl={project.deployUrl}
                 repoUrl={project.repoUrl}
+                inDevelopment={project.inDevelopment}
               />
             ))
           ) : (

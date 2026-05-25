@@ -19,6 +19,7 @@ interface ProjectCardProps {
 
   deployUrl?: string;
   repoUrl?: string;
+  inDevelopment?: boolean;
 }
 
 export default function ProjectCard({
@@ -28,6 +29,7 @@ export default function ProjectCard({
   techs,
   deployUrl,
   repoUrl,
+  inDevelopment,
 }: ProjectCardProps) {
   return (
     <Card
@@ -48,42 +50,67 @@ export default function ProjectCard({
       "
     >
       {/* IMAGE */}
-      <div className="overflow-hidden">
+      <div className="relative overflow-hidden">
+        {inDevelopment && (
+          <Badge
+            className="
+        absolute
+        top-3
+        right-3
+        z-10
+
+        bg-yellow-500/50
+        backdrop-blur-md
+
+        text-yellow-900
+
+        border
+        border-yellow-400/30
+
+        shadow-lg
+
+        hover:bg-yellow-500/25
+      "
+          >
+            Em desenvolvimento
+          </Badge>
+        )}
+
         <CardImage
           src={image}
           alt={title}
           className="
-            h-[190px] sm:h-[220px] lg:h-[240px]
-            w-full
+      h-[190px] sm:h-[220px] lg:h-[240px]
+      w-full
 
-            object-cover
+      object-cover
 
-            transition-transform duration-500
+      transition-transform duration-500
 
-            group-hover:scale-105
-          "
+      group-hover:scale-105
+    "
         />
       </div>
 
       {/* CONTENT */}
       <CardContent
         className="
-          flex flex-col
-          items-center
-          gap-4
-          p-4 sm:p-5
-          text-justify
-          flex-1
-        "
+    flex flex-col
+    items-center
+    gap-4
+    p-4 sm:p-5
+    text-justify
+    flex-1
+  "
       >
         {/* TITLE */}
         <CardTitle
           className="
-    text-xl
-    sm:text-2xl
-    text-center
-    leading-tight
-  "
+      text-xl
+      sm:text-2xl
+      text-center
+      leading-tight
+    "
         >
           {title}
         </CardTitle>

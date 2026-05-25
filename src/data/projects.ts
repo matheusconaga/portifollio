@@ -2,23 +2,52 @@ import patrimoniario from "@/assets/projects/patrimoniario.webp"
 import println from "@/assets/projects/println.webp"
 import portfolio from "@/assets/projects/portfolio.webp"
 import github_project_card from "@/assets/projects/gihub-project-cards.webp"
+import docflow from "@/assets/projects/docflow-ai.webp"
 
 export const projects = [
+     {
+        image: docflow,
+
+        title: "DocFlow AI",
+
+        inDevelopment: true,
+
+        description: `
+Plataforma backend para análise e extração de texto de documentos utilizando OCR, parsing de PDFs, imagens e arquivos DOCX, com foco em APIs modernas e arquitetura escalável.
+
+Desenvolvido com FastAPI, PostgreSQL, Docker e CI/CD automatizado com GitHub Actions.
+`,
+
+        techs: [
+            "FastAPI",
+            "Docker",
+            "PostgreSQL",
+        ],
+
+        category: "Backend",
+
+        deployUrl:
+            "https://docflow-ai-lj3a.onrender.com/",
+
+        repoUrl:
+            "https://github.com/matheusconaga/docflow-ai",
+
+        
+    },
     {
         image: github_project_card,
 
         title: "GitHub Project Cards",
 
         description: `
-Projeto open source que gera cards dinâmicos de repositórios do GitHub utilizando a API oficial do GitHub.
+Projeto open source que gera cards dinâmicos de repositórios utilizando a API oficial do GitHub.
 
-Permite criar previews visuais automáticos de projetos, exibindo informações como estrelas, forks e tecnologias utilizadas, facilitando a apresentação de repositórios em portfólios e READMEs.
+Permite criar previews visuais automáticos exibindo estrelas, forks e tecnologias utilizadas para portfólios e READMEs.
 `,
 
         techs: [
             "Next.js",
             "React",
-            "TypeScript",
             "Open Source",
         ],
 
