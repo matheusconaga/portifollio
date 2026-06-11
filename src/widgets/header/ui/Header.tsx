@@ -18,6 +18,7 @@ import {
 
 import { scrollToSection } from "@/shared/utils/scroll-to-section";
 import { preloadAndScroll } from "@/shared/utils/preload-and-scroll";
+import { LanguageSwitcher } from "@/shared/ui/LanguageSwitcher";
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -39,7 +40,7 @@ export function Header() {
         justify-center
       "
     >
-      <div className="relative w-[850px] hover:w-[1000px] transition-all duration-700">
+      <div className="relative w-[900px] hover:w-[1100px] transition-all duration-700">
         {/* NAVBAR */}
         <div
           className="
@@ -68,7 +69,7 @@ export function Header() {
         >
           {/* LOGO */}
           <button onClick={() => scrollToSection("home")}>
-            <div className="flex items-center gap-2 cursor-pointer">
+            <div className="flex items-center  cursor-pointer">
               <img
                 src={logo}
                 fetchPriority="high"
@@ -139,6 +140,10 @@ export function Header() {
             >
               Experiências
             </MenuItem>
+
+            <div>
+              <LanguageSwitcher />
+            </div>
 
             <div onMouseEnter={importContact} onTouchStart={importContact}>
               <Button
@@ -282,6 +287,10 @@ export function Header() {
                 Experiências
               </div>
             </MobileItem>
+
+          <div className="mt-2 ">
+            <LanguageSwitcher mobile />
+          </div>
 
             <div
               className="mt-3"

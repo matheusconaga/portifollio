@@ -8,7 +8,6 @@ export const projects = [
     {
         image: docflow,
         title: "DocFlow AI",
-        inDevelopment: true,
         description: `
 Plataforma backend para análise e extração de texto (OCR/Parsing) de PDFs, imagens e arquivos DOCX. Utiliza IA e RAG para viabilizar a geração futura de insights, planos de aula e atividades automatizadas.
 `,
@@ -40,7 +39,7 @@ Projeto open source que gera cards dinâmicos de repositórios utilizando a API 
         image: portfolio,
         title: "Portifólio Profissional",
         description: `
-Portfólio moderno e responsivo desenvolvido com React, TypeScript e TailwindCSS, utilizando Framer Motion para animações fluidas, arquitetura componentizada e foco em performance, UI/UX e experiência visual moderna.
+Portfólio que está navegando feito em React, TypeScript e TailwindCSS, utilizando Framer Motion para animações fluidas, arquitetura componentizada e foco em performance, UI/UX e experiência visual moderna.
 `,
         techs: [
             "React",
