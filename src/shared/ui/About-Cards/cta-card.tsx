@@ -1,4 +1,5 @@
 import chat_image from "@/assets/chat-dev.webp";
+import { useAppTranslation } from "@/shared/hooks/useAppTranslation";
 
 import { Button } from "@/shared/ui/button";
 
@@ -16,6 +17,9 @@ import {
 } from "lucide-react";
 
 export function CtaCard() {
+
+  const {t} = useAppTranslation();
+
   return (
     <Card className="relative p-6 bg-glass-light border border-white/10 rounded-[28px] flex flex-col justify-between overflow-hidden h-full">
       <div className="flex items-center gap-1">
@@ -24,25 +28,25 @@ export function CtaCard() {
         </CircleBadge>
 
         <span className="text-white text-sm font-semibold">
-          Vamos criar algo?
+          {t("cta.badge")}
         </span>
       </div>
 
       <div className="z-10 mt-4">
         <h3 className="text-xl font-bold text-white leading-tight">
-          Vamos criar <br />
+          {t("cta.title1")} <br />
 
-          <span className="text-[#56ccfb]">algo juntos?</span>
+          <span className="text-[#56ccfb]">{t("cta.title2")}</span>
         </h3>
 
         <p className="text-white/50 text-[12px] mt-2 max-w-[180px]">
-          Estou disponível para novos desafios e oportunidades.
+          {t("cta.description")}
         </p>
       </div>
 
       <div className="z-10 my-4">
         <p className="text-white/70 text-[10px] font-bold mb-3 uppercase tracking-wider">
-          Disponível para:
+          {t("cta.available")}
         </p>
 
         <div className="flex gap-2">
@@ -66,7 +70,7 @@ export function CtaCard() {
 
       <a href="#contact" className="w-full mt-auto">
         <Button variant="primary" className="w-full">
-          Entrar em contato
+          {t("cta.button")}
 
           <ArrowRight size={18} className="ml-2" />
         </Button>

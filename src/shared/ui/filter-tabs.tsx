@@ -2,8 +2,13 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 
+interface FilterItem {
+  label: string;
+  value: string;
+}
+
 interface FilterTabsProps {
-  items: string[];
+  items: FilterItem[];
   active: string;
   onChange: (value: string) => void;
 }
@@ -14,6 +19,9 @@ export function FilterTabs({
   onChange,
 }: FilterTabsProps) {
   const [open, setOpen] = useState(false);
+
+  const activeItem =
+    items.find((item) => item.value === active);
 
   return (
     <>
@@ -55,12 +63,15 @@ export function FilterTabs({
         />
 
         {items.map((item) => {
-          const isActive = active === item;
+          const isActive =
+            active === item.value;
 
           return (
             <motion.button
-              key={item}
-              onClick={() => onChange(item)}
+              key={item.value}
+              onClick={() =>
+                onChange(item.value)
+              }
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.96 }}
               transition={{
@@ -114,10 +125,14 @@ export function FilterTabs({
               <span
                 className={`
                   relative z-10 transition-all duration-300
-                  ${isActive ? "text-white" : "text-gray"}
+                  ${
+                    isActive
+                      ? "text-white"
+                      : "text-gray"
+                  }
                 `}
               >
-                {item}
+                {item.label}
               </span>
             </motion.button>
           );
@@ -148,7 +163,9 @@ export function FilterTabs({
             text-white
           "
         >
-          <span className="font-medium">{active}</span>
+          <span className="font-medium">
+            {activeItem?.label}
+          </span>
 
           <ChevronDown
             size={18}
@@ -203,13 +220,14 @@ export function FilterTabs({
               "
             >
               {items.map((item) => {
-                const isActive = active === item;
+                const isActive =
+                  active === item.value;
 
                 return (
                   <button
-                    key={item}
+                    key={item.value}
                     onClick={() => {
-                      onChange(item);
+                      onChange(item.value);
                       setOpen(false);
                     }}
                     className={`
@@ -225,11 +243,11 @@ export function FilterTabs({
                       ${
                         isActive
                           ? "bg-primary text-primary-foreground font-semibold"
-                          : "text-white  hover:text-white"
+                          : "text-white hover:text-white"
                       }
                     `}
                   >
-                    {item}
+                    {item.label}
                   </button>
                 );
               })}
@@ -240,3 +258,4 @@ export function FilterTabs({
     </>
   );
 }
+

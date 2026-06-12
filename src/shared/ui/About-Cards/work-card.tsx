@@ -1,4 +1,5 @@
 import eu_persona from "@/assets/eu_persona.webp";
+import { useAppTranslation } from "@/shared/hooks/useAppTranslation";
 
 import { Card } from "@/shared/ui/Card/card";
 import { CircleBadge } from "@/shared/ui/circle-badge";
@@ -6,6 +7,9 @@ import { CircleBadge } from "@/shared/ui/circle-badge";
 import { Code } from "lucide-react";
 
 export function WorkCard() {
+
+    const { t } = useAppTranslation();
+
   return (
     <Card
       className="
@@ -32,7 +36,7 @@ export function WorkCard() {
           </CircleBadge>
 
           <span className="text-white text-sm font-semibold">
-            Trabalhando nisso
+            {t("work.card.badge")}
           </span>
         </div>
       </div>
@@ -52,13 +56,13 @@ export function WorkCard() {
         >
           <div className="flex flex-col">
             <h3 className="flex text-[14px] font-bold text-white leading-tight gap-1 whitespace-nowrap">
-              <span>Criando soluções</span>
+              <span>{t("work.card.title1")}</span>
 
-              <span className="text-primary">modernas</span>
+              <span className="text-primary">{t("work.card.title2")}</span>
             </h3>
 
             <p className="text-white/60 text-[11px] leading-relaxed mt-1">
-              Interfaces performáticas, modernas e escaláveis.
+              {t("work.card.description")}
             </p>
           </div>
         </Card>

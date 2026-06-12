@@ -1,9 +1,13 @@
+import { useAppTranslation } from "@/shared/hooks/useAppTranslation";
 import { Card } from "@/shared/ui/Card/card";
 import { CircleBadge } from "@/shared/ui/circle-badge";
 
 import { Terminal } from "lucide-react";
 
 export function CodeCard() {
+
+  const { t } = useAppTranslation();
+
   return (
     <Card
       className="
@@ -81,7 +85,7 @@ export function CodeCard() {
          <p className="pl-4 text-white/90">
           passion:{" "}
           <span className="text-green-300">
-            'Transformar ideias em soluções'
+            '{t("code.card.passion")}'
           </span>
           ,
         </p>

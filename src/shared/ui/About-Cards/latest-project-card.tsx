@@ -1,3 +1,4 @@
+import { useAppTranslation } from "@/shared/hooks/useAppTranslation";
 import { Button } from "@/shared/ui/button";
 
 import { Card } from "@/shared/ui/Card/card";
@@ -8,30 +9,32 @@ import { CircleBadge } from "@/shared/ui/circle-badge";
 
 import { ArrowRight, Laptop } from "lucide-react";
 
-interface ProjectCardProps {
-  latestProject: {
-    image: string;
-    title: string;
-    description: string;
-    techs: string[];
-    category: string;
-    deployUrl: string;
-    repoUrl: string;
-  };
-}
+import { projects } from "@/data/projects";
 
-export function LatestProjectCard({
-  latestProject,
-}: ProjectCardProps) {
+export function LatestProjectCard() {
+  const { t, i18n } = useAppTranslation();
+
+  const currentLanguage = i18n.language.startsWith("pt")
+    ? "pt"
+    : "en";
+
+  const currentProjects =
+    projects[currentLanguage];
+
+  const latestProject = currentProjects[0];
+
   return (
     <Card className="flex flex-col h-full p-6 bg-glass-light rounded-[28px]">
       <div className="flex items-center gap-1 mb-4">
         <CircleBadge size="sm">
-          <Laptop size={12} className="text-primary" />
+          <Laptop
+            size={12}
+            className="text-primary"
+          />
         </CircleBadge>
 
         <span className="text-white text-sm font-semibold">
-          Último projeto
+          {t("latestProject.title")}
         </span>
       </div>
 
@@ -55,13 +58,20 @@ export function LatestProjectCard({
         </div>
 
         <a href="#projects" className="mt-auto">
-          <Button variant="primary" className="w-full">
-            Ver projeto
+          <Button
+            variant="primary"
+            className="w-full"
+          >
+            {t("latestProject.viewProject")}
 
-            <ArrowRight size={18} className="ml-2" />
+            <ArrowRight
+              size={18}
+              className="ml-2"
+            />
           </Button>
         </a>
       </div>
     </Card>
   );
 }
+

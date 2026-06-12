@@ -29,7 +29,7 @@ export default function ProjectCard({
   techs,
   deployUrl,
   repoUrl,
-  inDevelopment,
+  inDevelopment = false,
 }: ProjectCardProps) {
   return (
     <Card

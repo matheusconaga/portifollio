@@ -17,7 +17,7 @@ import { FaGithub, FaLinkedin, FaReact } from "react-icons/fa";
 
 import { StackCard } from "@/shared/ui/stack-card";
 import { CircleBadge } from "@/shared/ui/circle-badge";
-import { useTranslation } from "react-i18next";
+import { useAppTranslation } from "@/shared/hooks/useAppTranslation";
 
 const techs = [
   { name: "React", icon: FaReact },
@@ -27,7 +27,8 @@ const techs = [
 
 export default function Hero() {
 
-    const { t } = useTranslation();
+    
+const { t } = useAppTranslation();
 
   return (
     <div

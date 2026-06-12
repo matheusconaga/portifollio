@@ -1,3 +1,4 @@
+import { useAppTranslation } from "@/shared/hooks/useAppTranslation";
 import { Badge } from "@/shared/ui/badge";
 import { Card } from "@/shared/ui/Card/card";
 import { CardDescription } from "@/shared/ui/Card/card-description";
@@ -34,6 +35,10 @@ import {
 } from "react-icons/si";
 
 export default function TechStacks() {
+
+
+  const {t} = useAppTranslation();
+
   const frontend = [
     { name: "React", icon: SiReact },
     { name: "Flutter", icon: SiFlutter },
@@ -83,7 +88,9 @@ export default function TechStacks() {
       <div className="flex flex-col gap-8 w-full">
         {/* HEADER */}
         <div className=" flex flex-col text-white gap-2">
-          <span className="text-lg sm:text-2xl text-gray">Tecnologias</span>
+          <span className="text-lg sm:text-2xl text-gray">
+            {t("techs.subtitle")}
+          </span>
           <span
             className="
     text-primary
@@ -94,7 +101,7 @@ export default function TechStacks() {
     leading-tight
   "
           >
-            Stack de Especialidade
+           {t("techs.title")}
           </span>
         </div>
 
