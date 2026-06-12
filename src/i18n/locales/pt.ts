@@ -33,14 +33,40 @@ export default class ptTranslation {
       "cta.available": "Disponível para:",
       "cta.button": "Entrar em contato",
       "latestProject.title": "Último projeto",
-      "projects.title":"Trabalhos em Destaque",
-      "projects.subtitle":"Projetos",
-      "techs.title":"Stack de Especialidade",
+      "projects.title": "Trabalhos em Destaque",
+      "projects.subtitle": "Projetos",
+      "techs.title": "Stack de Especialidade",
       "techs.subtitle": "Tecnologias",
       "experiences.title": "Trajetória Profissional",
       "experiences.subtitle": "Jornada",
       "freela.badge": "Projeto Independente",
- 
+
+      "contact.title": "Vamos construir algo",
+      "contact.title.highlight": "incrível?",
+      "contact.description":
+        "Disponível para oportunidades remotas e projetos freelancer. Entre em contato para discutirmos como posso ajudar sua ideia a ganhar vida.",
+
+      "contact.email": "Email",
+      "contact.phone": "Telefone",
+      "contact.location": "Localização",
+
+      "contact.form.name": "Nome",
+      "contact.form.email": "Email",
+      "contact.form.subject": "Assunto",
+      "contact.form.message": "Mensagem",
+
+      "contact.form.name.placeholder": "Insira seu nome",
+      "contact.form.email.placeholder": "Insira seu email",
+      "contact.form.subject.placeholder": "Insira o assunto da mensagem",
+      "contact.form.message.placeholder": "Escreva sua mensagem...",
+
+      "contact.button.email": "Enviar Email",
+      "contact.button.emailloading": "Enviando...",
+      "contact.button.whatsapp": "Enviar WhatsApp",
+
+      "contact.alert.required": "Preencha os campos obrigatórios.",
+      "contact.alert.success": "Mensagem enviada com sucesso!",
+      "contact.alert.error": "Erro ao enviar e-mail.",
     };
   }
 }

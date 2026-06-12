@@ -33,13 +33,39 @@ export default class enTranslation {
       "cta.available": "Available for:",
       "cta.button": "Get in contact",
       "latestProject.title": "Latest project",
-      "projects.title":"Featured Works",
-      "projects.subtitle":"Projects",
-      "techs.title":"Specialty Stack",
+      "projects.title": "Featured Works",
+      "projects.subtitle": "Projects",
+      "techs.title": "Specialty Stack",
       "techs.subtitle": "Technologies",
       "experiences.title": "Professional Trajectory",
       "experiences.subtitle": "Journey",
       "freela.badge": "Independent Project",
+      "contact.title": "Let's build something",
+      "contact.title.highlight": "amazing?",
+      "contact.description":
+        "Available for remote opportunities and freelance projects. Get in touch so we can discuss how I can bring your idea to life.",
+
+      "contact.email": "Email",
+      "contact.button.emailloading": "Sending...",
+      "contact.phone": "Phone",
+      "contact.location": "Location",
+
+      "contact.form.name": "Name",
+      "contact.form.email": "Email",
+      "contact.form.subject": "Subject",
+      "contact.form.message": "Message",
+
+      "contact.form.name.placeholder": "Enter your name",
+      "contact.form.email.placeholder": "Enter your email",
+      "contact.form.subject.placeholder": "Enter message subject",
+      "contact.form.message.placeholder": "Write your message...",
+
+      "contact.button.email": "Send Email",
+      "contact.button.whatsapp": "Send WhatsApp",
+
+      "contact.alert.required": "Please fill in required fields.",
+      "contact.alert.success": "Message sent successfully!",
+      "contact.alert.error": "Error sending email.",
     };
   }
 }
