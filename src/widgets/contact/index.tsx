@@ -271,7 +271,7 @@ ${form.mensagem}
                   <MapPin size={12} className="text-primary" />
                 </CircleBadge>
                 <span className="text-gray text-sm sm:text-base">
-                  Parnaíba • PI
+                  {t("footer.location")}
                 </span>
               </div>
             </div>

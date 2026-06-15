@@ -19,9 +19,19 @@ import {
 import { scrollToSection } from "@/shared/utils/scroll-to-section";
 import { preloadAndScroll } from "@/shared/utils/preload-and-scroll";
 import { LanguageSwitcher } from "@/shared/ui/LanguageSwitcher";
+import { useAppTranslation } from "@/shared/hooks/useAppTranslation";
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { t } = useAppTranslation();
+
+  const navItems = [
+    { id: "home", key: "footer.nav.home", importer: null },
+    { id: "about", key: "footer.nav.about", importer: null },
+    { id: "projects", key: "footer.nav.projects", importer: importProjects },
+    { id: "tech", key: "footer.nav.tech", importer: importTechStacks },
+    { id: "experience", key: "footer.nav.experience", importer: importExperience },
+  ];
 
   return (
     <header
@@ -30,12 +40,9 @@ export function Header() {
         top-4
         left-1/2
         -translate-x-1/2
-
         z-[9999]
-
         w-full
         px-4
-
         flex
         justify-center
       "
@@ -45,101 +52,54 @@ export function Header() {
         <div
           className="
             group
-
             flex
             items-center
             justify-between
-
             w-full
-
             px-5 py-2
             md:px-6 md:py-2
             hover:py-4
-
             rounded-full
-
             bg-glass-dark
             hover:bg-glass-dark-on
-
             backdrop-blur-md
             border border-white/10
-
             transition-all duration-500
           "
         >
           {/* LOGO */}
           <button onClick={() => scrollToSection("home")}>
-            <div className="flex items-center  cursor-pointer">
+            <div className="flex items-center cursor-pointer">
               <img
                 src={logo}
                 fetchPriority="high"
-                className="
-                  w-11
-                  md:w-14
-                "
+                className="w-11 md:w-14"
+                alt="Logo Matheus Lula"
               />
-
-              <span
-                className="
-                  font-bold
-                  text-white
-
-                  text-lg
-                  md:text-2xl
-
-                  whitespace-nowrap
-                "
-              >
+              <span className="font-bold text-white text-lg md:text-2xl whitespace-nowrap">
                 Matheus Lula
               </span>
             </div>
           </button>
 
           {/* DESKTOP MENU */}
-          <nav
-            className="
-              hidden
-              lg:flex
-
-              items-center
-              gap-6
-
-              text-white
-            "
-          >
-            <MenuItem onClick={() => scrollToSection("home")}>Início</MenuItem>
-
-            <MenuItem onClick={() => scrollToSection("about")}>Sobre</MenuItem>
-
-            <MenuItem
-              onClick={async () => {
-                await preloadAndScroll(importProjects, "projects");
-              }}
-              onMouseEnter={importProjects}
-              onTouchStart={importProjects}
-            >
-              Projetos
-            </MenuItem>
-
-            <MenuItem
-              onClick={async () => {
-                await preloadAndScroll(importTechStacks, "tech");
-              }}
-              onMouseEnter={importTechStacks}
-              onTouchStart={importTechStacks}
-            >
-              Tecnologias
-            </MenuItem>
-
-            <MenuItem
-              onClick={async () => {
-                await preloadAndScroll(importExperience, "experience");
-              }}
-              onMouseEnter={importExperience}
-              onTouchStart={importExperience}
-            >
-              Experiências
-            </MenuItem>
+          <nav className="hidden lg:flex items-center gap-6 text-white">
+            {navItems.map((item) => (
+              <MenuItem
+                key={item.id}
+                onClick={async () => {
+                  if (item.importer) {
+                    await preloadAndScroll(item.importer, item.id);
+                  } else {
+                    scrollToSection(item.id);
+                  }
+                }}
+                onMouseEnter={item.importer ? item.importer : undefined}
+                onTouchStart={item.importer ? item.importer : undefined}
+              >
+                {t(item.key)}
+              </MenuItem>
+            ))}
 
             <div>
               <LanguageSwitcher />
@@ -152,7 +112,7 @@ export function Header() {
                   await preloadAndScroll(importContact, "contact");
                 }}
               >
-                Contato
+                {t("footer.nav.contact")}
               </Button>
             </div>
           </nav>
@@ -162,26 +122,18 @@ export function Header() {
             onClick={() => setMenuOpen(!menuOpen)}
             className="
               lg:hidden
-
               flex
               items-center
               justify-center
-
               w-11 h-11
-
               rounded-full
-
               bg-white/5
               border border-white/10
-
               text-white
-
               hover:border-primary/40
               hover:text-primary
-
               active:scale-95
               active:border-primary/40
-
               transition-all duration-300
             "
           >
@@ -193,24 +145,16 @@ export function Header() {
         <div
           className={`
             lg:hidden
-
             absolute
             top-[110%]
             left-0
-
             w-full
-
             overflow-hidden
-
             rounded-3xl
-
             bg-glass-dark
             backdrop-blur-xl
-
             border border-white/10
-
             transition-all duration-500
-
             ${
               menuOpen
                 ? "opacity-100 translate-y-0 pointer-events-auto"
@@ -218,79 +162,29 @@ export function Header() {
             }
           `}
         >
-          <nav
-            className="
-              flex
-              flex-col
+          <nav className="flex flex-col p-4 text-white">
+            {navItems.map((item) => (
+              <MobileItem
+                key={item.id}
+                onClick={async () => {
+                  if (item.importer) {
+                    await preloadAndScroll(item.importer, item.id);
+                  } else {
+                    scrollToSection(item.id);
+                  }
+                  setMenuOpen(false);
+                }}
+              >
+                <div className="flex flex-row gap-2 items-center">
+                  <ArrowUpRight className="size-4" />
+                  {t(item.key)}
+                </div>
+              </MobileItem>
+            ))}
 
-              p-4
-
-              text-white
-            "
-          >
-            <MobileItem
-              onClick={ () => {
-                scrollToSection("home");
-                setMenuOpen(false);
-              }}
-            >
-              <div className="flex flex-row gap-2 items-center">
-                <ArrowUpRight className="size-4" />
-                Início
-              </div>
-            </MobileItem>
-
-            <MobileItem
-              onClick={() => {
-                scrollToSection("about");
-                setMenuOpen(false);
-              }}
-            >
-              <div className="flex flex-row gap-2 items-center">
-                <ArrowUpRight className="size-4" />
-                Sobre
-              </div>
-            </MobileItem>
-
-            <MobileItem
-              onClick={async () => {
-                await preloadAndScroll(importProjects, "projects");
-                setMenuOpen(false);
-              }}
-            >
-              <div className="flex flex-row gap-2 items-center">
-                <ArrowUpRight className="size-4" />
-                Projetos
-              </div>
-            </MobileItem>
-
-            <MobileItem
-              onClick={async () => {
-               await preloadAndScroll(importTechStacks, "tech");
-                setMenuOpen(false);
-              }}
-            >
-              <div className="flex flex-row gap-2 items-center">
-                <ArrowUpRight className="size-4" />
-                Tecnologias
-              </div>
-            </MobileItem>
-
-            <MobileItem
-              onClick={async() => {
-                await preloadAndScroll(importExperience, "experience");
-                setMenuOpen(false);
-              }}
-            >
-              <div className="flex flex-row gap-2 items-center">
-                <ArrowUpRight className="size-4" />
-                Experiências
-              </div>
-            </MobileItem>
-
-          <div className="mt-2 ">
-            <LanguageSwitcher mobile />
-          </div>
+            <div className="mt-2">
+              <LanguageSwitcher mobile />
+            </div>
 
             <div
               className="mt-3"
@@ -300,7 +194,7 @@ export function Header() {
               }}
             >
               <Button variant="primary" className="w-full">
-                Contato
+                {t("footer.nav.contact")}
               </Button>
             </div>
           </nav>

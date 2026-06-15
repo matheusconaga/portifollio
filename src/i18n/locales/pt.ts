@@ -67,6 +67,25 @@ export default class ptTranslation {
       "contact.alert.required": "Preencha os campos obrigatórios.",
       "contact.alert.success": "Mensagem enviada com sucesso!",
       "contact.alert.error": "Erro ao enviar e-mail.",
+
+      "footer.description": "Desenvolvendo experiências digitais modernas, performáticas e escaláveis com foco em interface, automação e tecnologia.",
+      "footer.nav.title": "Navegação",
+      "footer.nav.home": "Início",
+      "footer.nav.about": "Sobre",
+      "footer.nav.projects": "Projetos",
+      "footer.nav.tech": "Tecnologias",
+      "footer.nav.experience": "Experiência",
+      "footer.nav.contact": "Contato",
+      "footer.contact.availability": "Disponibilidade",
+      "footer.contact.hours": "Seg - Sex: 9h às 18h",
+      "footer.location": "Parnaíba • PI",
+      "footer.cta.title": "Vamos criar algo incrível?",
+      "footer.cta.description": "Disponível para freelas, oportunidades remotas e projetos digitais modernos.",
+      "footer.copyright": "© 2026 Matheus Lula. Todos os direitos reservados.",
+      "footer.builtWith": "Desenvolvido com",
+      "footer.builtUsing": "usando React, TypeScript, Tailwind e muito café.",
+      "floatingContacts.hoverWhatsapp": "Fale comigo no WhatsApp",
+      "floatingContacts.hoverEmail": "Me envie um e-mail",
     };
   }
 }
