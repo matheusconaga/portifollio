@@ -8,8 +8,11 @@ import { Input } from "@/shared/ui/input";
 import { Textarea } from "@/shared/ui/text-area";
 import { Mail, MapPin, Smartphone, Send } from "lucide-react";
 import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
+import { useAppTranslation } from "@/shared/hooks/useAppTranslation";
 
 export default function Contact() {
+  const { t } = useAppTranslation();
+
   const [loading, setLoading] = useState(false);
 
   const [form, setForm] = useState({
@@ -43,7 +46,7 @@ export default function Contact() {
 
   const handleSendEmail = async () => {
     if (!form.nome || !form.email || !form.mensagem) {
-      alert("Preencha os campos obrigatórios.");
+      alert(`${t("contact.alert.required")}`);
       return;
     }
 
@@ -70,12 +73,12 @@ ${form.mensagem}
         },
       );
 
-      alert("Mensagem enviada com sucesso!");
+      alert(`${t("contact.alert.success")}`);
 
       resetForm();
     } catch (error) {
       console.error(error);
-      alert("Erro ao enviar e-mail.");
+      alert(`${t("contact.alert.error")}`);
     } finally {
       setLoading(false);
     }
@@ -87,7 +90,7 @@ ${form.mensagem}
 
   const handleSendWhatsapp = () => {
     if (!form.nome || !form.mensagem) {
-      alert("Preencha nome e mensagem.");
+      alert(`${t("contact.alert.required")}`);
       return;
     }
 
@@ -211,8 +214,10 @@ ${form.mensagem}
                     xl:text-6xl
                   "
                 >
-                  Vamos construir algo{" "}
-                  <span className="text-primary">incrível?</span>
+                  {t("contact.title")}{" "}
+                  <span className="text-primary">
+                    {t("contact.title.highlight")}
+                  </span>
                 </h1>
               </div>
 
@@ -225,9 +230,7 @@ ${form.mensagem}
                   leading-relaxed
                 "
               >
-                Disponível para oportunidades remotas e projetos freelancer.
-                Entre em contato para discutirmos como posso ajudar sua ideia a
-                ganhar vida.
+                {t("contact.description")}
               </p>
             </div>
 
@@ -268,7 +271,7 @@ ${form.mensagem}
                   <MapPin size={12} className="text-primary" />
                 </CircleBadge>
                 <span className="text-gray text-sm sm:text-base">
-                  Parnaíba • PI
+                  {t("footer.location")}
                 </span>
               </div>
             </div>
@@ -327,36 +330,36 @@ ${form.mensagem}
                 "
               >
                 <Input
-                  label="Nome"
-                  name="nome"
+                  label={t("contact.form.name")}
+                  name={t("contact.form.name")}
                   value={form.nome}
                   onChange={handleChange}
-                  placeholder="Insira seu nome"
+                  placeholder={t("contact.form.name.placeholder")}
                 />
 
                 <Input
-                  label="Email"
-                  name="email"
+                  label={t("contact.form.email")}
+                  name={t("contact.form.email")}
                   value={form.email}
                   onChange={handleChange}
-                  placeholder="Insira seu email"
+                  placeholder={t("contact.form.email.placeholder")}
                 />
               </div>
 
               <Input
-                label="Assunto"
-                name="assunto"
+                label={t("contact.form.subject")}
+                name={t("contact.form.subject")}
                 value={form.assunto}
                 onChange={handleChange}
-                placeholder="Insira o assunto da mensagem"
+                placeholder={t("contact.form.subject.placeholder")}
               />
 
               <Textarea
-                label="Mensagem"
-                name="mensagem"
+                label={t("contact.form.message")}
+                name={t("contact.form.message")}
                 value={form.mensagem}
                 onChange={handleChange}
-                placeholder="Escreva sua mensagem..."
+                placeholder={t("contact.form.message.placeholder")}
               />
 
               <div className="flex flex-col gap-4 mt-2">
@@ -367,7 +370,7 @@ ${form.mensagem}
                   onClick={handleSendEmail}
                   disabled={loading}
                 >
-                  {loading ? "Enviando..." : "Enviar Email"}
+                  {loading ? t("contact.button.emailloading") : t("contact.button.email")}
                 </Button>
 
                 <Button
@@ -376,7 +379,7 @@ ${form.mensagem}
                   className="w-full"
                   onClick={handleSendWhatsapp}
                 >
-                  Enviar WhatsApp
+                  {t("contact.button.whatsapp")}
                 </Button>
               </div>
             </Card>

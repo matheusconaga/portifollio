@@ -3,15 +3,35 @@ import { FilterTabs } from "@/shared/ui/filter-tabs";
 
 import { useState } from "react";
 import { experiences } from "@/data/experiences";
+import { useAppTranslation } from "@/shared/hooks/useAppTranslation";
 
 export default function Experience() {
-  const filters = ["Experiências", "Formação", "Certificações"];
+  const { i18n, t } = useAppTranslation();
 
-  const [activeFilter, setActiveFilter] = useState("Experiências");
+  const currentLanguage = i18n.language.startsWith("pt") ? "pt" : "en";
 
-  const filteredExperiences = experiences.filter(
-    (experience) => experience.category === activeFilter,
-  );
+  const currentExperiences = experiences[currentLanguage];
+
+  const filters = [
+    {
+      label: currentLanguage === "pt" ? "Experiências" : "Experiences",
+      value: "experiences",
+    },
+    {
+      label: currentLanguage === "pt" ? "Formação" : "Formation",
+      value: "formation",
+    },
+    {
+      label: currentLanguage === "pt" ? "Certificações" : "Certifications",
+      value: "certifications",
+    },
+  ];
+  const [activeFilter, setActiveFilter] = useState("experiences");
+
+  const filteredExperiences =
+    currentExperiences.filter(
+          (experience) => experience.category === activeFilter,
+    );
 
   return (
     <div className="w-full max-w-[1200px] mx-auto py-20">
@@ -30,7 +50,9 @@ export default function Experience() {
   "
         >
           <div className=" flex flex-col text-white gap-2">
-            <span className="text-lg sm:text-2xl text-gray">Jornada</span>
+            <span className="text-lg sm:text-2xl text-gray">
+              {t("experiences.subtitle")}
+            </span>
             <span
               className="
     text-primary
@@ -41,7 +63,7 @@ export default function Experience() {
     leading-tight
   "
             >
-              Trajetória Profissional
+              {t("experiences.title")}
             </span>
           </div>
 

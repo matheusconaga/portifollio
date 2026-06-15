@@ -11,8 +11,11 @@ import { LatestProjectCard } from "@/shared/ui/About-Cards/latest-project-card";
 
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { useAppTranslation } from "@/shared/hooks/useAppTranslation";
 
 export default function About() {
+
+  const { t } = useAppTranslation();
   const carouselRef = useRef<HTMLDivElement>(null);
 
   const [isPaused, setIsPaused] = useState(false);
@@ -105,9 +108,9 @@ export default function About() {
     lg:max-w-[650px]
   "
         >
-          <span>Transformando ideias</span>
+          <span>{t("about.title1")}</span>
           <span className="whitespace-normal md:whitespace-nowrap">
-            em <span className="text-primary">código de alto impacto</span>
+            {t("about.title2")} <span className="text-primary">{t("about.title3")}</span>
           </span>
         </div>
 
@@ -121,9 +124,7 @@ export default function About() {
         leading-relaxed
       "
           >
-            Sou desenvolvedor Fullstack focado em criar produtos digitais
-            performáticos, bonitos e escaláveis. Tenho experiência com web,
-            mobile, APIs e automação com IA.
+            {t("about.description")}
           </span>
         </div>
 
@@ -133,10 +134,10 @@ export default function About() {
             className="flex flex-col p-6 items-center justify-center"
           >
             <CardTitle className="text-primary text-2xl font-bold text-center">
-              +2 anos
+              {t("about.card1.title")}
             </CardTitle>
             <CardDescription className="text-white text-sm md:text-base text-center">
-              Criando soluções digitais
+              {t("about.card1.description")}
             </CardDescription>
           </Card>
           <Card
@@ -145,10 +146,10 @@ export default function About() {
                   duration-300"
           >
             <CardTitle className="text-primary text-2xl font-bold text-center">
-              +30%
+              {t("about.card2.title")}
             </CardTitle>
             <CardDescription className="text-white text-sm md:text-base text-center">
-              Engajamento de usuários
+              {t("about.card2.description")}
             </CardDescription>
           </Card>
           <Card
@@ -157,10 +158,10 @@ export default function About() {
                   duration-300"
           >
             <CardTitle className="text-primary text-2xl font-bold text-center">
-              -30%
+              {t("about.card3.title")}
             </CardTitle>
             <CardDescription className="text-white text-sm md:text-base text-center">
-              Redução de tarefas manuais
+              {t("about.card3.description")}
             </CardDescription>
           </Card>
           <Card
@@ -170,10 +171,10 @@ export default function About() {
                   duration-300"
           >
             <CardTitle className="text-primary text-2xl font-bold text-center">
-              +20-30%
+              {t("about.card4.title")}
             </CardTitle>
             <CardDescription className="text-white text-sm md:text-base text-center">
-              Engajamento de usuários
+              {t("about.card4.description")}
             </CardDescription>
           </Card>
         </div>

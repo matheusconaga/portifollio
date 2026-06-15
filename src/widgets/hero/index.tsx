@@ -17,6 +17,7 @@ import { FaGithub, FaLinkedin, FaReact } from "react-icons/fa";
 
 import { StackCard } from "@/shared/ui/stack-card";
 import { CircleBadge } from "@/shared/ui/circle-badge";
+import { useAppTranslation } from "@/shared/hooks/useAppTranslation";
 
 const techs = [
   { name: "React", icon: FaReact },
@@ -25,6 +26,10 @@ const techs = [
 ];
 
 export default function Hero() {
+
+    
+const { t } = useAppTranslation();
+
   return (
     <div
       className="
@@ -138,7 +143,7 @@ export default function Hero() {
 
               <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
             </span>
-            Disponível para novos projetos
+            {t("hero.badge")}
           </Badge>
 
           {/* BRAND */}
@@ -191,7 +196,7 @@ export default function Hero() {
                   lg:text-3xl
                 "
               >
-                olá, eu sou o
+                {t("hero.apresentation")}
               </span>
 
               <span
@@ -273,7 +278,7 @@ export default function Hero() {
                 leading-relaxed
               "
             >
-              Desenvolvedor Fullstack especializado em Web, Mobile, APIs e IA.
+              {t("hero.description1")}
             </span>
 
             <span
@@ -287,8 +292,7 @@ export default function Hero() {
                 leading-relaxed
               "
             >
-              Crio produtos rápidos, escaláveis e com foco em experiência do
-              usuário.
+              {t("hero.description2")}
             </span>
           </div>
 
@@ -314,7 +318,7 @@ export default function Hero() {
                 rightIcon={<MoveRight size={22} />}
                 className="w-full sm:w-auto"
               >
-                Ver Projetos
+                {t("hero.button1")}
               </Button>
             </a>
 
@@ -329,7 +333,7 @@ export default function Hero() {
                 rightIcon={<Download size={22} />}
                 className="w-full sm:w-auto"
               >
-                Currículo
+                {t("hero.button2")}
               </Button>
             </a>
           </div>
@@ -454,7 +458,7 @@ export default function Hero() {
 
                 <span className="flex flex-col leading-tight">
                   <span className="text-white text-xs sm:text-sm">
-                    Soluções Fullstack
+                    {t("hero.badgeImage")}
                   </span>
 
                   <span className="text-white/60 text-[10px] sm:text-xs">

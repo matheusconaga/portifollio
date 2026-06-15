@@ -5,6 +5,7 @@ import { Badge } from "@/shared/ui/badge";
 import { cn } from "@/lib/utils";
 
 import { SiFreelancer } from "react-icons/si";
+import { useAppTranslation } from "./hooks/useAppTranslation";
 
 interface ExperienceCardProps {
   title: string;
@@ -25,6 +26,9 @@ export function ExperienceCard({
   freelancer = false,
   side = "left",
 }: ExperienceCardProps) {
+
+  const { t } = useAppTranslation();
+
   const isLeft = side === "left";
 
   return (
@@ -102,7 +106,7 @@ export function ExperienceCard({
                 </span>
 
                 <span className="text-white/60 text-[10px] sm:text-xs">
-                  Projeto Independente
+                  {t("freela.badge")}
                 </span>
               </span>
             </Badge>

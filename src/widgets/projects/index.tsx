@@ -4,64 +4,97 @@ import { useState } from "react";
 import { EmptyProjectCard } from "@/shared/ui/empty-project-card";
 import { projects } from "@/data/projects";
 
-export default function Projects() {
-  const filters = ["Todos", "Frontend", "Mobile", "Backend"];
+import { useAppTranslation } from "@/shared/hooks/useAppTranslation";
 
-  const [activeFilter, setActiveFilter] = useState("Todos");
+export default function Projects() {
+  const { i18n, t } = useAppTranslation();
+
+  const currentLanguage = i18n.language.startsWith("pt") ? "pt" : "en";
+
+  const currentProjects = projects[currentLanguage];
+
+  const filters = [
+    {
+      label: currentLanguage === "pt" ? "Todos" : "All",
+      value: "all",
+    },
+
+    {
+      label: "Frontend",
+      value: "frontend",
+    },
+
+    {
+      label: "Mobile",
+      value: "mobile",
+    },
+
+    {
+      label: "Backend",
+      value: "backend",
+    },
+  ];
+
+  const [activeFilter, setActiveFilter] = useState("all");
 
   const filteredProjects =
-    activeFilter === "Todos"
-      ? projects
-      : projects.filter((project) => project.category === activeFilter);
+    activeFilter === "all"
+      ? currentProjects
+      : currentProjects.filter(
+          (project) => project.category.toLowerCase() === activeFilter,
+        );
 
   return (
     <div className="flex justify-center items-center w-full max-w-[1200px] align-start gap-8 mx-auto py-10">
       <div className="flex flex-col gap-8 w-full ">
         <div
           className="
-      absolute
+            absolute
 
-      top-[-120px]
+            top-[-120px]
 
-      w-[300px]
-      h-[300px]
-      sm:w-[100%]
-      sm:h-[200px]
+            w-[300px]
+            h-[300px]
+            sm:w-[100%]
+            sm:h-[200px]
 
+            bg-glass-blue
 
-      bg-glass-blue
+            blur-[120px]
 
-      blur-[120px]
-
-      pointer-events-none
-      z-0
-    "
+            pointer-events-none
+            z-0
+          "
         />
+
         <div
           className="
-    flex
-    flex-col
-    lg:flex-row
+            flex
+            flex-col
+            lg:flex-row
 
-    lg:items-end
-    justify-between
+            lg:items-end
+            justify-between
 
-    gap-6
-  "
+            gap-6
+          "
         >
           <div className=" flex flex-col text-white gap-2">
-            <span className="text-lg sm:text-2xl text-gray">Projetos</span>
+            <span className="text-lg sm:text-2xl text-gray">
+              {t("projects.subtitle")}
+            </span>
+
             <span
               className="
-    text-primary
-    text-4xl
-    sm:text-4xl
-    lg:text-5xl
-    font-bold
-    leading-tight
-  "
+                text-primary
+                text-4xl
+                sm:text-4xl
+                lg:text-5xl
+                font-bold
+                leading-tight
+              "
             >
-              Trabalhos em Destaque
+              {t("projects.title")}
             </span>
           </div>
 
@@ -74,15 +107,15 @@ export default function Projects() {
 
         <div
           className="
-    grid
+            grid
 
-    grid-cols-1
-    sm:grid-cols-2
-    xl:grid-cols-3
+            grid-cols-1
+            sm:grid-cols-2
+            xl:grid-cols-3
 
-    gap-12
-    lg:gap-6
-  "
+            gap-12
+            lg:gap-6
+          "
         >
           {filteredProjects.length > 0 ? (
             filteredProjects.map((project) => (

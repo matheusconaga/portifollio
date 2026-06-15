@@ -1,8 +1,12 @@
 import { CircleBadge } from "@/shared/ui/circle-badge";
 import { SiWhatsapp } from "react-icons/si";
 import { Mail } from "lucide-react";
+import { useAppTranslation } from "@/shared/hooks/useAppTranslation";
 
 export function FloatingContacts() {
+
+  const { t } = useAppTranslation();
+
   return (
     <div
       className="
@@ -55,7 +59,7 @@ export function FloatingContacts() {
             pointer-events-none
           "
         >
-          Me envie um e-mail
+          {t("floatingContacts.hoverEmail")}
         </div>
       </a>
 
@@ -104,7 +108,7 @@ export function FloatingContacts() {
             pointer-events-none
           "
         >
-          Fale comigo no WhatsApp
+          {t("floatingContacts.hoverWhatsapp")}
         </div>
       </a>
     </div>
