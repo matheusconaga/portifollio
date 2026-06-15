@@ -26,9 +26,14 @@ const techs = [
 ];
 
 export default function Hero() {
+  const { t, i18n } = useAppTranslation();
 
-    
-const { t } = useAppTranslation();
+  const currentLang = i18n.language.startsWith("pt") ? "pt" : "en";
+
+  const resumeLink =
+    currentLang === "pt"
+      ? "/Matheus_Lula_Fullstack_Developer_PT.pdf"
+      : "/Matheus_Lula_Fullstack_Developer_EN.pdf";
 
   return (
     <div
@@ -323,7 +328,7 @@ const { t } = useAppTranslation();
             </a>
 
             <a
-              href="/Matheus_Lula_Fullstack_Developer.pdf"
+              href={resumeLink}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto"
