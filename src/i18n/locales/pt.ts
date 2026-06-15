@@ -86,6 +86,7 @@ export default class ptTranslation {
       "footer.builtUsing": "usando React, TypeScript, Tailwind e muito café.",
       "floatingContacts.hoverWhatsapp": "Fale comigo no WhatsApp",
       "floatingContacts.hoverEmail": "Me envie um e-mail",
+      "latestProject.viewProject": "Ver projeto",
     };
   }
 }

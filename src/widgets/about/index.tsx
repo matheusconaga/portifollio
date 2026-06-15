@@ -14,13 +14,14 @@ import { useEffect, useRef, useState } from "react";
 import { useAppTranslation } from "@/shared/hooks/useAppTranslation";
 
 export default function About() {
-
-  const { t } = useAppTranslation();
+  const { t, i18n } = useAppTranslation();
   const carouselRef = useRef<HTMLDivElement>(null);
 
   const [isPaused, setIsPaused] = useState(false);
 
-  const latestProject = projects?.[0] ?? {
+  const currentLang = i18n.language.startsWith("pt") ? "pt" : "en";
+
+  const latestProject = projects?.[currentLang]?.[0] ?? {
     image: "",
     title: "Projeto em breve",
     description: "",
@@ -110,7 +111,8 @@ export default function About() {
         >
           <span>{t("about.title1")}</span>
           <span className="whitespace-normal md:whitespace-nowrap">
-            {t("about.title2")} <span className="text-primary">{t("about.title3")}</span>
+            {t("about.title2")}{" "}
+            <span className="text-primary">{t("about.title3")}</span>
           </span>
         </div>
 
@@ -130,9 +132,7 @@ export default function About() {
 
         {/* STATS CARDS */}
         <div className="relative w-full lg:w-[480px] lg:h-55 h-55 grid grid-cols-2 gap-2 sm:gap-4">
-          <Card
-            className="flex flex-col p-6 items-center justify-center"
-          >
+          <Card className="flex flex-col p-6 items-center justify-center">
             <CardTitle className="text-primary text-2xl font-bold text-center">
               {t("about.card1.title")}
             </CardTitle>
