@@ -51,7 +51,7 @@ export default function Hero() {
     pt-15
     sm:pt-32
     md:pt-24
-    xl:pt-30
+    xl:pt-40
 
     pb-20
     md:pb-12
