@@ -3,10 +3,10 @@
   <a href="README.pt.md"><img src="https://img.shields.io/badge/Lang-Português-green?style=for-the-badge" alt="Português"></a>
 </p>
 
-<h1 align="center">💼 Professional Portfolio</h1>
+<h1 align="center">💼 Portfólio Profissional</h1>
 
 <p align="center">
-Modern and responsive portfolio developed to showcase projects, experiences, skills, and visual identity in an elegant, performant, and scalable way.
+Portfólio moderno e responsivo desenvolvido para apresentar projetos, experiências, habilidades e identidade visual de forma elegante, performática e escalável.
 </p>
 
 <p align="center">
@@ -30,43 +30,44 @@ Modern and responsive portfolio developed to showcase projects, experiences, ski
 
 ---
 
-## 📌 About the Project
+## 📌 Sobre o Projeto
 
-The **Professional Portfolio** was developed to highlight projects, experiences, and skills through a modern, responsive interface with a strong focus on UI/UX.
+O **Portfólio Profissional** foi desenvolvido para destacar projetos, experiências e habilidades através de uma interface moderna, responsiva e com forte foco em UI/UX.
 
-The system uses fluid animations, componentized architecture, and modern visual effects to provide an elegant experience on both desktop and mobile.
+O sistema utiliza animações fluidas, arquitetura componentizada e efeitos visuais modernos para proporcionar uma experiência elegante tanto no desktop quanto no mobile.
 
-### Key features:
+### Principais funcionalidades:
 
-- 💼 Display of professional projects  
-- ⚡ Fluid animations with Framer Motion  
-- 📱 Fully responsive layout  
-- 🎨 Modern interface with Glassmorphism  
-- 🧩 Reusable componentization  
-- 📬 Integrated contact system  
-- 🚀 High performance with Vite  
-- 🌙 Modern and immersive visual experience
-- 🌍 Internationalization (i18n)
-
-## 🧠 Key Differentiators
-
-- 🎨 Modern design inspired by premium interfaces  
-- ⚡ Optimized performance and fast loading  
-- 📱 Advanced responsiveness for mobile and tablet  
-- 🧩 Scalable and organized architecture  
-- ✨ Smooth micro-interactions and animations  
-- 🔥 Reusable and decoupled components
+- 💼 Exibição de projetos profissionais  
+- ⚡ Animações fluidas com Framer Motion  
+- 📱 Layout totalmente responsivo  
+- 🎨 Interface moderna com Glassmorphism  
+- 🧩 Componentização reutilizável  
+- 📬 Sistema de contato integrado  
+- 🚀 Alta performance com Vite  
+- 🌙 Experiência visual moderna e imersiva
+- 🌍 Internacionalização (i18n)  
 
 
-## 🎥 System Preview
+## 🧠 Diferenciais
+
+- 🎨 Design moderno inspirado em interfaces premium  
+- ⚡ Performance otimizada e carregamento rápido  
+- 📱 Responsividade avançada para mobile e tablet  
+- 🧩 Arquitetura escalável e organizada  
+- ✨ Microinterações e animações suaves  
+- 🔥 Componentes reutilizáveis e desacoplados  
+
+
+## 🎥 Preview do Sistema
 
 <div align="center">
 
-| Home | Projects |
+| Home | Projetos |
 |------|-----------|
 | <p align="center"><img src="https://github.com/matheusconaga/portifollio/blob/main/assets/home.png?raw=true" width="430"></p> | <p align="center"><img src="https://github.com/matheusconaga/portifollio/blob/main/assets/projetos.png?raw=true" width="430"></p> |
 
-| Technologies | Contact |
+| Tecnologias | Contato |
 |-------------|----------|
 | <p align="center"><img src="https://github.com/matheusconaga/portifollio/blob/main/assets/tecnologias.png?raw=true" width="430"></p> | <p align="center"><img src="https://github.com/matheusconaga/portifollio/blob/main/assets/contato.png?raw=true" width="430"></p> |
 
@@ -77,7 +78,7 @@ The system uses fluid animations, componentized architecture, and modern visual 
 </div>
 
 
-## 🛠️ Tech Stack
+## 🛠️ Stack Tecnológica
 
 ### Frontend & UI
 
@@ -90,7 +91,7 @@ The system uses fluid animations, componentized architecture, and modern visual 
   <img src="https://img.shields.io/badge/Vite-646CFF?style=flat&logo=vite&logoColor=white"/>
 </p>
 
-### Components & Utilities
+### Componentes & Utilidades
 
 <p>
   <img src="https://img.shields.io/badge/Lucide-000000?style=flat"/>
@@ -98,7 +99,7 @@ The system uses fluid animations, componentized architecture, and modern visual 
   <img src="https://img.shields.io/badge/Classnames-000000?style=flat"/>
 </p>
 
-### Integrations
+### Integrações
 
 <p>
   <img src="https://img.shields.io/badge/EmailJS-FF8434?style=flat&logo=gmail&logoColor=white"/>
@@ -111,77 +112,81 @@ The system uses fluid animations, componentized architecture, and modern visual 
 </p>
 
 
-## 🧩 Architecture
+## 🧩 Arquitetura
 
 ```text
 React + TypeScript SPA
         ↓
-Reusable componentization
+Componentização reutilizável
         ↓
 TailwindCSS + Styled Components
         ↓
-Framer Motion → Animations and micro-interactions
+Framer Motion → Animações e microinterações
         ↓
-EmailJS → Contact via form
+EmailJS → Contato via formulário
 ```
 
-### Benefits
-- ⚡ High performance
-- 📱 Modern responsiveness
-- 🧩 Scalability
-- 🎨 Ease of maintenance
-- 🚀 Fluid and modern experience
+### Benefícios
+- ⚡ Alta performance
+- 📱 Responsividade moderna
+- 🧩 Escalabilidade
+- 🎨 Facilidade de manutenção
+- 🚀 Experiência fluida e moderna
 
-## 💻 How to run the project locally
+## 💻 Como rodar o projeto localmente
 
-### 🔧 require
+### 🔧 Pré-requisitos
 
-* Node.js installed (LTS version recommended)
-* NPM or Yarn
+* Node.js instalado (recomendado versão LTS)
+* NPM ou Yarn
 
-### 📥 1. Clone the repository
+
+### 📥 1. Clone o repositório
 
 ```bash
 git clone https://github.com/matheusconaga/portifollio.git
 ```
 
-### 📂 2. Access the project folder
+
+### 📂 2. Acesse a pasta do projeto
 
 ```bash
 cd portifollio
 ```
 
-### 📦 3. Install dependencies
+
+### 📦 3. Instale as dependências
 
 ```bash
 npm install
 ```
 
-or
+ou
 
 ```bash
 npm i
 ```
 
-### ▶️ 4. Run the project
+
+### ▶️ 4. Execute o projeto
 
 ```bash
 npm run dev
 ```
 
 
-### 🌐 5. Access in the browser
+### 🌐 5. Acesse no navegador
 
-The system will be available at:
+O sistema estará disponível em:
 
 ```
 http://localhost:5173
 ```
 
 
-## ⚙️ Environment Variables
+## ⚙️ Variáveis de Ambiente
 
-Create a `.env` file in the root of the project with the following configurations:
+Crie um arquivo `.env` na raiz do projeto com as seguintes configurações:
 
 ```env
 VITE_EMAILJS_SERVICE_ID=
@@ -190,22 +195,21 @@ VITE_EMAILJS_PUBLIC_KEY=
 ```
 
 
-## 📈 Future Evolutions
-- 🌙 Dynamic dark/light theme
-- 🧠 AI Integration
-- 📊 Visitor dashboard
-- 📝 CMS for dynamic projects
-- 🎥 Interactive project preview
+## 📈 Possíveis Evoluções
+- 🌙 Tema dark/light dinâmico
+- 🧠 Integração com IA
+- 📊 Dashboard de visitantes
+- 📝 CMS para projetos dinâmicos
+- 🎥 Preview interativo dos projetos
 
-
-## 📄 License
+## 📄 Licença
 <p>
-This project is under the MIT license.  
-Check the `LICENSE` file for more information.
+Este projeto está sob a licença MIT.  
+Consulte o arquivo `LICENSE` para mais informações.
 </p>
 
 
-## 👨‍💻 Author
+## 👨‍💻 Autor
 
 <p align="center">
   <img src="https://avatars.githubusercontent.com/matheusconaga" width="110px;" style="border-radius:50%;" />
@@ -214,7 +218,7 @@ Check the `LICENSE` file for more information.
 <h3 align="center">Matheus Lula</h3>
 
 <p align="center">
-Full-Stack Developer • React • Flutter • FastAPI • AI
+Desenvolvedor Fullstack • React • Flutter • FastAPI • IA
 </p>
 
 <div align="center">
