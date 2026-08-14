@@ -19,6 +19,9 @@ import { StackCard } from "@/shared/ui/stack-card";
 import { CircleBadge } from "@/shared/ui/circle-badge";
 import { useAppTranslation } from "@/shared/hooks/useAppTranslation";
 
+import { trackEvent } from "@/analytics/analytics";
+import { ANALYTICS_EVENTS } from "@/analytics/events";
+
 const techs = [
   { name: "React", icon: FaReact },
   { name: "Flutter", icon: SiFlutter },
@@ -360,6 +363,11 @@ export default function Hero() {
               target="_blank"
               rel="noopener noreferrer"
               className="group relative"
+              onClick={() => {
+                trackEvent(ANALYTICS_EVENTS.LINKEDIN_CLICK, {
+                  page: window.location.pathname,
+                });
+              }}
             >
               <CircleBadge size="lg" variant="glass" clickable>
                 <FaLinkedin size={22} className="text-primary" />
@@ -370,6 +378,11 @@ export default function Hero() {
               target="_blank"
               rel="noopener noreferrer"
               className="group relative"
+              onClick={() => {
+                trackEvent(ANALYTICS_EVENTS.GITHUB_PROFILE_CLICK, {
+                  page: window.location.pathname,
+                });
+              }}
             >
               <CircleBadge size="lg" variant="glass" clickable>
                 <FaGithub size={22} className="text-primary" />

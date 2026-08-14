@@ -3,6 +3,9 @@ import { SiWhatsapp } from "react-icons/si";
 import { Mail } from "lucide-react";
 import { useAppTranslation } from "@/shared/hooks/useAppTranslation";
 
+import { trackEvent } from "@/analytics/analytics";
+import { ANALYTICS_EVENTS } from "@/analytics/events";
+
 export function FloatingContacts() {
 
   const { t } = useAppTranslation();
@@ -19,13 +22,21 @@ export function FloatingContacts() {
         gap-4
       "
     >
-      <a href="mailto:matheusphillip170@gmail.com" className="group relative">
+      <a
+        href="mailto:matheusphillip170@gmail.com"
+        className="group relative"
+        onClick={() => {
+          trackEvent(ANALYTICS_EVENTS.EMAIL_CLICK, {
+            page: window.location.pathname,
+          });
+        }}
+      >
         <CircleBadge
-        size="lg"
+          size="lg"
           variant="glass"
           clickable
         >
-          <Mail size={22} className="text-primary"/>
+          <Mail size={22} className="text-primary" />
         </CircleBadge>
 
         <div
@@ -68,13 +79,18 @@ export function FloatingContacts() {
         target="_blank"
         rel="noopener noreferrer"
         className="group relative"
+        onClick={() => {
+          trackEvent(ANALYTICS_EVENTS.WHATSAPP_CLICK, {
+            page: window.location.pathname,
+          });
+        }}
       >
         <CircleBadge
-        size="lg"
+          size="lg"
           variant="glass"
           clickable
         >
-          <SiWhatsapp size={22} className="text-primary"/>
+          <SiWhatsapp size={22} className="text-primary" />
         </CircleBadge>
 
         <div

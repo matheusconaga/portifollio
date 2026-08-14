@@ -11,7 +11,11 @@ import { CardBadges } from "./Card/card-badges";
 
 import { CodeXml, Rocket } from "lucide-react";
 
+import { trackEvent } from "@/analytics/analytics";
+import { ANALYTICS_EVENTS } from "@/analytics/events";
+
 interface ProjectCardProps {
+  slug: string;
   image: string;
   title: string;
   description: string;
@@ -23,6 +27,7 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({
+  slug,
   image,
   title,
   description,
@@ -158,7 +163,20 @@ export default function ProjectCard({
   "
         >
           {deployUrl && (
-            <a href={deployUrl}>
+            <a
+              href={deployUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => {
+                trackEvent(
+                  ANALYTICS_EVENTS.DEMO_CLICK,
+                  {
+                    page: window.location.pathname,
+                    projectSlug: slug,
+                  },
+                );
+              }}
+            >
               <Button
                 variant="primary"
                 leftIcon={<Rocket size={18} />}
@@ -170,7 +188,20 @@ export default function ProjectCard({
           )}
 
           {repoUrl && (
-            <a href={repoUrl}>
+            <a
+              href={repoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => {
+                trackEvent(
+                  ANALYTICS_EVENTS.GITHUB_CLICK,
+                  {
+                    page: window.location.pathname,
+                    projectSlug: slug,
+                  },
+                );
+              }}
+            >
               <Button
                 variant="outline"
                 leftIcon={<CodeXml size={18} />}

@@ -26,7 +26,7 @@ const Contact = lazy(importContact);
 export default function Homepage() {
   return (
      <>
-      <Section id="home" className="relative flex items-center">
+      <Section id="home" className="relative flex items-center" trackView>
         <Container>
           <AnimatedSection>
             <Hero />
@@ -34,7 +34,7 @@ export default function Homepage() {
         </Container>
       </Section>
 
-      <Section id="about">
+      <Section id="about" trackView>
         <Container>
           <AnimatedSection>
             <About />
@@ -47,7 +47,7 @@ export default function Homepage() {
       </AnimatedSection>
 
       {/* PROJECTS */}
-      <Section id="projects">
+      <Section id="projects" trackView>
         <Container>
           <LazySection fallback={<ProjectsSkeleton />}>
             <Suspense fallback={<ProjectsSkeleton />}>
@@ -60,7 +60,7 @@ export default function Homepage() {
       </Section>
 
       {/* TECH */}
-      <Section id="tech">
+      <Section id="tech" trackView>
         <Container>
           <LazySection fallback={<TechSkeleton />}>
             <Suspense fallback={<TechSkeleton />}>
@@ -73,7 +73,7 @@ export default function Homepage() {
       </Section>
 
       {/* EXPERIENCE */}
-      <Section id="experience">
+      <Section id="experience" trackView>
         <Container>
           <LazySection fallback={<ExperienceSkeleton />}>
             <Suspense fallback={<ExperienceSkeleton />}>
@@ -86,7 +86,7 @@ export default function Homepage() {
       </Section>
 
       {/* CONTACT */}
-      <Section id="contact">
+      <Section id="contact" trackView>
         <Container>
           <LazySection fallback={<ContactSkeleton />}>
             <Suspense fallback={<ContactSkeleton />}>

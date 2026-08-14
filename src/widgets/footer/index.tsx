@@ -7,6 +7,9 @@ import { Card } from "@/shared/ui/Card/card";
 import { StackCard } from "@/shared/ui/stack-card";
 import { CircleBadge } from "@/shared/ui/circle-badge";
 
+import { trackEvent } from "@/analytics/analytics";
+import { ANALYTICS_EVENTS } from "@/analytics/events";
+
 import {
   ArrowUpRight,
   Clock,
@@ -267,19 +270,46 @@ export default function Footer() {
 
             {/* SOCIALS */}
             <div className="flex items-center justify-center sm:justify-start gap-4">
-              <a href="https://github.com/matheusconaga" target="_blank" rel="noreferrer">
+              <a
+                href="https://github.com/matheusconaga"
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => {
+                  trackEvent(ANALYTICS_EVENTS.GITHUB_PROFILE_CLICK, {
+                    page: window.location.pathname,
+                  });
+                }}
+              >
                 <CircleBadge clickable size="md">
                   <FaGithub size={22} className="text-primary" />
                 </CircleBadge>
               </a>
 
-              <a href="https://linkedin.com/in/matheusconaga" target="_blank" rel="noreferrer">
+              <a
+                href="https://linkedin.com/in/matheusconaga"
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => {
+                  trackEvent(ANALYTICS_EVENTS.LINKEDIN_CLICK, {
+                    page: window.location.pathname,
+                  });
+                }}
+              >
                 <CircleBadge clickable size="md">
                   <FaLinkedin size={22} className="text-primary" />
                 </CircleBadge>
               </a>
 
-              <a href="https://wa.me/5586981451876" target="_blank" rel="noreferrer">
+              <a
+                href="https://wa.me/5586981451876"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => {
+                  trackEvent(ANALYTICS_EVENTS.WHATSAPP_CLICK, {
+                    page: window.location.pathname,
+                  });
+                }}
+              >
                 <CircleBadge clickable size="md">
                   <FaWhatsapp size={22} className="text-primary" />
                 </CircleBadge>
