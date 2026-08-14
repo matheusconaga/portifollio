@@ -26,6 +26,9 @@ import {
 import AnalyticsLogin from "./analytics/pages/AnalyticsLogin";
 import AnalyticsDashboard from "./analytics/pages/AnalyticsDashboard";
 
+const MIN_LOADING_TIME = 1800;
+const MAX_ANALYTICS_WAIT = 3000;
+
 export default function App() {
   const isAnalyticsRoute =
     window.location.pathname ===
@@ -59,6 +62,20 @@ export default function App() {
     document.body.style.overflow =
       "hidden";
 
+    let cancelled = false;
+
+    const sleep = (
+      milliseconds: number,
+    ) =>
+      new Promise<void>(
+        (resolve) => {
+          setTimeout(
+            resolve,
+            milliseconds,
+          );
+        },
+      );
+
     async function startAnalytics() {
       try {
         await initializeAnalytics();
@@ -80,18 +97,41 @@ export default function App() {
       }
     }
 
-    void startAnalytics();
+    async function initializeApp() {
+      const minimumLoading =
+        sleep(MIN_LOADING_TIME);
 
-    const timer =
-      setTimeout(() => {
-        setIsLoading(false);
+      const analytics =
+        startAnalytics();
 
-        document.body.style.overflow =
-          "auto";
-      }, 1800);
+      const analyticsTimeout =
+        sleep(
+          MAX_ANALYTICS_WAIT,
+        );
+
+      await Promise.all([
+        minimumLoading,
+
+        Promise.race([
+          analytics,
+          analyticsTimeout,
+        ]),
+      ]);
+
+      if (cancelled) {
+        return;
+      }
+
+      setIsLoading(false);
+
+      document.body.style.overflow =
+        "auto";
+    }
+
+    void initializeApp();
 
     return () => {
-      clearTimeout(timer);
+      cancelled = true;
 
       document.body.style.overflow =
         "auto";
