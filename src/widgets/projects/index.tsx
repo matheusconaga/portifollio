@@ -120,7 +120,8 @@ export default function Projects() {
           {filteredProjects.length > 0 ? (
             filteredProjects.map((project) => (
               <ProjectCard
-                key={project.title}
+                key={project.slug}
+                slug={project.slug}
                 image={project.image}
                 title={project.title}
                 description={project.description}

@@ -5,9 +5,11 @@ import github_project_card from "@/assets/projects/gihub-project-cards.webp";
 import docflow from "@/assets/projects/docflow-ai.webp";
 
 export interface Project {
-    image: string; title:
-    string; description:
-    string; techs: string[];
+    slug: string;
+    image: string;
+    title: string;
+    description: string;
+    techs: string[];
     category: string;
     deployUrl?: string;
     repoUrl?: string;
@@ -22,6 +24,7 @@ interface ProjectsByLanguage {
 export const projects: ProjectsByLanguage = {
     pt: [
         {
+            slug: "docflow-ai",
             image: docflow,
             title: "DocFlow AI",
             description:
@@ -39,6 +42,7 @@ export const projects: ProjectsByLanguage = {
         },
 
         {
+            slug: "github-project-cards",
             image: github_project_card,
             title: "GitHub Project Cards",
             description:
@@ -56,6 +60,7 @@ export const projects: ProjectsByLanguage = {
         },
 
         {
+            slug: "portifolio-profissional",
             image: portfolio,
             title: "Portifólio Profissional",
             description:
@@ -73,6 +78,7 @@ export const projects: ProjectsByLanguage = {
         },
 
         {
+            slug: "println",
             image: println,
             title: "PrintLn",
             description:
@@ -90,6 +96,7 @@ export const projects: ProjectsByLanguage = {
         },
 
         {
+            slug: "patrimoniario",
             image: patrimoniario,
             title: "Patrimoniario",
             description:
@@ -109,6 +116,7 @@ export const projects: ProjectsByLanguage = {
 
     en: [
         {
+            slug: "docflow-ai",
             image: docflow,
             title: "DocFlow AI",
             description:
@@ -126,6 +134,7 @@ export const projects: ProjectsByLanguage = {
         },
 
         {
+            slug: "github-project-cards",
             image: github_project_card,
             title: "GitHub Project Cards",
             description:
@@ -143,6 +152,7 @@ export const projects: ProjectsByLanguage = {
         },
 
         {
+            slug: "portifolio-profissional",
             image: portfolio,
             title: "Professional Portfolio",
             description:
@@ -160,6 +170,7 @@ export const projects: ProjectsByLanguage = {
         },
 
         {
+            slug: "println",
             image: println,
             title: "PrintLn",
             description:
@@ -177,6 +188,7 @@ export const projects: ProjectsByLanguage = {
         },
 
         {
+            slug: "patrimoniario",
             image: patrimoniario,
             title: "Patrimoniario",
             description:

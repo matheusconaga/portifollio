@@ -10,6 +10,9 @@ import { Mail, MapPin, Smartphone, Send } from "lucide-react";
 import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 import { useAppTranslation } from "@/shared/hooks/useAppTranslation";
 
+import { trackEvent } from "@/analytics/analytics";
+import { ANALYTICS_EVENTS } from "@/analytics/events";
+
 export default function Contact() {
   const { t } = useAppTranslation();
 
@@ -279,19 +282,47 @@ ${form.mensagem}
             {/* SOCIALS */}
             <div className="flex flex-wrap gap-4">
               <CircleBadge variant="outline" clickable size="lg">
-                <a href="https://github.com/matheusconaga" target="_blank">
+                <a
+                  href="https://github.com/matheusconaga"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => {
+                    trackEvent(ANALYTICS_EVENTS.GITHUB_PROFILE_CLICK, {
+                      page: window.location.pathname,
+                    });
+                  }}
+                >
                   <FaGithub size={20} className="text-primary" />
                 </a>
               </CircleBadge>
 
               <CircleBadge variant="outline" clickable size="lg">
-                <a href="https://linkedin.com/in/matheusconaga" target="_blank">
+                <a
+                  href="https://www.linkedin.com/in/matheusconaga"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative"
+                  onClick={() => {
+                    trackEvent(ANALYTICS_EVENTS.LINKEDIN_CLICK, {
+                      page: window.location.pathname,
+                    });
+                  }}
+                >
                   <FaLinkedin size={20} className="text-primary" />
                 </a>
               </CircleBadge>
 
               <CircleBadge variant="outline" clickable size="lg">
-                <a href="https://wa.me/5586981451876" target="_blank">
+                <a
+                  href="https://wa.me/5586981451876"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => {
+                    trackEvent(ANALYTICS_EVENTS.WHATSAPP_CLICK, {
+                      page: window.location.pathname,
+                    });
+                  }}
+                >
                   <FaWhatsapp size={20} className="text-primary" />
                 </a>
               </CircleBadge>
