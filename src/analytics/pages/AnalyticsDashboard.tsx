@@ -545,7 +545,7 @@ export default function AnalyticsDashboard({
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6">
             {loading || !stats ? (
               <>
                 <LoadingCard />
@@ -573,6 +573,15 @@ export default function AnalyticsDashboard({
                   value={stats.linkedinClicks}
                   comparison={stats.comparison?.linkedinClicksPercentage}
                 />
+
+                <MetricCard
+  label="Currículo"
+  value={stats.resumeDownloads}
+  comparison={
+    stats.comparison?.resumeDownloadsPercentage
+  }
+  description="Downloads do currículo"
+/>
 
                 <MetricCard
                   label="WhatsApp"

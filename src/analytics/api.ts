@@ -75,21 +75,31 @@ export interface EngagementAnalyticsResponse {
 }
 
 export interface AnalyticsStats {
-  period: AnalyticsPeriod;
-  periodStart: string | null;
-
   visitors: number;
   sessions: number;
   pageViews: number;
   projectViews: number;
-
   githubClicks: number;
   demoClicks: number;
   linkedinClicks: number;
   whatsappClicks: number;
   emailClicks: number;
 
-  comparison: AnalyticsComparison | null;
+  resumeDownloads: number;
+
+  comparison?: {
+    visitorsPercentage: number | null;
+    sessionsPercentage: number | null;
+    pageViewsPercentage: number | null;
+    projectViewsPercentage: number | null;
+    githubClicksPercentage: number | null;
+    demoClicksPercentage: number | null;
+    linkedinClicksPercentage: number | null;
+    whatsappClicksPercentage: number | null;
+    emailClicksPercentage: number | null;
+
+    resumeDownloadsPercentage: number | null;
+  };
 }
 
 export interface HourAnalyticsItem {
