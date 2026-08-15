@@ -335,6 +335,11 @@ export default function Hero() {
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto"
+              onClick={() => {
+                trackEvent(ANALYTICS_EVENTS.RESUME_DOWNLOAD, {
+                  page: window.location.pathname,
+                });
+              }}
             >
               <Button
                 variant="outline-xl"
