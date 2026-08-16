@@ -76,7 +76,7 @@ export function Header() {
                 className="w-11 md:w-14"
                 alt="Logo Matheus Lula"
               />
-              <span className="font-bold text-white text-lg md:text-2xl whitespace-nowrap">
+              <span className="font-bold text-primary-light text-lg md:text-2xl whitespace-nowrap">
                 Matheus Lula
               </span>
             </div>

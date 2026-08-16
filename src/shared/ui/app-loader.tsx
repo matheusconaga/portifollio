@@ -30,7 +30,7 @@ export function AppLoader({ isLoading }: AppLoaderProps) {
 
             <motion.img
               src={logo}
-              className="w-28"
+              className="w-40"
               animate={{
                 y: [0, -10, 0],
               }}

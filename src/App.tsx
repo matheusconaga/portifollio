@@ -26,8 +26,8 @@ import {
 import AnalyticsLogin from "./analytics/pages/AnalyticsLogin";
 import AnalyticsDashboard from "./analytics/pages/AnalyticsDashboard";
 
-const MIN_LOADING_TIME = 1800;
-const MAX_ANALYTICS_WAIT = 3000;
+const MIN_LOADING_TIME = 2000;
+const MAX_ANALYTICS_WAIT = 4000;
 
 export default function App() {
   const isAnalyticsRoute =

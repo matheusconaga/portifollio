@@ -177,9 +177,9 @@ export default function Hero() {
               decoding="async"
               alt="Logo Matheus Lula"
               className="
-             w-28
+             w-32
                 sm:w-32
-                lg:w-40
+                lg:w-45
                 "
             />
 
