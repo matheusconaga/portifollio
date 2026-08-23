@@ -87,6 +87,9 @@ export default class ptTranslation {
       "floatingContacts.hoverWhatsapp": "Fale comigo no WhatsApp",
       "floatingContacts.hoverEmail": "Me envie um e-mail",
       "latestProject.viewProject": "Ver projeto",
+
+      "products.title": "Produtos",
+      "products.subtitle": "Produtos",
     };
   }
 }

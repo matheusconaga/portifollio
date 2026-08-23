@@ -28,7 +28,7 @@ export const experiences: ExperiencesByLanguage = {
       description:
         "Atuei no desenvolvimento fullstack de aplicações web e mobile, APIs e integrações entre sistemas, com foco em performance, escalabilidade e automação de processos. Também participei de decisões técnicas e melhorias de arquitetura.",
 
-      season: "Ago 2024 - Presente",
+      season: "Ago 2024 - Ago 2026",
 
       enterprise:
         "RGM Tecnologia Inteligência e Processos",
@@ -223,7 +223,7 @@ export const experiences: ExperiencesByLanguage = {
       description:
         "Worked on the fullstack development of web and mobile applications, APIs, and system integrations, focusing on performance, scalability, and process automation. Also participated in technical decisions and architecture improvements.",
 
-      season: "Aug 2024 - Present",
+      season: "Aug 2024 - Aug 2026",
 
       enterprise:
         "RGM Tecnologia Inteligência e Processos",

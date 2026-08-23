@@ -86,6 +86,10 @@ export default class enTranslation {
       "floatingContacts.hoverWhatsapp": "Chat with me on WhatsApp",
       "floatingContacts.hoverEmail": "Send me an email",
       "latestProject.viewProject": "View project",
+
+      "products.title": "Products",
+      "products.subtitle": "Products",
+
     };
   }
 }
