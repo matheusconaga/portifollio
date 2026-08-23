@@ -3,6 +3,7 @@ import println from "@/assets/projects/println.webp";
 import portfolio from "@/assets/projects/portfolio.webp";
 import github_project_card from "@/assets/projects/gihub-project-cards.webp";
 import docflow from "@/assets/projects/docflow-ai.webp";
+import analytics from "@/assets/projects/analytics.webp";
 
 export interface Project {
     slug: string;
@@ -23,6 +24,23 @@ interface ProjectsByLanguage {
 
 export const projects: ProjectsByLanguage = {
     pt: [
+        {
+            slug: "portfolio-analytics",
+            image: analytics,
+            title: "Portfolio Analytics",
+            description:
+                "Plataforma fullstack própria de web analytics para monitoramento do meu portfólio, com rastreamento de visitantes, sessões, eventos e interações, dashboard com dados reais e anonimizados e automações de notificações via n8n e Telegram.",
+            techs: [
+                "React",
+                "Node.js",
+                "PostgreSQL",
+            ],
+            category: "Backend",
+            deployUrl:
+                "https://analytics-portfolio-s8pd.onrender.com/",
+            repoUrl:
+                "https://github.com/matheusconaga/portfolio-analytics",
+        },
         {
             slug: "docflow-ai",
             image: docflow,
@@ -115,6 +133,23 @@ export const projects: ProjectsByLanguage = {
     ],
 
     en: [
+        {
+            slug: "portfolio-analytics",
+            image: analytics,
+            title: "Portfolio Analytics",
+            description:
+                "Custom fullstack web analytics platform built to monitor my portfolio, featuring visitor, session, event and interaction tracking, a dashboard with real anonymized data, and automated notifications through n8n and Telegram.",
+            techs: [
+                "React",
+                "Node.js",
+                "PostgreSQL",
+            ],
+            category: "Backend",
+            deployUrl:
+                "https://analytics-portfolio-s8pd.onrender.com/",
+            repoUrl:
+                "https://github.com/matheusconaga/portfolio-analytics",
+        },
         {
             slug: "docflow-ai",
             image: docflow,

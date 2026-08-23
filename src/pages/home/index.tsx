@@ -2,7 +2,7 @@ import { lazy, Suspense } from "react";
 import Hero from "@/widgets/hero";
 import About from "@/widgets/about";
 import { TechBanner } from "@/widgets/tech-banner";
-import Products from "@/widgets/products";
+// import Products from "@/widgets/products";
 
 import { Container } from "@/shared/ui/container";
 import { Section } from "@/shared/ui/section";
@@ -60,14 +60,14 @@ export default function Homepage() {
         </Container>
       </Section>
 
-      {/* PRODUCTS */}
+      {/* PRODUCTS
       <Section id="products" trackView>
         <Container>
           <AnimatedSection>
             <Products />
           </AnimatedSection>
         </Container>
-      </Section>
+      </Section> */}
 
       {/* TECH */}
       <Section id="tech" trackView>
