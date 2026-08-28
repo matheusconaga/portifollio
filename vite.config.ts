@@ -22,6 +22,16 @@ export default defineConfig({
         'apple-touch-icon.png',
       ],
 
+      workbox: {
+        navigateFallback: '/index.html',
+
+        navigateFallbackDenylist: [
+          /\.pdf$/i,
+        ],
+
+        cleanupOutdatedCaches: true,
+      },
+
       manifest: {
         name: 'Matheus Lula | Fullstack Developer',
         short_name: 'Matheus Lula',
