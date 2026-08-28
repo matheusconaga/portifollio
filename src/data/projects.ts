@@ -90,7 +90,7 @@ export const projects: ProjectsByLanguage = {
             ],
             category: "Frontend",
             deployUrl:
-                "https://portifoliomatheuslula.onrender.com/",
+                "https://matheusconaga.dev/",
             repoUrl:
                 "https://github.com/matheusconaga/portifollio",
         },
@@ -199,7 +199,7 @@ export const projects: ProjectsByLanguage = {
             ],
             category: "Frontend",
             deployUrl:
-                "https://portifoliomatheuslula.onrender.com/",
+                "https://matheusconaga.dev/",
             repoUrl:
                 "https://github.com/matheusconaga/portifollio",
         },
