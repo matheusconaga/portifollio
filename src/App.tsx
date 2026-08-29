@@ -29,7 +29,17 @@ import AnalyticsDashboard from "./analytics/pages/AnalyticsDashboard";
 const MIN_LOADING_TIME = 2000;
 const MAX_ANALYTICS_WAIT = 4000;
 
+const OLD_RENDER_DOMAIN =
+  "portifoliomatheuslula.onrender.com";
+
+const NEW_DOMAIN =
+  "matheusconaga.dev";
+
 export default function App() {
+  const isOldRenderDomain =
+    window.location.hostname ===
+    OLD_RENDER_DOMAIN;
+
   const isAnalyticsRoute =
     window.location.pathname ===
     "/analytics";
@@ -50,7 +60,35 @@ export default function App() {
     !isAnalyticsRoute,
   );
 
+  /*
+   * Redirect old Render domain
+   * to the custom domain.
+   */
   useEffect(() => {
+    if (!isOldRenderDomain) {
+      return;
+    }
+
+    const newUrl =
+      `https://${NEW_DOMAIN}` +
+      `${window.location.pathname}` +
+      `${window.location.search}` +
+      `${window.location.hash}`;
+
+    window.location.replace(
+      newUrl,
+    );
+  }, [isOldRenderDomain]);
+
+  useEffect(() => {
+    /*
+     * Don't initialize the app
+     * while redirecting.
+     */
+    if (isOldRenderDomain) {
+      return;
+    }
+
     if (isAnalyticsRoute) {
       checkAuth().then(
         setIsAuthenticated,
@@ -136,7 +174,19 @@ export default function App() {
       document.body.style.overflow =
         "auto";
     };
-  }, [isAnalyticsRoute]);
+  }, [
+    isAnalyticsRoute,
+    isOldRenderDomain,
+  ]);
+
+  /*
+   * Prevent the old domain from
+   * briefly rendering the portfolio
+   * before the redirect happens.
+   */
+  if (isOldRenderDomain) {
+    return null;
+  }
 
   if (isAnalyticsRoute) {
     if (
