@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+
 import type { ReactNode } from "react";
 
 interface AnimatedSectionProps {
@@ -14,8 +15,8 @@ export function AnimatedSection({
     <motion.div
       initial={{
         opacity: 0,
-        y: 80,
-        scale: 0.96,
+        y: 42,
+        scale: 0.985,
       }}
       whileInView={{
         opacity: 1,
@@ -24,10 +25,11 @@ export function AnimatedSection({
       }}
       viewport={{
         once: true,
-        amount: 0.15,
+        amount: 0.08,
+        margin: "0px 0px -40px 0px",
       }}
       transition={{
-        duration: 0.8,
+        duration: 0.65,
         delay,
         ease: [0.22, 1, 0.36, 1],
       }}

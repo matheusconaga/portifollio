@@ -9,10 +9,10 @@ export function TechSkeleton() {
         py-6 sm:py-10
       "
     >
-      <div className="flex flex-col gap-8 w-full">
+      <div className="flex flex-col gap-8 w-full animate-pulse">
         <div className="flex flex-col gap-2">
-          <div className="h-6 w-32 rounded-full bg-muted/30 animate-pulse" />
-          <div className="h-10 sm:h-12 w-[280px] sm:w-[420px] rounded-full bg-muted/30 animate-pulse" />
+          <div className="h-6 w-32 rounded-full bg-muted/30 " />
+          <div className="h-10 sm:h-12 w-[280px] sm:w-[420px] rounded-full bg-muted/30 " />
         </div>
 
         <div
@@ -36,7 +36,7 @@ export function TechSkeleton() {
                 p-5 sm:p-6
                 gap-4
                 bg-glass-light
-                animate-pulse
+               
               "
             >
               <div

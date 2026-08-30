@@ -27,7 +27,6 @@ import AnalyticsLogin from "./analytics/pages/AnalyticsLogin";
 import AnalyticsDashboard from "./analytics/pages/AnalyticsDashboard";
 
 const MIN_LOADING_TIME = 2000;
-const MAX_ANALYTICS_WAIT = 4000;
 
 const OLD_RENDER_DOMAIN =
   "portifoliomatheuslula.onrender.com";
@@ -80,23 +79,33 @@ export default function App() {
     );
   }, [isOldRenderDomain]);
 
+  /*
+   * Initialize analytics and loader.
+   */
   useEffect(() => {
     /*
-     * Don't initialize the app
+     * Don't initialize anything
      * while redirecting.
      */
     if (isOldRenderDomain) {
       return;
     }
 
+    /*
+     * Analytics dashboard authentication.
+     */
     if (isAnalyticsRoute) {
-      checkAuth().then(
+      void checkAuth().then(
         setIsAuthenticated,
       );
 
       return;
     }
 
+    /*
+     * Prevent scrolling while
+     * the initial loader is visible.
+     */
     document.body.style.overflow =
       "hidden";
 
@@ -114,6 +123,10 @@ export default function App() {
         },
       );
 
+    /*
+     * Analytics starts immediately,
+     * but does not block the UI.
+     */
     async function startAnalytics() {
       try {
         await initializeAnalytics();
@@ -135,26 +148,23 @@ export default function App() {
       }
     }
 
+    /*
+     * Initial application startup.
+     */
     async function initializeApp() {
-      const minimumLoading =
-        sleep(MIN_LOADING_TIME);
+      /*
+       * Fire and forget:
+       * analytics starts immediately.
+       */
+      void startAnalytics();
 
-      const analytics =
-        startAnalytics();
-
-      const analyticsTimeout =
-        sleep(
-          MAX_ANALYTICS_WAIT,
-        );
-
-      await Promise.all([
-        minimumLoading,
-
-        Promise.race([
-          analytics,
-          analyticsTimeout,
-        ]),
-      ]);
+      /*
+       * Keep loader visible for
+       * the minimum animation time.
+       */
+      await sleep(
+        MIN_LOADING_TIME,
+      );
 
       if (cancelled) {
         return;
@@ -182,12 +192,15 @@ export default function App() {
   /*
    * Prevent the old domain from
    * briefly rendering the portfolio
-   * before the redirect happens.
+   * before redirecting.
    */
   if (isOldRenderDomain) {
     return null;
   }
 
+  /*
+   * Analytics route.
+   */
   if (isAnalyticsRoute) {
     if (
       isAuthenticated === null
@@ -220,19 +233,23 @@ export default function App() {
     );
   }
 
+  /*
+   * Portfolio.
+   *
+   * Homepage is mounted immediately
+   * behind the loader so React and
+   * the browser can prepare the page
+   * while the loader is visible.
+   */
   return (
     <>
-      <AppLoader
-        isLoading={
-          isLoading
-        }
-      />
+      <MainLayout>
+        <Homepage />
+      </MainLayout>
 
-      {!isLoading && (
-        <MainLayout>
-          <Homepage />
-        </MainLayout>
-      )}
+      <AppLoader
+        isLoading={isLoading}
+      />
     </>
   );
 }

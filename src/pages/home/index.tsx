@@ -26,7 +26,7 @@ const Contact = lazy(importContact);
 
 export default function Homepage() {
   return (
-     <>
+    <>
       <Section id="home" className="relative flex items-center" trackView>
         <Container>
           <AnimatedSection>
@@ -51,11 +51,11 @@ export default function Homepage() {
       <Section id="projects" trackView>
         <Container>
           <LazySection fallback={<ProjectsSkeleton />}>
-            <Suspense fallback={<ProjectsSkeleton />}>
-              <AnimatedSection>
+            <AnimatedSection>
+              <Suspense fallback={<ProjectsSkeleton />}>
                 <Projects />
-              </AnimatedSection>
-            </Suspense>
+              </Suspense>
+            </AnimatedSection>
           </LazySection>
         </Container>
       </Section>
@@ -73,11 +73,11 @@ export default function Homepage() {
       <Section id="tech" trackView>
         <Container>
           <LazySection fallback={<TechSkeleton />}>
-            <Suspense fallback={<TechSkeleton />}>
-              <AnimatedSection>
+            <AnimatedSection>
+              <Suspense fallback={<TechSkeleton />}>
                 <TechStacks />
-              </AnimatedSection>
-            </Suspense>
+              </Suspense>
+            </AnimatedSection>
           </LazySection>
         </Container>
       </Section>
@@ -86,11 +86,11 @@ export default function Homepage() {
       <Section id="experience" trackView>
         <Container>
           <LazySection fallback={<ExperienceSkeleton />}>
-            <Suspense fallback={<ExperienceSkeleton />}>
-              <AnimatedSection>
+            <AnimatedSection>
+              <Suspense fallback={<ExperienceSkeleton />}>
                 <Experience />
-              </AnimatedSection>
-            </Suspense>
+              </Suspense>
+            </AnimatedSection>
           </LazySection>
         </Container>
       </Section>
@@ -99,11 +99,11 @@ export default function Homepage() {
       <Section id="contact" trackView>
         <Container>
           <LazySection fallback={<ContactSkeleton />}>
-            <Suspense fallback={<ContactSkeleton />}>
-              <AnimatedSection>
+            <AnimatedSection>
+              <Suspense fallback={<ContactSkeleton />}>
                 <Contact />
-              </AnimatedSection>
-            </Suspense>
+              </Suspense>
+            </AnimatedSection>
           </LazySection>
         </Container>
       </Section>

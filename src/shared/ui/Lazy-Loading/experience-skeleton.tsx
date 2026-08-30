@@ -1,7 +1,7 @@
 export function ExperienceSkeleton() {
   return (
     <div className="w-full max-w-[1200px] mx-auto py-20">
-      <div className="flex flex-col gap-20">
+      <div className="flex flex-col gap-20 animate-pulse">
         {/* HEADER */}
         <div
           className="
@@ -23,7 +23,7 @@ export function ExperienceSkeleton() {
                 w-32
                 rounded-full
                 bg-muted/30
-                animate-pulse
+               
               "
             />
 
@@ -35,7 +35,7 @@ export function ExperienceSkeleton() {
 
                 rounded-full
                 bg-muted/30
-                animate-pulse
+              
               "
             />
           </div>
@@ -50,7 +50,7 @@ export function ExperienceSkeleton() {
                   w-36
                   rounded-full
                   bg-muted/20
-                  animate-pulse
+               
                 "
               />
             ))}
@@ -130,7 +130,6 @@ export function ExperienceSkeleton() {
 
                     bg-muted/30
 
-                    animate-pulse
 
                     z-10
                   "
@@ -154,7 +153,6 @@ export function ExperienceSkeleton() {
                     flex flex-col
                     gap-4
 
-                    animate-pulse
                   "
                 >
                   {/* TITLE */}

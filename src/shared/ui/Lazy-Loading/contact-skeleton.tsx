@@ -11,56 +11,6 @@ export function ContactSkeleton() {
         xl:bg-transparent
       "
     >
-      {/* GLOWS */}
-      <div
-        className="
-          absolute
-          top-[-80px]
-          left-[-80px]
-
-          w-[220px]
-          h-[220px]
-
-          sm:top-[-120px]
-          sm:left-[-120px]
-          sm:w-[400px]
-          sm:h-[400px]
-
-          rounded-full
-          bg-primary/20
-          blur-[100px]
-          sm:blur-[120px]
-
-          opacity-70
-          pointer-events-none
-          z-0
-        "
-      />
-
-      <div
-        className="
-          absolute
-          bottom-[-60px]
-          right-[-60px]
-
-          w-[180px]
-          h-[180px]
-
-          sm:bottom-[-80px]
-          sm:right-[-80px]
-          sm:w-[420px]
-          sm:h-[420px]
-
-          rounded-full
-          bg-cyan-400/10
-          blur-[80px]
-          sm:blur-[100px]
-
-          opacity-70
-          pointer-events-none
-          z-0
-        "
-      />
 
       {/* MAIN CARD */}
       <div
