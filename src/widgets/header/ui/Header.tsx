@@ -3,8 +3,6 @@ import { useState } from "react";
 import { Button } from "@/shared/ui/button";
 import { MenuItem } from "./MenuItem";
 
-import logo from "@/assets/logo_matheus.webp";
-
 import {
   ArrowUpRight,
   Menu,
@@ -152,7 +150,7 @@ export function Header() {
               "
             >
               <img
-                src={logo}
+                src={"/logo_matheus.webp"}
                 fetchPriority="high"
                 className="
                   w-10

@@ -1,4 +1,4 @@
-import chat_image from "@/assets/chat-dev.webp";
+
 
 import { useAppTranslation } from "@/shared/hooks/useAppTranslation";
 
@@ -153,7 +153,7 @@ export function CtaCard() {
         "
       >
         <img
-          src={chat_image}
+          src={"/chat-dev.webp"}
           className="
             w-25
 

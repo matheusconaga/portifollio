@@ -1,4 +1,4 @@
-import eu_persona from "@/assets/eu_persona.webp";
+
 
 import { useAppTranslation } from "@/shared/hooks/useAppTranslation";
 
@@ -85,7 +85,7 @@ export function WorkCard() {
         "
       >
         <img
-          src={eu_persona}
+          src={"/eu_persona.webp"}
           className="
             w-[175px]
             select-none

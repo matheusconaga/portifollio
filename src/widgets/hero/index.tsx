@@ -1,37 +1,60 @@
-import logo from "@/assets/logo_matheus.webp";
-import eu from "@/assets/euxl.webp";
-
 import { Badge } from "@/shared/ui/badge";
 import { Button } from "@/shared/ui/button";
 
-import { Download, MoveRight, CodeXml, Mouse } from "lucide-react";
+import {
+  CodeXml,
+  Download,
+  Mouse,
+  MoveRight,
+} from "lucide-react";
 
 import { Card } from "@/shared/ui/Card/card";
-import { CardImage } from "@/shared/ui/Card/card-image";
 
-import styled from "styled-components";
+import {
+  SiFastapi,
+  SiFlutter,
+} from "react-icons/si";
 
-import { SiFastapi, SiFlutter } from "react-icons/si";
-
-import { FaGithub, FaLinkedin, FaReact } from "react-icons/fa";
+import {
+  FaGithub,
+  FaLinkedin,
+  FaReact,
+} from "react-icons/fa";
 
 import { StackCard } from "@/shared/ui/stack-card";
 import { CircleBadge } from "@/shared/ui/circle-badge";
+
 import { useAppTranslation } from "@/shared/hooks/useAppTranslation";
 
 import { trackEvent } from "@/analytics/analytics";
 import { ANALYTICS_EVENTS } from "@/analytics/events";
 
+const LOGO_SRC = "/logo_matheus.webp";
+const HERO_IMAGE_SRC = "/euxl.webp";
+
 const techs = [
-  { name: "React", icon: FaReact },
-  { name: "Flutter", icon: SiFlutter },
-  { name: "FastAPI", icon: SiFastapi },
+  {
+    name: "React",
+    icon: FaReact,
+  },
+  {
+    name: "Flutter",
+    icon: SiFlutter,
+  },
+  {
+    name: "FastAPI",
+    icon: SiFastapi,
+  },
 ];
 
 export default function Hero() {
-  const { t, i18n } = useAppTranslation();
+  const { t, i18n } =
+    useAppTranslation();
 
-  const currentLang = i18n.language.startsWith("pt") ? "pt" : "en";
+  const currentLang =
+    i18n.language.startsWith("pt")
+      ? "pt"
+      : "en";
 
   const resumeLink =
     currentLang === "pt"
@@ -41,69 +64,92 @@ export default function Hero() {
   return (
     <div
       className="
-    relative
+        relative
 
-    flex flex-col
-    justify-between
-    items-center
+        flex
+        flex-col
+        justify-between
+        items-center
 
-    w-full
+        w-full
 
-    min-h-screen
+        min-h-screen
 
-    pt-15
-    sm:pt-32
-    md:pt-24
-    xl:pt-30
+        pt-15
+        sm:pt-32
+        md:pt-24
+        xl:pt-30
 
-    pb-20
-    md:pb-12
+        pb-20
+        md:pb-12
 
-    gap-16 md:gap-20
-  "
+        gap-16
+        md:gap-20
+      "
     >
+      {/* TOP GLOW */}
       <div
         className="
-      absolute
+          absolute
 
-      top-[-120px]
-      left-[-120px]
+          top-[-80px]
+          left-[-80px]
 
-      w-[320px]
-      h-[320px]
+          sm:top-[-120px]
+          sm:left-[-120px]
 
-      rounded-full
+          w-[240px]
+          h-[240px]
 
-      bg-primary/20
+          sm:w-[320px]
+          sm:h-[320px]
 
-      blur-[120px]
+          rounded-full
 
-      pointer-events-none
-      z-0
-    "
+          bg-primary/20
+
+          blur-[70px]
+          sm:blur-[100px]
+          lg:blur-[120px]
+
+          pointer-events-none
+
+          z-0
+        "
       />
+
+      {/* BOTTOM GLOW */}
       <div
         className="
-      absolute
+          absolute
 
-      bottom-[-140px]
+          bottom-[-100px]
 
-      w-[300px]
-      h-[300px]
-      sm:w-[100%]
-      sm:h-[200px]
+          w-[260px]
+          h-[180px]
 
+          sm:bottom-[-140px]
+          sm:w-full
+          sm:h-[200px]
 
-      bg-glass-blue
+          bg-glass-blue
 
-      blur-[120px]
+          blur-[70px]
+          sm:blur-[100px]
+          lg:blur-[120px]
 
-      pointer-events-none
-      z-0
-    "
+          pointer-events-none
+
+          z-0
+        "
       />
+
+      {/* HERO CONTENT */}
       <div
         className="
+          relative
+          z-10
+
           flex
 
           flex-col
@@ -112,7 +158,9 @@ export default function Hero() {
           items-center
           justify-between
 
-          gap-12 lg:gap-16 xl:gap-20
+          gap-12
+          lg:gap-16
+          xl:gap-20
 
           w-full
         "
@@ -120,96 +168,138 @@ export default function Hero() {
         {/* LEFT SIDE */}
         <div
           className="
-    flex flex-col
+            flex
+            flex-col
 
-    items-center
-    xl:items-start
+            items-center
+            xl:items-start
 
-    text-center
-    xl:text-left
+            text-center
+            xl:text-left
 
-    gap-4
+            gap-4
 
-    flex-1
+            flex-1
 
-    max-w-[750px]
-  "
+            max-w-[750px]
+          "
         >
           {/* STATUS */}
           <Badge
             variant="glass"
             className="
-    self-start
+              self-start
 
-    text-primary
+              text-primary
 
-    text-xs md:text-sm
-  "
+              text-xs
+              md:text-sm
+            "
           >
             <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 animate-ping" />
+              <span
+                className="
+                  absolute
+                  inline-flex
 
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+                  h-full
+                  w-full
+
+                  rounded-full
+
+                  bg-green-400
+
+                  opacity-75
+
+                  animate-ping
+                "
+              />
+
+              <span
+                className="
+                  relative
+
+                  inline-flex
+
+                  h-2
+                  w-2
+
+                  rounded-full
+
+                  bg-primary
+                "
+              />
             </span>
+
             {t("hero.badge")}
           </Badge>
 
           {/* BRAND */}
           <div
             className="
-    flex
+              flex
 
-    flex-col
-    sm:flex-row
+              flex-col
+              sm:flex-row
 
-    items-center
+              items-center
 
-    text-center
-    sm:text-left
+              text-center
+              sm:text-left
 
-    gap-4
-  "
+              gap-4
+            "
           >
+            {/* Logo is small and doesn't need
+                to compete with the LCP image */}
             <img
-              src={logo}
-              fetchPriority="high"
+              src={LOGO_SRC}
+              alt="Logo Matheus Lula"
+              width={180}
+              height={180}
               loading="eager"
               decoding="async"
-              alt="Logo Matheus Lula"
               className="
-             w-32
+                w-32
                 sm:w-32
                 lg:w-45
-                "
+
+                h-auto
+
+                shrink-0
+              "
             />
 
             <div
               className="
-    flex flex-col
+                flex
+                flex-col
 
-    items-center
-    sm:items-start
+                items-center
+                sm:items-start
 
-    gap-2
-  "
+                gap-2
+              "
             >
               <span
                 className="
                   font-semibold
                   text-white
-                  
 
                   text-xl
                   sm:text-2xl
                   lg:text-3xl
                 "
               >
-                {t("hero.apresentation")}
+                {t(
+                  "hero.apresentation",
+                )}
               </span>
 
-              <span
+              <h1
                 className="
                   font-bold
+
                   text-primary
 
                   leading-none
@@ -221,11 +311,12 @@ export default function Hero() {
                 "
               >
                 Matheus Lula
-              </span>
+              </h1>
 
               <span
                 className="
                   font-semibold
+
                   text-white
 
                   text-lg
@@ -235,29 +326,38 @@ export default function Hero() {
                   max-w-[600px]
                 "
               >
-                Fullstack developer Web & Mobile
+                Fullstack developer Web
+                & Mobile
               </span>
 
               {/* STACKS */}
               <div
                 className="
-    flex
-    flex-wrap
+                  flex
+                  flex-wrap
 
-    justify-center
-    sm:justify-start
+                  justify-center
+                  sm:justify-start
 
-    gap-2
-  "
+                  gap-2
+                "
               >
-                {techs.map((tech, index) => (
-                  <StackCard
-                    variant="hero"
-                    key={index}
-                    icon={tech.icon}
-                    name={tech.name}
-                  />
-                ))}
+                {techs.map(
+                  (tech) => (
+                    <StackCard
+                      variant="hero"
+                      key={
+                        tech.name
+                      }
+                      icon={
+                        tech.icon
+                      }
+                      name={
+                        tech.name
+                      }
+                    />
+                  ),
+                )}
               </div>
             </div>
           </div>
@@ -265,14 +365,15 @@ export default function Hero() {
           {/* DESCRIPTION */}
           <div
             className="
-    flex flex-col
+              flex
+              flex-col
 
-    text-left
+              text-left
 
-    gap-1
+              gap-1
 
-    max-w-[700px]
-  "
+              max-w-[700px]
+            "
           >
             <span
               className="
@@ -281,12 +382,13 @@ export default function Hero() {
                 text-base
                 sm:text-lg
                 lg:text-xl
-                
 
                 leading-relaxed
               "
             >
-              {t("hero.description1")}
+              {t(
+                "hero.description1",
+              )}
             </span>
 
             <span
@@ -300,7 +402,9 @@ export default function Hero() {
                 leading-relaxed
               "
             >
-              {t("hero.description2")}
+              {t(
+                "hero.description2",
+              )}
             </span>
           </div>
 
@@ -320,13 +424,28 @@ export default function Hero() {
               mt-4
             "
           >
-            <a href="#projects" className="w-full sm:w-auto">
+            <a
+              href="#projects"
+              className="
+                w-full
+                sm:w-auto
+              "
+            >
               <Button
                 variant="primary-xl"
-                rightIcon={<MoveRight size={22} />}
-                className="w-full sm:w-auto"
+                rightIcon={
+                  <MoveRight
+                    size={22}
+                  />
+                }
+                className="
+                  w-full
+                  sm:w-auto
+                "
               >
-                {t("hero.button1")}
+                {t(
+                  "hero.button1",
+                )}
               </Button>
             </a>
 
@@ -334,63 +453,114 @@ export default function Hero() {
               href={resumeLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto"
+              className="
+                w-full
+                sm:w-auto
+              "
               onClick={() => {
-                trackEvent(ANALYTICS_EVENTS.RESUME_DOWNLOAD, {
-                  page: window.location.pathname,
-                });
+                void trackEvent(
+                  ANALYTICS_EVENTS.RESUME_DOWNLOAD,
+                  {
+                    page:
+                      window.location.pathname,
+                  },
+                );
               }}
             >
               <Button
                 variant="outline-xl"
-                rightIcon={<Download size={22} />}
-                className="w-full sm:w-auto"
+                rightIcon={
+                  <Download
+                    size={22}
+                  />
+                }
+                className="
+                  w-full
+                  sm:w-auto
+                "
               >
-                {t("hero.button2")}
+                {t(
+                  "hero.button2",
+                )}
               </Button>
             </a>
           </div>
+
+          {/* SOCIALS */}
           <div
-            className=" flex
+            className="
+              flex
 
               flex-row
               justify-center
+
               w-full
               sm:w-auto
 
               gap-4
 
               mt-4
-              "
+            "
           >
             <a
               href="https://www.linkedin.com/in/matheusconaga"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative"
+              aria-label="LinkedIn"
+              className="
+                group
+                relative
+              "
               onClick={() => {
-                trackEvent(ANALYTICS_EVENTS.LINKEDIN_CLICK, {
-                  page: window.location.pathname,
-                });
+                void trackEvent(
+                  ANALYTICS_EVENTS.LINKEDIN_CLICK,
+                  {
+                    page:
+                      window.location.pathname,
+                  },
+                );
               }}
             >
-              <CircleBadge size="lg" variant="glass" clickable>
-                <FaLinkedin size={22} className="text-primary" />
+              <CircleBadge
+                size="lg"
+                variant="glass"
+                clickable
+              >
+                <FaLinkedin
+                  size={22}
+                  className="text-primary"
+                />
               </CircleBadge>
             </a>
+
             <a
               href="https://github.com/matheusconaga"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative"
+              aria-label="GitHub"
+              className="
+                group
+                relative
+              "
               onClick={() => {
-                trackEvent(ANALYTICS_EVENTS.GITHUB_PROFILE_CLICK, {
-                  page: window.location.pathname,
-                });
+                void trackEvent(
+                  ANALYTICS_EVENTS.GITHUB_PROFILE_CLICK,
+                  {
+                    page:
+                      window.location.pathname,
+                  },
+                );
               }}
             >
-              <CircleBadge size="lg" variant="glass" clickable>
-                <FaGithub size={22} className="text-primary" />
+              <CircleBadge
+                size="lg"
+                variant="glass"
+                clickable
+              >
+                <FaGithub
+                  size={22}
+                  className="text-primary"
+                />
               </CircleBadge>
             </a>
           </div>
@@ -421,31 +591,48 @@ export default function Hero() {
               lg:w-[380px]
               lg:h-[380px]
 
-             xl:w-[380px]
-             xl:h-[380px]
+              xl:w-[380px]
+              xl:h-[380px]
             "
           >
             {/* IMAGE CARD */}
             <Card
               className="
-    w-full
-    h-full
+                w-full
+                h-full
 
-    rounded-[28px]
-    overflow-hidden
+                rounded-[28px]
 
-    contain-layout
-    contain-paint
-  "
+                overflow-hidden
+
+                contain-layout
+                contain-paint
+              "
             >
-              <CardImage
-                src={eu}
-                alt="Foto minha"
-                fetchPriority="high"
+              {/*
+                Native img is intentional here.
+
+                This is a critical above-the-fold
+                image and a strong LCP candidate.
+              */}
+              <img
+                src={HERO_IMAGE_SRC}
+                alt="Matheus Lula"
+                width={380}
+                height={380}
                 loading="eager"
-                decoding="async"
-                fit="contain"
-                position="bottom-right"
+                fetchPriority="high"
+                className="
+                  block
+
+                  w-full
+                  h-full
+
+                  object-contain
+                  object-bottom
+
+                  select-none
+                "
               />
             </Card>
 
@@ -461,30 +648,63 @@ export default function Hero() {
 
                 hover:scale-[1.02]
 
-                transition-transform duration-300
+                transition-transform
+                duration-300
               "
             >
               <Badge
                 variant="glass"
                 className="
-                  flex items-center gap-2
+                  flex
+                  items-center
 
-                  px-3 py-2
+                  gap-2
+
+                  px-3
+                  py-2
 
                   shadow-lg
                   shadow-black/20
                 "
               >
-                <Badge variant="glass" className="p-2">
-                  <CodeXml size={15} />
+                <Badge
+                  variant="glass"
+                  className="p-2"
+                >
+                  <CodeXml
+                    size={15}
+                  />
                 </Badge>
 
-                <span className="flex flex-col leading-tight">
-                  <span className="text-white text-xs sm:text-sm">
-                    {t("hero.badgeImage")}
+                <span
+                  className="
+                    flex
+                    flex-col
+
+                    leading-tight
+                  "
+                >
+                  <span
+                    className="
+                      text-white
+
+                      text-xs
+                      sm:text-sm
+                    "
+                  >
+                    {t(
+                      "hero.badgeImage",
+                    )}
                   </span>
 
-                  <span className="text-white/60 text-[10px] sm:text-xs">
+                  <span
+                    className="
+                      text-white/60
+
+                      text-[10px]
+                      sm:text-xs
+                    "
+                  >
                     Web • Mobile • IA
                   </span>
                 </span>
@@ -494,53 +714,42 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* MOUSE */}
+      {/* SCROLL INDICATOR */}
       <div
         className="
-    hidden md:flex
-    absolute
-    left-1/2
-    -translate-x-1/2
+          hidden
+          md:flex
 
-    bottom-10
-    md:bottom-12
-    lg:bottom-14
-    xl:bottom-14
+          absolute
 
-    z-20
-  "
+          left-1/2
+          -translate-x-1/2
+
+          bottom-10
+          md:bottom-12
+          lg:bottom-14
+          xl:bottom-14
+
+          z-20
+        "
       >
-        <MouseDiv>
-          <MouseIcon size={30} />
-        </MouseDiv>
+        <div
+          className="
+            flex
+            flex-col
+            items-center
+          "
+        >
+          <Mouse
+            size={30}
+            className="
+              text-primary
+
+              animate-bounce
+            "
+          />
+        </div>
       </div>
     </div>
   );
 }
-
-const MouseDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const MouseIcon = styled(Mouse)`
-  color: var(--color-primary);
-
-  animation: bounce 2s infinite ease-in-out;
-
-  @keyframes bounce {
-    0% {
-      transform: translateY(0);
-    }
-
-    50% {
-      transform: translateY(10px);
-      opacity: 0.7;
-    }
-
-    100% {
-      transform: translateY(0);
-    }
-  }
-`;
