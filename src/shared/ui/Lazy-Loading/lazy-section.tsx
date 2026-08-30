@@ -1,5 +1,12 @@
-import { useState, useEffect, useRef } from "react";
-import type { ReactNode } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+
+import type {
+  ReactNode,
+} from "react";
 
 interface LazySectionProps {
   children: ReactNode;
@@ -10,35 +17,65 @@ interface LazySectionProps {
 export function LazySection({
   children,
   fallback,
-  offset = "200px",
+  offset = "800px 0px",
 }: LazySectionProps) {
-  const [isVisible, setIsVisible] = useState(false);
+  const [
+    shouldRender,
+    setShouldRender,
+  ] = useState(false);
 
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef =
+    useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      {
-        rootMargin: offset,
-      },
-    );
+    const element =
+      containerRef.current;
 
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
+    if (
+      !element ||
+      shouldRender
+    ) {
+      return;
     }
 
-    return () => observer.disconnect();
-  }, [offset]);
+    const observer =
+      new IntersectionObserver(
+        ([entry]) => {
+          if (
+            !entry.isIntersecting
+          ) {
+            return;
+          }
+
+          setShouldRender(true);
+
+          observer.disconnect();
+        },
+        {
+          root: null,
+          rootMargin: offset,
+          threshold: 0,
+        },
+      );
+
+    observer.observe(element);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [
+    offset,
+    shouldRender,
+  ]);
 
   return (
-    <div ref={containerRef} className="w-full">
-      {isVisible ? children : fallback}
+    <div
+      ref={containerRef}
+      className="w-full"
+    >
+      {shouldRender
+        ? children
+        : fallback}
     </div>
   );
 }
