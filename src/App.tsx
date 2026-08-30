@@ -26,8 +26,8 @@ import {
 import AnalyticsLogin from "./analytics/pages/AnalyticsLogin";
 import AnalyticsDashboard from "./analytics/pages/AnalyticsDashboard";
 
-const MOBILE_LOADING_TIME = 800;
-const DESKTOP_LOADING_TIME = 1800;
+const MOBILE_LOADING_TIME = 250;
+const DESKTOP_LOADING_TIME = 400;
 
 const OLD_RENDER_DOMAIN =
   "portifoliomatheuslula.onrender.com";
@@ -81,7 +81,7 @@ export default function App() {
   }, [isOldRenderDomain]);
 
   /*
-   * Initialize analytics and loader.
+   * Initialize application.
    */
   useEffect(() => {
     if (isOldRenderDomain) {
@@ -99,6 +99,10 @@ export default function App() {
       return;
     }
 
+    /*
+     * Prevent scrolling while
+     * the initial loader is visible.
+     */
     document.body.style.overflow =
       "hidden";
 
@@ -117,8 +121,10 @@ export default function App() {
       );
 
     /*
-     * Analytics starts immediately
-     * and does not block the UI.
+     * Analytics starts immediately.
+     *
+     * It does not block the interface
+     * or control the loader.
      */
     async function startAnalytics() {
       try {
@@ -143,14 +149,14 @@ export default function App() {
 
     async function initializeApp() {
       /*
-       * Start analytics immediately.
+       * Start analytics immediately,
+       * independently from the loader.
        */
       void startAnalytics();
 
       /*
-       * Mobile gets a shorter loader
-       * because network/CPU conditions
-       * are generally more constrained.
+       * Loader is now only a very
+       * short visual transition.
        */
       const isMobile =
         window.matchMedia(
