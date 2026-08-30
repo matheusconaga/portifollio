@@ -26,7 +26,8 @@ import {
 import AnalyticsLogin from "./analytics/pages/AnalyticsLogin";
 import AnalyticsDashboard from "./analytics/pages/AnalyticsDashboard";
 
-const MIN_LOADING_TIME = 2000;
+const MOBILE_LOADING_TIME = 800;
+const DESKTOP_LOADING_TIME = 1800;
 
 const OLD_RENDER_DOMAIN =
   "portifoliomatheuslula.onrender.com";
@@ -83,10 +84,6 @@ export default function App() {
    * Initialize analytics and loader.
    */
   useEffect(() => {
-    /*
-     * Don't initialize anything
-     * while redirecting.
-     */
     if (isOldRenderDomain) {
       return;
     }
@@ -102,10 +99,6 @@ export default function App() {
       return;
     }
 
-    /*
-     * Prevent scrolling while
-     * the initial loader is visible.
-     */
     document.body.style.overflow =
       "hidden";
 
@@ -124,8 +117,8 @@ export default function App() {
       );
 
     /*
-     * Analytics starts immediately,
-     * but does not block the UI.
+     * Analytics starts immediately
+     * and does not block the UI.
      */
     async function startAnalytics() {
       try {
@@ -148,22 +141,29 @@ export default function App() {
       }
     }
 
-    /*
-     * Initial application startup.
-     */
     async function initializeApp() {
       /*
-       * Fire and forget:
-       * analytics starts immediately.
+       * Start analytics immediately.
        */
       void startAnalytics();
 
       /*
-       * Keep loader visible for
-       * the minimum animation time.
+       * Mobile gets a shorter loader
+       * because network/CPU conditions
+       * are generally more constrained.
        */
+      const isMobile =
+        window.matchMedia(
+          "(max-width: 767px)",
+        ).matches;
+
+      const loadingTime =
+        isMobile
+          ? MOBILE_LOADING_TIME
+          : DESKTOP_LOADING_TIME;
+
       await sleep(
-        MIN_LOADING_TIME,
+        loadingTime,
       );
 
       if (cancelled) {
@@ -190,9 +190,8 @@ export default function App() {
   ]);
 
   /*
-   * Prevent the old domain from
-   * briefly rendering the portfolio
-   * before redirecting.
+   * Prevent old domain from
+   * rendering before redirect.
    */
   if (isOldRenderDomain) {
     return null;
@@ -234,12 +233,8 @@ export default function App() {
   }
 
   /*
-   * Portfolio.
-   *
-   * Homepage is mounted immediately
-   * behind the loader so React and
-   * the browser can prepare the page
-   * while the loader is visible.
+   * Portfolio is mounted immediately
+   * behind the loader.
    */
   return (
     <>
