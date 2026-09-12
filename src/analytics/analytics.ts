@@ -1,6 +1,9 @@
 const API_URL =
   import.meta.env.VITE_ANALYTICS_API_URL;
 
+const ANALYTICS_HOSTNAME =
+  "matheusconaga.dev";
+
 const VISITOR_STORAGE_KEY =
   "portfolio_analytics_visitor_id";
 
@@ -29,9 +32,24 @@ let activityTrackingStarted =
   false;
 
 /*
+ * Analytics só funciona no domínio
+ * principal do portfólio.
+ */
+function shouldTrackAnalytics(): boolean {
+  return (
+    window.location.hostname ===
+    ANALYTICS_HOSTNAME
+  );
+}
+
+/*
  * Cria ou recupera uma sessão válida.
  */
 async function createOrRestoreSession(): Promise<void> {
+  if (!shouldTrackAnalytics()) {
+    return;
+  }
+
   const existingSessionId =
     sessionStorage.getItem(
       SESSION_STORAGE_KEY,
@@ -125,11 +143,12 @@ async function createOrRestoreSession(): Promise<void> {
 
 /*
  * Inicializa o analytics.
- *
- * Se duas chamadas acontecerem ao mesmo
- * tempo, ambas aguardam a mesma Promise.
  */
 export async function initializeAnalytics(): Promise<void> {
+  if (!shouldTrackAnalytics()) {
+    return;
+  }
+
   const existingSessionId =
     sessionStorage.getItem(
       SESSION_STORAGE_KEY,
@@ -140,10 +159,6 @@ export async function initializeAnalytics(): Promise<void> {
       LAST_ACTIVITY_STORAGE_KEY,
     );
 
-  /*
-   * Podemos retornar imediatamente
-   * se já existe uma sessão válida.
-   */
   if (
     existingSessionId &&
     lastActivity
@@ -160,10 +175,6 @@ export async function initializeAnalytics(): Promise<void> {
     }
   }
 
-  /*
-   * Se uma inicialização já está
-   * acontecendo, aguarda ela.
-   */
   if (initializationPromise) {
     return initializationPromise;
   }
@@ -187,10 +198,13 @@ export async function initializeAnalytics(): Promise<void> {
 }
 
 /*
- * Garante que exista uma sessão válida
- * antes de enviar eventos ou atividade.
+ * Garante que exista uma sessão válida.
  */
 async function getOrCreateSessionId(): Promise<string | null> {
+  if (!shouldTrackAnalytics()) {
+    return null;
+  }
+
   let sessionId =
     sessionStorage.getItem(
       SESSION_STORAGE_KEY,
@@ -234,6 +248,10 @@ export async function trackEvent(
     >;
   } = {},
 ): Promise<void> {
+  if (!shouldTrackAnalytics()) {
+    return;
+  }
+
   try {
     const sessionId =
       await getOrCreateSessionId();
@@ -278,11 +296,11 @@ export async function trackEvent(
  * Atualiza a atividade da sessão.
  */
 async function sendActivity(): Promise<void> {
+  if (!shouldTrackAnalytics()) {
+    return;
+  }
+
   try {
-    /*
-     * Não contabiliza atividade
-     * enquanto a aba estiver escondida.
-     */
     if (
       document.visibilityState !==
       "visible"
@@ -339,6 +357,10 @@ async function sendActivity(): Promise<void> {
  * da atividade da sessão.
  */
 export function startActivityTracking(): void {
+  if (!shouldTrackAnalytics()) {
+    return;
+  }
+
   if (
     activityTrackingStarted
   ) {
