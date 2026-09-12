@@ -30,24 +30,35 @@ export default defineConfig({
 
         /*
          * Mini Server PWA icons.
-         * Vamos criar esses arquivos
-         * no próximo passo.
          */
         'server-pwa-192x192.png',
         'server-pwa-512x512.png',
         'server-pwa-maskable-512x512.png',
 
         /*
+         * Analytics PWA icons.
+         */
+        'analytics-pwa-192x192.png',
+        'analytics-pwa-512x512.png',
+        'analytics-pwa-maskable-512x512.png',
+
+        /*
          * Custom manifests.
          */
         'manifest-portfolio.webmanifest',
         'manifest-server.webmanifest',
+        'manifest-analytics.webmanifest',
       ],
 
       /*
-       * Desativa o manifest automático
-       * porque teremos um manifest
-       * diferente para cada hostname.
+       * Desativa o manifest automático.
+       *
+       * O index.html escolhe o manifest
+       * correto de acordo com o hostname:
+       *
+       * matheusconaga.dev
+       * analytics.matheusconaga.dev
+       * server.matheusconaga.dev
        */
       manifest: false,
 
@@ -65,6 +76,10 @@ export default defineConfig({
           /\.pdf$/i,
         ],
 
+        /*
+         * Remove caches antigos quando
+         * uma versão nova do PWA é gerada.
+         */
         cleanupOutdatedCaches: true,
       },
     }),
@@ -79,4 +94,3 @@ export default defineConfig({
     },
   },
 })
-

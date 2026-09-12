@@ -68,10 +68,13 @@
         themeColor.name =
           "theme-color";
 
-        themeColor.content =
-          isServer
-            ? "#050816"
-            : "#080322";
+        if (isServer) {
+          themeColor.content =
+            "#050816";
+        } else {
+          themeColor.content =
+            "#080322";
+        }
 
         document.head.appendChild(
           themeColor,
@@ -79,9 +82,6 @@
 
         /*
          * Favicon
-         *
-         * Por enquanto todos usam
-         * a mesma identidade do portfólio.
          */
         const favicon =
           document.createElement(
@@ -89,20 +89,33 @@
           );
 
         favicon.rel = "icon";
-        favicon.type =
-          "image/svg+xml";
-        favicon.href =
-          "/logo_matheus.svg";
+
+        if (isServer) {
+          favicon.type =
+            "image/png";
+
+          favicon.href =
+            "/server-pwa-192x192.png";
+        } else if (isAnalytics) {
+          favicon.type =
+            "image/png";
+
+          favicon.href =
+            "/analytics-pwa-192x192.png";
+        } else {
+          favicon.type =
+            "image/svg+xml";
+
+          favicon.href =
+            "/logo_matheus.svg";
+        }
 
         document.head.appendChild(
           favicon,
         );
 
         /*
-         * Apple touch icon
-         *
-         * Também compartilhado entre
-         * Portfolio, Analytics e Server.
+         * Apple Touch Icon
          */
         const appleIcon =
           document.createElement(
@@ -112,8 +125,16 @@
         appleIcon.rel =
           "apple-touch-icon";
 
-        appleIcon.href =
-          "/apple-touch-icon.png";
+        if (isServer) {
+          appleIcon.href =
+            "/server-pwa-192x192.png";
+        } else if (isAnalytics) {
+          appleIcon.href =
+            "/analytics-pwa-192x192.png";
+        } else {
+          appleIcon.href =
+            "/apple-touch-icon.png";
+        }
 
         document.head.appendChild(
           appleIcon,
@@ -153,37 +174,45 @@
         document.head.appendChild(
           description,
         );
+
+        /*
+         * Portfolio-only preloads
+         */
+        if (
+          !isServer &&
+          !isAnalytics
+        ) {
+          const preloadImages = [
+            "/euxl.webp",
+            "/logo_matheus.webp",
+            "/eu_persona.webp",
+            "/chat-dev.webp",
+          ];
+
+          preloadImages.forEach(
+            (href) => {
+              const preload =
+                document.createElement(
+                  "link",
+                );
+
+              preload.rel =
+                "preload";
+
+              preload.as =
+                "image";
+
+              preload.href =
+                href;
+
+              document.head.appendChild(
+                preload,
+              );
+            },
+          );
+        }
       })();
     </script>
-
-    <!-- Portfolio preload -->
-    <link
-      rel="preload"
-      as="image"
-      href="/euxl.webp"
-      fetchpriority="high"
-    />
-
-    <link
-      rel="preload"
-      as="image"
-      href="/logo_matheus.webp"
-      fetchpriority="high"
-    />
-
-    <link
-      rel="preload"
-      as="image"
-      href="/eu_persona.webp"
-      fetchpriority="high"
-    />
-
-    <link
-      rel="preload"
-      as="image"
-      href="/chat-dev.webp"
-      fetchpriority="high"
-    />
   </head>
 
   <body>
