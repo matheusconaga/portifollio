@@ -4,35 +4,216 @@
 <head>
   <meta charset="UTF-8" />
 
-  <link href="https://fonts.googleapis.com/css2?family=Jockey+One&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
 
-  <link rel="icon" type="image/svg+xml" href="/logo_matheus.svg" />
+  <!-- Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Jockey+One&display=swap"
+    rel="stylesheet"
+  />
 
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <script>
+    (() => {
+      const hostname =
+        window.location.hostname;
 
-  <meta name="theme-color" content="#080322" />
+      const isServer =
+        hostname ===
+        "server.matheusconaga.dev";
 
-  <link rel="preload" as="image" href="/euxl.webp" fetchpriority="high" />
+      const isAnalytics =
+        hostname ===
+        "analytics.matheusconaga.dev";
 
-  <link rel="preload" as="image" href="/logo_matheus.webp" fetchpriority="high" />
+      /*
+       * Manifest
+       */
+      const manifest =
+        document.createElement("link");
 
-  <link rel="preload" as="image" href="/eu_persona.webp" fetchpriority="high" />
+      manifest.rel = "manifest";
 
-  <link rel="preload" as="image" href="/chat-dev.webp" fetchpriority="high" />
+      manifest.href = isServer
+        ? "/manifest-server.webmanifest"
+        : "/manifest-portfolio.webmanifest";
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      document.head.appendChild(
+        manifest,
+      );
 
-  <title>Matheus Lula | Fullstack Developer</title>
+      /*
+       * Theme color
+       */
+      const themeColor =
+        document.createElement("meta");
 
-  <meta name="description"
-    content="Matheus Lula — Desenvolvedor Fullstack. Projetos, produtos, startups e desenvolvimento de aplicações web e mobile." />
+      themeColor.name =
+        "theme-color";
+
+      themeColor.content =
+        isServer
+          ? "#050816"
+          : "#080322";
+
+      document.head.appendChild(
+        themeColor,
+      );
+
+      /*
+       * Favicon
+       */
+      const favicon =
+        document.createElement("link");
+
+      favicon.rel = "icon";
+
+      if (isServer) {
+        favicon.type =
+          "image/png";
+
+        favicon.href =
+          "/server-pwa-192x192.png";
+      } else {
+        favicon.type =
+          "image/svg+xml";
+
+        favicon.href =
+          "/logo_matheus.svg";
+      }
+
+      document.head.appendChild(
+        favicon,
+      );
+
+      /*
+       * Apple touch icon
+       */
+      const appleIcon =
+        document.createElement("link");
+
+      appleIcon.rel =
+        "apple-touch-icon";
+
+      appleIcon.href =
+        isServer
+          ? "/server-pwa-192x192.png"
+          : "/apple-touch-icon.png";
+
+      document.head.appendChild(
+        appleIcon,
+      );
+
+      /*
+       * Title + description
+       */
+      if (isServer) {
+        document.title =
+          "Mini Server | Matheus Lula";
+
+        const description =
+          document.createElement(
+            "meta",
+          );
+
+        description.name =
+          "description";
+
+        description.content =
+          "Painel privado de monitoramento do Mini Server.";
+
+        document.head.appendChild(
+          description,
+        );
+
+        return;
+      }
+
+      if (isAnalytics) {
+        document.title =
+          "Analytics | Matheus Lula";
+
+        const description =
+          document.createElement(
+            "meta",
+          );
+
+        description.name =
+          "description";
+
+        description.content =
+          "Dashboard privado de analytics do portfólio.";
+
+        document.head.appendChild(
+          description,
+        );
+
+        return;
+      }
+
+      document.title =
+        "Matheus Lula | Fullstack Developer";
+
+      const description =
+        document.createElement(
+          "meta",
+        );
+
+      description.name =
+        "description";
+
+      description.content =
+        "Matheus Lula — Desenvolvedor Fullstack. Projetos, produtos, startups e desenvolvimento de aplicações web e mobile.";
+
+      document.head.appendChild(
+        description,
+      );
+    })();
+  </script>
+
+  <!-- Portfolio preload -->
+  <link
+    rel="preload"
+    as="image"
+    href="/euxl.webp"
+    fetchpriority="high"
+  />
+
+  <link
+    rel="preload"
+    as="image"
+    href="/logo_matheus.webp"
+    fetchpriority="high"
+  />
+
+  <link
+    rel="preload"
+    as="image"
+    href="/eu_persona.webp"
+    fetchpriority="high"
+  />
+
+  <link
+    rel="preload"
+    as="image"
+    href="/chat-dev.webp"
+    fetchpriority="high"
+  />
 </head>
 
 <body>
   <div id="root"></div>
 
-  <script type="module" src="/src/main.tsx"></script>
+  <script
+    type="module"
+    src="/src/main.tsx"
+  ></script>
 </body>
 
 </html>

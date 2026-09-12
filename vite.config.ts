@@ -20,11 +20,46 @@ export default defineConfig({
       includeAssets: [
         'logo_matheus.svg',
         'apple-touch-icon.png',
+
+        /*
+         * Portfolio PWA icons.
+         */
+        'pwa-192x192.png',
+        'pwa-512x512.png',
+        'pwa-maskable-512x512.png',
+
+        /*
+         * Mini Server PWA icons.
+         * Vamos criar esses arquivos
+         * no próximo passo.
+         */
+        'server-pwa-192x192.png',
+        'server-pwa-512x512.png',
+        'server-pwa-maskable-512x512.png',
+
+        /*
+         * Custom manifests.
+         */
+        'manifest-portfolio.webmanifest',
+        'manifest-server.webmanifest',
       ],
 
-      workbox: {
-        navigateFallback: '/index.html',
+      /*
+       * Desativa o manifest automático
+       * porque teremos um manifest
+       * diferente para cada hostname.
+       */
+      manifest: false,
 
+      workbox: {
+        navigateFallback:
+          '/index.html',
+
+        /*
+         * Nunca deixa o Service Worker
+         * transformar chamadas da API
+         * em index.html.
+         */
         navigateFallbackDenylist: [
           /^\/api(?:\/|$)/,
           /\.pdf$/i,
@@ -32,47 +67,16 @@ export default defineConfig({
 
         cleanupOutdatedCaches: true,
       },
-
-      manifest: {
-        name: 'Matheus Lula | Fullstack Developer',
-        short_name: 'Matheus Lula',
-
-        description:
-          'Portfólio de Matheus Lula — Desenvolvedor Fullstack.',
-
-        theme_color: '#080322',
-        background_color: '#080322',
-
-        display: 'standalone',
-
-        start_url: '/',
-        scope: '/',
-
-        icons: [
-          {
-            src: '/pwa-192x192.png',
-            sizes: '192x192',
-            type: 'image/png',
-          },
-          {
-            src: '/pwa-512x512.png',
-            sizes: '512x512',
-            type: 'image/png',
-          },
-          {
-            src: '/pwa-maskable-512x512.png',
-            sizes: '512x512',
-            type: 'image/png',
-            purpose: 'maskable',
-          },
-        ],
-      },
     }),
   ],
 
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
+      '@': path.resolve(
+        __dirname,
+        './src',
+      ),
     },
   },
 })
+

@@ -23,7 +23,7 @@ import {
   checkAuth,
 } from "./analytics/auth";
 
-import AnalyticsLogin from "./analytics/pages/AnalyticsLogin";
+import AnalyticsLogin from "./shared/pages/PrivateLogin";
 import AnalyticsDashboard from "./analytics/pages/AnalyticsDashboard";
 import ServerDashboard from "./server/pages/ServerDashboard";
 
