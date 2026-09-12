@@ -35,20 +35,41 @@ const OLD_RENDER_DOMAIN =
 const NEW_DOMAIN =
   "matheusconaga.dev";
 
-export default function App() {
-  const isOldRenderDomain =
-    window.location.hostname ===
-    OLD_RENDER_DOMAIN;
+const ANALYTICS_DOMAIN =
+  "analytics.matheusconaga.dev";
 
+export default function App() {
+  const hostname =
+    window.location.hostname;
+
+  const pathname =
+    window.location.pathname;
+
+  const isOldRenderDomain =
+    hostname === OLD_RENDER_DOMAIN;
+
+  /*
+   * Novo domínio do dashboard.
+   */
+  const isAnalyticsDomain =
+    hostname === ANALYTICS_DOMAIN;
+
+  /*
+   * Mantemos /analytics funcionando
+   * durante a migração e no ambiente local.
+   */
   const isAnalyticsRoute =
-    window.location.pathname ===
-    "/analytics";
+    pathname === "/analytics";
+
+  const isAnalyticsApp =
+    isAnalyticsDomain ||
+    isAnalyticsRoute;
 
   const [
     isAuthenticated,
     setIsAuthenticated,
   ] = useState<boolean | null>(
-    isAnalyticsRoute
+    isAnalyticsApp
       ? null
       : false,
   );
@@ -57,7 +78,7 @@ export default function App() {
     isLoading,
     setIsLoading,
   ] = useState(
-    !isAnalyticsRoute,
+    !isAnalyticsApp,
   );
 
   /*
@@ -91,7 +112,7 @@ export default function App() {
     /*
      * Analytics dashboard authentication.
      */
-    if (isAnalyticsRoute) {
+    if (isAnalyticsApp) {
       void checkAuth().then(
         setIsAuthenticated,
       );
@@ -147,11 +168,6 @@ export default function App() {
        */
       void startAnalytics();
 
-      /*
-       * Mobile gets a shorter loader
-       * because network/CPU conditions
-       * are generally more constrained.
-       */
       const isMobile =
         window.matchMedia(
           "(max-width: 767px)",
@@ -185,7 +201,7 @@ export default function App() {
         "auto";
     };
   }, [
-    isAnalyticsRoute,
+    isAnalyticsApp,
     isOldRenderDomain,
   ]);
 
@@ -197,10 +213,8 @@ export default function App() {
     return null;
   }
 
-  /*
-   * Analytics route.
-   */
-  if (isAnalyticsRoute) {
+
+  if (isAnalyticsApp) {
     if (
       isAuthenticated === null
     ) {
@@ -233,8 +247,7 @@ export default function App() {
   }
 
   /*
-   * Portfolio is mounted immediately
-   * behind the loader.
+   * Portfolio.
    */
   return (
     <>
