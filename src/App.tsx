@@ -25,6 +25,7 @@ import {
 
 import AnalyticsLogin from "./analytics/pages/AnalyticsLogin";
 import AnalyticsDashboard from "./analytics/pages/AnalyticsDashboard";
+import ServerDashboard from "./server/pages/ServerDashboard";
 
 const MIN_LOADING_TIME = 2000;
 const MAX_ANALYTICS_WAIT = 4000;
@@ -38,6 +39,9 @@ const WWW_DOMAIN =
 const ANALYTICS_DOMAIN =
   "analytics.matheusconaga.dev";
 
+const SERVER_DOMAIN =
+  "server.matheusconaga.dev";
+
 export default function App() {
   const hostname =
     window.location.hostname;
@@ -46,33 +50,37 @@ export default function App() {
     window.location.pathname;
 
   /*
-   * Analytics dashboard running
-   * on its dedicated subdomain.
+   * Production subdomains.
    */
   const isAnalyticsDomain =
     hostname === ANALYTICS_DOMAIN;
 
+  const isServerDomain =
+    hostname === SERVER_DOMAIN;
+
   /*
-   * Keep /analytics available
-   * locally for development.
+   * Local development routes.
    */
+  const isLocalhost =
+    hostname === "localhost" ||
+    hostname === "127.0.0.1";
+
   const isLocalAnalyticsRoute =
-    (
-      hostname === "localhost" ||
-      hostname === "127.0.0.1"
-    ) &&
+    isLocalhost &&
     (
       pathname === "/analytics" ||
       pathname === "/analytics/"
     );
 
+  const isLocalServerRoute =
+    isLocalhost &&
+    (
+      pathname === "/server" ||
+      pathname === "/server/"
+    );
+
   /*
-   * Old production route.
-   *
-   * matheusconaga.dev/analytics
-   * now redirects to:
-   *
-   * analytics.matheusconaga.dev
+   * Legacy Analytics route.
    */
   const isLegacyAnalyticsRoute =
     (
@@ -84,19 +92,27 @@ export default function App() {
       pathname === "/analytics/"
     );
 
-  /*
-   * Determines whether the current
-   * page is the Analytics application.
-   */
   const isAnalyticsApp =
     isAnalyticsDomain ||
     isLocalAnalyticsRoute;
+
+  const isServerApp =
+    isServerDomain ||
+    isLocalServerRoute;
+
+  /*
+   * Both dashboards are private
+   * and use the same authentication.
+   */
+  const isPrivateApp =
+    isAnalyticsApp ||
+    isServerApp;
 
   const [
     isAuthenticated,
     setIsAuthenticated,
   ] = useState<boolean | null>(
-    isAnalyticsApp
+    isPrivateApp
       ? null
       : false,
   );
@@ -105,13 +121,12 @@ export default function App() {
     isLoading,
     setIsLoading,
   ] = useState(
-    !isAnalyticsApp &&
+    !isPrivateApp &&
     !isLegacyAnalyticsRoute,
   );
 
   /*
-   * Redirect the old analytics route
-   * to the dedicated subdomain.
+   * Redirect old Analytics route.
    */
   useEffect(() => {
     if (
@@ -133,10 +148,6 @@ export default function App() {
   ]);
 
   useEffect(() => {
-    /*
-     * The old /analytics route
-     * is waiting for redirect.
-     */
     if (
       isLegacyAnalyticsRoute
     ) {
@@ -144,10 +155,9 @@ export default function App() {
     }
 
     /*
-     * Analytics dashboard
-     * authentication.
+     * Private dashboards authentication.
      */
-    if (isAnalyticsApp) {
+    if (isPrivateApp) {
       void checkAuth().then(
         setIsAuthenticated,
       );
@@ -238,13 +248,12 @@ export default function App() {
         "auto";
     };
   }, [
-    isAnalyticsApp,
+    isPrivateApp,
     isLegacyAnalyticsRoute,
   ]);
 
   /*
-   * Do not render anything while
-   * redirecting the old route.
+   * Wait for redirect.
    */
   if (
     isLegacyAnalyticsRoute
@@ -253,9 +262,9 @@ export default function App() {
   }
 
   /*
-   * Analytics application.
+   * Private applications.
    */
-  if (isAnalyticsApp) {
+  if (isPrivateApp) {
     if (
       isAuthenticated === null
     ) {
@@ -276,6 +285,24 @@ export default function App() {
       );
     }
 
+    /*
+     * Server dashboard.
+     */
+    if (isServerApp) {
+      return (
+        <ServerDashboard
+          onLogout={() =>
+            setIsAuthenticated(
+              false,
+            )
+          }
+        />
+      );
+    }
+
+    /*
+     * Analytics dashboard.
+     */
     return (
       <AnalyticsDashboard
         onLogout={() =>
@@ -306,4 +333,3 @@ export default function App() {
     </>
   );
 }
-
