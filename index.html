@@ -1,122 +1,127 @@
 <!doctype html>
 <html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
 
-<head>
-  <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  />
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jockey+One&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- Fonts -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Jockey+One&display=swap"
-    rel="stylesheet"
-  />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
-  <script>
-    (() => {
-      const hostname =
-        window.location.hostname;
+    <script>
+      (() => {
+        const hostname =
+          window.location.hostname;
 
-      const isServer =
-        hostname ===
-        "server.matheusconaga.dev";
+        const isServer =
+          hostname ===
+          "server.matheusconaga.dev";
 
-      const isAnalytics =
-        hostname ===
-        "analytics.matheusconaga.dev";
+        const isAnalytics =
+          hostname ===
+          "analytics.matheusconaga.dev";
 
-      /*
-       * Manifest
-       */
-      const manifest =
-        document.createElement("link");
+        /*
+         * Manifest
+         */
+        const manifest =
+          document.createElement(
+            "link",
+          );
 
-      manifest.rel = "manifest";
+        manifest.rel = "manifest";
 
-      manifest.href = isServer
-        ? "/manifest-server.webmanifest"
-        : "/manifest-portfolio.webmanifest";
+        if (isServer) {
+          manifest.href =
+            "/manifest-server.webmanifest";
+        } else if (isAnalytics) {
+          manifest.href =
+            "/manifest-analytics.webmanifest";
+        } else {
+          manifest.href =
+            "/manifest-portfolio.webmanifest";
+        }
 
-      document.head.appendChild(
-        manifest,
-      );
+        document.head.appendChild(
+          manifest,
+        );
 
-      /*
-       * Theme color
-       */
-      const themeColor =
-        document.createElement("meta");
+        /*
+         * Theme color
+         */
+        const themeColor =
+          document.createElement(
+            "meta",
+          );
 
-      themeColor.name =
-        "theme-color";
+        themeColor.name =
+          "theme-color";
 
-      themeColor.content =
-        isServer
-          ? "#050816"
-          : "#080322";
+        themeColor.content =
+          isServer
+            ? "#050816"
+            : "#080322";
 
-      document.head.appendChild(
-        themeColor,
-      );
+        document.head.appendChild(
+          themeColor,
+        );
 
-      /*
-       * Favicon
-       */
-      const favicon =
-        document.createElement("link");
+        /*
+         * Favicon
+         *
+         * Por enquanto todos usam
+         * a mesma identidade do portfólio.
+         */
+        const favicon =
+          document.createElement(
+            "link",
+          );
 
-      favicon.rel = "icon";
-
-      if (isServer) {
-        favicon.type =
-          "image/png";
-
-        favicon.href =
-          "/server-pwa-192x192.png";
-      } else {
+        favicon.rel = "icon";
         favicon.type =
           "image/svg+xml";
-
         favicon.href =
           "/logo_matheus.svg";
-      }
 
-      document.head.appendChild(
-        favicon,
-      );
+        document.head.appendChild(
+          favicon,
+        );
 
-      /*
-       * Apple touch icon
-       */
-      const appleIcon =
-        document.createElement("link");
+        /*
+         * Apple touch icon
+         *
+         * Também compartilhado entre
+         * Portfolio, Analytics e Server.
+         */
+        const appleIcon =
+          document.createElement(
+            "link",
+          );
 
-      appleIcon.rel =
-        "apple-touch-icon";
+        appleIcon.rel =
+          "apple-touch-icon";
 
-      appleIcon.href =
-        isServer
-          ? "/server-pwa-192x192.png"
-          : "/apple-touch-icon.png";
+        appleIcon.href =
+          "/apple-touch-icon.png";
 
-      document.head.appendChild(
-        appleIcon,
-      );
+        document.head.appendChild(
+          appleIcon,
+        );
 
-      /*
-       * Title + description
-       */
-      if (isServer) {
-        document.title =
-          "Mini Server | Matheus Lula";
-
+        /*
+         * Title + description
+         */
         const description =
           document.createElement(
             "meta",
@@ -125,95 +130,68 @@
         description.name =
           "description";
 
-        description.content =
-          "Painel privado de monitoramento do Mini Server.";
+        if (isServer) {
+          document.title =
+            "Mini Server | Matheus Lula";
+
+          description.content =
+            "Painel privado de monitoramento do Mini Server.";
+        } else if (isAnalytics) {
+          document.title =
+            "Analytics | Matheus Lula";
+
+          description.content =
+            "Dashboard privado de analytics do portfólio.";
+        } else {
+          document.title =
+            "Matheus Lula | Fullstack Developer";
+
+          description.content =
+            "Matheus Lula — Desenvolvedor Fullstack. Projetos, produtos, startups e desenvolvimento de aplicações web e mobile.";
+        }
 
         document.head.appendChild(
           description,
         );
+      })();
+    </script>
 
-        return;
-      }
+    <!-- Portfolio preload -->
+    <link
+      rel="preload"
+      as="image"
+      href="/euxl.webp"
+      fetchpriority="high"
+    />
 
-      if (isAnalytics) {
-        document.title =
-          "Analytics | Matheus Lula";
+    <link
+      rel="preload"
+      as="image"
+      href="/logo_matheus.webp"
+      fetchpriority="high"
+    />
 
-        const description =
-          document.createElement(
-            "meta",
-          );
+    <link
+      rel="preload"
+      as="image"
+      href="/eu_persona.webp"
+      fetchpriority="high"
+    />
 
-        description.name =
-          "description";
+    <link
+      rel="preload"
+      as="image"
+      href="/chat-dev.webp"
+      fetchpriority="high"
+    />
+  </head>
 
-        description.content =
-          "Dashboard privado de analytics do portfólio.";
+  <body>
+    <div id="root"></div>
 
-        document.head.appendChild(
-          description,
-        );
-
-        return;
-      }
-
-      document.title =
-        "Matheus Lula | Fullstack Developer";
-
-      const description =
-        document.createElement(
-          "meta",
-        );
-
-      description.name =
-        "description";
-
-      description.content =
-        "Matheus Lula — Desenvolvedor Fullstack. Projetos, produtos, startups e desenvolvimento de aplicações web e mobile.";
-
-      document.head.appendChild(
-        description,
-      );
-    })();
-  </script>
-
-  <!-- Portfolio preload -->
-  <link
-    rel="preload"
-    as="image"
-    href="/euxl.webp"
-    fetchpriority="high"
-  />
-
-  <link
-    rel="preload"
-    as="image"
-    href="/logo_matheus.webp"
-    fetchpriority="high"
-  />
-
-  <link
-    rel="preload"
-    as="image"
-    href="/eu_persona.webp"
-    fetchpriority="high"
-  />
-
-  <link
-    rel="preload"
-    as="image"
-    href="/chat-dev.webp"
-    fetchpriority="high"
-  />
-</head>
-
-<body>
-  <div id="root"></div>
-
-  <script
-    type="module"
-    src="/src/main.tsx"
-  ></script>
-</body>
-
+    <script
+      type="module"
+      src="/src/main.tsx"
+    ></script>
+  </body>
 </html>

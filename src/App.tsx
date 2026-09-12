@@ -1,17 +1,10 @@
-import {
-  useEffect,
-  useState,
-} from "react";
+import { useEffect, useState } from "react";
 
 import Homepage from "./pages/home";
 
-import {
-  MainLayout,
-} from "./app/layout/MainLayout";
+import { MainLayout } from "./app/layout/MainLayout";
 
-import {
-  AppLoader,
-} from "./shared/ui/app-loader";
+import { AppLoader } from "./shared/ui/app-loader";
 
 import {
   initializeAnalytics,
@@ -19,138 +12,110 @@ import {
   trackEvent,
 } from "./analytics/analytics";
 
-import {
-  checkAuth,
-} from "./analytics/auth";
+import { checkAuth } from "./analytics/auth";
 
-import AnalyticsLogin from "./shared/pages/PrivateLogin";
+import PrivateLogin from "./shared/pages/PrivateLogin";
 import AnalyticsDashboard from "./analytics/pages/AnalyticsDashboard";
 import ServerDashboard from "./server/pages/ServerDashboard";
 
 const MIN_LOADING_TIME = 2000;
 const MAX_ANALYTICS_WAIT = 4000;
 
-const MAIN_DOMAIN =
-  "matheusconaga.dev";
+const MAIN_DOMAIN = "matheusconaga.dev";
 
-const WWW_DOMAIN =
-  "www.matheusconaga.dev";
+const WWW_DOMAIN = "www.matheusconaga.dev";
 
-const ANALYTICS_DOMAIN =
-  "analytics.matheusconaga.dev";
+const ANALYTICS_DOMAIN = "analytics.matheusconaga.dev";
 
-const SERVER_DOMAIN =
-  "server.matheusconaga.dev";
+const SERVER_DOMAIN = "server.matheusconaga.dev";
 
 export default function App() {
-  const hostname =
-    window.location.hostname;
+  const hostname = window.location.hostname;
 
-  const pathname =
-    window.location.pathname;
+  const pathname = window.location.pathname;
 
   /*
    * Production subdomains.
    */
-  const isAnalyticsDomain =
-    hostname === ANALYTICS_DOMAIN;
+  const isAnalyticsDomain = hostname === ANALYTICS_DOMAIN;
 
-  const isServerDomain =
-    hostname === SERVER_DOMAIN;
+  const isServerDomain = hostname === SERVER_DOMAIN;
 
   /*
-   * Local development routes.
+   * Local development.
    */
-  const isLocalhost =
-    hostname === "localhost" ||
-    hostname === "127.0.0.1";
+  const isLocalhost = hostname === "localhost" || hostname === "127.0.0.1";
 
   const isLocalAnalyticsRoute =
-    isLocalhost &&
-    (
-      pathname === "/analytics" ||
-      pathname === "/analytics/"
-    );
+    isLocalhost && (pathname === "/analytics" || pathname === "/analytics/");
 
   const isLocalServerRoute =
-    isLocalhost &&
-    (
-      pathname === "/server" ||
-      pathname === "/server/"
-    );
+    isLocalhost && (pathname === "/server" || pathname === "/server/");
 
   /*
-   * Legacy Analytics route.
+   * Main portfolio domain.
+   */
+  const isMainDomain = hostname === MAIN_DOMAIN || hostname === WWW_DOMAIN;
+
+  /*
+   * Legacy private routes.
+   *
+   * matheusconaga.dev/analytics
+   * → analytics.matheusconaga.dev
+   *
+   * matheusconaga.dev/server
+   * → server.matheusconaga.dev
    */
   const isLegacyAnalyticsRoute =
-    (
-      hostname === MAIN_DOMAIN ||
-      hostname === WWW_DOMAIN
-    ) &&
-    (
-      pathname === "/analytics" ||
-      pathname === "/analytics/"
-    );
+    isMainDomain && (pathname === "/analytics" || pathname === "/analytics/");
 
-  const isAnalyticsApp =
-    isAnalyticsDomain ||
-    isLocalAnalyticsRoute;
+  const isLegacyServerRoute =
+    isMainDomain && (pathname === "/server" || pathname === "/server/");
 
-  const isServerApp =
-    isServerDomain ||
-    isLocalServerRoute;
+  const isLegacyPrivateRoute = isLegacyAnalyticsRoute || isLegacyServerRoute;
 
   /*
-   * Both dashboards are private
-   * and use the same authentication.
+   * Private applications.
    */
-  const isPrivateApp =
-    isAnalyticsApp ||
-    isServerApp;
+  const isAnalyticsApp = isAnalyticsDomain || isLocalAnalyticsRoute;
 
-  const [
-    isAuthenticated,
-    setIsAuthenticated,
-  ] = useState<boolean | null>(
-    isPrivateApp
-      ? null
-      : false,
+  const isServerApp = isServerDomain || isLocalServerRoute;
+
+  const isPrivateApp = isAnalyticsApp || isServerApp;
+
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(
+    isPrivateApp ? null : false,
   );
 
-  const [
-    isLoading,
-    setIsLoading,
-  ] = useState(
-    !isPrivateApp &&
-    !isLegacyAnalyticsRoute,
+  const [isLoading, setIsLoading] = useState(
+    !isPrivateApp && !isLegacyPrivateRoute,
   );
 
   /*
-   * Redirect old Analytics route.
+   * Redirect legacy private routes
+   * to their respective subdomains.
    */
   useEffect(() => {
-    if (
-      !isLegacyAnalyticsRoute
-    ) {
+    if (!isLegacyPrivateRoute) {
       return;
     }
 
+    const targetDomain = isLegacyServerRoute ? SERVER_DOMAIN : ANALYTICS_DOMAIN;
+
     const newUrl =
-      `https://${ANALYTICS_DOMAIN}` +
+      `https://${targetDomain}` +
       `${window.location.search}` +
       `${window.location.hash}`;
 
-    window.location.replace(
-      newUrl,
-    );
-  }, [
-    isLegacyAnalyticsRoute,
-  ]);
+    window.location.replace(newUrl);
+  }, [isLegacyPrivateRoute, isLegacyServerRoute]);
 
   useEffect(() => {
-    if (
-      isLegacyAnalyticsRoute
-    ) {
+    /*
+     * Don't initialize anything
+     * while waiting for redirect.
+     */
+    if (isLegacyPrivateRoute) {
       return;
     }
 
@@ -158,9 +123,7 @@ export default function App() {
      * Private dashboards authentication.
      */
     if (isPrivateApp) {
-      void checkAuth().then(
-        setIsAuthenticated,
-      );
+      void checkAuth().then(setIsAuthenticated);
 
       return;
     }
@@ -168,22 +131,14 @@ export default function App() {
     /*
      * Portfolio loading.
      */
-    document.body.style.overflow =
-      "hidden";
+    document.body.style.overflow = "hidden";
 
     let cancelled = false;
 
-    const sleep = (
-      milliseconds: number,
-    ) =>
-      new Promise<void>(
-        (resolve) => {
-          setTimeout(
-            resolve,
-            milliseconds,
-          );
-        },
-      );
+    const sleep = (milliseconds: number) =>
+      new Promise<void>((resolve) => {
+        setTimeout(resolve, milliseconds);
+      });
 
     async function startAnalytics() {
       try {
@@ -191,42 +146,25 @@ export default function App() {
 
         startActivityTracking();
 
-        await trackEvent(
-          "page_view",
-          {
-            page:
-              window.location.pathname,
-          },
-        );
+        await trackEvent("page_view", {
+          page: window.location.pathname,
+        });
       } catch (error) {
-        console.error(
-          "Failed to start analytics:",
-          error,
-        );
+        console.error("Failed to start analytics:", error);
       }
     }
 
     async function initializeApp() {
-      const minimumLoading =
-        sleep(
-          MIN_LOADING_TIME,
-        );
+      const minimumLoading = sleep(MIN_LOADING_TIME);
 
-      const analytics =
-        startAnalytics();
+      const analytics = startAnalytics();
 
-      const analyticsTimeout =
-        sleep(
-          MAX_ANALYTICS_WAIT,
-        );
+      const analyticsTimeout = sleep(MAX_ANALYTICS_WAIT);
 
       await Promise.all([
         minimumLoading,
 
-        Promise.race([
-          analytics,
-          analyticsTimeout,
-        ]),
+        Promise.race([analytics, analyticsTimeout]),
       ]);
 
       if (cancelled) {
@@ -235,8 +173,7 @@ export default function App() {
 
       setIsLoading(false);
 
-      document.body.style.overflow =
-        "auto";
+      document.body.style.overflow = "auto";
     }
 
     void initializeApp();
@@ -244,20 +181,14 @@ export default function App() {
     return () => {
       cancelled = true;
 
-      document.body.style.overflow =
-        "auto";
+      document.body.style.overflow = "auto";
     };
-  }, [
-    isPrivateApp,
-    isLegacyAnalyticsRoute,
-  ]);
+  }, [isPrivateApp, isLegacyPrivateRoute]);
 
   /*
    * Wait for redirect.
    */
-  if (
-    isLegacyAnalyticsRoute
-  ) {
+  if (isLegacyPrivateRoute) {
     return null;
   }
 
@@ -265,21 +196,19 @@ export default function App() {
    * Private applications.
    */
   if (isPrivateApp) {
-    if (
-      isAuthenticated === null
-    ) {
+    if (isAuthenticated === null) {
       return null;
     }
 
-    if (
-      !isAuthenticated
-    ) {
+    if (!isAuthenticated) {
       return (
-        <AnalyticsLogin
-          onAuthenticated={() =>
-            setIsAuthenticated(
-              true,
-            )
+        <PrivateLogin
+          onAuthenticated={() => setIsAuthenticated(true)}
+          title={isServerApp ? "Mini Server" : "Analytics"}
+          description={
+            isServerApp
+              ? "Entre para acessar o monitoramento do servidor."
+              : "Entre para visualizar as métricas do portfólio."
           }
         />
       );
@@ -289,29 +218,13 @@ export default function App() {
      * Server dashboard.
      */
     if (isServerApp) {
-      return (
-        <ServerDashboard
-          onLogout={() =>
-            setIsAuthenticated(
-              false,
-            )
-          }
-        />
-      );
+      return <ServerDashboard onLogout={() => setIsAuthenticated(false)} />;
     }
 
     /*
      * Analytics dashboard.
      */
-    return (
-      <AnalyticsDashboard
-        onLogout={() =>
-          setIsAuthenticated(
-            false,
-          )
-        }
-      />
-    );
+    return <AnalyticsDashboard onLogout={() => setIsAuthenticated(false)} />;
   }
 
   /*
@@ -319,11 +232,7 @@ export default function App() {
    */
   return (
     <>
-      <AppLoader
-        isLoading={
-          isLoading
-        }
-      />
+      <AppLoader isLoading={isLoading} />
 
       {!isLoading && (
         <MainLayout>

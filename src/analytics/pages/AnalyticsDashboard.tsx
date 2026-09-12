@@ -41,6 +41,18 @@ interface AnalyticsDashboardProps {
   onLogout: () => void;
 }
 
+interface BeforeInstallPromptEvent
+  extends Event {
+  prompt: () => Promise<void>;
+
+  userChoice: Promise<{
+    outcome:
+      | "accepted"
+      | "dismissed";
+    platform: string;
+  }>;
+}
+
 type TimelineMetric =
   | "visitors"
   | "sessions"
@@ -52,6 +64,24 @@ interface MetricCardProps {
   value: number | string;
   description?: string;
   comparison?: number | null;
+}
+
+function InstallIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className="h-4 w-4"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M12 3v12" />
+      <path d="m7 10 5 5 5-5" />
+      <path d="M5 21h14" />
+    </svg>
+  );
 }
 
 function MetricCard({
@@ -99,7 +129,10 @@ function MetricCard({
               : isNegative
                 ? "↓"
                 : "→"}{" "}
-            {Math.abs(comparison).toFixed(1)}%
+            {Math.abs(
+              comparison,
+            ).toFixed(1)}
+            %
           </span>
 
           <span className="text-zinc-600">
@@ -138,31 +171,50 @@ function LoadingLargeCard() {
 export default function AnalyticsDashboard({
   onLogout,
 }: AnalyticsDashboardProps) {
-  const [period, setPeriod] =
-    useState<AnalyticsPeriod>("7d");
+  const [
+    period,
+    setPeriod,
+  ] =
+    useState<AnalyticsPeriod>(
+      "7d",
+    );
 
-  const [stats, setStats] =
+  const [
+    stats,
+    setStats,
+  ] =
     useState<AnalyticsStats | null>(
       null,
     );
 
-  const [visitors, setVisitors] =
+  const [
+    visitors,
+    setVisitors,
+  ] =
     useState<VisitorAnalytics | null>(
       null,
     );
 
-  const [projects, setProjects] =
+  const [
+    projects,
+    setProjects,
+  ] =
     useState<ProjectsAnalyticsResponse | null>(
       null,
     );
 
-  const [funnel, setFunnel] =
+  const [
+    funnel,
+    setFunnel,
+  ] =
     useState<AnalyticsFunnel | null>(
       null,
     );
 
-
-  const [timeline, setTimeline] =
+  const [
+    timeline,
+    setTimeline,
+  ] =
     useState<AnalyticsTimelineResponse | null>(
       null,
     );
@@ -170,107 +222,237 @@ export default function AnalyticsDashboard({
   const [
     deviceAnalytics,
     setDeviceAnalytics,
-  ] = useState<DeviceAnalyticsResponse | null>(
-    null,
-  );
+  ] =
+    useState<DeviceAnalyticsResponse | null>(
+      null,
+    );
 
   const [
-  engagement,
-  setEngagement,
-] =
-  useState<EngagementAnalyticsResponse | null>(
-    null,
-  );
+    engagement,
+    setEngagement,
+  ] =
+    useState<EngagementAnalyticsResponse | null>(
+      null,
+    );
 
   const [
     timelineMetric,
     setTimelineMetric,
-  ] = useState<TimelineMetric>(
-    "visitors",
-  );
+  ] =
+    useState<TimelineMetric>(
+      "visitors",
+    );
 
   const [
     trafficSources,
     setTrafficSources,
-  ] = useState<TrafficSourcesResponse | null>(
-    null,
-  );
+  ] =
+    useState<TrafficSourcesResponse | null>(
+      null,
+    );
 
   const [
-  hourAnalytics,
-  setHourAnalytics,
-] = useState<HourAnalyticsResponse | null>(
-  null,
-);
+    hourAnalytics,
+    setHourAnalytics,
+  ] =
+    useState<HourAnalyticsResponse | null>(
+      null,
+    );
 
-  const [loading, setLoading] =
+  const [
+    loading,
+    setLoading,
+  ] =
     useState(true);
 
-  const [error, setError] =
+  const [
+    error,
+    setError,
+  ] =
     useState("");
 
-  const loadDashboard = useCallback(
-    async () => {
-      setLoading(true);
-      setError("");
+  const [
+    installPrompt,
+    setInstallPrompt,
+  ] =
+    useState<BeforeInstallPromptEvent | null>(
+      null,
+    );
 
-      try {
-        const [
-          statsData,
-          visitorsData,
-          projectsData,
-          funnelData,
-          timelineData,
-          trafficSourcesData,
-          deviceAnalyticsData,
-          hourAnalyticsData,
-          engagementData,
-        ] = await Promise.all([
-          getStats(period),
-          getVisitors(period),
-          getProjects(period),
-          getFunnel(period),
-          getTimeline(period),
-          getReferrers(period),
-          getDevices(period),
-          getHours(period),
-          getEngagement(period),
-        ]);
+  const [
+    isInstalled,
+    setIsInstalled,
+  ] =
+    useState(false);
 
-        setStats(statsData);
-        setVisitors(visitorsData);
-        setProjects(projectsData);
-        setFunnel(funnelData);
-        setTimeline(timelineData);  
-        setTrafficSources(trafficSourcesData);
-        setDeviceAnalytics(deviceAnalyticsData);
-        setHourAnalytics(hourAnalyticsData);
-        setEngagement(engagementData);
-      } catch (error) {
-        if (
-          error instanceof Error &&
-          error.message ===
-            "AUTHENTICATION_REQUIRED"
-        ) {
-          onLogout();
-          return;
+  const loadDashboard =
+    useCallback(
+      async () => {
+        setLoading(true);
+        setError("");
+
+        try {
+          const [
+            statsData,
+            visitorsData,
+            projectsData,
+            funnelData,
+            timelineData,
+            trafficSourcesData,
+            deviceAnalyticsData,
+            hourAnalyticsData,
+            engagementData,
+          ] =
+            await Promise.all([
+              getStats(period),
+              getVisitors(period),
+              getProjects(period),
+              getFunnel(period),
+              getTimeline(period),
+              getReferrers(period),
+              getDevices(period),
+              getHours(period),
+              getEngagement(
+                period,
+              ),
+            ]);
+
+          setStats(statsData);
+
+          setVisitors(
+            visitorsData,
+          );
+
+          setProjects(
+            projectsData,
+          );
+
+          setFunnel(
+            funnelData,
+          );
+
+          setTimeline(
+            timelineData,
+          );
+
+          setTrafficSources(
+            trafficSourcesData,
+          );
+
+          setDeviceAnalytics(
+            deviceAnalyticsData,
+          );
+
+          setHourAnalytics(
+            hourAnalyticsData,
+          );
+
+          setEngagement(
+            engagementData,
+          );
+        } catch (error) {
+          if (
+            error instanceof
+              Error &&
+            error.message ===
+              "AUTHENTICATION_REQUIRED"
+          ) {
+            onLogout();
+            return;
+          }
+
+          console.error(
+            error,
+          );
+
+          setError(
+            "Não foi possível carregar os dados.",
+          );
+        } finally {
+          setLoading(false);
         }
-
-        console.error(error);
-
-        setError(
-          "Não foi possível carregar os dados.",
-        );
-      } finally {
-        setLoading(false);
-      }
-    },
-    [period, onLogout],
-  );
+      },
+      [
+        period,
+        onLogout,
+      ],
+    );
 
   useEffect(() => {
-    loadDashboard();
+    void loadDashboard();
   }, [loadDashboard]);
+
+  useEffect(() => {
+    const navigatorWithStandalone =
+      navigator as Navigator & {
+        standalone?: boolean;
+      };
+
+    const standalone =
+      window.matchMedia(
+        "(display-mode: standalone)",
+      ).matches ||
+      navigatorWithStandalone
+        .standalone === true;
+
+    setIsInstalled(
+      standalone,
+    );
+
+    function handleBeforeInstallPrompt(
+      event: Event,
+    ) {
+      event.preventDefault();
+
+      setInstallPrompt(
+        event as BeforeInstallPromptEvent,
+      );
+    }
+
+    function handleAppInstalled() {
+      setIsInstalled(true);
+
+      setInstallPrompt(
+        null,
+      );
+    }
+
+    window.addEventListener(
+      "beforeinstallprompt",
+      handleBeforeInstallPrompt,
+    );
+
+    window.addEventListener(
+      "appinstalled",
+      handleAppInstalled,
+    );
+
+    return () => {
+      window.removeEventListener(
+        "beforeinstallprompt",
+        handleBeforeInstallPrompt,
+      );
+
+      window.removeEventListener(
+        "appinstalled",
+        handleAppInstalled,
+      );
+    };
+  }, []);
+
+  async function handleInstall() {
+    if (!installPrompt) {
+      return;
+    }
+
+    await installPrompt.prompt();
+
+    await installPrompt.userChoice;
+
+    setInstallPrompt(
+      null,
+    );
+  }
 
   async function handleLogout() {
     await logout();
@@ -289,25 +471,47 @@ export default function AnalyticsDashboard({
             </p>
 
             <h1 className="mt-1 text-3xl font-semibold tracking-tight">
-              Analytics do Portfólio
+              Analytics do
+              Portfólio
             </h1>
 
             <p className="mt-2 text-sm text-zinc-400">
-              Acompanhe como seu portfólio
-              está sendo utilizado.
+              Acompanhe como seu
+              portfólio está sendo
+              utilizado.
             </p>
           </div>
 
           <div className="flex flex-wrap items-center gap-3">
             <PeriodSelector
               value={period}
-              onChange={setPeriod}
-              disabled={loading}
+              onChange={
+                setPeriod
+              }
+              disabled={
+                loading
+              }
             />
+
+            {!isInstalled &&
+              installPrompt && (
+                <button
+                  type="button"
+                  onClick={
+                    handleInstall
+                  }
+                  className="inline-flex items-center gap-2 rounded-xl border border-white/10 px-4 py-2.5 text-sm text-zinc-300 transition hover:bg-white/5 hover:text-white"
+                >
+                  <InstallIcon />
+                  Instalar app
+                </button>
+              )}
 
             <button
               type="button"
-              onClick={handleLogout}
+              onClick={
+                handleLogout
+              }
               className="rounded-xl border border-white/10 px-4 py-2.5 text-sm text-zinc-300 transition hover:bg-white/5 hover:text-white"
             >
               Sair
@@ -325,7 +529,9 @@ export default function AnalyticsDashboard({
 
             <button
               type="button"
-              onClick={loadDashboard}
+              onClick={
+                loadDashboard
+              }
               className="text-sm text-zinc-300 underline underline-offset-4 hover:text-white"
             >
               Tentar novamente
@@ -337,7 +543,8 @@ export default function AnalyticsDashboard({
 
         <section className="mt-8">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {loading || !stats ? (
+            {loading ||
+            !stats ? (
               <>
                 <LoadingCard />
                 <LoadingCard />
@@ -348,9 +555,12 @@ export default function AnalyticsDashboard({
               <>
                 <MetricCard
                   label="Visitantes"
-                  value={stats.visitors}
+                  value={
+                    stats.visitors
+                  }
                   comparison={
-                    stats.comparison
+                    stats
+                      .comparison
                       ?.visitorsPercentage
                   }
                   description="Visitantes únicos no período"
@@ -358,9 +568,12 @@ export default function AnalyticsDashboard({
 
                 <MetricCard
                   label="Sessões"
-                  value={stats.sessions}
+                  value={
+                    stats.sessions
+                  }
                   comparison={
-                    stats.comparison
+                    stats
+                      .comparison
                       ?.sessionsPercentage
                   }
                   description="Sessões iniciadas"
@@ -368,9 +581,12 @@ export default function AnalyticsDashboard({
 
                 <MetricCard
                   label="Page Views"
-                  value={stats.pageViews}
+                  value={
+                    stats.pageViews
+                  }
                   comparison={
-                    stats.comparison
+                    stats
+                      .comparison
                       ?.pageViewsPercentage
                   }
                   description="Visualizações de página"
@@ -378,9 +594,12 @@ export default function AnalyticsDashboard({
 
                 <MetricCard
                   label="Projetos"
-                  value={stats.projectViews}
+                  value={
+                    stats.projectViews
+                  }
                   comparison={
-                    stats.comparison
+                    stats
+                      .comparison
                       ?.projectViewsPercentage
                   }
                   description="Visualizações da seção de projetos"
@@ -400,137 +619,164 @@ export default function AnalyticsDashboard({
               </h2>
 
               <p className="mt-1 text-sm text-zinc-500">
-                Acompanhe o comportamento do
-                portfólio ao longo do tempo.
+                Acompanhe o
+                comportamento do
+                portfólio ao longo
+                do tempo.
               </p>
             </div>
 
             <div className="flex flex-wrap gap-1 rounded-xl border border-white/10 bg-white/[0.03] p-1">
               {[
                 {
-                  value: "visitors" as const,
-                  label: "Visitantes",
+                  value:
+                    "visitors" as const,
+                  label:
+                    "Visitantes",
                 },
                 {
-                  value: "sessions" as const,
-                  label: "Sessões",
+                  value:
+                    "sessions" as const,
+                  label:
+                    "Sessões",
                 },
                 {
-                  value: "pageViews" as const,
-                  label: "Page Views",
+                  value:
+                    "pageViews" as const,
+                  label:
+                    "Page Views",
                 },
                 {
-                  value: "projectViews" as const,
-                  label: "Projetos",
+                  value:
+                    "projectViews" as const,
+                  label:
+                    "Projetos",
                 },
-              ].map((item) => {
-                const isActive =
-                  timelineMetric ===
-                  item.value;
+              ].map(
+                (item) => {
+                  const isActive =
+                    timelineMetric ===
+                    item.value;
 
-                return (
-                  <button
-                    key={item.value}
-                    type="button"
-                    onClick={() =>
-                      setTimelineMetric(
-                        item.value,
-                      )
-                    }
-                    className={[
-                      "rounded-lg px-3 py-2 text-sm transition",
-                      isActive
-                        ? "bg-white text-black"
-                        : "text-zinc-400 hover:bg-white/10 hover:text-white",
-                    ].join(" ")}
-                  >
-                    {item.label}
-                  </button>
-                );
-              })}
+                  return (
+                    <button
+                      key={
+                        item.value
+                      }
+                      type="button"
+                      onClick={() =>
+                        setTimelineMetric(
+                          item.value,
+                        )
+                      }
+                      className={[
+                        "rounded-lg px-3 py-2 text-sm transition",
+                        isActive
+                          ? "bg-white text-black"
+                          : "text-zinc-400 hover:bg-white/10 hover:text-white",
+                      ].join(
+                        " ",
+                      )}
+                    >
+                      {
+                        item.label
+                      }
+                    </button>
+                  );
+                },
+              )}
             </div>
           </div>
 
-          {loading || !timeline ? (
+          {loading ||
+          !timeline ? (
             <LoadingLargeCard />
           ) : (
             <TimelineChart
-              data={timeline.data}
-              metric={timelineMetric}
+              data={
+                timeline.data
+              }
+              metric={
+                timelineMetric
+              }
             />
           )}
         </section>
 
-
         {/* ACCESS HOURS */}
 
-<section className="mt-6">
-  {loading || !hourAnalytics ? (
-    <LoadingLargeCard />
-  ) : (
-    <AccessHoursChart
-      hours={
-        hourAnalytics.hours
-      }
-      peakHour={
-        hourAnalytics.peakHour
-      }
-      totalSessions={
-        hourAnalytics.totalSessions
-      }
-    />
-  )}
-</section>
+        <section className="mt-6">
+          {loading ||
+          !hourAnalytics ? (
+            <LoadingLargeCard />
+          ) : (
+            <AccessHoursChart
+              hours={
+                hourAnalytics.hours
+              }
+              peakHour={
+                hourAnalytics.peakHour
+              }
+              totalSessions={
+                hourAnalytics.totalSessions
+              }
+            />
+          )}
+        </section>
 
-{/* ENGAGEMENT */}
+        {/* ENGAGEMENT */}
 
-<section className="mt-6">
-  {loading || !engagement ? (
-    <LoadingLargeCard />
-  ) : (
-    <EngagementAnalyticsCard
-      data={engagement}
-    />
-  )}
-</section>
+        <section className="mt-6">
+          {loading ||
+          !engagement ? (
+            <LoadingLargeCard />
+          ) : (
+            <EngagementAnalyticsCard
+              data={
+                engagement
+              }
+            />
+          )}
+        </section>
 
-{/* TRAFFIC SOURCES */}
+        {/* TRAFFIC SOURCES */}
 
-<section className="mt-6">
-  {loading || !trafficSources ? (
-    <LoadingLargeCard />
-  ) : (
-    <TrafficSourcesCard
-      sources={
-        trafficSources.sources
-      }
-      totalSessions={
-        trafficSources.totalSessions
-      }
-    />
-  )}
-</section>
+        <section className="mt-6">
+          {loading ||
+          !trafficSources ? (
+            <LoadingLargeCard />
+          ) : (
+            <TrafficSourcesCard
+              sources={
+                trafficSources.sources
+              }
+              totalSessions={
+                trafficSources.totalSessions
+              }
+            />
+          )}
+        </section>
 
-{/* DEVICES AND BROWSERS */}
+        {/* DEVICES AND BROWSERS */}
 
-<section className="mt-6">
-  {loading || !deviceAnalytics ? (
-    <div className="grid gap-6 lg:grid-cols-2">
-      <LoadingLargeCard />
-      <LoadingLargeCard />
-    </div>
-  ) : (
-    <DevicesAnalyticsCard
-      devices={
-        deviceAnalytics.devices
-      }
-      browsers={
-        deviceAnalytics.browsers
-      }
-    />
-  )}
-</section>
-
+        <section className="mt-6">
+          {loading ||
+          !deviceAnalytics ? (
+            <div className="grid gap-6 lg:grid-cols-2">
+              <LoadingLargeCard />
+              <LoadingLargeCard />
+            </div>
+          ) : (
+            <DevicesAnalyticsCard
+              devices={
+                deviceAnalytics.devices
+              }
+              browsers={
+                deviceAnalytics.browsers
+              }
+            />
+          )}
+        </section>
 
         {/* INTERACTIONS */}
 
@@ -541,13 +787,16 @@ export default function AnalyticsDashboard({
             </h2>
 
             <p className="mt-1 text-sm text-zinc-500">
-              Ações realizadas pelos visitantes.
+              Ações realizadas
+              pelos visitantes.
             </p>
           </div>
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6">
-            {loading || !stats ? (
+            {loading ||
+            !stats ? (
               <>
+                <LoadingCard />
                 <LoadingCard />
                 <LoadingCard />
                 <LoadingCard />
@@ -558,41 +807,75 @@ export default function AnalyticsDashboard({
               <>
                 <MetricCard
                   label="GitHub"
-                  value={stats.githubClicks}
-                  comparison={stats.comparison?.githubClicksPercentage}
+                  value={
+                    stats.githubClicks
+                  }
+                  comparison={
+                    stats
+                      .comparison
+                      ?.githubClicksPercentage
+                  }
                 />
 
                 <MetricCard
                   label="Demo"
-                  value={stats.demoClicks}
-                  comparison={stats.comparison?.demoClicksPercentage}
+                  value={
+                    stats.demoClicks
+                  }
+                  comparison={
+                    stats
+                      .comparison
+                      ?.demoClicksPercentage
+                  }
                 />
 
                 <MetricCard
                   label="LinkedIn"
-                  value={stats.linkedinClicks}
-                  comparison={stats.comparison?.linkedinClicksPercentage}
+                  value={
+                    stats.linkedinClicks
+                  }
+                  comparison={
+                    stats
+                      .comparison
+                      ?.linkedinClicksPercentage
+                  }
                 />
 
                 <MetricCard
-  label="Currículo"
-  value={stats.resumeDownloads}
-  comparison={
-    stats.comparison?.resumeDownloadsPercentage
-  }
-  description="Downloads do currículo"
-/>
+                  label="Currículo"
+                  value={
+                    stats.resumeDownloads
+                  }
+                  comparison={
+                    stats
+                      .comparison
+                      ?.resumeDownloadsPercentage
+                  }
+                  description="Downloads do currículo"
+                />
 
                 <MetricCard
                   label="WhatsApp"
-                  value={stats.whatsappClicks}
-                  comparison={stats.comparison?.whatsappClicksPercentage}
+                  value={
+                    stats.whatsappClicks
+                  }
+                  comparison={
+                    stats
+                      .comparison
+                      ?.whatsappClicksPercentage
+                  }
                 />
 
                 <MetricCard
                   label="E-mail"
-                  value={stats.emailClicks}
-                  comparison={stats.comparison?.emailClicksPercentage}
+                  value={
+                    stats.emailClicks
+                  }
+                  comparison={
+                    stats
+                      .comparison
+                      ?.emailClicksPercentage
+                  }
                 />
               </>
             )}
@@ -603,19 +886,25 @@ export default function AnalyticsDashboard({
 
         <section className="mt-6">
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1.4fr_1fr]">
-            {loading || !projects ? (
+            {loading ||
+            !projects ? (
               <LoadingLargeCard />
             ) : (
               <ProjectsTable
-                projects={projects.projects}
+                projects={
+                  projects.projects
+                }
               />
             )}
 
-            {loading || !funnel ? (
+            {loading ||
+            !funnel ? (
               <LoadingLargeCard />
             ) : (
               <FunnelCard
-                funnel={funnel}
+                funnel={
+                  funnel
+                }
               />
             )}
           </div>
@@ -630,13 +919,15 @@ export default function AnalyticsDashboard({
             </h2>
 
             <p className="mt-1 text-sm text-zinc-500">
-              Comportamento dos visitantes no
-              período selecionado.
+              Comportamento dos
+              visitantes no período
+              selecionado.
             </p>
           </div>
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {loading || !visitors ? (
+            {loading ||
+            !visitors ? (
               <>
                 <LoadingCard />
                 <LoadingCard />
@@ -678,19 +969,26 @@ export default function AnalyticsDashboard({
           <div className="flex flex-col gap-2 text-xs text-zinc-600 sm:flex-row sm:items-center sm:justify-between">
             <span>
               Período:{" "}
-              {period === "today"
+              {period ===
+              "today"
                 ? "Hoje"
-                : period === "7d"
+                : period ===
+                    "7d"
                   ? "Últimos 7 dias"
-                  : period === "30d"
+                  : period ===
+                      "30d"
                     ? "Últimos 30 dias"
                     : "Todo o período"}
             </span>
 
             <button
               type="button"
-              onClick={loadDashboard}
-              disabled={loading}
+              onClick={
+                loadDashboard
+              }
+              disabled={
+                loading
+              }
               className="text-zinc-500 transition hover:text-zinc-300 disabled:opacity-50"
             >
               {loading
