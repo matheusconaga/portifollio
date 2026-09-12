@@ -26,6 +26,7 @@ export default defineConfig({
         navigateFallback: '/index.html',
 
         navigateFallbackDenylist: [
+          /^\/api(?:\/|$)/,
           /\.pdf$/i,
         ],
 
