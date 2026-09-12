@@ -500,7 +500,7 @@ export default function AnalyticsDashboard({
                   onClick={
                     handleInstall
                   }
-                  className="inline-flex items-center gap-2 rounded-xl border border-white/10 px-4 py-2.5 text-sm text-zinc-300 transition hover:bg-white/5 hover:text-white"
+                  className="col-span-2 inline-flex items-center justify-center gap-2 rounded-xl border border-primary/20 bg-primary/10 px-4 py-2.5 text-sm font-medium text-primary transition hover:bg-primary/15 sm:col-span-1"
                 >
                   <InstallIcon />
                   Instalar app

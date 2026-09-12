@@ -1,9 +1,4 @@
-import {
-  useEffect,
-  useMemo,
-  useState,
-  type ReactNode,
-} from "react";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
 
 import {
   getServerStatus,
@@ -11,29 +6,22 @@ import {
   type ServiceStatus,
 } from "../api/server-status";
 
-import {
-  logout,
-} from "../../analytics/auth";
+import { logout } from "../../analytics/auth";
 
 interface ServerDashboardProps {
   onLogout: () => void;
 }
 
-interface BeforeInstallPromptEvent
-  extends Event {
+interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>;
 
   userChoice: Promise<{
-    outcome:
-      | "accepted"
-      | "dismissed";
+    outcome: "accepted" | "dismissed";
     platform: string;
   }>;
 }
 
-type MetricType =
-  | "resource"
-  | "battery";
+type MetricType = "resource" | "battery";
 
 const REFRESH_INTERVAL = 15_000;
 
@@ -41,66 +29,34 @@ const REFRESH_INTERVAL = 15_000;
    FORMATTERS
 ========================= */
 
-function formatBytes(
-  bytes: number,
-): string {
-  if (
-    !Number.isFinite(bytes) ||
-    bytes <= 0
-  ) {
+function formatBytes(bytes: number): string {
+  if (!Number.isFinite(bytes) || bytes <= 0) {
     return "0 B";
   }
 
-  const units = [
-    "B",
-    "KB",
-    "MB",
-    "GB",
-    "TB",
-  ];
+  const units = ["B", "KB", "MB", "GB", "TB"];
 
   let value = bytes;
   let unitIndex = 0;
 
-  while (
-    value >= 1024 &&
-    unitIndex <
-      units.length - 1
-  ) {
+  while (value >= 1024 && unitIndex < units.length - 1) {
     value /= 1024;
     unitIndex++;
   }
 
-  return `${value.toFixed(
-    value >= 10 ? 0 : 1,
-  )} ${units[unitIndex]}`;
+  return `${value.toFixed(value >= 10 ? 0 : 1)} ${units[unitIndex]}`;
 }
 
-function formatUptime(
-  totalSeconds: number,
-): string {
-  if (
-    !Number.isFinite(
-      totalSeconds,
-    ) ||
-    totalSeconds < 0
-  ) {
+function formatUptime(totalSeconds: number): string {
+  if (!Number.isFinite(totalSeconds) || totalSeconds < 0) {
     return "0m";
   }
 
-  const days = Math.floor(
-    totalSeconds / 86400,
-  );
+  const days = Math.floor(totalSeconds / 86400);
 
-  const hours = Math.floor(
-    (totalSeconds % 86400) /
-      3600,
-  );
+  const hours = Math.floor((totalSeconds % 86400) / 3600);
 
-  const minutes = Math.floor(
-    (totalSeconds % 3600) /
-      60,
-  );
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
 
   if (days > 0) {
     return `${days}d ${hours}h ${minutes}m`;
@@ -113,19 +69,12 @@ function formatUptime(
   return `${minutes}m`;
 }
 
-function formatTimestamp(
-  isoDate: string,
-): string {
+function formatTimestamp(isoDate: string): string {
   try {
-    return new Date(
-      isoDate,
-    ).toLocaleString(
-      "pt-BR",
-      {
-        dateStyle: "short",
-        timeStyle: "medium",
-      },
-    );
+    return new Date(isoDate).toLocaleString("pt-BR", {
+      dateStyle: "short",
+      timeStyle: "medium",
+    });
   } catch {
     return isoDate;
   }
@@ -135,10 +84,7 @@ function formatTimestamp(
    COLORS / STATUS
 ========================= */
 
-function getMetricTone(
-  value: number,
-  type: MetricType = "resource",
-): string {
+function getMetricTone(value: number, type: MetricType = "resource"): string {
   if (type === "battery") {
     if (value <= 20) {
       return "bg-red-400";
@@ -189,25 +135,14 @@ function getMetricTextTone(
   return "text-emerald-300";
 }
 
-function getStatusClasses(
-  status: "online" | "offline",
-): string {
+function getStatusClasses(status: "online" | "offline"): string {
   return status === "online"
     ? "border-emerald-400/20 bg-emerald-400/10 text-emerald-300"
     : "border-red-400/20 bg-red-400/10 text-red-300";
 }
 
-function cx(
-  ...classes: Array<
-    | string
-    | false
-    | null
-    | undefined
-  >
-): string {
-  return classes
-    .filter(Boolean)
-    .join(" ");
+function cx(...classes: Array<string | false | null | undefined>): string {
+  return classes.filter(Boolean).join(" ");
 }
 
 /* =========================
@@ -225,13 +160,7 @@ function CpuIcon() {
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <rect
-        x="7"
-        y="7"
-        width="10"
-        height="10"
-        rx="2"
-      />
+      <rect x="7" y="7" width="10" height="10" rx="2" />
 
       <path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3" />
 
@@ -251,13 +180,7 @@ function MemoryIcon() {
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <rect
-        x="3"
-        y="7"
-        width="18"
-        height="10"
-        rx="2"
-      />
+      <rect x="3" y="7" width="18" height="10" rx="2" />
 
       <path d="M7 7V5M11 7V5M15 7V5M17 19v-2M13 19v-2M9 19v-2M5 19v-2" />
 
@@ -277,12 +200,7 @@ function DiskIcon() {
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <ellipse
-        cx="12"
-        cy="6"
-        rx="7"
-        ry="3"
-      />
+      <ellipse cx="12" cy="6" rx="7" ry="3" />
 
       <path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6" />
 
@@ -302,13 +220,7 @@ function BatteryIcon() {
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <rect
-        x="2"
-        y="7"
-        width="18"
-        height="10"
-        rx="2"
-      />
+      <rect x="2" y="7" width="18" height="10" rx="2" />
 
       <path d="M22 10v4" />
 
@@ -328,11 +240,7 @@ function UptimeIcon() {
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <circle
-        cx="12"
-        cy="12"
-        r="8"
-      />
+      <circle cx="12" cy="12" r="8" />
 
       <path d="M12 8v5l3 2" />
       <path d="M12 3v2" />
@@ -351,13 +259,7 @@ function PhoneIcon() {
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <rect
-        x="7"
-        y="2"
-        width="10"
-        height="20"
-        rx="2.5"
-      />
+      <rect x="7" y="2" width="10" height="20" rx="2.5" />
 
       <path d="M11 18h2" />
     </svg>
@@ -446,12 +348,7 @@ function DatabaseIcon() {
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <ellipse
-        cx="12"
-        cy="5"
-        rx="7"
-        ry="3"
-      />
+      <ellipse cx="12" cy="5" rx="7" ry="3" />
 
       <path d="M5 5v6c0 1.7 3.1 3 7 3s7-1.3 7-3V5" />
 
@@ -487,23 +384,11 @@ function WorkflowIcon() {
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <circle
-        cx="6"
-        cy="6"
-        r="2"
-      />
+      <circle cx="6" cy="6" r="2" />
 
-      <circle
-        cx="18"
-        cy="6"
-        r="2"
-      />
+      <circle cx="18" cy="6" r="2" />
 
-      <circle
-        cx="12"
-        cy="18"
-        r="2"
-      />
+      <circle cx="12" cy="18" r="2" />
 
       <path d="M8 6h8M7 8l4 8M17 8l-4 8" />
     </svg>
@@ -514,11 +399,7 @@ function WorkflowIcon() {
    UI
 ========================= */
 
-function IconWrapper({
-  children,
-}: {
-  children: ReactNode;
-}) {
+function IconWrapper({ children }: { children: ReactNode }) {
   return (
     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.05] text-zinc-200 backdrop-blur-xl">
       {children}
@@ -562,9 +443,7 @@ function SectionHeader({
         </h2>
 
         {description && (
-          <p className="mt-1 text-sm text-zinc-500">
-            {description}
-          </p>
+          <p className="mt-1 text-sm text-zinc-500">{description}</p>
         )}
       </div>
 
@@ -584,34 +463,23 @@ function MetricBar({
   subtitle?: string;
   type?: MetricType;
 }) {
-  const safeValue =
-    Math.max(
-      0,
-      Math.min(100, value),
-    );
+  const safeValue = Math.max(0, Math.min(100, value));
 
   return (
     <div>
       <div className="mb-2.5 flex items-end justify-between gap-4">
         <div>
-          <p className="text-sm font-medium text-zinc-200">
-            {label}
-          </p>
+          <p className="text-sm font-medium text-zinc-200">{label}</p>
 
           {subtitle && (
-            <p className="mt-0.5 text-xs text-zinc-500">
-              {subtitle}
-            </p>
+            <p className="mt-0.5 text-xs text-zinc-500">{subtitle}</p>
           )}
         </div>
 
         <span
           className={cx(
             "text-sm font-semibold tabular-nums",
-            getMetricTextTone(
-              safeValue,
-              type,
-            ),
+            getMetricTextTone(safeValue, type),
           )}
         >
           {safeValue.toFixed(1)}%
@@ -622,10 +490,7 @@ function MetricBar({
         <div
           className={cx(
             "h-full rounded-full transition-[width] duration-500",
-            getMetricTone(
-              safeValue,
-              type,
-            ),
+            getMetricTone(safeValue, type),
           )}
           style={{
             width: `${safeValue}%`,
@@ -650,9 +515,7 @@ function OverviewCard({
   return (
     <div className="rounded-2xl border border-white/10 bg-white/[0.045] p-4 shadow-[0_12px_30px_rgba(0,0,0,0.12)] backdrop-blur-2xl sm:p-5">
       <div className="flex items-center justify-between gap-3">
-        <IconWrapper>
-          {icon}
-        </IconWrapper>
+        <IconWrapper>{icon}</IconWrapper>
 
         <span className="text-[10px] font-medium uppercase tracking-[0.16em] text-zinc-500">
           {title}
@@ -681,26 +544,19 @@ function ServiceCard({
   service: ServiceStatus;
   icon: ReactNode;
 }) {
-  const isOnline =
-    service.status === "online";
+  const isOnline = service.status === "online";
 
   return (
     <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-4">
       <div className="flex items-start justify-between gap-3">
         <div className="flex min-w-0 items-center gap-3">
-          <IconWrapper>
-            {icon}
-          </IconWrapper>
+          <IconWrapper>{icon}</IconWrapper>
 
           <div className="min-w-0">
-            <p className="truncate text-sm font-medium text-zinc-100">
-              {name}
-            </p>
+            <p className="truncate text-sm font-medium text-zinc-100">{name}</p>
 
             <p className="mt-0.5 text-xs text-zinc-500">
-              {isOnline
-                ? "Operacional"
-                : "Indisponível"}
+              {isOnline ? "Operacional" : "Indisponível"}
             </p>
           </div>
         </div>
@@ -708,9 +564,7 @@ function ServiceCard({
         <span
           className={cx(
             "inline-flex shrink-0 items-center gap-1.5 rounded-full border px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em]",
-            getStatusClasses(
-              service.status,
-            ),
+            getStatusClasses(service.status),
           )}
         >
           <span className="h-1.5 w-1.5 rounded-full bg-current" />
@@ -725,27 +579,17 @@ function ServiceCard({
         </p>
 
         <p className="mt-1 text-base font-medium text-zinc-200 tabular-nums">
-          {service.latency !== null
-            ? `${service.latency} ms`
-            : "--"}
+          {service.latency !== null ? `${service.latency} ms` : "--"}
         </p>
       </div>
     </div>
   );
 }
 
-function DetailRow({
-  label,
-  value,
-}: {
-  label: string;
-  value: ReactNode;
-}) {
+function DetailRow({ label, value }: { label: string; value: ReactNode }) {
   return (
     <div className="flex items-center justify-between gap-4 border-b border-white/[0.07] py-3.5 last:border-b-0">
-      <span className="text-sm text-zinc-500">
-        {label}
-      </span>
+      <span className="text-sm text-zinc-500">{label}</span>
 
       <span className="text-right text-sm font-medium text-zinc-200">
         {value}
@@ -758,70 +602,34 @@ function DetailRow({
    DASHBOARD
 ========================= */
 
-export default function ServerDashboard({
-  onLogout,
-}: ServerDashboardProps) {
-  const [
-    status,
-    setStatus,
-  ] =
-    useState<ServerStatus | null>(
-      null,
-    );
+export default function ServerDashboard({ onLogout }: ServerDashboardProps) {
+  const [status, setStatus] = useState<ServerStatus | null>(null);
 
-  const [
-    error,
-    setError,
-  ] =
-    useState<string | null>(
-      null,
-    );
+  const [error, setError] = useState<string | null>(null);
 
-  const [
-    isLoading,
-    setIsLoading,
-  ] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const [
-    isRefreshing,
-    setIsRefreshing,
-  ] = useState(false);
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
-  const [
-    installPrompt,
-    setInstallPrompt,
-  ] =
-    useState<BeforeInstallPromptEvent | null>(
-      null,
-    );
+  const [installPrompt, setInstallPrompt] =
+    useState<BeforeInstallPromptEvent | null>(null);
 
-  const [
-    isInstalled,
-    setIsInstalled,
-  ] = useState(false);
+  const [isInstalled, setIsInstalled] = useState(false);
 
-  async function loadStatus(
-    showRefreshing = false,
-  ) {
+  async function loadStatus(showRefreshing = false) {
     try {
       if (showRefreshing) {
         setIsRefreshing(true);
       }
 
-      const data =
-        await getServerStatus();
+      const data = await getServerStatus();
 
       setStatus(data);
       setError(null);
     } catch (error) {
-      console.error(
-        "Failed to load server status:",
-        error,
-      );
+      console.error("Failed to load server status:", error);
 
-      setError(
-        "Não foi possível carregar o status do servidor.",
-      );
+      setError("Não foi possível carregar o status do servidor.");
     } finally {
       setIsLoading(false);
       setIsRefreshing(false);
@@ -833,8 +641,7 @@ export default function ServerDashboard({
 
     async function initialLoad() {
       try {
-        const data =
-          await getServerStatus();
+        const data = await getServerStatus();
 
         if (!active) {
           return;
@@ -847,14 +654,9 @@ export default function ServerDashboard({
           return;
         }
 
-        console.error(
-          "Failed to load server status:",
-          error,
-        );
+        console.error("Failed to load server status:", error);
 
-        setError(
-          "Não foi possível carregar o status do servidor.",
-        );
+        setError("Não foi possível carregar o status do servidor.");
       } finally {
         if (active) {
           setIsLoading(false);
@@ -864,64 +666,44 @@ export default function ServerDashboard({
 
     void initialLoad();
 
-    const interval =
-      window.setInterval(
-        () => {
-          if (active) {
-            void loadStatus();
-          }
-        },
-        REFRESH_INTERVAL,
-      );
+    const interval = window.setInterval(() => {
+      if (active) {
+        void loadStatus();
+      }
+    }, REFRESH_INTERVAL);
 
     return () => {
       active = false;
 
-      window.clearInterval(
-        interval,
-      );
+      window.clearInterval(interval);
     };
   }, []);
 
   useEffect(() => {
-    const navigatorWithStandalone =
-      navigator as Navigator & {
-        standalone?: boolean;
-      };
+    const navigatorWithStandalone = navigator as Navigator & {
+      standalone?: boolean;
+    };
 
     const standalone =
-      window.matchMedia(
-        "(display-mode: standalone)",
-      ).matches ||
-      navigatorWithStandalone.standalone ===
-        true;
+      window.matchMedia("(display-mode: standalone)").matches ||
+      navigatorWithStandalone.standalone === true;
 
     setIsInstalled(standalone);
 
-    const handleBeforeInstallPrompt =
-      (event: Event) => {
-        event.preventDefault();
+    const handleBeforeInstallPrompt = (event: Event) => {
+      event.preventDefault();
 
-        setInstallPrompt(
-          event as BeforeInstallPromptEvent,
-        );
-      };
+      setInstallPrompt(event as BeforeInstallPromptEvent);
+    };
 
-    const handleAppInstalled =
-      () => {
-        setIsInstalled(true);
-        setInstallPrompt(null);
-      };
+    const handleAppInstalled = () => {
+      setIsInstalled(true);
+      setInstallPrompt(null);
+    };
 
-    window.addEventListener(
-      "beforeinstallprompt",
-      handleBeforeInstallPrompt,
-    );
+    window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
 
-    window.addEventListener(
-      "appinstalled",
-      handleAppInstalled,
-    );
+    window.addEventListener("appinstalled", handleAppInstalled);
 
     return () => {
       window.removeEventListener(
@@ -929,21 +711,17 @@ export default function ServerDashboard({
         handleBeforeInstallPrompt,
       );
 
-      window.removeEventListener(
-        "appinstalled",
-        handleAppInstalled,
-      );
+      window.removeEventListener("appinstalled", handleAppInstalled);
     };
   }, []);
 
-  const batteryLabel =
-    useMemo(() => {
-      if (!status?.system.battery) {
-        return "Indisponível";
-      }
+  const batteryLabel = useMemo(() => {
+    if (!status?.system.battery) {
+      return "Indisponível";
+    }
 
-      return `${status.system.battery.percentage}%`;
-    }, [status]);
+    return `${status.system.battery.percentage}%`;
+  }, [status]);
 
   async function handleInstall() {
     if (!installPrompt) {
@@ -988,13 +766,10 @@ export default function ServerDashboard({
       <main className="min-h-screen bg-background px-4 py-5 text-white">
         <div className="mx-auto max-w-3xl">
           <Panel className="border-red-400/20">
-            <h1 className="text-xl font-semibold">
-              Mini Server
-            </h1>
+            <h1 className="text-xl font-semibold">Mini Server</h1>
 
             <p className="mt-2 text-sm text-zinc-400">
-              {error ??
-                "Servidor indisponível."}
+              {error ?? "Servidor indisponível."}
             </p>
 
             <button
@@ -1034,14 +809,10 @@ export default function ServerDashboard({
                       <span
                         className={cx(
                           "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em]",
-                          getStatusClasses(
-                            status.device
-                              .status,
-                          ),
+                          getStatusClasses(status.device.status),
                         )}
                       >
                         <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-current" />
-
                         Live
                       </span>
                     </div>
@@ -1053,54 +824,36 @@ export default function ServerDashboard({
                 </div>
 
                 <p className="mt-4 text-xs text-zinc-600">
-                  Atualizado em{" "}
-                  {formatTimestamp(
-                    status.timestamp,
-                  )}
+                  Atualizado em {formatTimestamp(status.timestamp)}
                 </p>
               </div>
 
               <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap">
-                {!isInstalled &&
-                  installPrompt && (
-                    <button
-                      type="button"
-                      onClick={
-                        handleInstall
-                      }
-                      className="col-span-2 inline-flex items-center justify-center gap-2 rounded-xl border border-primary/20 bg-primary/10 px-4 py-2.5 text-sm font-medium text-primary transition hover:bg-primary/15 sm:col-span-1"
-                    >
-                      <InstallIcon />
-                      Instalar app
-                    </button>
-                  )}
-
                 <button
                   type="button"
-                  onClick={() =>
-                    void loadStatus(
-                      true,
-                    )
-                  }
-                  disabled={
-                    isRefreshing
-                  }
+                  onClick={() => void loadStatus(true)}
+                  disabled={isRefreshing}
                   className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.05] px-4 py-2.5 text-sm text-zinc-200 transition hover:bg-white/[0.08] disabled:opacity-50"
                 >
                   <RefreshIcon />
 
-                  <span>
-                    {isRefreshing
-                      ? "Atualizando"
-                      : "Atualizar"}
-                  </span>
+                  <span>{isRefreshing ? "Atualizando" : "Atualizar"}</span>
                 </button>
+
+                {!isInstalled && installPrompt && (
+                  <button
+                    type="button"
+                    onClick={handleInstall}
+                    className="col-span-2 inline-flex items-center justify-center gap-2 rounded-xl border border-primary/20 bg-primary/10 px-4 py-2.5 text-sm font-medium text-primary transition hover:bg-primary/15 sm:col-span-1"
+                  >
+                    <InstallIcon />
+                    Instalar app
+                  </button>
+                )}
 
                 <button
                   type="button"
-                  onClick={
-                    handleLogout
-                  }
+                  onClick={handleLogout}
                   className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-2.5 text-sm text-zinc-400 transition hover:bg-white/[0.07] hover:text-white"
                 >
                   <LogoutIcon />
@@ -1116,41 +869,28 @@ export default function ServerDashboard({
             <OverviewCard
               icon={<CpuIcon />}
               title="CPU"
-              value={`${status.system.cpu.usage.toFixed(
-                1,
-              )}%`}
+              value={`${status.system.cpu.usage.toFixed(1)}%`}
               subtitle={`${status.system.cpu.cores} cores`}
             />
 
             <OverviewCard
               icon={<MemoryIcon />}
               title="RAM"
-              value={`${status.system.memory.percentage.toFixed(
-                1,
-              )}%`}
-              subtitle={`${formatBytes(
-                status.system.memory
-                  .used,
-              )} usados`}
+              value={`${status.system.memory.percentage.toFixed(1)}%`}
+              subtitle={`${formatBytes(status.system.memory.used)} usados`}
             />
 
             <OverviewCard
               icon={<DiskIcon />}
               title="Disco"
-              value={`${status.system.disk.percentage.toFixed(
-                1,
-              )}%`}
-              subtitle={`${formatBytes(
-                status.system.disk.free,
-              )} livres`}
+              value={`${status.system.disk.percentage.toFixed(1)}%`}
+              subtitle={`${formatBytes(status.system.disk.free)} livres`}
             />
 
             <OverviewCard
               icon={<UptimeIcon />}
               title="Uptime"
-              value={formatUptime(
-                status.system.uptime,
-              )}
+              value={formatUptime(status.system.uptime)}
               subtitle="Sem reiniciar"
             />
           </section>
@@ -1163,8 +903,7 @@ export default function ServerDashboard({
               description="Disponibilidade e latência em tempo real."
               right={
                 <span className="hidden text-xs text-zinc-600 sm:block">
-                  Atualização automática •
-                  15s
+                  Atualização automática • 15s
                 </span>
               }
             />
@@ -1172,44 +911,26 @@ export default function ServerDashboard({
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4">
               <ServiceCard
                 name="Analytics API"
-                service={
-                  status.services
-                    .analytics
-                }
-                icon={
-                  <ActivityIcon />
-                }
+                service={status.services.analytics}
+                icon={<ActivityIcon />}
               />
 
               <ServiceCard
                 name="n8n"
-                service={
-                  status.services.n8n
-                }
-                icon={
-                  <WorkflowIcon />
-                }
+                service={status.services.n8n}
+                icon={<WorkflowIcon />}
               />
 
               <ServiceCard
                 name="Neon"
-                service={
-                  status.services.neon
-                }
-                icon={
-                  <DatabaseIcon />
-                }
+                service={status.services.neon}
+                icon={<DatabaseIcon />}
               />
 
               <ServiceCard
                 name="Cloudflare"
-                service={
-                  status.services
-                    .cloudflare
-                }
-                icon={
-                  <CloudIcon />
-                }
+                service={status.services.cloudflare}
+                icon={<CloudIcon />}
               />
             </div>
           </Panel>
@@ -1226,52 +947,30 @@ export default function ServerDashboard({
               <div className="space-y-6">
                 <MetricBar
                   label="Processador"
-                  value={
-                    status.system.cpu
-                      .usage
-                  }
+                  value={status.system.cpu.usage}
                   subtitle={`${status.system.cpu.cores} cores`}
                 />
 
                 <MetricBar
                   label="Memória"
-                  value={
-                    status.system.memory
-                      .percentage
-                  }
+                  value={status.system.memory.percentage}
                   subtitle={`${formatBytes(
-                    status.system.memory
-                      .used,
-                  )} de ${formatBytes(
-                    status.system.memory
-                      .total,
-                  )}`}
+                    status.system.memory.used,
+                  )} de ${formatBytes(status.system.memory.total)}`}
                 />
 
                 <MetricBar
                   label="Armazenamento"
-                  value={
-                    status.system.disk
-                      .percentage
-                  }
+                  value={status.system.disk.percentage}
                   subtitle={`${formatBytes(
-                    status.system.disk
-                      .used,
-                  )} de ${formatBytes(
-                    status.system.disk
-                      .total,
-                  )}`}
+                    status.system.disk.used,
+                  )} de ${formatBytes(status.system.disk.total)}`}
                 />
 
-                {status.system
-                  .battery && (
+                {status.system.battery && (
                   <MetricBar
                     label="Bateria"
-                    value={
-                      status.system
-                        .battery
-                        .percentage
-                    }
+                    value={status.system.battery.percentage}
                     type="battery"
                     subtitle={`${status.system.battery.status} • ${status.system.battery.plugged}`}
                   />
@@ -1280,10 +979,7 @@ export default function ServerDashboard({
             </Panel>
 
             <Panel>
-              <SectionHeader
-                title="Dispositivo"
-                description="Galaxy S21 FE"
-              />
+              <SectionHeader title="Dispositivo" description="Galaxy S21 FE" />
 
               <div className="mb-4 flex items-center gap-3 rounded-xl border border-white/[0.08] bg-white/[0.025] p-3">
                 <IconWrapper>
@@ -1291,20 +987,14 @@ export default function ServerDashboard({
                 </IconWrapper>
 
                 <div className="min-w-0">
-                  <p className="text-xs text-zinc-500">
-                    Bateria
-                  </p>
+                  <p className="text-xs text-zinc-500">Bateria</p>
 
                   <p
                     className={cx(
                       "mt-0.5 text-xl font-semibold tabular-nums",
-                      status.system
-                        .battery
+                      status.system.battery
                         ? getMetricTextTone(
-                            status
-                              .system
-                              .battery
-                              .percentage,
+                            status.system.battery.percentage,
                             "battery",
                           )
                         : "text-zinc-200",
@@ -1318,31 +1008,18 @@ export default function ServerDashboard({
               <div>
                 <DetailRow
                   label="Status"
-                  value={
-                    status.system
-                      .battery
-                      ?.status ??
-                    "--"
-                  }
+                  value={status.system.battery?.status ?? "--"}
                 />
 
                 <DetailRow
                   label="Energia"
-                  value={
-                    status.system
-                      .battery
-                      ?.plugged ??
-                    "--"
-                  }
+                  value={status.system.battery?.plugged ?? "--"}
                 />
 
                 <DetailRow
                   label="Temperatura"
                   value={
-                    status.system
-                      .battery
-                      ?.temperature !==
-                    null
+                    status.system.battery?.temperature !== null
                       ? `${status.system.battery?.temperature}°C`
                       : "--"
                   }
@@ -1350,27 +1027,17 @@ export default function ServerDashboard({
 
                 <DetailRow
                   label="Saúde"
-                  value={
-                    status.system
-                      .battery?.health ??
-                    "--"
-                  }
+                  value={status.system.battery?.health ?? "--"}
                 />
 
                 <DetailRow
                   label="RAM livre"
-                  value={formatBytes(
-                    status.system
-                      .memory.free,
-                  )}
+                  value={formatBytes(status.system.memory.free)}
                 />
 
                 <DetailRow
                   label="Disco livre"
-                  value={formatBytes(
-                    status.system.disk
-                      .free,
-                  )}
+                  value={formatBytes(status.system.disk.free)}
                 />
               </div>
             </Panel>
