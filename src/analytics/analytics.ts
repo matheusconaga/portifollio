@@ -187,6 +187,39 @@ export async function initializeAnalytics(): Promise<void> {
 }
 
 /*
+ * Garante que exista uma sessão válida
+ * antes de enviar eventos ou atividade.
+ */
+async function getOrCreateSessionId(): Promise<string | null> {
+  let sessionId =
+    sessionStorage.getItem(
+      SESSION_STORAGE_KEY,
+    );
+
+  if (sessionId) {
+    return sessionId;
+  }
+
+  try {
+    await initializeAnalytics();
+
+    sessionId =
+      sessionStorage.getItem(
+        SESSION_STORAGE_KEY,
+      );
+
+    return sessionId;
+  } catch (error) {
+    console.error(
+      "Failed to ensure analytics session:",
+      error,
+    );
+
+    return null;
+  }
+}
+
+/*
  * Envia eventos do portfólio.
  */
 export async function trackEvent(
@@ -203,15 +236,9 @@ export async function trackEvent(
 ): Promise<void> {
   try {
     const sessionId =
-      sessionStorage.getItem(
-        SESSION_STORAGE_KEY,
-      );
+      await getOrCreateSessionId();
 
     if (!sessionId) {
-      console.warn(
-        "Analytics session not initialized",
-      );
-
       return;
     }
 
@@ -252,15 +279,6 @@ export async function trackEvent(
  */
 async function sendActivity(): Promise<void> {
   try {
-    const sessionId =
-      sessionStorage.getItem(
-        SESSION_STORAGE_KEY,
-      );
-
-    if (!sessionId) {
-      return;
-    }
-
     /*
      * Não contabiliza atividade
      * enquanto a aba estiver escondida.
@@ -269,6 +287,13 @@ async function sendActivity(): Promise<void> {
       document.visibilityState !==
       "visible"
     ) {
+      return;
+    }
+
+    const sessionId =
+      await getOrCreateSessionId();
+
+    if (!sessionId) {
       return;
     }
 

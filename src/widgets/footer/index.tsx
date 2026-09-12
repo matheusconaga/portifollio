@@ -1,4 +1,4 @@
-import logo from "@/assets/logo_matheus.webp";
+
 
 import { Badge } from "@/shared/ui/badge";
 import { Button } from "@/shared/ui/button";
@@ -125,7 +125,7 @@ export default function Footer() {
 
             {/* BRAND */}
             <div className="flex items-center gap-3 flex-wrap">
-              <img src={logo} className="w-16 md:w-20" alt="Logo Matheus Lula" />
+              <img src={"/logo_matheus.webp"} className="w-16 md:w-20" alt="Logo Matheus Lula" />
 
               <div className="flex flex-col">
                 <span className="text-2xl md:text-3xl font-bold text-primary">

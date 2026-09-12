@@ -123,7 +123,6 @@ ${form.mensagem}
         rounded-2xl
         overflow-hidden
         bg-glass-light
-        xl:bg-transparent
       "
     >
       {/* GLOWS */}

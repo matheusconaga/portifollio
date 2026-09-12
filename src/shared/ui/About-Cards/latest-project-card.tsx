@@ -1,10 +1,13 @@
 import type { Project } from "@/data/projects";
+
 import { useAppTranslation } from "@/shared/hooks/useAppTranslation";
+
 import { Button } from "@/shared/ui/button";
 import { Card } from "@/shared/ui/Card/card";
 import { CardDescription } from "@/shared/ui/Card/card-description";
 import { CardTitle } from "@/shared/ui/Card/card-title";
 import { CircleBadge } from "@/shared/ui/circle-badge";
+
 import { ArrowRight, Laptop } from "lucide-react";
 
 interface LatestProjectCardProps {
@@ -15,39 +18,125 @@ export function LatestProjectCard({ latestProject }: LatestProjectCardProps) {
   const { t } = useAppTranslation();
 
   return (
-    <Card className="flex flex-col h-full p-6 bg-glass-light rounded-[28px]">
-      <div className="flex items-center gap-1 mb-4">
+    <Card
+      className="
+        flex
+        h-full
+        w-full
+        flex-col
+        overflow-hidden
+
+        rounded-[28px]
+        bg-glass-light
+
+        p-6
+        lg:p-5
+      "
+    >
+      {/* BADGE */}
+      <div
+        className="
+          mb-4
+          flex
+          shrink-0
+          items-center
+          gap-1
+
+          md:mb-3
+        "
+      >
         <CircleBadge size="sm">
           <Laptop size={12} className="text-primary" />
         </CircleBadge>
 
-        <span className="text-white text-sm font-semibold">
+        <span className="text-sm font-semibold text-white">
           {t("latestProject.title")}
         </span>
       </div>
 
-      <div className="relative aspect-video rounded-xl overflow-hidden bg-zinc-900 mb-4">
+      {/* IMAGE */}
+      <div
+        className="
+          relative
+          mb-4
+          aspect-video
+          w-full
+          shrink-0
+          overflow-hidden
+
+          rounded-xl
+          bg-zinc-900
+
+          sm:h-[150px]
+          sm:aspect-auto
+
+          md:mb-3
+          md:h-[135px]
+
+          lg:h-[110px]
+        "
+      >
         <img
           src={latestProject.image}
           alt={latestProject.title}
-          className="object-cover w-full h-full"
+          className="
+            h-full
+            w-full
+            object-cover
+          "
         />
       </div>
 
-      <div className="flex flex-col flex-1 gap-4">
-        <div>
-          <CardTitle className="text-sm text-white">
+      {/* CONTENT */}
+      <div
+        className="
+          flex
+          min-h-0
+          flex-1
+          flex-col
+        "
+      >
+        <div className="min-h-0">
+          <CardTitle
+            className="
+              text-sm
+              text-white
+            "
+          >
             {latestProject.title}
           </CardTitle>
 
-          <CardDescription className="line-clamp-2 mt-2">
+          <CardDescription
+            className="
+              mt-2
+
+              line-clamp-2
+
+              md:mt-1
+              md:line-clamp-3
+
+              lg:line-clamp-2
+            "
+          >
             {latestProject.description}
           </CardDescription>
         </div>
 
-        <a href="#projects" className="mt-auto">
+        <a
+          href="#projects"
+          className="
+            mt-auto
+            w-full
+            shrink-0
+
+            pt-4
+            md:pt-3
+            lg:pt-2
+          "
+        >
           <Button variant="primary" className="w-full">
             {t("latestProject.viewProject")}
+
             <ArrowRight size={18} className="ml-2" />
           </Button>
         </a>

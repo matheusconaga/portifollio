@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import logo from "@/assets/logo_matheus.webp";
+
 
 interface AppLoaderProps {
   isLoading: boolean;
@@ -29,7 +29,7 @@ export function AppLoader({ isLoading }: AppLoaderProps) {
           <div className="flex flex-col items-center gap-6">
 
             <motion.img
-              src={logo}
+              src={"/logo_matheus.webp"}
               className="w-40"
               animate={{
                 y: [0, -10, 0],

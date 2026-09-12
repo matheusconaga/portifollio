@@ -15,6 +15,7 @@ import { useAppTranslation } from "@/shared/hooks/useAppTranslation";
 
 export default function About() {
   const { t, i18n } = useAppTranslation();
+
   const carouselRef = useRef<HTMLDivElement>(null);
 
   const [isPaused, setIsPaused] = useState(false);
@@ -39,12 +40,20 @@ export default function About() {
     if (!container) return;
 
     const interval = setInterval(() => {
-      const cardWidth = container.clientWidth * 0.88 + 16;
+      const firstCard = container.firstElementChild as HTMLElement | null;
+
+      if (!firstCard) return;
+
+      const styles = window.getComputedStyle(container);
+
+      const gap = parseFloat(styles.columnGap || styles.gap || "0");
+
+      const cardWidth = firstCard.offsetWidth + gap;
 
       const maxScroll = container.scrollWidth - container.clientWidth;
 
       const next =
-        container.scrollLeft + cardWidth >= maxScroll
+        container.scrollLeft + cardWidth >= maxScroll - 8
           ? 0
           : container.scrollLeft + cardWidth;
 
@@ -62,54 +71,74 @@ export default function About() {
       className="
     relative
     flex
-    flex-col
-    lg:flex-row
-    items-center
-    justify-between
-    min-h-screen
     w-full
-    gap-12
-    lg:gap-8
+    flex-col
+    items-center
+    justify-start
+
+    gap-6
     py-10
-    lg:py-0
+
+    md:gap-8
+
+    xl:min-h-screen
+    xl:flex-row
+    xl:items-center
+    xl:justify-between
+    xl:gap-8
+    xl:py-0
   "
     >
+      {/* BACKGROUND GLOW */}
       <div
         className="
-      absolute
+          pointer-events-none
+          absolute
+          top-[-120px]
+          z-0
 
-      top-[-120px]
+          h-[300px]
+          w-[300px]
 
-      w-[300px]
-      h-[300px]
-      sm:w-[100%]
-      sm:h-[150px]
+          bg-glass-dark/50
+          blur-[120px]
 
-
-      bg-glass-dark/50
-
-      blur-[120px]
-
-      pointer-events-none
-      z-0
-    "
+          sm:h-[150px]
+          sm:w-full
+        "
       />
+
       {/* LEFT SIDE */}
-      <div className="flex flex-col w-full lg:w-[700px] items-start gap-8">
+      <div
+        className="
+          flex
+          w-full
+          flex-col
+          items-start
+          gap-8
+
+          lg:w-[700px]
+        "
+      >
         {/* TITLE */}
         <div
           className="
-    flex flex-col
-    text-white
-    font-bold
-    text-[32px]
-    md:text-[44px]
-    leading-[1.1]
-    max-w-full
-    lg:max-w-[650px]
-  "
+            flex
+            max-w-full
+            flex-col
+
+            text-[32px]
+            font-bold
+            leading-[1.1]
+            text-white
+
+            md:text-[44px]
+
+            lg:max-w-[650px]
+          "
         >
           <span>{t("about.title1")}</span>
+
           <span className="whitespace-normal md:whitespace-nowrap">
             {t("about.title2")}{" "}
             <span className="text-primary">{t("about.title3")}</span>
@@ -120,60 +149,128 @@ export default function About() {
         <div className="max-w-full lg:max-w-[700px]">
           <span
             className="
-        text-gray
-        text-base
-        md:text-lg
-        leading-relaxed
-      "
+              text-base
+              leading-relaxed
+              text-gray
+
+              md:text-lg
+            "
           >
             {t("about.description")}
           </span>
         </div>
 
         {/* STATS CARDS */}
-        <div className="relative w-full lg:w-[480px] lg:h-55 h-55 grid grid-cols-2 gap-2 sm:gap-4">
-          <Card className="flex flex-col p-6 items-center justify-center">
-            <CardTitle className="text-primary text-2xl font-bold text-center">
+        <div
+          className="
+    relative
+
+    grid
+    w-full
+    grid-cols-2
+    gap-2
+
+    place-items-stretch
+
+    sm:gap-4
+
+    md:max-w-[720px]
+    md:self-center
+
+    xl:max-w-[480px]
+    xl:self-start
+  "
+        >
+          <Card className="flex min-h-[110px] flex-col items-center justify-center p-4 sm:p-6">
+            <CardTitle className="text-center text-2xl font-bold text-primary">
               {t("about.card1.title")}
             </CardTitle>
-            <CardDescription className="text-white text-sm md:text-base text-center">
+
+            <CardDescription className="text-center text-sm text-white md:text-base">
               {t("about.card1.description")}
             </CardDescription>
           </Card>
+
           <Card
-            className="flex flex-col p-6 items-center justify-center hover:border-primary/30
-                  hover:shadow-xl hover:shadow-primary/10
-                  duration-300"
+            className="
+      flex
+      min-h-[110px]
+      flex-col
+      items-center
+      justify-center
+      p-4
+
+      transition-all
+      duration-300
+
+      sm:p-6
+
+      hover:border-primary/30
+      hover:shadow-xl
+      hover:shadow-primary/10
+    "
           >
-            <CardTitle className="text-primary text-2xl font-bold text-center">
+            <CardTitle className="text-center text-2xl font-bold text-primary">
               {t("about.card2.title")}
             </CardTitle>
-            <CardDescription className="text-white text-sm md:text-base text-center">
+
+            <CardDescription className="text-center text-sm text-white md:text-base">
               {t("about.card2.description")}
             </CardDescription>
           </Card>
+
           <Card
-            className="flex flex-col p-6 items-center justify-center hover:border-primary/30
-                  hover:shadow-xl hover:shadow-primary/10
-                  duration-300"
+            className="
+      flex
+      min-h-[110px]
+      flex-col
+      items-center
+      justify-center
+      p-4
+
+      transition-all
+      duration-300
+
+      sm:p-6
+
+      hover:border-primary/30
+      hover:shadow-xl
+      hover:shadow-primary/10
+    "
           >
-            <CardTitle className="text-primary text-2xl font-bold text-center">
+            <CardTitle className="text-center text-2xl font-bold text-primary">
               {t("about.card3.title")}
             </CardTitle>
-            <CardDescription className="text-white text-sm md:text-base text-center">
+
+            <CardDescription className="text-center text-sm text-white md:text-base">
               {t("about.card3.description")}
             </CardDescription>
           </Card>
+
           <Card
-            className="flex flex-col p-6 items-center justify-center hover:border-primary/30
-                  hover:shadow-xl
-                  hover:shadow-primary/10
-                  duration-300"
+            className="
+      flex
+      min-h-[110px]
+      flex-col
+      items-center
+      justify-center
+      p-4
+
+      transition-all
+      duration-300
+
+      sm:p-6
+
+      hover:border-primary/30
+      hover:shadow-xl
+      hover:shadow-primary/10
+    "
           >
-            <CardTitle className="text-primary text-2xl font-bold text-center">
+            <CardTitle className="text-center text-2xl font-bold text-primary">
               {t("about.card4.title")}
             </CardTitle>
-            <CardDescription className="text-white text-sm md:text-base text-center">
+
+            <CardDescription className="text-center text-sm text-white md:text-base">
               {t("about.card4.description")}
             </CardDescription>
           </Card>
@@ -188,46 +285,102 @@ export default function About() {
           onTouchStart={() => setIsPaused(true)}
           onMouseEnter={() => setIsPaused(true)}
           onTouchEnd={() => {
-            setTimeout(() => setIsPaused(false), 3000);
+            setTimeout(() => {
+              setIsPaused(false);
+            }, 3000);
           }}
           onMouseLeave={() => setIsPaused(false)}
           className="
-      flex
-      lg:hidden
-      gap-4
-      overflow-x-auto
-      snap-x
-      snap-mandatory
-      scrollbar-hide
-      pb-2
-    "
+            flex
+            items-stretch
+            gap-4
+
+            overflow-x-auto
+
+            snap-x
+            snap-mandatory
+
+            pb-2
+
+            scrollbar-hide
+
+            lg:hidden
+          "
         >
+          {/* WORK */}
           <motion.div
             whileTap={{ scale: 0.98 }}
-            className="min-w-[88%] h-[350px] snap-center flex"
+            className="
+    flex
+    h-[390px]
+
+    basis-[88%]
+    sm:basis-[65%]
+    md:basis-[52%]
+
+    max-w-[430px]
+    shrink-0
+    snap-center
+  "
           >
             <WorkCard />
           </motion.div>
 
+          {/* CODE */}
           <motion.div
             whileTap={{ scale: 0.98 }}
-            className="min-w-[88%] h-[350px] snap-center"
+            className="
+    flex
+    h-[390px]
+
+    basis-[88%]
+    sm:basis-[65%]
+    md:basis-[52%]
+
+    max-w-[430px]
+    shrink-0
+    snap-center
+  "
           >
             <CodeCard />
           </motion.div>
 
+          {/* LATEST PROJECT */}
           <motion.div
             whileTap={{ scale: 0.98 }}
-            className="min-w-[88%] h-[350px] snap-center"
+            className="
+    flex
+    h-[390px]
+
+    basis-[88%]
+    sm:basis-[65%]
+    md:basis-[52%]
+
+    max-w-[430px]
+    shrink-0
+    snap-center
+  "
           >
             {latestProject && (
               <LatestProjectCard latestProject={latestProject} />
             )}
           </motion.div>
 
+          {/* CTA */}
           <motion.div
             whileTap={{ scale: 0.98 }}
-            className="min-w-[88%] h-[350px] snap-center"
+            className="
+    flex
+    h-[390px]
+
+    basis-[88%]
+    sm:basis-[65%]
+    md:basis-[52%]
+
+    max-w-[430px]
+    shrink-0
+    snap-center
+  "
           >
             <CtaCard />
           </motion.div>
@@ -236,13 +389,14 @@ export default function About() {
         {/* DESKTOP GRID */}
         <div
           className="
-      hidden
-      lg:grid
-      grid-cols-[0.86fr_1.2fr]
-      grid-rows-[300px_320px]
-      gap-4
-      w-full
-    "
+            hidden
+            w-full
+            grid-cols-[0.86fr_1.2fr]
+            grid-rows-[300px_320px]
+            gap-4
+
+            lg:grid
+          "
         >
           <WorkCard />
 

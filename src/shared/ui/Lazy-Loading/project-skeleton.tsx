@@ -1,20 +1,20 @@
 export function ProjectsSkeleton() {
   return (
-    <div className="flex justify-center items-center w-full max-w-[1200px] align-start gap-8 mx-auto py-10">
+    <div className="flex justify-center items-center w-full max-w-[1200px] items-start gap-8 mx-auto py-10">
       <div className="flex flex-col gap-8 w-full">
         <div className="absolute top-[-120px] w-[300px] h-[300px] sm:w-full sm:h-[200px] bg-glass-blue blur-[120px] pointer-events-none z-0" />
 
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
           <div className="flex flex-col gap-3">
             <div className="h-6 w-32 rounded-full bg-muted/30 animate-pulse" />
-            <div className="h-12 w-[280px] sm:w-[420px] rounded-full bg-muted/30 animate-pulse" />
+            <div className="h-12 w-[280px] sm:w-[420px] rounded-full bg-muted/30 " />
           </div>
 
           <div className="flex gap-3 flex-wrap">
             {Array.from({ length: 4 }).map((_, index) => (
               <div
                 key={index}
-                className="h-10 w-24 rounded-full bg-muted/20 animate-pulse"
+                className="h-10 w-24 rounded-full bg-muted/20 "
               />
             ))}
           </div>
@@ -31,7 +31,7 @@ export function ProjectsSkeleton() {
                 overflow-hidden
                 bg-glass-light
                 border border-white/10
-                animate-pulse
+              
                 min-h-[480px] sm:min-h-[540px] /* Garante uma base de altura estável por card */
               "
             >

@@ -1,6 +1,13 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+
+import {
+  motion,
+  AnimatePresence,
+} from "framer-motion";
+
+import {
+  ChevronDown,
+} from "lucide-react";
 
 interface FilterItem {
   label: string;
@@ -10,7 +17,9 @@ interface FilterItem {
 interface FilterTabsProps {
   items: FilterItem[];
   active: string;
-  onChange: (value: string) => void;
+  onChange: (
+    value: string,
+  ) => void;
 }
 
 export function FilterTabs({
@@ -18,131 +27,199 @@ export function FilterTabs({
   active,
   onChange,
 }: FilterTabsProps) {
-  const [open, setOpen] = useState(false);
+  const [
+    open,
+    setOpen,
+  ] = useState(false);
 
   const activeItem =
-    items.find((item) => item.value === active);
+    items.find(
+      (item) =>
+        item.value === active,
+    );
 
   return (
     <>
       {/* DESKTOP */}
       <div
         className="
-          hidden md:flex
+          hidden
+          lg:flex
 
           group
           relative
 
           items-center
-          gap-2
+          gap-1.5
 
           p-2
 
           rounded-full
 
-          border border-white/10
+          border
+          border-white/10
 
           bg-glass-light
 
           backdrop-blur-2xl
 
-          shadow-lg shadow-black/10
+          shadow-lg
+          shadow-black/10
 
           overflow-hidden
         "
       >
+        {/* GLOW */}
         <div
           className="
             pointer-events-none
-            absolute inset-0
+
+            absolute
+            inset-0
+
             opacity-0
             group-hover:opacity-100
-            transition-opacity duration-500
+
+            transition-opacity
+            duration-500
+
             bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08),transparent_70%)]
           "
         />
 
-        {items.map((item) => {
-          const isActive =
-            active === item.value;
+        {items.map(
+          (item) => {
+            const isActive =
+              active ===
+              item.value;
 
-          return (
-            <motion.button
-              key={item.value}
-              onClick={() =>
-                onChange(item.value)
-              }
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.96 }}
-              transition={{
-                type: "spring",
-                stiffness: 400,
-                damping: 20,
-              }}
-              className="
-                relative
-
-                px-6 py-2.5
-
-                rounded-full
-
-                text-sm
-                font-semibold
-
-                cursor-pointer
-                overflow-hidden
-
-                hover:text-primary
-                hover:-translate-y-1
-
-                transition-all duration-300
-              "
-            >
-              <motion.div
-                initial={false}
-                animate={{
-                  opacity: isActive ? 1 : 0,
-                  scale: isActive ? 1 : 0.8,
+            return (
+              <motion.button
+                key={
+                  item.value
+                }
+                type="button"
+                onClick={() =>
+                  onChange(
+                    item.value,
+                  )
+                }
+                whileHover={{
+                  scale: 1.03,
+                }}
+                whileTap={{
+                  scale: 0.96,
                 }}
                 transition={{
                   type: "spring",
-                  stiffness: 300,
-                  damping: 25,
+                  stiffness: 400,
+                  damping: 20,
                 }}
                 className="
-                  absolute inset-0
+                  relative
+
+                  px-4
+                  xl:px-5
+
+                  py-2.5
 
                   rounded-full
 
-                  bg-accent/40
+                  text-sm
+                  font-semibold
 
-                  backdrop-blur-2xl
+                  cursor-pointer
+                  overflow-hidden
 
-                  shadow-[0_0_20px_rgba(59,130,246,0.25)]
+                  whitespace-nowrap
+
+                  hover:text-primary
+                  hover:-translate-y-1
+
+                  transition-all
+                  duration-300
                 "
-              />
-
-              <span
-                className={`
-                  relative z-10 transition-all duration-300
-                  ${
-                    isActive
-                      ? "text-white"
-                      : "text-gray"
-                  }
-                `}
               >
-                {item.label}
-              </span>
-            </motion.button>
-          );
-        })}
+                <motion.div
+                  initial={
+                    false
+                  }
+                  animate={{
+                    opacity:
+                      isActive
+                        ? 1
+                        : 0,
+
+                    scale:
+                      isActive
+                        ? 1
+                        : 0.8,
+                  }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 300,
+                    damping: 25,
+                  }}
+                  className="
+                    absolute
+                    inset-0
+
+                    rounded-full
+
+                    bg-accent/40
+
+                    backdrop-blur-2xl
+
+                    shadow-[0_0_20px_rgba(59,130,246,0.25)]
+                  "
+                />
+
+                <span
+                  className={`
+                    relative
+                    z-10
+
+                    transition-all
+                    duration-300
+
+                    ${
+                      isActive
+                        ? "text-white"
+                        : "text-gray"
+                    }
+                  `}
+                >
+                  {
+                    item.label
+                  }
+                </span>
+              </motion.button>
+            );
+          },
+        )}
       </div>
 
-      {/* MOBILE */}
-      <div className="relative md:hidden w-full">
+      {/* MOBILE + TABLET */}
+      <div
+        className="
+          relative
+
+          w-full
+
+          md:w-[260px]
+
+          lg:hidden
+        "
+      >
         <button
-          onClick={() => setOpen(!open)}
+          type="button"
+          aria-expanded={open}
+          onClick={() =>
+            setOpen(
+              (prev) =>
+                !prev,
+            )
+          }
           className="
             flex
             items-center
@@ -150,28 +227,45 @@ export function FilterTabs({
 
             w-full
 
-            px-4 py-3
+            px-4
+            py-3
 
             rounded-2xl
 
-            border border-white/10
+            border
+            border-white/10
 
             bg-glass-light
 
             backdrop-blur-xl
 
             text-white
+
+            active:scale-[0.98]
+
+            transition-all
+            duration-300
           "
         >
           <span className="font-medium">
-            {activeItem?.label}
+            {
+              activeItem?.label
+            }
           </span>
 
           <ChevronDown
             size={18}
             className={`
-              transition-transform duration-300
-              ${open ? "rotate-180" : ""}
+              shrink-0
+
+              transition-transform
+              duration-300
+
+              ${
+                open
+                  ? "rotate-180"
+                  : ""
+              }
             `}
           />
         </button>
@@ -181,22 +275,32 @@ export function FilterTabs({
             <motion.div
               initial={{
                 opacity: 0,
-                y: -10,
+                y: -8,
+                scale: 0.98,
               }}
               animate={{
                 opacity: 1,
                 y: 0,
+                scale: 1,
               }}
               exit={{
                 opacity: 0,
-                y: -10,
+                y: -8,
+                scale: 0.98,
               }}
               transition={{
-                duration: 0.2,
+                duration: 0.18,
+                ease: [
+                  0.22,
+                  1,
+                  0.36,
+                  1,
+                ],
               }}
               className="
                 absolute
-                top-[110%]
+
+                top-[calc(100%+8px)]
                 left-0
 
                 z-50
@@ -210,47 +314,76 @@ export function FilterTabs({
 
                 rounded-2xl
 
-                border border-white/10
+                border
+                border-white/10
 
                 bg-glass-dark
 
                 backdrop-blur-2xl
 
-                shadow-2xl shadow-black/30
+                shadow-2xl
+                shadow-black/30
+
+                origin-top
               "
             >
-              {items.map((item) => {
-                const isActive =
-                  active === item.value;
+              {items.map(
+                (item) => {
+                  const isActive =
+                    active ===
+                    item.value;
 
-                return (
-                  <button
-                    key={item.value}
-                    onClick={() => {
-                      onChange(item.value);
-                      setOpen(false);
-                    }}
-                    className={`
-                      px-4 py-3
-
-                      rounded-xl
-
-                      text-left
-                      text-sm
-
-                      transition-all duration-300
-
-                      ${
-                        isActive
-                          ? "bg-primary text-primary-foreground font-semibold"
-                          : "text-white hover:text-white"
+                  return (
+                    <button
+                      key={
+                        item.value
                       }
-                    `}
-                  >
-                    {item.label}
-                  </button>
-                );
-              })}
+                      type="button"
+                      onClick={() => {
+                        onChange(
+                          item.value,
+                        );
+
+                        setOpen(
+                          false,
+                        );
+                      }}
+                      className={`
+                        px-4
+                        py-3
+
+                        rounded-xl
+
+                        text-left
+                        text-sm
+
+                        cursor-pointer
+
+                        transition-all
+                        duration-300
+
+                        ${
+                          isActive
+                            ? `
+                              bg-primary
+                              text-primary-foreground
+                              font-semibold
+                            `
+                            : `
+                              text-white/70
+                              hover:bg-white/5
+                              hover:text-white
+                            `
+                        }
+                      `}
+                    >
+                      {
+                        item.label
+                      }
+                    </button>
+                  );
+                },
+              )}
             </motion.div>
           )}
         </AnimatePresence>
@@ -258,4 +391,3 @@ export function FilterTabs({
     </>
   );
 }
-

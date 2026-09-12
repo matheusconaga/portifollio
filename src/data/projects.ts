@@ -1,8 +1,9 @@
 import patrimoniario from "@/assets/projects/patrimoniario.webp";
 import println from "@/assets/projects/println.webp";
-import portfolio from "@/assets/projects/portfolio.webp";
 import github_project_card from "@/assets/projects/gihub-project-cards.webp";
 import docflow from "@/assets/projects/docflow-ai.webp";
+import analytics from "@/assets/projects/analytics.webp";
+import educassist from "@/assets/projects/educassist.webp"
 
 export interface Project {
     slug: string;
@@ -23,6 +24,38 @@ interface ProjectsByLanguage {
 
 export const projects: ProjectsByLanguage = {
     pt: [
+        {
+            slug: "educassist",
+            image: educassist,
+            title: "EducAssist",
+            description:
+                "Plataforma educacional com Inteligência Artificial desenvolvida para auxiliar professores na criação de planos de aula, atividades, avaliações e outros materiais pedagógicos, reduzindo tarefas burocráticas e otimizando o tempo dedicado ao ensino.",
+            techs: [
+                "React",
+                "FastAPI",
+                "PostgreSQL",
+            ],
+            category: "Fullstack",
+            deployUrl:
+                "https://www.educassist.com.br/",
+        },
+        {
+            slug: "portfolio-analytics",
+            image: analytics,
+            title: "Portfolio Analytics",
+            description:
+                "Plataforma fullstack própria de web analytics para monitoramento do meu portfólio, com rastreamento de visitantes, sessões, eventos e interações, dashboard com dados reais e anonimizados e automações de notificações via n8n e Telegram.",
+            techs: [
+                "React",
+                "Node.js",
+                "PostgreSQL",
+            ],
+            category: "Fullstack",
+            deployUrl:
+                "https://analytics-portfolio-s8pd.onrender.com/",
+            repoUrl:
+                "https://github.com/matheusconaga/portfolio-analytics",
+        },
         {
             slug: "docflow-ai",
             image: docflow,
@@ -59,23 +92,6 @@ export const projects: ProjectsByLanguage = {
                 "https://github.com/matheusconaga/github-project-cards",
         },
 
-        {
-            slug: "portifolio-profissional",
-            image: portfolio,
-            title: "Portifólio Profissional",
-            description:
-                "Portfólio feito em React, TypeScript e TailwindCSS, utilizando Framer Motion para animações fluidas, arquitetura componentizada e foco em performance, UI/UX e experiência visual moderna.",
-            techs: [
-                "React",
-                "Tailwind",
-                "StyledCo",
-            ],
-            category: "Frontend",
-            deployUrl:
-                "https://portifoliomatheuslula.onrender.com/",
-            repoUrl:
-                "https://github.com/matheusconaga/portifollio",
-        },
 
         {
             slug: "println",
@@ -116,6 +132,38 @@ export const projects: ProjectsByLanguage = {
 
     en: [
         {
+            slug: "educassist",
+            image: educassist,
+            title: "EducAssist",
+            description:
+                "AI-powered educational platform designed to help teachers create lesson plans, activities, assessments, and other teaching materials, reducing administrative workload and giving them more time to focus on teaching.",
+            techs: [
+                "React",
+                "FastAPI",
+                "AI/LLMs",
+            ],
+            category: "Fullstack",
+            deployUrl:
+                "https://www.educassist.com.br/",
+        },
+        {
+            slug: "portfolio-analytics",
+            image: analytics,
+            title: "Portfolio Analytics",
+            description:
+                "Custom fullstack web analytics platform built to monitor my portfolio, featuring visitor, session, event and interaction tracking, a dashboard with real anonymized data, and automated notifications through n8n and Telegram.",
+            techs: [
+                "React",
+                "Node.js",
+                "PostgreSQL",
+            ],
+            category: "Fullstack",
+            deployUrl:
+                "https://analytics-portfolio-s8pd.onrender.com/",
+            repoUrl:
+                "https://github.com/matheusconaga/portfolio-analytics",
+        },
+        {
             slug: "docflow-ai",
             image: docflow,
             title: "DocFlow AI",
@@ -149,24 +197,6 @@ export const projects: ProjectsByLanguage = {
                 "https://github-project-cards.vercel.app/preview",
             repoUrl:
                 "https://github.com/matheusconaga/github-project-cards",
-        },
-
-        {
-            slug: "portifolio-profissional",
-            image: portfolio,
-            title: "Professional Portfolio",
-            description:
-                "Portfolio built with React, TypeScript, and TailwindCSS, using Framer Motion for fluid animations, component-based architecture, and focus on performance, UI/UX, and modern visual experience.",
-            techs: [
-                "React",
-                "Tailwind",
-                "StyledCo",
-            ],
-            category: "Frontend",
-            deployUrl:
-                "https://portifoliomatheuslula.onrender.com/",
-            repoUrl:
-                "https://github.com/matheusconaga/portifollio",
         },
 
         {

@@ -155,6 +155,7 @@ export default function ProjectCard({
     flex
     flex-col
     sm:flex-row
+    justify-center
 
     w-full
 
