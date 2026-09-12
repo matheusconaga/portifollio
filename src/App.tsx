@@ -29,16 +29,74 @@ import AnalyticsDashboard from "./analytics/pages/AnalyticsDashboard";
 const MIN_LOADING_TIME = 2000;
 const MAX_ANALYTICS_WAIT = 4000;
 
+const MAIN_DOMAIN =
+  "matheusconaga.dev";
+
+const WWW_DOMAIN =
+  "www.matheusconaga.dev";
+
+const ANALYTICS_DOMAIN =
+  "analytics.matheusconaga.dev";
+
 export default function App() {
-  const isAnalyticsRoute =
-    window.location.pathname ===
-    "/analytics";
+  const hostname =
+    window.location.hostname;
+
+  const pathname =
+    window.location.pathname;
+
+  /*
+   * Analytics dashboard running
+   * on its dedicated subdomain.
+   */
+  const isAnalyticsDomain =
+    hostname === ANALYTICS_DOMAIN;
+
+  /*
+   * Keep /analytics available
+   * locally for development.
+   */
+  const isLocalAnalyticsRoute =
+    (
+      hostname === "localhost" ||
+      hostname === "127.0.0.1"
+    ) &&
+    (
+      pathname === "/analytics" ||
+      pathname === "/analytics/"
+    );
+
+  /*
+   * Old production route.
+   *
+   * matheusconaga.dev/analytics
+   * now redirects to:
+   *
+   * analytics.matheusconaga.dev
+   */
+  const isLegacyAnalyticsRoute =
+    (
+      hostname === MAIN_DOMAIN ||
+      hostname === WWW_DOMAIN
+    ) &&
+    (
+      pathname === "/analytics" ||
+      pathname === "/analytics/"
+    );
+
+  /*
+   * Determines whether the current
+   * page is the Analytics application.
+   */
+  const isAnalyticsApp =
+    isAnalyticsDomain ||
+    isLocalAnalyticsRoute;
 
   const [
     isAuthenticated,
     setIsAuthenticated,
   ] = useState<boolean | null>(
-    isAnalyticsRoute
+    isAnalyticsApp
       ? null
       : false,
   );
@@ -47,18 +105,59 @@ export default function App() {
     isLoading,
     setIsLoading,
   ] = useState(
-    !isAnalyticsRoute,
+    !isAnalyticsApp &&
+    !isLegacyAnalyticsRoute,
   );
 
+  /*
+   * Redirect the old analytics route
+   * to the dedicated subdomain.
+   */
   useEffect(() => {
-    if (isAnalyticsRoute) {
-      checkAuth().then(
+    if (
+      !isLegacyAnalyticsRoute
+    ) {
+      return;
+    }
+
+    const newUrl =
+      `https://${ANALYTICS_DOMAIN}` +
+      `${window.location.search}` +
+      `${window.location.hash}`;
+
+    window.location.replace(
+      newUrl,
+    );
+  }, [
+    isLegacyAnalyticsRoute,
+  ]);
+
+  useEffect(() => {
+    /*
+     * The old /analytics route
+     * is waiting for redirect.
+     */
+    if (
+      isLegacyAnalyticsRoute
+    ) {
+      return;
+    }
+
+    /*
+     * Analytics dashboard
+     * authentication.
+     */
+    if (isAnalyticsApp) {
+      void checkAuth().then(
         setIsAuthenticated,
       );
 
       return;
     }
 
+    /*
+     * Portfolio loading.
+     */
     document.body.style.overflow =
       "hidden";
 
@@ -99,7 +198,9 @@ export default function App() {
 
     async function initializeApp() {
       const minimumLoading =
-        sleep(MIN_LOADING_TIME);
+        sleep(
+          MIN_LOADING_TIME,
+        );
 
       const analytics =
         startAnalytics();
@@ -136,9 +237,25 @@ export default function App() {
       document.body.style.overflow =
         "auto";
     };
-  }, [isAnalyticsRoute]);
+  }, [
+    isAnalyticsApp,
+    isLegacyAnalyticsRoute,
+  ]);
 
-  if (isAnalyticsRoute) {
+  /*
+   * Do not render anything while
+   * redirecting the old route.
+   */
+  if (
+    isLegacyAnalyticsRoute
+  ) {
+    return null;
+  }
+
+  /*
+   * Analytics application.
+   */
+  if (isAnalyticsApp) {
     if (
       isAuthenticated === null
     ) {
@@ -170,6 +287,9 @@ export default function App() {
     );
   }
 
+  /*
+   * Portfolio.
+   */
   return (
     <>
       <AppLoader
@@ -186,3 +306,4 @@ export default function App() {
     </>
   );
 }
+
