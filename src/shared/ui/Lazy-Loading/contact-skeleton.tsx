@@ -5,25 +5,28 @@ export function ContactSkeleton() {
         relative
         w-full
         mx-auto
+
         rounded-2xl
         overflow-hidden
+
         bg-glass-light
-        xl:bg-transparent
+        border border-white/10
+
+        transition-none
       "
     >
-
       {/* MAIN CARD */}
       <div
         className="
           relative
           overflow-hidden
 
-          xl:bg-glass-light
-          xl:border xl:border-white/10
+          bg-glass-light
+          border border-white/10
 
           rounded-3xl
 
-          animate-pulse
+          transition-none
         "
       >
         <div
@@ -69,6 +72,8 @@ export function ContactSkeleton() {
 
                     rounded-2xl
                     bg-muted/30
+
+                    transition-none
                   "
                 />
 
@@ -81,23 +86,63 @@ export function ContactSkeleton() {
 
                     rounded-2xl
                     bg-muted/20
+
+                    transition-none
                   "
                 />
               </div>
 
               <div className="flex flex-col gap-3">
-                <div className="h-4 w-full rounded-full bg-muted/20" />
-                <div className="h-4 w-[95%] rounded-full bg-muted/20" />
-                <div className="h-4 w-[80%] rounded-full bg-muted/20" />
+                <div
+                  className="
+                    h-4
+                    w-full
+
+                    rounded-full
+                    bg-muted/20
+
+                    transition-none
+                  "
+                />
+
+                <div
+                  className="
+                    h-4
+                    w-[95%]
+
+                    rounded-full
+                    bg-muted/20
+
+                    transition-none
+                  "
+                />
+
+                <div
+                  className="
+                    h-4
+                    w-[80%]
+
+                    rounded-full
+                    bg-muted/20
+
+                    transition-none
+                  "
+                />
               </div>
             </div>
 
             {/* CONTACT INFO */}
             <div className="flex flex-col gap-4">
-              {Array.from({ length: 3 }).map((_, index) => (
+              {Array.from({
+                length: 3,
+              }).map((_, index) => (
                 <div
                   key={index}
-                  className="flex items-center gap-3"
+                  className="
+                    flex
+                    items-center
+                    gap-3
+                  "
                 >
                   <div
                     className="
@@ -106,6 +151,8 @@ export function ContactSkeleton() {
 
                       rounded-full
                       bg-muted/30
+
+                      transition-none
                     "
                   />
 
@@ -116,6 +163,8 @@ export function ContactSkeleton() {
 
                       rounded-full
                       bg-muted/20
+
+                      transition-none
                     "
                   />
                 </div>
@@ -124,7 +173,9 @@ export function ContactSkeleton() {
 
             {/* SOCIALS */}
             <div className="flex gap-4">
-              {Array.from({ length: 3 }).map((_, index) => (
+              {Array.from({
+                length: 3,
+              }).map((_, index) => (
                 <div
                   key={index}
                   className="
@@ -133,6 +184,8 @@ export function ContactSkeleton() {
 
                     rounded-full
                     bg-muted/20
+
+                    transition-none
                   "
                 />
               ))}
@@ -165,6 +218,8 @@ export function ContactSkeleton() {
 
                 flex flex-col
                 gap-4
+
+                transition-none
               "
             >
               {/* INPUTS */}
@@ -176,17 +231,40 @@ export function ContactSkeleton() {
                   gap-4
                 "
               >
-                <div className="h-14 rounded-2xl bg-muted/20" />
-                <div className="h-14 rounded-2xl bg-muted/20" />
+                <div
+                  className="
+                    h-14
+                    rounded-2xl
+                    bg-muted/20
+                    transition-none
+                  "
+                />
+
+                <div
+                  className="
+                    h-14
+                    rounded-2xl
+                    bg-muted/20
+                    transition-none
+                  "
+                />
               </div>
 
-              <div className="h-14 rounded-2xl bg-muted/20" />
+              <div
+                className="
+                  h-14
+                  rounded-2xl
+                  bg-muted/20
+                  transition-none
+                "
+              />
 
               <div
                 className="
                   h-[160px]
                   rounded-2xl
                   bg-muted/20
+                  transition-none
                 "
               />
 
@@ -197,6 +275,7 @@ export function ContactSkeleton() {
                     h-14
                     rounded-full
                     bg-muted/30
+                    transition-none
                   "
                 />
 
@@ -205,6 +284,7 @@ export function ContactSkeleton() {
                     h-14
                     rounded-full
                     bg-muted/20
+                    transition-none
                   "
                 />
               </div>

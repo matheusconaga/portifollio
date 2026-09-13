@@ -18,8 +18,8 @@ import PrivateLogin from "./shared/pages/PrivateLogin";
 import AnalyticsDashboard from "./analytics/pages/AnalyticsDashboard";
 import ServerDashboard from "./server/pages/ServerDashboard";
 
-const MIN_LOADING_TIME = 2000;
-const MAX_ANALYTICS_WAIT = 4000;
+const MIN_LOADING_TIME = 600;
+const ANALYTICS_START_DELAY = 5000;
 
 const MAIN_DOMAIN = "matheusconaga.dev";
 
@@ -129,20 +129,39 @@ export default function App() {
     }
 
     /*
-     * Portfolio loading.
+     * Portfolio.
      */
     document.body.style.overflow = "hidden";
 
     let cancelled = false;
 
-    const sleep = (milliseconds: number) =>
-      new Promise<void>((resolve) => {
-        setTimeout(resolve, milliseconds);
-      });
+    let analyticsStarted = false;
 
+    let analyticsTimer: ReturnType<typeof setTimeout> | null = null;
+
+    /*
+     * Start Analytics only after
+     * the visitor has remained on
+     * the visible page long enough.
+     */
     async function startAnalytics() {
+      if (cancelled || analyticsStarted) {
+        return;
+      }
+
+      /*
+       * Set before awaiting so another
+       * visibility event cannot start
+       * Analytics a second time.
+       */
+      analyticsStarted = true;
+
       try {
         await initializeAnalytics();
+
+        if (cancelled) {
+          return;
+        }
 
         startActivityTracking();
 
@@ -154,19 +173,62 @@ export default function App() {
       }
     }
 
-    async function initializeApp() {
-      const minimumLoading = sleep(MIN_LOADING_TIME);
+    /*
+     * Schedule Analytics only while
+     * the page is actually visible.
+     */
+    function scheduleAnalytics() {
+      if (
+        cancelled ||
+        analyticsStarted ||
+        analyticsTimer !== null ||
+        document.visibilityState !== "visible"
+      ) {
+        return;
+      }
 
-      const analytics = startAnalytics();
+      analyticsTimer = setTimeout(() => {
+        analyticsTimer = null;
 
-      const analyticsTimeout = sleep(MAX_ANALYTICS_WAIT);
+        void startAnalytics();
+      }, ANALYTICS_START_DELAY);
+    }
 
-      await Promise.all([
-        minimumLoading,
+    /*
+     * If the tab goes to background
+     * before reaching the minimum
+     * time, cancel the timer.
+     *
+     * When it becomes visible again,
+     * the 5-second countdown restarts.
+     */
+    function handleVisibilityChange() {
+      if (document.visibilityState === "hidden") {
+        if (analyticsTimer !== null) {
+          clearTimeout(analyticsTimer);
 
-        Promise.race([analytics, analyticsTimeout]),
-      ]);
+          analyticsTimer = null;
+        }
 
+        return;
+      }
+
+      scheduleAnalytics();
+    }
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    /*
+     * Start the initial Analytics
+     * countdown.
+     */
+    scheduleAnalytics();
+
+    /*
+     * Loader is now completely
+     * independent from Analytics.
+     */
+    const loadingTimer = setTimeout(() => {
       if (cancelled) {
         return;
       }
@@ -174,12 +236,18 @@ export default function App() {
       setIsLoading(false);
 
       document.body.style.overflow = "auto";
-    }
-
-    void initializeApp();
+    }, MIN_LOADING_TIME);
 
     return () => {
       cancelled = true;
+
+      clearTimeout(loadingTimer);
+
+      if (analyticsTimer !== null) {
+        clearTimeout(analyticsTimer);
+      }
+
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
 
       document.body.style.overflow = "auto";
     };

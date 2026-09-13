@@ -1,5 +1,3 @@
-
-
 import { useAppTranslation } from "@/shared/hooks/useAppTranslation";
 
 import { Button } from "@/shared/ui/button";
@@ -9,16 +7,33 @@ import { CircleBadge } from "@/shared/ui/circle-badge";
 import {
   ArrowRight,
   BriefcaseBusiness,
-  Code2,
+  Building2,
+  Handshake,
   Laptop,
-  Rocket,
   Send,
 } from "lucide-react";
 
 export function CtaCard() {
   const { t } = useAppTranslation();
 
-  const availableIcons = [BriefcaseBusiness, Laptop, Code2, Rocket];
+  const availableOptions = [
+    {
+      icon: Handshake,
+      label: "cta.availability.freelance",
+    },
+    {
+      icon: BriefcaseBusiness,
+      label: "cta.availability.clt",
+    },
+    {
+      icon: Building2,
+      label: "cta.availability.pj",
+    },
+    {
+      icon: Laptop,
+      label: "cta.availability.remote",
+    },
+  ];
 
   return (
     <Card
@@ -62,7 +77,7 @@ export function CtaCard() {
         "
       >
         {/* TITLE + DESCRIPTION */}
-        <div className="mt-4">
+        <div className="mt-2">
           <h3
             className="
               text-xl
@@ -105,16 +120,62 @@ export function CtaCard() {
             {t("cta.available")}
           </p>
 
-          <div className="flex gap-2">
-            {availableIcons.map((Icon, index) => (
-              <CircleBadge
-                key={index}
-                size="sm"
-                variant="glass"
-                className="bg-glass-blue"
+          <div
+            className="
+              flex
+              items-start
+              gap-2
+            "
+          >
+            {availableOptions.map(({ icon: Icon, label }) => (
+              <div
+                key={label}
+                title={t(label)}
+                className="
+                    group
+                    flex
+                    min-w-0
+                    flex-col
+                    items-center
+                    gap-1.5
+                  "
               >
-                <Icon size={16} className="text-primary" />
-              </CircleBadge>
+                <CircleBadge
+                  size="sm"
+                  variant="glass"
+                  className="
+                      bg-glass-blue
+
+                      transition-colors
+                      duration-200
+
+                      group-hover:bg-primary/15
+                      group-active:bg-primary/15
+                    "
+                >
+                  <Icon size={16} className="text-primary" />
+                </CircleBadge>
+
+                <span
+                  className="
+                      whitespace-nowrap
+
+                      text-[9px]
+                      font-medium
+                      leading-none
+
+                      text-white/50
+
+                      transition-colors
+                      duration-200
+
+                      group-hover:text-white/80
+                      group-active:text-white/80
+                    "
+                >
+                  {t(label)}
+                </span>
+              </div>
             ))}
           </div>
         </div>
@@ -131,7 +192,7 @@ export function CtaCard() {
           <Button variant="primary" className="w-full">
             {t("cta.button")}
 
-            <ArrowRight size={18} className="ml-2" />
+            <ArrowRight size={18}  />
           </Button>
         </a>
       </div>
@@ -153,10 +214,9 @@ export function CtaCard() {
         "
       >
         <img
-          src={"/chat-dev.webp"}
+          src="/chat-dev.webp"
           className="
             w-25
-
             lg:w-40
           "
           alt=""

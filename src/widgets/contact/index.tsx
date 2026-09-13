@@ -1,16 +1,20 @@
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
+
 import { Button } from "@/shared/ui/button";
 import { Card } from "@/shared/ui/Card/card";
 import { CircleBadge } from "@/shared/ui/circle-badge";
-
 import { Input } from "@/shared/ui/input";
 import { Textarea } from "@/shared/ui/text-area";
+
 import { Mail, MapPin, Smartphone, Send } from "lucide-react";
+
 import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
+
 import { useAppTranslation } from "@/shared/hooks/useAppTranslation";
 
 import { trackEvent } from "@/analytics/analytics";
+
 import { ANALYTICS_EVENTS } from "@/analytics/events";
 
 export default function Contact() {
@@ -49,7 +53,8 @@ export default function Contact() {
 
   const handleSendEmail = async () => {
     if (!form.nome || !form.email || !form.mensagem) {
-      alert(`${t("contact.alert.required")}`);
+      alert(t("contact.alert.required"));
+
       return;
     }
 
@@ -60,11 +65,16 @@ export default function Contact() {
 
       await emailjs.send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
+
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+
         {
           from_name: form.nome,
+
           from_email: form.email,
+
           subject: form.assunto || "Novo contato pelo portfólio",
+
           message: `
 Nome: ${form.nome}
 Email: ${form.email}
@@ -72,16 +82,17 @@ Assunto: ${form.assunto}
 
 Mensagem:
 ${form.mensagem}
-    `,
+            `,
         },
       );
 
-      alert(`${t("contact.alert.success")}`);
+      alert(t("contact.alert.success"));
 
       resetForm();
     } catch (error) {
       console.error(error);
-      alert(`${t("contact.alert.error")}`);
+
+      alert(t("contact.alert.error"));
     } finally {
       setLoading(false);
     }
@@ -93,7 +104,8 @@ ${form.mensagem}
 
   const handleSendWhatsapp = () => {
     if (!form.nome || !form.mensagem) {
-      alert(`${t("contact.alert.required")}`);
+      alert(t("contact.alert.required"));
+
       return;
     }
 
@@ -111,6 +123,7 @@ ${form.mensagem}
 `;
 
     const encoded = encodeURIComponent(text);
+
     window.open(`https://wa.me/5586981451876?text=${encoded}`, "_blank");
   };
 
@@ -120,72 +133,49 @@ ${form.mensagem}
         relative
         w-full
         mx-auto
+
         rounded-2xl
         overflow-hidden
+
         bg-glass-light
       "
     >
-      {/* GLOWS */}
-      <div
-        className="
-          absolute
-          top-[-80px]
-          left-[-80px]
-          w-[220px]
-          h-[220px]
-          sm:top-[-120px]
-          sm:left-[-120px]
-          sm:w-[400px]
-          sm:h-[400px]
-          rounded-full
-          bg-primary/20
-          blur-[100px]
-          sm:blur-[120px]
-          opacity-70
-          pointer-events-none
-          z-0
-        "
-      />
-
-      <div
-        className="
-          absolute
-          bottom-[-60px]
-          right-[-60px]
-          w-[180px]
-          h-[180px]
-          sm:bottom-[-80px]
-          sm:right-[-80px]
-          sm:w-[420px]
-          sm:h-[420px]
-          rounded-full
-          bg-cyan-400/10
-          blur-[80px]
-          sm:blur-[100px]
-          opacity-70
-          pointer-events-none
-          z-0
-        "
-      />
-
-      {/* MAIN CARD - Estilo removido no mobile, mantido no desktop */}
+      {/* MAIN CARD */}
       <Card
         className="
-          relative
-          overflow-hidden
-          bg-transparent
-          border-none
-          xl:bg-glass-light
-          xl:border xl:border-white/10
-        "
+    relative
+    overflow-hidden
+
+    bg-transparent
+    border-none
+
+    xl:bg-glass-light
+    xl:border
+    xl:border-white/10
+
+    hover:!scale-100
+    hover:!border-white/10
+    hover:!shadow-none
+
+    active:!scale-100
+    active:!border-white/10
+    active:!shadow-none
+
+    !transition-none
+    !duration-0
+  "
       >
         <div
           className="
-            flex flex-col
+            flex
+            flex-col
             xl:flex-row
+
             items-stretch
+
             gap-8
             xl:gap-10
+
             p-2
             py-6
             sm:p-4
@@ -194,11 +184,15 @@ ${form.mensagem}
           {/* LEFT CONTENT */}
           <div
             className="
-              flex flex-col
+              flex
+              flex-col
               justify-between
+
               w-full
               xl:w-[50%]
+
               gap-8
+
               p-2
               sm:p-4
               xl:p-6
@@ -210,6 +204,7 @@ ${form.mensagem}
                   className="
                     font-bold
                     leading-tight
+
                     text-3xl
                     sm:text-5xl
                     lg:text-6xl
@@ -226,9 +221,11 @@ ${form.mensagem}
               <p
                 className="
                   text-gray
+
                   text-sm
                   sm:text-base
                   md:text-xl
+
                   leading-relaxed
                 "
               >
@@ -242,10 +239,14 @@ ${form.mensagem}
                 <CircleBadge
                   variant="glass"
                   size="sm"
-                  className="bg-glass-blue shrink-0"
+                  className="
+                    bg-glass-blue
+                    shrink-0
+                  "
                 >
                   <Mail size={12} className="text-primary" />
                 </CircleBadge>
+
                 <span className="text-gray text-sm sm:text-base">
                   matheusphillip170@gmail.com
                 </span>
@@ -255,10 +256,14 @@ ${form.mensagem}
                 <CircleBadge
                   variant="glass"
                   size="sm"
-                  className="bg-glass-blue shrink-0"
+                  className="
+                    bg-glass-blue
+                    shrink-0
+                  "
                 >
                   <Smartphone size={12} className="text-primary" />
                 </CircleBadge>
+
                 <span className="text-gray text-sm sm:text-base">
                   +55 (86) 98145-1876
                 </span>
@@ -268,10 +273,14 @@ ${form.mensagem}
                 <CircleBadge
                   variant="glass"
                   size="sm"
-                  className="bg-glass-blue shrink-0"
+                  className="
+                    bg-glass-blue
+                    shrink-0
+                  "
                 >
                   <MapPin size={12} className="text-primary" />
                 </CircleBadge>
+
                 <span className="text-gray text-sm sm:text-base">
                   {t("footer.location")}
                 </span>
@@ -328,11 +337,12 @@ ${form.mensagem}
             </div>
           </div>
 
-          {/* FORM CARD - Mantido como card para destaque profissional */}
+          {/* FORM */}
           <div
             className="
               w-full
               xl:w-[40%]
+
               flex
               items-center
               justify-center
@@ -342,12 +352,18 @@ ${form.mensagem}
               className="
                 w-full
                 xl:max-w-[620px]
+
                 bg-glass-light
-                border border-white/10
-                backdrop-blur-2xl
+
+                border
+                border-white/10
+
                 p-4
                 sm:p-6
-                flex flex-col
+
+                flex
+                flex-col
+
                 gap-4
               "
             >
@@ -356,12 +372,13 @@ ${form.mensagem}
                   grid
                   grid-cols-1
                   md:grid-cols-2
+
                   gap-4
                 "
               >
                 <Input
                   label={t("contact.form.name")}
-                  name={t("contact.form.name")}
+                  name="nome"
                   value={form.nome}
                   onChange={handleChange}
                   placeholder={t("contact.form.name.placeholder")}
@@ -369,7 +386,7 @@ ${form.mensagem}
 
                 <Input
                   label={t("contact.form.email")}
-                  name={t("contact.form.email")}
+                  name="email"
                   value={form.email}
                   onChange={handleChange}
                   placeholder={t("contact.form.email.placeholder")}
@@ -378,7 +395,7 @@ ${form.mensagem}
 
               <Input
                 label={t("contact.form.subject")}
-                name={t("contact.form.subject")}
+                name="assunto"
                 value={form.assunto}
                 onChange={handleChange}
                 placeholder={t("contact.form.subject.placeholder")}
@@ -386,7 +403,7 @@ ${form.mensagem}
 
               <Textarea
                 label={t("contact.form.message")}
-                name={t("contact.form.message")}
+                name="mensagem"
                 value={form.mensagem}
                 onChange={handleChange}
                 placeholder={t("contact.form.message.placeholder")}
@@ -400,7 +417,9 @@ ${form.mensagem}
                   onClick={handleSendEmail}
                   disabled={loading}
                 >
-                  {loading ? t("contact.button.emailloading") : t("contact.button.email")}
+                  {loading
+                    ? t("contact.button.emailloading")
+                    : t("contact.button.email")}
                 </Button>
 
                 <Button
