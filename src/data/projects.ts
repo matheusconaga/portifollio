@@ -69,7 +69,7 @@ export const projects: ProjectsByLanguage = {
             ],
             category: "Backend",
             deployUrl:
-                "https://docflow-ai-lj3a.onrender.com/",
+                "https://docflow-ai-lj3a.onrender.com/docs",
             repoUrl:
                 "https://github.com/matheusconaga/docflow-ai",
         },
@@ -176,7 +176,7 @@ export const projects: ProjectsByLanguage = {
             ],
             category: "Backend",
             deployUrl:
-                "https://docflow-ai-lj3a.onrender.com/",
+                "https://docflow-ai-lj3a.onrender.com/docs",
             repoUrl:
                 "https://github.com/matheusconaga/docflow-ai",
         },
