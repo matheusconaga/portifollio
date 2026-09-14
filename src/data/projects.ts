@@ -46,8 +46,8 @@ export const projects: ProjectsByLanguage = {
             description:
                 "Plataforma fullstack própria de web analytics para monitoramento do meu portfólio, com rastreamento de visitantes, sessões, eventos e interações, dashboard com dados reais e anonimizados e automações de notificações via n8n e Telegram.",
             techs: [
-                "React",
                 "Node.js",
+                "n8n",
                 "PostgreSQL",
             ],
             category: "Fullstack",
@@ -153,8 +153,8 @@ export const projects: ProjectsByLanguage = {
             description:
                 "Custom fullstack web analytics platform built to monitor my portfolio, featuring visitor, session, event and interaction tracking, a dashboard with real anonymized data, and automated notifications through n8n and Telegram.",
             techs: [
-                "React",
                 "Node.js",
+                "n8n",
                 "PostgreSQL",
             ],
             category: "Fullstack",

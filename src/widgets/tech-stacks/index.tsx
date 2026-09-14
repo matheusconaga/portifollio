@@ -64,7 +64,7 @@ export default function TechStacks() {
   const tools = [
     { name: "Git", icon: SiGit },
     { name: "Figma", icon: SiFigma },
-    { name: "N8n", icon: SiN8N },
+    { name: "n8n", icon: SiN8N },
     { name: "CI/CD", icon: SiJfrogpipelines },
     { name: "Vercel", icon: SiVercel },
     { name: "Render", icon: SiRender },
