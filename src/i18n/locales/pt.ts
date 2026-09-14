@@ -19,7 +19,7 @@ export default class ptTranslation {
       "about.card2.description": "Engajamento de usuários",
       "about.card3.title": "-30%",
       "about.card3.description": "Redução de tarefas manuais",
-      "about.card4.title": "+20-30%",
+      "about.card4.title": "+~35%",
       "about.card4.description": "Aumento de eficiência operacional",
       "work.card.badge": "O que eu trabalho",
       "work.card.title1": "Criando soluções",

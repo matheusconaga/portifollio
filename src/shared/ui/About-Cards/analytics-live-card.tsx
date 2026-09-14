@@ -1,6 +1,13 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
-import { Activity, Eye, MousePointerClick, Users, WifiOff } from "lucide-react";
+import {
+  Activity,
+  Eye,
+  MousePointerClick,
+  RefreshCw,
+  Users,
+  WifiOff,
+} from "lucide-react";
 
 import { useAppTranslation } from "@/shared/hooks/useAppTranslation";
 
@@ -40,42 +47,41 @@ export function AnalyticsLiveCard() {
 
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    let cancelled = false;
+  const [refreshing, setRefreshing] = useState(false);
 
-    async function loadAnalytics() {
-      try {
-        const response = await fetch(
-          `${API_URL}/api/public/analytics/stats?period=7d`,
-        );
-
-        if (!response.ok) {
-          throw new Error("Failed to load public analytics");
-        }
-
-        const data = (await response.json()) as PublicAnalyticsStats;
-
-        if (cancelled) {
-          return;
-        }
-
-        setStats(data);
-        setError(false);
-      } catch (error) {
-        console.error("Failed to load public analytics:", error);
-
-        if (cancelled) {
-          return;
-        }
-
-        setError(true);
-      } finally {
-        if (!cancelled) {
-          setLoading(false);
-        }
+  const loadAnalytics = useCallback(async (manualRefresh = false) => {
+    try {
+      if (manualRefresh) {
+        setRefreshing(true);
       }
-    }
 
+      setError(false);
+
+      const response = await fetch(
+        `${API_URL}/api/public/analytics/stats?period=7d`,
+        {
+          cache: "no-store",
+        },
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to load public analytics");
+      }
+
+      const data = (await response.json()) as PublicAnalyticsStats;
+
+      setStats(data);
+    } catch (error) {
+      console.error("Failed to load public analytics:", error);
+
+      setError(true);
+    } finally {
+      setLoading(false);
+      setRefreshing(false);
+    }
+  }, []);
+
+  useEffect(() => {
     void loadAnalytics();
 
     const interval = window.setInterval(() => {
@@ -83,11 +89,9 @@ export function AnalyticsLiveCard() {
     }, 60_000);
 
     return () => {
-      cancelled = true;
-
       window.clearInterval(interval);
     };
-  }, []);
+  }, [loadAnalytics]);
 
   const metrics = stats
     ? [
@@ -172,63 +176,111 @@ export function AnalyticsLiveCard() {
           </span>
         </div>
 
-        {!error && (
-          <div
-            className="
-              flex
-              shrink-0
-              items-center
-              gap-1.5
-            "
-          >
-            <span className="relative flex h-2 w-2">
-              <span
-                className="
-                  absolute
-                  inline-flex
-
-                  h-full
-                  w-full
-
-                  rounded-full
-
-                  bg-green-400
-
-                  opacity-75
-
-                  animate-ping
-                "
-              />
-
-              <span
-                className="
-                  relative
-
-                  inline-flex
-
-                  h-2
-                  w-2
-
-                  rounded-full
-
-                  bg-primary
-                "
-              />
-            </span>
-
-            <span
+        <div
+          className="
+            flex
+            shrink-0
+            items-center
+            gap-2
+          "
+        >
+          {!error && (
+            <div
               className="
-                text-[9px]
-                font-semibold
-                uppercase
-                tracking-wider
-                text-white/40
+                flex
+                items-center
+                gap-1.5
               "
             >
-              Live
-            </span>
-          </div>
-        )}
+              <span className="relative flex h-2 w-2">
+                <span
+                  className="
+                    absolute
+                    inline-flex
+
+                    h-full
+                    w-full
+
+                    rounded-full
+
+                    bg-green-400
+
+                    opacity-75
+
+                    animate-ping
+                  "
+                />
+
+                <span
+                  className="
+                    relative
+                    inline-flex
+
+                    h-2
+                    w-2
+
+                    rounded-full
+
+                    bg-primary
+                  "
+                />
+              </span>
+
+              <span
+                className="
+                  text-[9px]
+                  font-semibold
+                  uppercase
+                  tracking-wider
+                  text-white/40
+                "
+              >
+                Live
+              </span>
+            </div>
+          )}
+
+          {/* REFRESH */}
+          <button
+            type="button"
+            onClick={() => {
+              void loadAnalytics(true);
+            }}
+            disabled={refreshing}
+            title={t("analyticsLive.refresh")}
+            aria-label={t("analyticsLive.refresh")}
+            className="
+              flex
+              h-7
+              w-7
+
+              items-center
+              justify-center
+
+              rounded-full
+
+              border
+              border-white/10
+
+              bg-white/[0.03]
+
+              text-white/40
+
+              transition-colors
+              duration-200
+
+              hover:bg-white/[0.06]
+              hover:text-primary
+
+              active:bg-white/[0.08]
+
+              disabled:cursor-not-allowed
+              disabled:opacity-50
+            "
+          >
+            <RefreshCw size={12} className={refreshing ? "animate-spin" : ""} />
+          </button>
+        </div>
       </div>
 
       {/* INTRO */}
@@ -270,8 +322,10 @@ export function AnalyticsLiveCard() {
             grid
             min-h-0
             flex-1
+
             grid-cols-2
             grid-rows-2
+
             gap-2
           "
         >
@@ -338,6 +392,48 @@ export function AnalyticsLiveCard() {
           >
             {t("analyticsLive.error")}
           </p>
+
+          <button
+            type="button"
+            onClick={() => {
+              void loadAnalytics(true);
+            }}
+            disabled={refreshing}
+            className="
+                mt-3
+
+                inline-flex
+                items-center
+                justify-center
+                gap-1.5
+
+                rounded-full
+
+                border
+                border-white/10
+
+                bg-white/[0.04]
+
+                px-3
+                py-1.5
+
+                text-[10px]
+                font-semibold
+                text-white/60
+
+                transition-colors
+                duration-200
+
+                hover:bg-white/[0.07]
+                hover:text-primary
+
+                disabled:opacity-50
+              "
+          >
+            <RefreshCw size={11} className={refreshing ? "animate-spin" : ""} />
+
+            {t("analyticsLive.retry")}
+          </button>
         </div>
       )}
 
@@ -345,7 +441,7 @@ export function AnalyticsLiveCard() {
       {!loading && !error && stats && (
         <div
           className="
-              mt-4
+              mt-2
 
               grid
               min-h-0
@@ -409,6 +505,7 @@ export function AnalyticsLiveCard() {
                         justify-center
 
                         rounded-full
+
                         bg-glass-blue
                       "
                 >
@@ -420,7 +517,6 @@ export function AnalyticsLiveCard() {
               <p
                 className="
                       mt-2
-
                       w-full
 
                       text-[10px]
@@ -455,6 +551,7 @@ export function AnalyticsLiveCard() {
                 h-1.5
                 w-1.5
                 shrink-0
+
                 rounded-full
                 bg-emerald-400
               "
@@ -467,7 +564,7 @@ export function AnalyticsLiveCard() {
                 text-white/40
               "
           >
-            {t("analyticsLive.live")}
+            {refreshing ? t("analyticsLive.updating") : t("analyticsLive.live")}
           </span>
         </div>
       )}

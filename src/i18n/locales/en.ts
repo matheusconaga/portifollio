@@ -19,7 +19,7 @@ export default class enTranslation {
       "about.card2.description": "User engagement",
       "about.card3.title": "-30%",
       "about.card3.description": "Reduction of manual tasks",
-      "about.card4.title": "+20-30%",
+      "about.card4.title": "+~35%",
       "about.card4.description": "Increase in operational efficiency",
       "work.card.badge": "What I do",
       "work.card.title1": "Creating modern",
