@@ -87,7 +87,7 @@ export function WorkCard() {
         <img
           src={"/eu_persona.webp"}
           className="
-            w-[175px]
+            w-[250px]
             select-none
             object-contain
 
@@ -95,7 +95,7 @@ export function WorkCard() {
 
             sm:w-[190px]
 
-            lg:w-[180px]
+            lg:w-[170px]
           "
           alt="Persona"
         />
