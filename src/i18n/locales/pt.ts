@@ -24,7 +24,7 @@ export default class ptTranslation {
       "work.card.badge": "O que eu trabalho",
       "work.card.title1": "Criando soluções",
       "work.card.title2": "modernas",
-      "work.card.description1": "Interfaces performáticas, modernas e escaláveis.",
+      "work.card.description": "Interfaces performáticas, modernas e escaláveis.",
       "code.card.passion": "Transformar ideias em soluções",
       "cta.badge": "Vamos criar algo?",
       "cta.title1": "Vamos criar",
