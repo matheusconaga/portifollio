@@ -167,19 +167,22 @@ ${form.mensagem}
       >
         <div
           className="
-            flex
-            flex-col
-            xl:flex-row
+  flex
+  flex-col
+  md:flex-row
+  xl:flex-row
 
-            items-stretch
+  items-stretch
 
-            gap-8
-            xl:gap-10
+  gap-8
+  md:gap-5
+  lg:gap-8
+  xl:gap-10
 
-            p-2
-            py-6
-            sm:p-4
-          "
+  p-2
+  py-6
+  sm:p-4
+"
         >
           {/* LEFT CONTENT */}
           <div
@@ -189,6 +192,7 @@ ${form.mensagem}
               justify-between
 
               w-full
+              md:w-[48%]
               xl:w-[50%]
 
               gap-8
@@ -224,7 +228,9 @@ ${form.mensagem}
 
                   text-sm
                   sm:text-base
-                  md:text-xl
+                  md:text-sm
+                  lg:text-base
+                  xl:text-xl
 
                   leading-relaxed
                 "
@@ -341,6 +347,7 @@ ${form.mensagem}
           <div
             className="
               w-full
+              md:w-[52%]
               xl:w-[40%]
 
               flex
@@ -358,22 +365,29 @@ ${form.mensagem}
                 border
                 border-white/10
 
-                p-4
+                p-3
                 sm:p-6
+                md:p-3
+                lg:p-5
+                xl:p-6
 
                 flex
                 flex-col
 
-                gap-4
+                gap-3
+                md:gap-3
+                xl:gap-4
               "
             >
               <div
                 className="
                   grid
                   grid-cols-1
-                  md:grid-cols-2
+                  md:grid-cols-1
+                  lg:grid-cols-2
 
-                  gap-4
+                  gap-3
+                  lg:gap-4
                 "
               >
                 <Input

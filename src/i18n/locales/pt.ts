@@ -104,6 +104,17 @@ export default class ptTranslation {
 
       "products.title": "Produtos",
       "products.subtitle": "Produtos",
+      "project.seeDetails": "Ver detalhes",
+      "button.back": "Anterior",
+      "button.next": "Próximo",
+      "project.viewProject": "Visualização do Projeto",
+      "project.overview": "VISÃO GERAL DO PROJETO",
+      "project.deploy": "Deploy",
+      "project.repository": "Repositório",
+      "project.caseStudy": "Estudo de caso",
+      "project.highlights": "Principais funcionalidades",
+      "casemodal.title":"Estudo de caso em desenvolvimento",
+      "casemodal.description":"Está sendo preparado este estudo de caso para apresentar os desafios, decisões técnicas e soluções desenvolvidas neste projeto. Em breve estará disponível!"
     };
   }
 }

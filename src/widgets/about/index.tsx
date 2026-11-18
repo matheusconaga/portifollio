@@ -82,12 +82,11 @@ export default function About() {
 
         md:gap-8
 
-        xl:min-h-screen
+        
         xl:flex-row
         xl:items-center
         xl:justify-between
-        xl:gap-8
-        xl:py-0
+      
       "
     >
       {/* BACKGROUND GLOW */}

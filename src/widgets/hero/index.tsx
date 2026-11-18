@@ -1,3 +1,4 @@
+
 import { Badge } from "@/shared/ui/badge";
 import { Button } from "@/shared/ui/button";
 
@@ -33,28 +34,15 @@ const LOGO_SRC = "/logo_matheus.webp";
 const HERO_IMAGE_SRC = "/euxl.webp";
 
 const techs = [
-  {
-    name: "React",
-    icon: FaReact,
-  },
-  {
-    name: "Flutter",
-    icon: SiFlutter,
-  },
-  {
-    name: "FastAPI",
-    icon: SiFastapi,
-  },
+  { name: "React", icon: FaReact },
+  { name: "Flutter", icon: SiFlutter },
+  { name: "FastAPI", icon: SiFastapi },
 ];
 
 export default function Hero() {
-  const { t, i18n } =
-    useAppTranslation();
+  const { t, i18n } = useAppTranslation();
 
-  const currentLang =
-    i18n.language.startsWith("pt")
-      ? "pt"
-      : "en";
+  const currentLang = i18n.language.startsWith("pt") ? "pt" : "en";
 
   const resumeLink =
     currentLang === "pt"
@@ -73,25 +61,24 @@ export default function Hero() {
 
         w-full
 
-        min-h-screen
-
         pt-15
         sm:pt-32
         md:pt-24
         xl:pt-30
 
         pb-20
-        md:pb-12
+        md:pb-16
+        xl:pb-24
 
         gap-16
-        md:gap-20
+        md:gap-8
+        lg:gap-12
       "
     >
       {/* TOP GLOW */}
       <div
         className="
           absolute
-
           top-[-80px]
           left-[-80px]
 
@@ -105,7 +92,6 @@ export default function Hero() {
           sm:h-[320px]
 
           rounded-full
-
           bg-primary/20
 
           blur-[70px]
@@ -113,7 +99,6 @@ export default function Hero() {
           lg:blur-[120px]
 
           pointer-events-none
-
           z-0
         "
       />
@@ -122,7 +107,6 @@ export default function Hero() {
       <div
         className="
           absolute
-
           bottom-[-100px]
 
           w-[260px]
@@ -139,7 +123,6 @@ export default function Hero() {
           lg:blur-[120px]
 
           pointer-events-none
-
           z-0
         "
       />
@@ -147,44 +130,49 @@ export default function Hero() {
       {/* HERO CONTENT */}
       <div
         className="
-          relative
-          z-10
+    relative
+    z-10
 
-          flex
+    grid
+    grid-cols-1
+    md:grid-cols-[minmax(0,1fr)_220px]
+    lg:grid-cols-[minmax(0,1fr)_300px]
+    xl:grid-cols-[minmax(0,1fr)_380px]
 
-          flex-col
-          xl:flex-row
+    items-center
 
-          items-center
-          justify-between
+    gap-8
+    md:gap-x-6
+    md:gap-y-5
+    lg:gap-x-10
+    xl:gap-x-16
 
-          gap-12
-          lg:gap-16
-          xl:gap-20
-
-          w-full
-        "
+    w-full
+  "
       >
-        {/* LEFT SIDE */}
         <div
           className="
-            flex
-            flex-col
+    flex
+    flex-col
+    items-center
+    md:items-start
 
-            items-center
-            xl:items-start
+    text-center
+    md:text-left
 
-            text-center
-            xl:text-left
+    gap-4
 
-            gap-4
+    min-w-0
+    w-full
 
-            flex-1
+    md:col-start-1
+    md:row-start-1
 
-            max-w-[750px]
-          "
+    max-w-[750px]
+    md:max-w-none
+  "
         >
-          {/* STATUS */}
+           {/* STATUS */}
           <Badge
             variant="glass"
             className="
@@ -237,215 +225,219 @@ export default function Hero() {
           {/* BRAND */}
           <div
             className="
-              flex
+    flex
+    flex-col
 
-              flex-col
-              sm:flex-row
+    items-center
+    sm:items-start
 
-              items-center
+    gap-4
 
-              text-center
-              sm:text-left
-
-              gap-4
-            "
+    w-full
+  "
           >
-            {/* Logo is small and doesn't need
-                to compete with the LCP image */}
-            <img
-              src={LOGO_SRC}
-              alt="Logo Matheus Lula"
-              width={180}
-              height={180}
-              loading="eager"
-              decoding="async"
-              className="
-                w-32
-                sm:w-32
-                lg:w-45
-
-                h-auto
-
-                shrink-0
-              "
-            />
-
+            {/* LOGO + PRESENTATION */}
             <div
               className="
-                flex
-                flex-col
+      flex
+      flex-col
+      sm:flex-row
 
-                items-center
-                sm:items-start
+      items-center
+      md:items-center
 
-                gap-2
-              "
+      text-center
+      sm:text-left
+
+      gap-4
+      md:gap-3
+      lg:gap-4
+
+      w-full
+    "
             >
-              <span
+              <img
+                src={LOGO_SRC}
+                alt="Logo Matheus Lula"
+                width={180}
+                height={180}
+                loading="eager"
+                decoding="async"
                 className="
-                  font-semibold
-                  text-white
+        w-32
+        sm:w-32
+        md:w-24
+        lg:w-32
+        xl:w-36
 
-                  text-xl
-                  sm:text-2xl
-                  lg:text-3xl
-                "
-              >
-                {t(
-                  "hero.apresentation",
-                )}
-              </span>
+        h-auto
+        shrink-0
+      "
+              />
 
-              <h1
-                className="
-                  font-bold
-
-                  text-primary
-
-                  leading-none
-
-                  text-4xl
-                  sm:text-5xl
-                  lg:text-5xl
-                  xl:text-5xl
-                "
-              >
-                Matheus Lula
-              </h1>
-
-              <span
-                className="
-                  font-semibold
-
-                  text-white
-
-                  text-lg
-                  sm:text-xl
-                  lg:text-2xl
-
-                  max-w-[600px]
-                "
-              >
-                Fullstack developer Web
-                & Mobile
-              </span>
-
-              {/* STACKS */}
               <div
                 className="
-                  flex
-                  flex-wrap
+        flex
+        flex-col
 
-                  justify-center
-                  sm:justify-start
+        items-center
+        sm:items-start
 
-                  gap-2
-                "
+        gap-2
+        min-w-0
+      "
               >
-                {techs.map(
-                  (tech) => (
-                    <StackCard
-                      variant="hero"
-                      key={
-                        tech.name
-                      }
-                      icon={
-                        tech.icon
-                      }
-                      name={
-                        tech.name
-                      }
-                    />
-                  ),
-                )}
+                <span
+                  className="
+          font-semibold
+          text-white
+
+          text-xl
+          sm:text-2xl
+          md:text-lg
+          lg:text-2xl
+          xl:text-3xl
+        "
+                >
+                  {t("hero.apresentation")}
+                </span>
+
+                <h1
+                  className="
+          font-bold
+          text-primary
+          leading-none
+
+          text-4xl
+          sm:text-5xl
+          md:text-4xl
+          lg:text-5xl
+          xl:text-5xl
+        "
+                >
+                  Matheus Lula
+                </h1>
+
+                <span
+                  className="
+          font-semibold
+          text-white
+
+          text-lg
+          sm:text-xl
+          md:text-base
+          lg:text-xl
+          xl:text-2xl
+
+          max-w-[600px]
+        "
+                >
+                  Fullstack developer Web & Mobile
+                </span>
               </div>
             </div>
+
+            {/* STACKS */}
+            <div
+              className="
+      flex
+      flex-wrap
+
+      justify-center
+      sm:justify-start
+
+      gap-2
+    "
+            >
+              {techs.map((tech) => (
+                <StackCard
+                  variant="hero"
+                  key={tech.name}
+                  icon={tech.icon}
+                  name={tech.name}
+                />
+              ))}
+            </div>
           </div>
+
 
           {/* DESCRIPTION */}
           <div
             className="
-              flex
-              flex-col
+    flex
+    flex-col
 
-              text-left
+    text-left
+    gap-1
 
-              gap-1
+    w-full
 
-              max-w-[700px]
-            "
+    md:col-span-2
+    md:col-start-1
+    md:row-start-2
+  "
           >
             <span
               className="
-                text-gray
+      text-gray
 
-                text-base
-                sm:text-lg
-                lg:text-xl
+      text-base
+      sm:text-lg
+      md:text-base
+      lg:text-lg
+      xl:text-xl
 
-                leading-relaxed
-              "
+      leading-relaxed
+    "
             >
-              {t(
-                "hero.description1",
-              )}
+              {t("hero.description1")}
             </span>
 
             <span
               className="
-                text-gray
+      text-gray
 
-                text-base
-                sm:text-lg
-                lg:text-xl
+      text-base
+      sm:text-lg
+      md:text-base
+      lg:text-lg
+      xl:text-xl
 
-                leading-relaxed
-              "
+      leading-relaxed
+    "
             >
-              {t(
-                "hero.description2",
-              )}
+              {t("hero.description2")}
             </span>
           </div>
 
           {/* BUTTONS */}
           <div
             className="
-              flex
+    flex
+    flex-col
+    sm:flex-row
 
-              flex-col
-              sm:flex-row
+    w-full
+    sm:w-auto
 
-              w-full
-              sm:w-auto
+    gap-4
+    mt-2
 
-              gap-4
-
-              mt-4
-            "
+    md:col-span-2
+    md:col-start-1
+    md:row-start-3
+  "
           >
             <a
               href="#projects"
-              className="
-                w-full
-                sm:w-auto
-              "
+              className="w-full sm:w-auto"
             >
               <Button
                 variant="primary-xl"
-                rightIcon={
-                  <MoveRight
-                    size={22}
-                  />
-                }
-                className="
-                  w-full
-                  sm:w-auto
-                "
+                rightIcon={<MoveRight size={22} />}
+                className="w-full sm:w-auto"
               >
-                {t(
-                  "hero.button1",
-                )}
+                {t("hero.button1")}
               </Button>
             </a>
 
@@ -453,35 +445,22 @@ export default function Hero() {
               href={resumeLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="
-                w-full
-                sm:w-auto
-              "
+              className="w-full sm:w-auto"
               onClick={() => {
                 void trackEvent(
                   ANALYTICS_EVENTS.RESUME_DOWNLOAD,
                   {
-                    page:
-                      window.location.pathname,
+                    page: window.location.pathname,
                   },
                 );
               }}
             >
               <Button
                 variant="outline-xl"
-                rightIcon={
-                  <Download
-                    size={22}
-                  />
-                }
-                className="
-                  w-full
-                  sm:w-auto
-                "
+                rightIcon={<Download size={22} />}
+                className="w-full sm:w-auto"
               >
-                {t(
-                  "hero.button2",
-                )}
+                {t("hero.button2")}
               </Button>
             </a>
           </div>
@@ -489,34 +468,32 @@ export default function Hero() {
           {/* SOCIALS */}
           <div
             className="
-              flex
+    flex
+    flex-row
+    justify-center
 
-              flex-row
-              justify-center
+    w-full
+    sm:w-auto
 
-              w-full
-              sm:w-auto
+    gap-4
+    mt-2
 
-              gap-4
-
-              mt-4
-            "
+    md:col-span-2
+    md:col-start-1
+    md:row-start-4
+  "
           >
             <a
               href="https://www.linkedin.com/in/matheusconaga"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="
-                group
-                relative
-              "
+              className="group relative"
               onClick={() => {
                 void trackEvent(
                   ANALYTICS_EVENTS.LINKEDIN_CLICK,
                   {
-                    page:
-                      window.location.pathname,
+                    page: window.location.pathname,
                   },
                 );
               }}
@@ -538,16 +515,12 @@ export default function Hero() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className="
-                group
-                relative
-              "
+              className="group relative"
               onClick={() => {
                 void trackEvent(
                   ANALYTICS_EVENTS.GITHUB_PROFILE_CLICK,
                   {
-                    page:
-                      window.location.pathname,
+                    page: window.location.pathname,
                   },
                 );
               }}
@@ -569,14 +542,15 @@ export default function Hero() {
         {/* RIGHT SIDE */}
         <div
           className="
-            relative
+    relative
+    flex
+    justify-center
 
-            flex
-            justify-center
+    w-full
 
-            w-full
-            xl:w-auto
-          "
+    md:col-start-2
+    md:row-start-1
+  "
         >
           <div
             className="
@@ -588,8 +562,11 @@ export default function Hero() {
               sm:w-[320px]
               sm:h-[320px]
 
-              lg:w-[380px]
-              lg:h-[380px]
+              md:w-[220px]
+              md:h-[220px]
+
+              lg:w-[300px]
+              lg:h-[300px]
 
               xl:w-[380px]
               xl:h-[380px]
@@ -609,12 +586,6 @@ export default function Hero() {
                 contain-paint
               "
             >
-              {/*
-                Native img is intentional here.
-
-                This is a critical above-the-fold
-                image and a strong LCP candidate.
-              */}
               <img
                 src={HERO_IMAGE_SRC}
                 alt="Matheus Lula"
@@ -671,36 +642,29 @@ export default function Hero() {
                   variant="glass"
                   className="p-2"
                 >
-                  <CodeXml
-                    size={15}
-                  />
+                  <CodeXml size={15} />
                 </Badge>
 
                 <span
                   className="
                     flex
                     flex-col
-
                     leading-tight
                   "
                 >
                   <span
                     className="
                       text-white
-
                       text-xs
                       sm:text-sm
                     "
                   >
-                    {t(
-                      "hero.badgeImage",
-                    )}
+                    {t("hero.badgeImage")}
                   </span>
 
                   <span
                     className="
                       text-white/60
-
                       text-[10px]
                       sm:text-xs
                     "
@@ -718,19 +682,18 @@ export default function Hero() {
       <div
         className="
           hidden
-          md:flex
+          xl:flex
 
           absolute
 
           left-1/2
           -translate-x-1/2
 
-          bottom-10
-          md:bottom-12
-          lg:bottom-14
-          xl:bottom-14
+          bottom-8
 
           z-20
+
+          pt-6
         "
       >
         <div
@@ -744,7 +707,6 @@ export default function Hero() {
             size={30}
             className="
               text-primary
-
               animate-bounce
             "
           />

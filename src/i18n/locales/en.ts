@@ -104,6 +104,17 @@ export default class enTranslation {
 
       "products.title": "Products",
       "products.subtitle": "Products",
+      "project.seeDetails": "See details",
+      "button.back": "Previous",
+      "button.next": "Next",
+      "project.viewProject": "Project View",
+      "project.overview": "PROJECT OVERVIEW",
+      "project.deploy":"Deploy",
+      "project.repository": "Repository",
+      "project.caseStudy": "Case Study",
+      "project.highlights": "Main features",
+      "casemodal.title":"Case study in development",
+      "casemodal.description":"This case study is being prepared to present the challenges, technical decisions and solutions developed in this project. It will be available soon!"
 
     };
   }

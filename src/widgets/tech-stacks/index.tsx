@@ -112,6 +112,7 @@ export default function TechStacks() {
 
             grid-cols-1
             md:grid-cols-2
+           
             xl:grid-cols-3
 
             gap-5 sm:gap-6
