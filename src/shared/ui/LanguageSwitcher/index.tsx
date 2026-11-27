@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 
+import { useLocation, useNavigate } from "react-router-dom";
+
 import { motion } from "framer-motion";
 import { Languages } from "lucide-react";
-import { useTranslation } from "react-i18next";
 
 const languages = [
   {
@@ -20,13 +21,18 @@ interface LanguageSwitcherProps {
 }
 
 export function LanguageSwitcher({ mobile = false }: LanguageSwitcherProps) {
-  const { i18n } = useTranslation();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const currentLanguage = i18n.language.startsWith("pt") ? "pt" : "en";
+  // A URL é a fonte de verdade do idioma.
+  const currentLanguage =
+    location.pathname === "/en" || location.pathname.startsWith("/en/")
+      ? "en"
+      : "pt";
 
   /*
    * Fecha o seletor mobile
@@ -53,23 +59,14 @@ export function LanguageSwitcher({ mobile = false }: LanguageSwitcherProps) {
     };
   }, [mobile, mobileOpen]);
 
-  const handleLanguageChange = async (code: string) => {
+  const handleLanguageChange = (code: string) => {
     if (code === currentLanguage) {
-      if (mobile) {
-        setMobileOpen(false);
-      }
-
+      if (mobile) setMobileOpen(false);
       return;
     }
 
-    // Identifica a rota sem o prefixo de idioma.
-    const currentPath =
-      window.location.pathname.replace(/^\/en(?=\/|$)/, "") || "/";
+    const currentPath = location.pathname.replace(/^\/en(?=\/|$)/, "") || "/";
 
-    // Atualiza a tradução.
-    await i18n.changeLanguage(code);
-
-    // Atualiza a URL preservando a página.
     const nextPath =
       code === "en"
         ? currentPath === "/"
@@ -77,14 +74,9 @@ export function LanguageSwitcher({ mobile = false }: LanguageSwitcherProps) {
           : `/en${currentPath}`
         : currentPath;
 
-    window.history.pushState(
-      {},
-      "",
-      `${nextPath}${window.location.search}${window.location.hash}`,
-    );
-
-    // Atualiza a aplicação sem recarregar a página.
-    window.dispatchEvent(new PopStateEvent("popstate"));
+    // Navega primeiro.
+    // O AnimatedRoutes atualiza o idioma após a saída da página.
+    navigate(`${nextPath}${location.search}${location.hash}`);
 
     if (mobile) {
       setMobileOpen(false);
@@ -227,25 +219,25 @@ export function LanguageSwitcher({ mobile = false }: LanguageSwitcherProps) {
                 type="button"
                 onClick={() => handleLanguageChange(language.code)}
                 className="
-                    relative
+                  relative
 
-                    min-w-11
-                    h-9
+                  min-w-11
+                  h-9
 
-                    px-3
+                  px-3
 
-                    rounded-full
+                  rounded-full
 
-                    cursor-pointer
+                  cursor-pointer
 
-                    text-sm
-                    font-semibold
+                  text-sm
+                  font-semibold
 
-                    whitespace-nowrap
+                  whitespace-nowrap
 
-                    transition-colors
-                    duration-300
-                  "
+                  transition-colors
+                  duration-300
+                "
               >
                 {isActive && (
                   <motion.div
@@ -256,26 +248,26 @@ export function LanguageSwitcher({ mobile = false }: LanguageSwitcherProps) {
                       damping: 28,
                     }}
                     className="
-                        absolute
-                        inset-0
+                      absolute
+                      inset-0
 
-                        rounded-full
+                      rounded-full
 
-                        bg-accent/40
+                      bg-accent/40
 
-                        border
-                        border-white/10
-                      "
+                      border
+                      border-white/10
+                    "
                   />
                 )}
 
                 <span
                   className={`
-                      relative
-                      z-10
+                    relative
+                    z-10
 
-                      ${isActive ? "text-white" : "text-gray hover:text-white"}
-                    `}
+                    ${isActive ? "text-white" : "text-gray hover:text-white"}
+                  `}
                 >
                   {language.label}
                 </span>
@@ -396,23 +388,23 @@ export function LanguageSwitcher({ mobile = false }: LanguageSwitcherProps) {
                 type="button"
                 onClick={() => handleLanguageChange(language.code)}
                 className="
-                    relative
+                  relative
 
-                    px-3
-                    py-1.5
+                  px-3
+                  py-1.5
 
-                    rounded-full
+                  rounded-full
 
-                    cursor-pointer
+                  cursor-pointer
 
-                    text-sm
-                    font-semibold
+                  text-sm
+                  font-semibold
 
-                    whitespace-nowrap
+                  whitespace-nowrap
 
-                    transition-all
-                    duration-300
-                  "
+                  transition-all
+                  duration-300
+                "
               >
                 {isActive && (
                   <motion.div
@@ -423,26 +415,26 @@ export function LanguageSwitcher({ mobile = false }: LanguageSwitcherProps) {
                       damping: 28,
                     }}
                     className="
-                        absolute
-                        inset-0
+                      absolute
+                      inset-0
 
-                        rounded-full
+                      rounded-full
 
-                        bg-accent/40
+                      bg-accent/40
 
-                        border
-                        border-white/10
-                      "
+                      border
+                      border-white/10
+                    "
                   />
                 )}
 
                 <span
                   className={`
-                      relative
-                      z-10
+                    relative
+                    z-10
 
-                      ${isActive ? "text-white" : "text-gray hover:text-white"}
-                    `}
+                    ${isActive ? "text-white" : "text-gray hover:text-white"}
+                  `}
                 >
                   {language.label}
                 </span>

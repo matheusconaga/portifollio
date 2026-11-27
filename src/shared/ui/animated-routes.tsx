@@ -1,6 +1,7 @@
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 
 import { AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 import Homepage from "@/pages/home";
 
@@ -11,9 +12,23 @@ import ProjectDetailsPage from "@/pages/project-details-page";
 
 export function AnimatedRoutes() {
   const location = useLocation();
+  const { i18n } = useTranslation();
+
+  const targetLanguage =
+    location.pathname === "/en" || location.pathname.startsWith("/en/")
+      ? "en"
+      : "pt";
 
   return (
-    <AnimatePresence mode="wait" initial={false}>
+    <AnimatePresence
+      mode="wait"
+      initial={false}
+      onExitComplete={() => {
+        if (i18n.language.split("-")[0] !== targetLanguage) {
+          void i18n.changeLanguage(targetLanguage);
+        }
+      }}
+    >
       <Routes location={location} key={location.pathname}>
         {/* PORTUGUÊS */}
         <Route
