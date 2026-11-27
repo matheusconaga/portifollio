@@ -109,12 +109,45 @@ export default class enTranslation {
       "button.next": "Next",
       "project.viewProject": "Project View",
       "project.overview": "PROJECT OVERVIEW",
-      "project.deploy":"Deploy",
+      "project.deploy": "Deploy",
       "project.repository": "Repository",
       "project.caseStudy": "Case Study",
       "project.highlights": "Main features",
-      "casemodal.title":"Case study in development",
-      "casemodal.description":"This case study is being prepared to present the challenges, technical decisions and solutions developed in this project. It will be available soon!"
+      "casemodal.title": "Case study in development",
+      "casemodal.description": "This case study is being prepared to present the challenges, technical decisions and solutions developed in this project. It will be available soon!",
+
+
+
+      "caseStudy.backToProjects": "Back",
+      "caseStudy.notFound.title": "Project not found",
+      "caseStudy.notFound.description": "The requested case study could not be found.",
+      "caseStudy.projectLabel": "Case study",
+      "caseStudy.liveDemo": "View project",
+      "caseStudy.footer": "Building modern digital experiences.",
+
+      "caseStudy.navigation.overview": "Overview",
+      "caseStudy.navigation.problem": "Problem",
+      "caseStudy.navigation.solution": "Solution",
+      "caseStudy.navigation.features": "Features",
+      "caseStudy.navigation.architecture": "Architecture",
+      "caseStudy.navigation.results": "Results",
+      "caseStudy.navigation.learnings": "Learnings",
+      "caseStudy.navigation.challenges": "Challenges",
+      "caseStudy.navigation.future": "Future plans",
+
+      "caseStudy.sections.overview": "Project overview",
+      "caseStudy.sections.problem": "The problem",
+      "caseStudy.sections.solution": "The solution",
+      "caseStudy.sections.features": "Key features",
+      "caseStudy.sections.architecture": "Architecture and technical decisions",
+      "caseStudy.sections.results": "Results and learnings",
+      "caseStudy.sections.learnings": "Key learnings",
+      "caseStudy.sections.challenges": "Technical challenges",
+      "caseStudy.sections.challengeSolution": "Applied solution",
+      "caseStudy.sections.future": "Future improvements",
+      "caseStudy.sections.learningsDescription": "During development, important software engineering concepts were explored."
+
+
 
     };
   }

@@ -113,8 +113,40 @@ export default class ptTranslation {
       "project.repository": "Repositório",
       "project.caseStudy": "Estudo de caso",
       "project.highlights": "Principais funcionalidades",
-      "casemodal.title":"Estudo de caso em desenvolvimento",
-      "casemodal.description":"Está sendo preparado este estudo de caso para apresentar os desafios, decisões técnicas e soluções desenvolvidas neste projeto. Em breve estará disponível!"
+      "casemodal.title": "Estudo de caso em desenvolvimento",
+      "casemodal.description": "Está sendo preparado este estudo de caso para apresentar os desafios, decisões técnicas e soluções desenvolvidas neste projeto. Em breve estará disponível!",
+
+
+      "caseStudy.backToProjects": "Voltar",
+      "caseStudy.notFound.title": "Projeto não encontrado",
+      "caseStudy.notFound.description": "O estudo de caso solicitado não foi encontrado.",
+      "caseStudy.projectLabel": "Estudo de caso",
+      "caseStudy.liveDemo": "Visualizar projeto",
+      "caseStudy.footer": "Desenvolvendo experiências digitais modernas.",
+
+      "caseStudy.navigation.overview": "Visão geral",
+      "caseStudy.navigation.problem": "Problema",
+      "caseStudy.navigation.solution": "Solução",
+      "caseStudy.navigation.features": "Funcionalidades",
+      "caseStudy.navigation.architecture": "Arquitetura",
+      "caseStudy.navigation.results": "Resultados",
+      "caseStudy.navigation.learnings": "Aprendizados",
+      "caseStudy.navigation.challenges": "Desafios",
+      "caseStudy.navigation.future": "Próximos passos",
+
+      "caseStudy.sections.overview": "Visão geral",
+      "caseStudy.sections.problem": "O problema",
+      "caseStudy.sections.solution": "A solução",
+      "caseStudy.sections.features": "Funcionalidades desenvolvidas",
+      "caseStudy.sections.architecture": "Arquitetura e decisões técnicas",
+      "caseStudy.sections.results": "Resultados e aprendizados",
+      "caseStudy.sections.learnings": "Principais aprendizados",
+      "caseStudy.sections.challenges": "Desafios técnicos",
+      "caseStudy.sections.challengeSolution": "Solução aplicada",
+      "caseStudy.sections.future": "Melhorias futuras",
+      "caseStudy.sections.learningsDescription": "Durante o desenvolvimento, foram explorados conceitos importantes de engenharia de software."
+
+
     };
   }
 }

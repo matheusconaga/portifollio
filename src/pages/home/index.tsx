@@ -1,30 +1,17 @@
-import {
-  lazy,
-  Suspense,
-} from "react";
+import { lazy, Suspense } from "react";
 
 import Hero from "@/widgets/hero";
 import About from "@/widgets/about";
 
-import {
-  TechBanner,
-} from "@/widgets/tech-banner";
+import { TechBanner } from "@/widgets/tech-banner";
 
-import {
-  Container,
-} from "@/shared/ui/container";
+import { Container } from "@/shared/ui/container";
 
-import {
-  Section,
-} from "@/shared/ui/section";
+import { Section } from "@/shared/ui/section";
 
-import {
-  AnimatedSection,
-} from "@/shared/ui/animated-section";
+import { AnimatedSection } from "@/shared/ui/animated-section";
 
-import {
-  LazySection,
-} from "@/shared/ui/Lazy-Loading/lazy-section";
+import { LazySection } from "@/shared/ui/Lazy-Loading/lazy-section";
 
 import {
   importContact,
@@ -33,35 +20,27 @@ import {
   importTechStacks,
 } from "@/shared/ui/Lazy-Loading/lazy-imports";
 
-import {
-  ProjectsSkeleton,
-} from "@/shared/ui/Lazy-Loading/project-skeleton";
+import { ProjectsSkeleton } from "@/shared/ui/Lazy-Loading/project-skeleton";
 
-import {
-  ContactSkeleton,
-} from "@/shared/ui/Lazy-Loading/contact-skeleton";
+import { ContactSkeleton } from "@/shared/ui/Lazy-Loading/contact-skeleton";
 
-import {
-  ExperienceSkeleton,
-} from "@/shared/ui/Lazy-Loading/experience-skeleton";
+import { ExperienceSkeleton } from "@/shared/ui/Lazy-Loading/experience-skeleton";
 
-import {
-  TechSkeleton,
-} from "@/shared/ui/Lazy-Loading/tech-skeleton";
+import { TechSkeleton } from "@/shared/ui/Lazy-Loading/tech-skeleton";
 
-const Projects =
-  lazy(importProjects);
+import { useRestoreScroll } from "@/shared/hooks/useRestoreScroll";
 
-const TechStacks =
-  lazy(importTechStacks);
+const Projects = lazy(importProjects);
 
-const Experience =
-  lazy(importExperience);
+const TechStacks = lazy(importTechStacks);
 
-const Contact =
-  lazy(importContact);
+const Experience = lazy(importExperience);
+
+const Contact = lazy(importContact);
 
 export default function Homepage() {
+  useRestoreScroll();
+
   return (
     <>
       {/* HERO */}
@@ -80,10 +59,7 @@ export default function Homepage() {
       </Section>
 
       {/* ABOUT */}
-      <Section
-        id="about"
-        trackView
-      >
+      <Section id="about" trackView>
         <Container>
           <AnimatedSection>
             <About />
@@ -97,22 +73,11 @@ export default function Homepage() {
       </AnimatedSection>
 
       {/* PROJECTS */}
-      <Section
-        id="projects"
-        trackView
-      >
+      <Section id="projects" trackView>
         <Container>
-          <LazySection
-            fallback={
-              <ProjectsSkeleton />
-            }
-          >
+          <LazySection fallback={<ProjectsSkeleton />}>
             <AnimatedSection>
-              <Suspense
-                fallback={
-                  <ProjectsSkeleton />
-                }
-              >
+              <Suspense fallback={<ProjectsSkeleton />}>
                 <Projects />
               </Suspense>
             </AnimatedSection>
@@ -121,22 +86,11 @@ export default function Homepage() {
       </Section>
 
       {/* TECH */}
-      <Section
-        id="tech"
-        trackView
-      >
+      <Section id="tech" trackView>
         <Container>
-          <LazySection
-            fallback={
-              <TechSkeleton />
-            }
-          >
+          <LazySection fallback={<TechSkeleton />}>
             <AnimatedSection>
-              <Suspense
-                fallback={
-                  <TechSkeleton />
-                }
-              >
+              <Suspense fallback={<TechSkeleton />}>
                 <TechStacks />
               </Suspense>
             </AnimatedSection>
@@ -145,22 +99,11 @@ export default function Homepage() {
       </Section>
 
       {/* EXPERIENCE */}
-      <Section
-        id="experience"
-        trackView
-      >
+      <Section id="experience" trackView>
         <Container>
-          <LazySection
-            fallback={
-              <ExperienceSkeleton />
-            }
-          >
+          <LazySection fallback={<ExperienceSkeleton />}>
             <AnimatedSection>
-              <Suspense
-                fallback={
-                  <ExperienceSkeleton />
-                }
-              >
+              <Suspense fallback={<ExperienceSkeleton />}>
                 <Experience />
               </Suspense>
             </AnimatedSection>
@@ -169,22 +112,11 @@ export default function Homepage() {
       </Section>
 
       {/* CONTACT */}
-      <Section
-        id="contact"
-        trackView
-      >
+      <Section id="contact" trackView>
         <Container>
-          <LazySection
-            fallback={
-              <ContactSkeleton />
-            }
-          >
+          <LazySection fallback={<ContactSkeleton />}>
             <AnimatedSection>
-              <Suspense
-                fallback={
-                  <ContactSkeleton />
-                }
-              >
+              <Suspense fallback={<ContactSkeleton />}>
                 <Contact />
               </Suspense>
             </AnimatedSection>

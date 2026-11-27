@@ -67,7 +67,7 @@ export const projects: ProjectsByLanguage = {
             image: analytics,
             title: "Portfolio Analytics",
             description:
-                "Plataforma full stack própria de web analytics para monitoramento do portfólio, com rastreamento de visitantes, sessões e interações, identificação de visitantes recorrentes e análise de engajamento. Conta com dashboards responsivos, dados públicos anonimizados, endpoints privados e automações de notificações via n8n e Telegram.",
+                "Plataforma full stack própria de web analytics para monitoramento do portfólio, com rastreamento de visitantes, sessões e interações, identificação de visitantes recorrentes e análise de engajamento. Conta com dashboard responsivo, backend próprio e automações de notificações via n8n e Telegram, utilizando uma arquitetura distribuída entre Render e um servidor próprio.",
             techs: [
                 "Node.js",
                 "TypeScript",
@@ -77,6 +77,8 @@ export const projects: ProjectsByLanguage = {
                 "Prisma",
                 "Recharts",
                 "n8n",
+                "Cloudflare Tunnel",
+                "Telegram",
             ],
             category: "Fullstack",
             deployUrl:
@@ -91,9 +93,10 @@ export const projects: ProjectsByLanguage = {
                 "Monitoramento de 10 tipos de eventos, incluindo visualizações de páginas e seções, acessos ao GitHub, demonstrações, downloads de currículo e interações de contato.",
                 "Identificação de visitantes novos e recorrentes, acompanhamento de atividade por sessão e cálculo de métricas de engajamento.",
                 "Dashboard responsivo com timeline de acessos, ranking de projetos, interações e indicadores de navegação.",
-                "Separação entre API pública, com dados agregados e anonimizados, e endpoints privados protegidos por autenticação.",
+                "Backend próprio desenvolvido com Node.js e Express, responsável pelo processamento e disponibilização dos dados de analytics.",
+                "Arquitetura distribuída: dashboard hospedado no Render e backend e n8n executados em um dispositivo próprio, com acesso externo via Cloudflare Tunnel.",
                 "Integração com n8n e Telegram para envio automático de resumos das sessões, incluindo páginas visitadas e interações realizadas.",
-                "Estratégia de inicialização paralela dos serviços para contornar cold starts do Render sem bloquear o carregamento dos dados do dashboard.",
+                "Execução independente dos serviços de backend e automação, permitindo separar o processamento de dados das notificações.",
             ],
 
             metrics: [
@@ -261,7 +264,7 @@ export const projects: ProjectsByLanguage = {
             image: patrimoniario,
             title: "Patrimoniário",
             description:
-                "Sistema web de gestão patrimonial desenvolvido com React e TypeScript para centralizar o cadastro, acompanhamento e controle de ativos. Oferece dashboards em tempo real, filtros avançados, geração de etiquetas com QR Code, importação em lote via Excel e exportação de relatórios em PDF, utilizando Firebase para autenticação e persistência de dados e Cloudinary para armazenamento de imagens.",
+                "Sistema web de gestão patrimonial desenvolvido com React e TypeScript para centralizar o cadastro, acompanhamento e controle de ativos. Oferece gerenciamento de categorias e modelos patrimoniais, identificação por QR Code, importação e exportação de dados via Excel, dashboard administrativo e gerenciamento de imagens com Cloudinary, utilizando Firebase Authentication e Cloud Firestore.",
             techs: [
                 "React",
                 "TypeScript",
@@ -285,13 +288,13 @@ export const projects: ProjectsByLanguage = {
 
             highlights: [
                 "Sistema completo de gerenciamento de ativos com operações de cadastro, consulta, edição e exclusão (CRUD).",
-                "Dashboard administrativo com visualização e acompanhamento de dados patrimoniais em tempo real.",
-                "Busca inteligente e filtros avançados para facilitar a localização e organização dos ativos.",
+                "Dashboard administrativo com indicadores e visualização de dados patrimoniais.",
+                "Busca e filtros para facilitar a localização e organização dos ativos.",
                 "Gerenciamento dinâmico de categorias e modelos patrimoniais.",
-                "Geração de etiquetas com QR Code para identificação e rastreamento dos ativos.",
+                "Geração de etiquetas com QR Code para identificação dos ativos.",
                 "Importação e exportação de dados em lote por meio de planilhas Excel.",
-                "Geração e exportação de relatórios em PDF.",
-                "Autenticação de usuários com Firebase Authentication e persistência em tempo real com Cloud Firestore.",
+                "Recursos de geração e exportação de documentos em PDF.",
+                "Autenticação de usuários com Firebase Authentication e persistência de dados com Cloud Firestore.",
                 "Integração com Cloudinary para armazenamento e gerenciamento de imagens dos ativos.",
                 "Interface SPA responsiva, otimizada para desktop e dispositivos móveis.",
             ],
@@ -309,6 +312,7 @@ export const projects: ProjectsByLanguage = {
             techs: [
                 "React",
                 "FastAPI",
+                "PostgreSQL",
                 "AI/LLMs",
             ],
             category: "Fullstack",
@@ -330,7 +334,7 @@ export const projects: ProjectsByLanguage = {
             image: analytics,
             title: "Portfolio Analytics",
             description:
-                "Custom full-stack web analytics platform built to monitor portfolio activity through visitor, session and interaction tracking, returning visitor identification and engagement analysis. Features responsive dashboards, anonymized public data, private API endpoints, and automated notifications through n8n and Telegram.",
+                "Custom full-stack web analytics platform built to monitor portfolio activity through visitor, session and interaction tracking, returning visitor identification and engagement analysis. Features a responsive dashboard, a custom backend and automated notifications through n8n and Telegram, using a distributed architecture across Render and a self-hosted server.",
             techs: [
                 "Node.js",
                 "TypeScript",
@@ -340,6 +344,8 @@ export const projects: ProjectsByLanguage = {
                 "Prisma",
                 "Recharts",
                 "n8n",
+                "Cloudflare Tunnel",
+                "Telegram",
             ],
             category: "Fullstack",
             deployUrl:
@@ -354,9 +360,10 @@ export const projects: ProjectsByLanguage = {
                 "Monitoring of 10 event types, including page and section views, GitHub access, project demos, resume downloads and contact interactions.",
                 "Identification of new and returning visitors, session activity monitoring and engagement metrics.",
                 "Responsive dashboard featuring traffic timelines, project rankings, interactions and navigation indicators.",
-                "Separation between a public API exposing aggregated and anonymized data and private endpoints protected by authentication.",
+                "Custom backend developed with Node.js and Express, responsible for processing and providing analytics data.",
+                "Distributed architecture: dashboard hosted on Render, with the backend and n8n running on a self-hosted device and external access provided through Cloudflare Tunnel.",
                 "Integration with n8n and Telegram for automated session summaries, including visited pages and user interactions.",
-                "Parallel service initialization strategy to handle Render cold starts without blocking dashboard data retrieval.",
+                "Independent execution of backend and automation services, separating data processing from notification workflows.",
             ],
 
             metrics: [
@@ -524,7 +531,7 @@ export const projects: ProjectsByLanguage = {
             image: patrimoniario,
             title: "Patrimoniario",
             description:
-                "Web-based asset management system built with React and TypeScript to centralize asset registration, monitoring and control. Features real-time dashboards, advanced filtering, QR Code label generation, bulk Excel import and PDF report export, using Firebase for authentication and data persistence and Cloudinary for image storage.",
+                "Web-based asset management system built with React and TypeScript to centralize asset registration, monitoring and control. Features asset category and model management, QR Code identification, Excel data import and export, an administrative dashboard and image management through Cloudinary, using Firebase Authentication and Cloud Firestore.",
             techs: [
                 "React",
                 "TypeScript",
@@ -548,13 +555,13 @@ export const projects: ProjectsByLanguage = {
 
             highlights: [
                 "Complete asset management system with create, read, update and delete (CRUD) operations.",
-                "Administrative dashboard for real-time visualization and monitoring of asset data.",
-                "Smart search and advanced filters to simplify asset discovery and organization.",
+                "Administrative dashboard with asset indicators and data visualization.",
+                "Search and filtering features to simplify asset discovery and organization.",
                 "Dynamic management of asset categories and models.",
-                "QR Code label generation for asset identification and tracking.",
+                "QR Code label generation for asset identification.",
                 "Bulk data import and export through Excel spreadsheets.",
-                "PDF report generation and export.",
-                "User authentication with Firebase Authentication and real-time data persistence using Cloud Firestore.",
+                "PDF document generation and export features.",
+                "User authentication with Firebase Authentication and data persistence using Cloud Firestore.",
                 "Cloudinary integration for asset image storage and management.",
                 "Responsive SPA interface optimized for desktop and mobile devices.",
             ],

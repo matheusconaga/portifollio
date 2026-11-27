@@ -1,8 +1,4 @@
-import {
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { motion } from "framer-motion";
 import { Languages } from "lucide-react";
@@ -23,69 +19,72 @@ interface LanguageSwitcherProps {
   mobile?: boolean;
 }
 
-export function LanguageSwitcher({
-  mobile = false,
-}: LanguageSwitcherProps) {
+export function LanguageSwitcher({ mobile = false }: LanguageSwitcherProps) {
   const { i18n } = useTranslation();
 
-  const [
-    mobileOpen,
-    setMobileOpen,
-  ] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
-  const containerRef =
-    useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  const currentLanguage =
-    i18n.language.startsWith("pt")
-      ? "pt"
-      : "en";
+  const currentLanguage = i18n.language.startsWith("pt") ? "pt" : "en";
 
   /*
    * Fecha o seletor mobile
    * ao tocar fora dele.
    */
   useEffect(() => {
-    if (
-      !mobile ||
-      !mobileOpen
-    ) {
+    if (!mobile || !mobileOpen) {
       return;
     }
 
-    const handleClickOutside = (
-      event: PointerEvent,
-    ) => {
+    const handleClickOutside = (event: PointerEvent) => {
       if (
         containerRef.current &&
-        !containerRef.current.contains(
-          event.target as Node,
-        )
+        !containerRef.current.contains(event.target as Node)
       ) {
         setMobileOpen(false);
       }
     };
 
-    document.addEventListener(
-      "pointerdown",
-      handleClickOutside,
-    );
+    document.addEventListener("pointerdown", handleClickOutside);
 
     return () => {
-      document.removeEventListener(
-        "pointerdown",
-        handleClickOutside,
-      );
+      document.removeEventListener("pointerdown", handleClickOutside);
     };
-  }, [
-    mobile,
-    mobileOpen,
-  ]);
+  }, [mobile, mobileOpen]);
 
-  const handleLanguageChange = (
-    code: string,
-  ) => {
-    void i18n.changeLanguage(code);
+  const handleLanguageChange = async (code: string) => {
+    if (code === currentLanguage) {
+      if (mobile) {
+        setMobileOpen(false);
+      }
+
+      return;
+    }
+
+    // Identifica a rota sem o prefixo de idioma.
+    const currentPath =
+      window.location.pathname.replace(/^\/en(?=\/|$)/, "") || "/";
+
+    // Atualiza a tradução.
+    await i18n.changeLanguage(code);
+
+    // Atualiza a URL preservando a página.
+    const nextPath =
+      code === "en"
+        ? currentPath === "/"
+          ? "/en"
+          : `/en${currentPath}`
+        : currentPath;
+
+    window.history.pushState(
+      {},
+      "",
+      `${nextPath}${window.location.search}${window.location.hash}`,
+    );
+
+    // Atualiza a aplicação sem recarregar a página.
+    window.dispatchEvent(new PopStateEvent("popstate"));
 
     if (mobile) {
       setMobileOpen(false);
@@ -109,11 +108,7 @@ export function LanguageSwitcher({
           type="button"
           aria-label="Alterar idioma"
           aria-expanded={mobileOpen}
-          onClick={() =>
-            setMobileOpen(
-              (prev) => !prev,
-            )
-          }
+          onClick={() => setMobileOpen((prev) => !prev)}
           className={`
             relative
 
@@ -223,24 +218,15 @@ export function LanguageSwitcher({
             }
           `}
         >
-          {languages.map(
-            (language) => {
-              const isActive =
-                currentLanguage ===
-                language.code;
+          {languages.map((language) => {
+            const isActive = currentLanguage === language.code;
 
-              return (
-                <button
-                  key={
-                    language.code
-                  }
-                  type="button"
-                  onClick={() =>
-                    handleLanguageChange(
-                      language.code,
-                    )
-                  }
-                  className="
+            return (
+              <button
+                key={language.code}
+                type="button"
+                onClick={() => handleLanguageChange(language.code)}
+                className="
                     relative
 
                     min-w-11
@@ -260,16 +246,16 @@ export function LanguageSwitcher({
                     transition-colors
                     duration-300
                   "
-                >
-                  {isActive && (
-                    <motion.div
-                      layoutId="activeLanguage-mobile"
-                      transition={{
-                        type: "spring",
-                        stiffness: 350,
-                        damping: 28,
-                      }}
-                      className="
+              >
+                {isActive && (
+                  <motion.div
+                    layoutId="activeLanguage-mobile"
+                    transition={{
+                      type: "spring",
+                      stiffness: 350,
+                      damping: 28,
+                    }}
+                    className="
                         absolute
                         inset-0
 
@@ -280,29 +266,22 @@ export function LanguageSwitcher({
                         border
                         border-white/10
                       "
-                    />
-                  )}
+                  />
+                )}
 
-                  <span
-                    className={`
+                <span
+                  className={`
                       relative
                       z-10
 
-                      ${
-                        isActive
-                          ? "text-white"
-                          : "text-gray hover:text-white"
-                      }
+                      ${isActive ? "text-white" : "text-gray hover:text-white"}
                     `}
-                  >
-                    {
-                      language.label
-                    }
-                  </span>
-                </button>
-              );
-            },
-          )}
+                >
+                  {language.label}
+                </span>
+              </button>
+            );
+          })}
         </div>
       </div>
     );
@@ -408,24 +387,15 @@ export function LanguageSwitcher({
             duration-500
           "
         >
-          {languages.map(
-            (language) => {
-              const isActive =
-                currentLanguage ===
-                language.code;
+          {languages.map((language) => {
+            const isActive = currentLanguage === language.code;
 
-              return (
-                <button
-                  key={
-                    language.code
-                  }
-                  type="button"
-                  onClick={() =>
-                    handleLanguageChange(
-                      language.code,
-                    )
-                  }
-                  className="
+            return (
+              <button
+                key={language.code}
+                type="button"
+                onClick={() => handleLanguageChange(language.code)}
+                className="
                     relative
 
                     px-3
@@ -443,16 +413,16 @@ export function LanguageSwitcher({
                     transition-all
                     duration-300
                   "
-                >
-                  {isActive && (
-                    <motion.div
-                      layoutId="activeLanguage-desktop"
-                      transition={{
-                        type: "spring",
-                        stiffness: 350,
-                        damping: 28,
-                      }}
-                      className="
+              >
+                {isActive && (
+                  <motion.div
+                    layoutId="activeLanguage-desktop"
+                    transition={{
+                      type: "spring",
+                      stiffness: 350,
+                      damping: 28,
+                    }}
+                    className="
                         absolute
                         inset-0
 
@@ -463,29 +433,22 @@ export function LanguageSwitcher({
                         border
                         border-white/10
                       "
-                    />
-                  )}
+                  />
+                )}
 
-                  <span
-                    className={`
+                <span
+                  className={`
                       relative
                       z-10
 
-                      ${
-                        isActive
-                          ? "text-white"
-                          : "text-gray hover:text-white"
-                      }
+                      ${isActive ? "text-white" : "text-gray hover:text-white"}
                     `}
-                  >
-                    {
-                      language.label
-                    }
-                  </span>
-                </button>
-              );
-            },
-          )}
+                >
+                  {language.label}
+                </span>
+              </button>
+            );
+          })}
         </div>
       </div>
     </div>
