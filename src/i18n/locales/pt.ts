@@ -144,8 +144,11 @@ export default class ptTranslation {
       "caseStudy.sections.challenges": "Desafios técnicos",
       "caseStudy.sections.challengeSolution": "Solução aplicada",
       "caseStudy.sections.future": "Melhorias futuras",
-      "caseStudy.sections.learningsDescription": "Durante o desenvolvimento, foram explorados conceitos importantes de engenharia de software."
-
+      "caseStudy.sections.learningsDescription": "Durante o desenvolvimento, foram explorados conceitos importantes de engenharia de software.",
+      "caseStudy.footerCta": {
+        "title": "Quer explorar o projeto mais a fundo?",
+        "description": "Conheça a implementação, explore o código-fonte e confira mais detalhes técnicos diretamente no repositório."
+      }
 
     };
   }

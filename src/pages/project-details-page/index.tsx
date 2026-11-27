@@ -743,6 +743,39 @@ export default function ProjectDetailsPage() {
           )}
         </div>
 
+        {/* CTA - Explorar o projeto */}
+        {project.repoUrl && (
+          <section className="max-w-7xl mx-auto px-5 md:px-8 pb-14 md:pb-20">
+            <Card className="border-primary/20 bg-glass-dark text-center">
+              <div className="max-w-2xl mx-auto flex flex-col items-center">
+                <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-primary/10 border border-primary/20 mb-5">
+                  <Github className="w-7 h-7 text-primary" />
+                </div>
+
+                <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+                  {t("caseStudy.footerCta.title")}
+                </h2>
+
+                <p className="text-gray text-sm md:text-base leading-relaxed mb-7">
+                  {t("caseStudy.footerCta.description")}
+                </p>
+
+                <a
+                  href={project.repoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button variant="primary-xl" className="py-3">
+                    <Github className="w-5 h-5" />
+                    {t("project.repository")}
+                    <ExternalLink className="w-4 h-4" />
+                  </Button>
+                </a>
+              </div>
+            </Card>
+          </section>
+        )}
+
         {/* Rodapé */}
         <footer className="border-t border-white/10">
           <div className="max-w-7xl mx-auto px-5 md:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">

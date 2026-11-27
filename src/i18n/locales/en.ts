@@ -145,7 +145,12 @@ export default class enTranslation {
       "caseStudy.sections.challenges": "Technical challenges",
       "caseStudy.sections.challengeSolution": "Applied solution",
       "caseStudy.sections.future": "Future improvements",
-      "caseStudy.sections.learningsDescription": "During development, important software engineering concepts were explored."
+      "caseStudy.sections.learningsDescription": "During development, important software engineering concepts were explored.",
+
+      "caseStudy.footerCta": {
+        "title": "Want to explore the project further?",
+        "description": "Explore the implementation, browse the source code, and discover more technical details directly in the repository."
+      }
 
 
 
