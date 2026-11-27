@@ -300,12 +300,11 @@ export default function ProjectDetailsPage() {
           <div className="flex justify-start min-w-0">
             <Link
               to={projectsPath}
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm md:text-base text-gray hover:text-primary transition-colors whitespace-nowrap"
+              className="inline-flex items-center gap-2 text-sm md:text-base text-gray hover:text-primary active:text-primary transition-colors"
             >
-              <ArrowLeft className="w-4 h-4 shrink-0" />
-              <span className="hidden min-[360px]:inline">
-                {t("caseStudy.backToProjects")}
-              </span>
+              <ArrowLeft className="w-4 h-4" />
+
+              <span>{t("caseStudy.backToProjects")}</span>
             </Link>
           </div>
 
